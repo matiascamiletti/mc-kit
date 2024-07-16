@@ -6,6 +6,9 @@
     "paths": {
       "@mckit/core": [
         "./dist/mckit/core"
+      ],
+      "@mckit/layout": [
+        "./dist/mckit/layout"
       ]
     },
     "outDir": "./dist/out-tsc",
