@@ -1,6 +1,11 @@
 # MC KIT - Library for Easy Design
 
+First Step
+- Install primeNG
 
+npm install primeng --save
+
+- Add Styles
 
 
 
