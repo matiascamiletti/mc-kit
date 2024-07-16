@@ -1,0 +1,16 @@
+.sidebar {
+  height: 100%;
+  width: 250px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  background-color: #fff;
+  box-shadow: 0 4px 50px #D9DDFC;
+  border-right: 1px solid transparent;
+  display: flex;
+  flex-direction: column;
+}
+
+.content {
+  margin-left: 250px; /* Mismo ancho que el sidebar */
+}
