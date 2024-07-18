@@ -8,6 +8,11 @@ npm install primeng --save
 - Add Styles
 
 
+https://v17.angular.io/tutorial/first-app/first-app-lesson-10
+
+https://primeng.org/checkbox
+https://apollo.primeng.org/
+
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.0.
 

@@ -3,6 +3,7 @@ import { BasicLayout } from '../../../mckit/layout/src/lib/layouts/basic-layout/
 import { TestPageComponent } from './pages/test-page/test-page.component';
 
 export const routes: Routes = [
+  { path: '', redirectTo: 'basic', pathMatch: 'full' },
   {
     path: 'basic',
     component: BasicLayout,
