@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MCSidebarService } from '../../../mckit/layout/src/public-api';
-import { MCSubtitle } from '../../../mckit/core/src/lib/components/subtitle/subtitle.component';
+import { MCSubtitle } from '@mckit/core';
 
 @Component({
   selector: 'app-root',

@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
-import { BasicLayout } from '../../../mckit/layout/src/lib/layouts/basic-layout/basic-layout.component';
 import { TestPageComponent } from './pages/test-page/test-page.component';
+import { BasicLayout } from '../../../mckit/layout/src/public-api';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'basic', pathMatch: 'full' },

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { PrintServiceComponent } from '../../../../../core/src/lib/components/print-service/print-service.component';
 import { ID_SIDEBAR_MC_COMPONENT } from '../../services/sidebar.service';
+import { PrintServiceComponent } from '@mckit/core';
 
 @Component({
   selector: 'mc-basic-layout',

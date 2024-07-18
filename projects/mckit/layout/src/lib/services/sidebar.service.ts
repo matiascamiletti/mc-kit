@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { McComponentService } from '../../../../core/src/lib/services/mc-component.service';
-import { MCComponent } from '../../../../core/src/lib/entities/mc-component';
+import { MCComponent, McComponentService } from '@mckit/core';
 
 export const ID_SIDEBAR_MC_COMPONENT = 'mc_sidebar';
 

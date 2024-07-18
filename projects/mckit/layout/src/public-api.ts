@@ -5,4 +5,9 @@
 /**
  * Services
  */
-export { MCSidebarService } from './lib/services/sidebar.service';
+export * from './lib/services/sidebar.service';
+
+/**
+ * Layouts
+ */
+export * from './lib/layouts/basic-layout/basic-layout.component';
