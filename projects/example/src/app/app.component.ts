@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MCSidebarService } from '../../../mckit/layout/src/public-api';
-import { MCSubtitle } from '@mckit/core';
+import { MCSubtitle } from '../../../mckit/core/src/public-api';
+import { MCImage } from '../../../mckit/core/src/lib/components/image/image.component';
 
 @Component({
   selector: 'app-root',
@@ -31,6 +32,7 @@ export class AppComponent implements OnInit {
      * Add components in sidebar all at once
      */
     this.sidebarService.setComponents([
+      new MCImage('https://tots.agency/assets/img/logos/logo-horiz-black-color.svg', 150),
       new MCSubtitle('MENU'),
       new MCSubtitle('Inicio'),
       new MCSubtitle('Acerca de '),
