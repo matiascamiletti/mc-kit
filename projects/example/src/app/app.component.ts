@@ -4,6 +4,7 @@ import { MCSidebarService } from '../../../mckit/layout/src/public-api';
 import { MCSubtitle } from '../../../mckit/core/src/public-api';
 import { MCImage } from '../../../mckit/core/src/lib/components/image/image.component';
 import { MCMenu } from '../../../mckit/core/src/lib/components/menu/menu.component';
+import { ItemCustomMenuComponent } from './components/item-custom-menu/item-custom-menu.component';
 
 @Component({
   selector: 'app-root',
@@ -35,6 +36,7 @@ export class AppComponent implements OnInit {
     this.sidebarService.setComponents([
       new MCImage('https://tots.agency/assets/img/logos/logo-horiz-black-color.svg', 150),
       new MCSubtitle('MENU'),
+      { component: ItemCustomMenuComponent, config: { }},
       new MCSubtitle('Inicio'),
       new MCSubtitle('Acerca de '),
       new MCSubtitle('Contacto'),
