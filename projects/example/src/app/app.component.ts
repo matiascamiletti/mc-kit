@@ -3,6 +3,7 @@ import { RouterOutlet } from '@angular/router';
 import { MCSidebarService } from '../../../mckit/layout/src/public-api';
 import { MCSubtitle } from '../../../mckit/core/src/public-api';
 import { MCImage } from '../../../mckit/core/src/lib/components/image/image.component';
+import { MCMenu } from '../../../mckit/core/src/lib/components/menu/menu.component';
 
 @Component({
   selector: 'app-root',
@@ -36,7 +37,15 @@ export class AppComponent implements OnInit {
       new MCSubtitle('MENU'),
       new MCSubtitle('Inicio'),
       new MCSubtitle('Acerca de '),
-      new MCSubtitle('Contacto')
+      new MCSubtitle('Contacto'),
+      new MCMenu([
+        { label: 'Item 1', link: '/basic' },
+        { label: 'Item 2', children: [
+          { label: 'Sub Item 1', link: '/basic' },
+          { label: 'Sub Item 2', link: '/basic' },
+          { label: 'Sub Item 3', link: '/basic' },
+        ] }
+      ])
     ]);
   }
 }

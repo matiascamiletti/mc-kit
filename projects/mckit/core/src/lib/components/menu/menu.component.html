@@ -1,0 +1,25 @@
+<ul class="mc-menu-container">
+  <ng-container *ngFor="let item of component.config.items; let i = index;">
+      <li>
+        <ng-container [ngTemplateOutlet]="itemTemplate" [ngTemplateOutletContext]="{item}"></ng-container>
+      </li>
+      <!--<li app-menuitem *ngIf="!item.separator" [item]="item" [index]="i" [root]="true"></li>-->
+      <li *ngIf="item.separator" class="menu-separator"></li>
+  </ng-container>
+</ul>
+
+<ng-template #itemTemplate let-item="item">
+  <a *ngIf="item.externalLink != undefined" [attr.href]="item.externalLink" (click)="onClickItem(item)" pRipple>
+    <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
+    <span class="layout-menuitem-text">{{item.label}}</span>
+    <i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.children"></i>
+  </a>
+
+  <a *ngIf="item.link" (click)="onClickItem(item)" [routerLink]="item.link" routerLinkActive="active-route" pRipple>
+    <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
+    <span class="layout-menuitem-text">{{item.label}}</span>
+    <i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.children"></i>
+  </a>
+
+  <p>{{item.label}}</p>
+</ng-template>
