@@ -1,0 +1,13 @@
+{
+  "name": "@mckit/auth",
+  "version": "18.0.2",
+  "peerDependencies": {
+    "@angular/common": "^18.1.0",
+    "@angular/core": "^18.1.0",
+    "primeng": "^17.18.4"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

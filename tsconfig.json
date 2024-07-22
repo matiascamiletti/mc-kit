@@ -4,6 +4,9 @@
   "compileOnSave": false,
   "compilerOptions": {
     "paths": {
+      "@mckit/auth": [
+        "./dist/mckit/auth"
+      ],
       "@mckit/core": [
         "./dist/mckit/core"
       ],

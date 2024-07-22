@@ -1,0 +1,24 @@
+<div class="mc-auth-basic-container">
+  <p-card [header]="config.title ?? 'Log in'" [subheader]="config.subtitle ?? 'Please enter your details'" [style]="{ width: '500px', 'max-width': '500px' }">
+
+    <div class="" [formGroup]="group">
+      <p-iconField iconPosition="left">
+        <p-inputIcon styleClass="pi pi-envelope" />
+        <input type="text" pInputText [placeholder]="config.emailPlaceholder ?? 'Email'" formControlName="email" />
+      </p-iconField>
+
+      <br/><br/>
+
+      <p-iconField iconPosition="left">
+        <p-inputIcon styleClass="pi pi-lock" />
+        <input type="text" pPassword [placeholder]="config.passwordPlaceholder ?? 'Password'" [feedback]="false" toggleMask="true" formControlName="password" />
+      </p-iconField>
+    </div>
+
+    <ng-template pTemplate="footer">
+      <div class="flex gap-3 mt-1">
+        <p-button [label]="config.submitButton ?? 'Log in'" [style]="{ width: '100%' }" (click)="onClickSubmit()" [disabled]="group.invalid" />
+      </div>
+    </ng-template>
+  </p-card>
+</div>
