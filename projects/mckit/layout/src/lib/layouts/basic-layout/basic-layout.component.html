@@ -3,5 +3,12 @@
 </div>
 
 <div class="content">
+  <p-toolbar [style]="{'background': 'none', 'border': 'none', 'padding': '0px'}">
+      <div class="p-toolbar-group-start"><mc-print-service [id]="topbarLeftId"></mc-print-service></div>
+      <div class="p-toolbar-group-center"><mc-print-service [id]="topbarCenterId"></mc-print-service></div>
+      <div class="p-toolbar-group-end"><mc-print-service [id]="topbarRightId"></mc-print-service></div>
+  </p-toolbar>
+
   <router-outlet></router-outlet>
+
 </div>

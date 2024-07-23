@@ -6,6 +6,7 @@
  * Services
  */
 export * from './lib/services/sidebar.service';
+export * from './lib/services/topbar.service';
 
 /**
  * Layouts
