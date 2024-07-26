@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { MCComponent, McComponentService } from '@mckit/core';
 
 export const ID_SIDEBAR_MC_COMPONENT = 'mc_sidebar';
@@ -7,6 +7,8 @@ export const ID_SIDEBAR_MC_COMPONENT = 'mc_sidebar';
   providedIn: 'root'
 })
 export class MCSidebarService {
+
+  isOpen = signal<boolean>(true);
 
   constructor(
     protected componentService: McComponentService

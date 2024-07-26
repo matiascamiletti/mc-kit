@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { MCSidebarService } from '../../../mckit/layout/src/public-api';
+import { MCIconToggleSidebarButton, MCSidebarService, MCTopbarService } from '../../../mckit/layout/src/public-api';
 import { MCSubtitle } from '../../../mckit/core/src/public-api';
 import { MCImage } from '../../../mckit/core/src/lib/components/image/image.component';
 import { MCMenu } from '../../../mckit/core/src/lib/components/menu/menu.component';
@@ -17,11 +17,17 @@ export class AppComponent implements OnInit {
   title = 'example';
 
   constructor(
-    protected sidebarService: MCSidebarService
+    protected sidebarService: MCSidebarService,
+    protected topbarService: MCTopbarService
   ){}
 
   ngOnInit(): void {
     this.loadSidebar();
+    this.loadTopbar();
+  }
+
+  loadTopbar() {
+    this.topbarService.addComponentToLeft(new MCIconToggleSidebarButton());
   }
 
   loadSidebar() {
