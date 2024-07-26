@@ -11,4 +11,5 @@ import { PrintComponent } from '../print/print.component';
 })
 export class PrintListComponent {
   @Input() components: Array<MCComponent> = [];
+  @Input() isFlexRow = false;
 }

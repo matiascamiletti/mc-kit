@@ -28,6 +28,7 @@ export class AppComponent implements OnInit {
 
   loadTopbar() {
     this.topbarService.addComponentToLeft(new MCIconToggleSidebarButton());
+    this.topbarService.addComponentToLeft(new MCSubtitle('Dashboard'),);
   }
 
   loadSidebar() {

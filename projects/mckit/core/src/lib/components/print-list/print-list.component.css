@@ -1,0 +1,4 @@
+.mc-print-list-row {
+  display: flex;
+  flex-direction: row;
+}

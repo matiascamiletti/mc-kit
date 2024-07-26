@@ -13,6 +13,7 @@ import { MCComponent } from '../../entities/mc-component';
 export class PrintServiceComponent implements OnInit {
 
   @Input() id: string = '';
+  @Input() isFlexRow = false;
 
   components: Array<MCComponent> = [];
 
