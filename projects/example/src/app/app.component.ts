@@ -5,6 +5,7 @@ import { MCSubtitle } from '../../../mckit/core/src/public-api';
 import { MCImage } from '../../../mckit/core/src/lib/components/image/image.component';
 import { MCMenu } from '../../../mckit/core/src/lib/components/menu/menu.component';
 import { ItemCustomMenuComponent } from './components/item-custom-menu/item-custom-menu.component';
+import { MCSubtitleInTopbar } from '../../../mckit/layout/src/lib/components/subtitle-in-topbar/subtitle-in-topbar.component';
 
 @Component({
   selector: 'app-root',
@@ -28,7 +29,7 @@ export class AppComponent implements OnInit {
 
   loadTopbar() {
     this.topbarService.addComponentToLeft(new MCIconToggleSidebarButton());
-    this.topbarService.addComponentToLeft(new MCSubtitle('Dashboard'),);
+    this.topbarService.addComponentToLeft(new MCSubtitleInTopbar('Default'),);
   }
 
   loadSidebar() {

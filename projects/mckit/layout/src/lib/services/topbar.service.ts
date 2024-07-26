@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { MCComponent, McComponentService } from '@mckit/core';
 
 export const ID_TOPBAR_MC_COMPONENT = 'mc_topbar';
@@ -7,6 +7,8 @@ export const ID_TOPBAR_MC_COMPONENT = 'mc_topbar';
   providedIn: 'root'
 })
 export class MCTopbarService {
+
+  subtitle = signal<string>('');
 
   constructor(
     protected componentService: McComponentService
