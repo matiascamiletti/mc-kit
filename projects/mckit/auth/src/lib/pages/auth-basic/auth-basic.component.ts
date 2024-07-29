@@ -6,13 +6,16 @@ import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { FormGroup, FormsModule, ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
+import { MessagesModule } from 'primeng/messages';
+import { MessageService } from 'primeng/api';
 
 
 
 @Component({
   selector: 'mc-auth-basic',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, ButtonModule, CardModule, IconFieldModule, InputIconModule, InputTextModule, PasswordModule],
+  imports: [FormsModule, ReactiveFormsModule, ButtonModule, CardModule, IconFieldModule, InputIconModule, InputTextModule, PasswordModule, MessagesModule],
+  providers: [MessageService],
   templateUrl: './auth-basic.component.html',
   styleUrl: './auth-basic.component.scss'
 })
@@ -25,12 +28,41 @@ export class MCAuthBasicComponent {
     password: new FormControl<string>('', Validators.required)
   });
 
+  isSending = false;
+
+  constructor(
+    private messageService: MessageService
+  ) {}
+
   onClickSubmit() {
+    this.clearMessages();
+
     let obj = new MCAuthModel();
     obj.email = this.group.get('email')?.value;
     obj.password = this.group.get('password')?.value;
 
+    this.showLoading();
     this.submit.emit(obj);
+  }
+
+  showSuccessMessage(message: string) {
+    this.messageService.add({ severity: 'success', summary: message});
+  }
+
+  showErrorMessage(message: string) {
+    this.messageService.add({ severity: 'error', summary: message});
+  }
+
+  clearMessages() {
+    this.messageService.clear();
+  }
+
+  showLoading() {
+    this.isSending = true;
+  }
+
+  hideLoading() {
+    this.isSending = false;
   }
 }
 

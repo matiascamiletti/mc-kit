@@ -11,13 +11,15 @@
 
       <p-iconField iconPosition="left">
         <p-inputIcon styleClass="pi pi-lock" />
-        <input type="text" pPassword [placeholder]="config.passwordPlaceholder ?? 'Password'" [feedback]="false" toggleMask="true" formControlName="password" />
+        <input type="password" pPassword [placeholder]="config.passwordPlaceholder ?? 'Password'" [feedback]="false" toggleMask="true" formControlName="password" />
       </p-iconField>
+
+      <p-messages />
     </div>
 
     <ng-template pTemplate="footer">
       <div class="flex gap-3 mt-1">
-        <p-button [label]="config.submitButton ?? 'Log in'" [style]="{ width: '100%' }" (click)="onClickSubmit()" [disabled]="group.invalid" />
+        <p-button [label]="config.submitButton ?? 'Log in'" [style]="{ width: '100%' }" (click)="onClickSubmit()" [disabled]="group.invalid || isSending" />
       </div>
     </ng-template>
   </p-card>
