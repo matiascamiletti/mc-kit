@@ -1,0 +1,18 @@
+<p-card>
+  <div class="container-mc-simple-page">
+
+    <div class="heading-mc-simple-page">
+      @if (breadcrumb != undefined) {
+        <p-breadcrumb class="max-w-full" [model]="breadcrumb" />
+      }
+      @if (title != undefined) {
+        <h1>{{title}}</h1>
+      }
+      @if (subtitle != undefined) {
+        <p class="subtitle-mc-simple-page">{{subtitle}}</p>
+      }
+    </div>
+
+    <ng-content></ng-content>
+  </div>
+</p-card>
