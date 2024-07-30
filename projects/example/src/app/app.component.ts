@@ -6,23 +6,25 @@ import { MCImage } from '../../../mckit/core/src/lib/components/image/image.comp
 import { MCMenu } from '../../../mckit/core/src/lib/components/menu/menu.component';
 import { ItemCustomMenuComponent } from './components/item-custom-menu/item-custom-menu.component';
 import { MCSubtitleInTopbar } from '../../../mckit/layout/src/lib/components/subtitle-in-topbar/subtitle-in-topbar.component';
+import { MCLoaderService, MCSpinnerFullScreenComponent } from '../../../mckit/loader/src/public-api';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet],
+  imports: [RouterOutlet, MCSpinnerFullScreenComponent],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
-  title = 'example';
 
   constructor(
     protected sidebarService: MCSidebarService,
-    protected topbarService: MCTopbarService
+    protected topbarService: MCTopbarService,
+    protected loaderService: MCLoaderService
   ){}
 
   ngOnInit(): void {
+    this.configLoader();
     this.loadSidebar();
     this.loadTopbar();
   }
@@ -57,5 +59,11 @@ export class AppComponent implements OnInit {
         ] }
       ])
     ]);
+  }
+
+  configLoader() {
+    setTimeout(() => {
+      this.loaderService.hide();
+    }, 3000);
   }
 }

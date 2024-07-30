@@ -8,8 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "serve:ssr:example": "node dist/example/server/server.mjs",
-    "build-all": "ng build --project=@mckit/core --configuration production && ng build --project=@mckit/layout --configuration production && ng build --project=@mckit/auth --configuration production",
-    "upload-npm": "ng build --project=@mckit/core --configuration production && npm publish dist/mckit/core --access public && ng build --project=@mckit/layout --configuration production && npm publish dist/mckit/layout --access public && ng build --project=@mckit/auth --configuration production && npm publish dist/mckit/auth --access public"
+    "build-all": "ng build --project=@mckit/core --configuration production && ng build --project=@mckit/layout --configuration production && ng build --project=@mckit/auth --configuration production && ng build --project=@mckit/loader --configuration production",
+    "upload-npm": "ng build --project=@mckit/core --configuration production && npm publish dist/mckit/core --access public && ng build --project=@mckit/layout --configuration production && npm publish dist/mckit/layout --access public && ng build --project=@mckit/auth --configuration production && npm publish dist/mckit/auth --access public && ng build --project=@mckit/loader --configuration production && npm publish dist/mckit/loader --access public"
   },
   "private": true,
   "dependencies": {

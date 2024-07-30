@@ -12,6 +12,9 @@
       ],
       "@mckit/layout": [
         "./dist/mckit/layout"
+      ],
+      "@mckit/loader": [
+        "./dist/mckit/loader"
       ]
     },
     "outDir": "./dist/out-tsc",
