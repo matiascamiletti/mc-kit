@@ -15,6 +15,11 @@ export * from './lib/components/icon-toggle-sidebar-button/icon-toggle-sidebar-b
 export * from './lib/components/subtitle-in-topbar/subtitle-in-topbar.component';
 
 /**
+ * Cards
+ */
+export * from './lib/cards/mini-resume-card/mini-resume-card.component';
+
+/**
  * Layouts
  */
 export * from './lib/layouts/basic-layout/basic-layout.component';
