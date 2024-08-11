@@ -20,6 +20,11 @@ export * from './lib/components/subtitle-in-topbar/subtitle-in-topbar.component'
 export * from './lib/cards/mini-resume-card/mini-resume-card.component';
 
 /**
+ * Lists
+ */
+export * from './lib/lists/two-column-item/two-column-item.component';
+
+/**
  * Layouts
  */
 export * from './lib/layouts/basic-layout/basic-layout.component';

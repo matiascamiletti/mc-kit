@@ -1,0 +1,30 @@
+.mc-two-column-item {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.mc-two-column-item {
+  .left {
+    p {
+      margin: 0;
+      padding: 0;
+    }
+    .main {
+      font-weight: 500;
+      font-size: large;
+    }
+    .subtitle {
+      font-size: small;
+    }
+  }
+
+  .right {
+    span {
+      font-weight: bold;
+      font-size: x-large;
+    }
+  }
+
+  padding: 1rem 0;
+}

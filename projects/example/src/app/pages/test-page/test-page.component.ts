@@ -3,11 +3,12 @@ import { MCTopbarService, MCMiniResumeCard } from '../../../../../mckit/layout/s
 import { MCSimplePage } from '../../../../../mckit/layout/src/lib/pages/simple-page/simple-page.component';
 import { MenuItem } from 'primeng/api';
 import { CurrencyPipe } from '@angular/common';
+import { MCTwoColumnItemComponent } from '../../../../../mckit/layout/src/lib/lists/two-column-item/two-column-item.component';
 
 @Component({
   selector: 'app-test-page',
   standalone: true,
-  imports: [MCSimplePage, MCMiniResumeCard, CurrencyPipe],
+  imports: [MCSimplePage, MCMiniResumeCard, CurrencyPipe, MCTwoColumnItemComponent],
   templateUrl: './test-page.component.html',
   styleUrl: './test-page.component.scss'
 })
