@@ -12,6 +12,11 @@ export * from './lib/entities/mc-component';
  */
 export * from './lib/services/mc-component.service';
 
+/**
+ * Modals
+ */
+export * from './lib/modals/mc-base-form-modal';
+
 /** Components */
 export * from './lib/components/mc-core-component';
 export * from './lib/components/print/print.component';
