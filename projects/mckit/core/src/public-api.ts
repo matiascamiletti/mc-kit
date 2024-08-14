@@ -24,4 +24,5 @@ export * from './lib/components/print-list/print-list.component';
 export * from './lib/components/print-service/print-service.component';
 export * from './lib/components/subtitle/subtitle.component';
 export * from './lib/components/image/image.component';
+export * from './lib/components/menu/menu.component';
 

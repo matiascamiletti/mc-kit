@@ -51,7 +51,7 @@ export class AppComponent implements OnInit {
       new MCSubtitle('Acerca de '),
       new MCSubtitle('Contacto'),
       new MCMenu([
-        { label: 'Item 1', link: '/basic' },
+        { label: 'Item 1', link: '/basic', icon: 'pi pi-times' },
         { label: 'Item 2', children: [
           { label: 'Sub Item 1', link: '/basic' },
           { label: 'Sub Item 2', link: '/basic' },
