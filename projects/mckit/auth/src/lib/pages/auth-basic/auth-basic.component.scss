@@ -5,8 +5,19 @@
   align-items: center;
 }
 
+p-card {
+  width: 500px;
+  max-width: 500px;
+}
+
 p-iconField {
   input {
+    width: 100%;
+  }
+}
+
+@media (max-width: 768px) {
+  p-card {
     width: 100%;
   }
 }
