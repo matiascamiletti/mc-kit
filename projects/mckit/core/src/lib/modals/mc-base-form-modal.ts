@@ -24,4 +24,9 @@ export abstract class MCBaseFromModal {
   close() {
     this.visible = false;
   }
+
+  cleanForm() {
+    this.stopSending();
+    this.formGroup?.reset();
+  }
 }
