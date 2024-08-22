@@ -8,6 +8,8 @@ import { PasswordModule } from 'primeng/password';
 import { FormGroup, FormsModule, ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
 import { MessagesModule } from 'primeng/messages';
 import { MessageService } from 'primeng/api';
+import { MCAuthModel } from '../../entities/mc-auth-model';
+import { MCBaseAuthPageConfig } from '../../entities/mc-base-auth-page-config';
 
 
 
@@ -66,17 +68,11 @@ export class MCAuthBasicComponent {
   }
 }
 
-export class MCAuthBasicConfig {
-  title?: string;
+export class MCAuthBasicConfig extends MCBaseAuthPageConfig {
   subtitle?: string;
 
   emailPlaceholder?: string;
   passwordPlaceholder?: string;
 
   submitButton?: string;
-}
-
-export class MCAuthModel {
-  email?: string|null;
-  password?: string|null;
 }

@@ -7,6 +7,8 @@
  */
 export * from './lib/entities/mc-user';
 export * from './lib/entities/mc-auth-config';
+export * from './lib/entities/mc-auth-model';
+export * from './lib/entities/mc-base-auth-page-config';
 
 /**
  * Services

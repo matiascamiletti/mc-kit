@@ -1,0 +1,13 @@
+<div class="mc-auth-half-container">
+  <div class="column-left">
+    <div class="container-form">
+      <h1>{{ config.title }}</h1>
+    </div>
+  </div>
+
+  <div class="column-right">
+    @if (config.image != undefined) {
+      <img [src]="config.image" />
+    }
+  </div>
+</div>

@@ -13,7 +13,7 @@ Core de todo el paquete de librerias de MC Kit, incluye servicios, componentes y
 ### 1. Install libraries
 
 ```bash
-npm install --save @mckit/core primeicons primeng
+npm install --save @mckit/core primeicons primeng @ngx-pwa/local-storage@18
 ```
 
 ### 2. Add Styles
