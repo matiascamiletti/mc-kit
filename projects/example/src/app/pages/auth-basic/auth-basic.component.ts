@@ -28,5 +28,7 @@ export class AuthBasicComponent implements OnInit {
     this.config.emailPlaceholder = 'Correo electrónico';
     this.config.passwordPlaceholder = 'Contraseña';
     this.config.submitButton = 'Iniciar sesión';
+    this.config.resetPassword = '¿Olvidaste tu contraseña?';
+    this.config.resetPasswordLink = '/reset-password';
   }
 }
