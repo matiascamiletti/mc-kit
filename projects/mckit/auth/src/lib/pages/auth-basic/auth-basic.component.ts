@@ -79,4 +79,7 @@ export class MCAuthBasicConfig extends MCBaseAuthPageConfig {
 
   resetPassword?: string;
   resetPasswordLink?: string;
+
+  register?: string;
+  registerLink?: string;
 }

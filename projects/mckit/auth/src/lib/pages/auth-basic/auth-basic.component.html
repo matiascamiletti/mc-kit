@@ -30,6 +30,12 @@
       <div class="flex gap-3 mt-1">
         <p-button [label]="config.submitButton ?? 'Log in'" [loading]="isSending" [style]="{ width: '100%' }" (click)="onClickSubmit()" [disabled]="group.invalid || isSending" />
       </div>
+
+      @if (config.registerLink != undefined) {
+        <div class="more-actions-footer">
+          <p-button [routerLink]="config.registerLink" [label]="config.register ?? 'Don’t have an account? Register'" [link]="true" />
+        </div>
+      }
     </ng-template>
   </p-card>
 </div>
