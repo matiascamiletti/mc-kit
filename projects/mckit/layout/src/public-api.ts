@@ -25,6 +25,11 @@ export * from './lib/cards/mini-resume-card/mini-resume-card.component';
 export * from './lib/lists/two-column-item/two-column-item.component';
 
 /**
+ * Pages
+ */
+export * from './lib/pages/simple-page/simple-page.component';
+
+/**
  * Layouts
  */
 export * from './lib/layouts/basic-layout/basic-layout.component';
