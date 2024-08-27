@@ -24,4 +24,10 @@ npm install --save @mckit/core primeicons primeng @ngx-pwa/local-storage@18
 @import "primeng/resources/themes/lara-light-blue/theme.css";
 @import "primeng/resources/primeng.css";
 @import "primeicons/primeicons.css";
+
+body, html {
+    height: 100%;
+    margin: 0;
+    min-height: 100%;
+}
 ```

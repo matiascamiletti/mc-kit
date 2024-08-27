@@ -1,24 +1,54 @@
-# Auth
+# Auth - MC Kit
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.0.
+Core para integrar facilmente Auth en tu plataforma. Incluye paginas de login ya maquetadas.
 
-## Code scaffolding
+## Table of Contents
 
-Run `ng generate component component-name --project auth` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project auth`.
-> Note: Don't forget to add `--project auth` or else it will be added to the default project in your `angular.json` file. 
+- [Installation](#installation)
+  - [1. Install MIA Core](#1-install-mia-core)
+  - [1. Install libraries](#1-install-libraries)
+  - [2. Add Styles](#2-add-styles)
+- [Use Login Page Layout](#use-login-page-layout)
+  - [1. Create component](#1-create-component)
+  - [1. Install libraries](#1-install-libraries)
+  - [2. Add Styles](#2-add-styles)
 
-## Build
+## Installation
 
-Run `ng build auth` to build the project. The build artifacts will be stored in the `dist/` directory.
+### 1. Install MIA Core
 
-## Publishing
+[Instalar MIA Core](https://github.com/matiascamiletti/mc-kit/blob/main/projects/mckit/core/README.md#1-install-libraries)
 
-After building your library with `ng build auth`, go to the dist folder `cd dist/auth` and run `npm publish`.
+### 2. Install libraries
 
-## Running unit tests
+```bash
+npm install --save @ngx-pwa/local-storage@18 @mckit/auth
+```
 
-Run `ng test auth` to execute the unit tests via [Karma](https://karma-runner.github.io).
+## Use Login Page Layout
 
-## Further help
+### 1. Create component
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+```html
+<mc-auth-basic #authComp [config]="config" (submit)="onLogin($event)"></mc-auth-basic>
+```
+
+```typescript
+onLogin(data: MCAuthModel) {
+  console.log(data);
+}
+
+loadConfig() {
+  this.config = new MCAuthBasicConfig();
+  this.config.title = 'Inicio de sesión';
+  this.config.subtitle = 'Por favor, inicie sesión para continuar';
+  this.config.emailPlaceholder = 'Correo electrónico';
+  this.config.passwordPlaceholder = 'Contraseña';
+  this.config.submitButton = 'Iniciar sesión';
+  this.config.resetPassword = '¿Olvidaste tu contraseña?';
+  this.config.resetPasswordLink = '/reset-password';
+  this.config.register = '¿No tienes una cuenta?';
+  this.config.registerLink = '/register';
+}
+```
+

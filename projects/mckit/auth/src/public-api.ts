@@ -11,6 +11,11 @@ export * from './lib/entities/mc-auth-model';
 export * from './lib/entities/mc-base-auth-page-config';
 
 /**
+ * Providers
+ */
+export * from './lib/providers/auth.provider';
+
+/**
  * Services
  */
 export * from './lib/services/authentication.service';
