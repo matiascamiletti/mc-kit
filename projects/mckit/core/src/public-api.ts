@@ -6,6 +6,7 @@
  * Entities
  */
 export * from './lib/entities/mc-component';
+export * from './lib/entities/mc-list-response';
 
 /**
  * Services
