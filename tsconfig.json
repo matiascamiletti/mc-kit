@@ -15,6 +15,9 @@
       ],
       "@mckit/loader": [
         "./dist/mckit/loader"
+      ],
+      "@mckit/odata": [
+        "./dist/mckit/odata"
       ]
     },
     "outDir": "./dist/out-tsc",
