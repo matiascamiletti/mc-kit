@@ -14,7 +14,7 @@
 
       <p-iconField iconPosition="left">
         <p-inputIcon styleClass="pi pi-lock" />
-        <input type="password" pPassword [placeholder]="config.passwordPlaceholder ?? 'Password'" [feedback]="false" toggleMask="true" formControlName="password" />
+        <input type="password" pPassword [placeholder]="config.passwordPlaceholder ?? 'Password'" [feedback]="false" toggleMask="true" formControlName="password" (keyup.enter)="onClickSubmit()" />
       </p-iconField>
 
       @if (config.resetPasswordLink != undefined) {
