@@ -1,5 +1,6 @@
 import { FormGroup } from "@angular/forms";
 import { Message } from "primeng/api";
+import { catchError, OperatorFunction } from "rxjs";
 
 export abstract class MCBaseForm {
   formGroup: FormGroup | undefined;
@@ -37,5 +38,13 @@ export abstract class MCBaseForm {
 
   cleanMessages() {
     this.messages = [];
+  }
+
+  catchFormError(): OperatorFunction<any, any> {
+    return catchError(error => {
+      this.addHttpErrorMessages(error);
+      this.stopSending();
+      throw error;
+    });
   }
 }
