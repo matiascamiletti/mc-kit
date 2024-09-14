@@ -1,8 +1,6 @@
 import { FormGroup } from "@angular/forms";
 
-export abstract class MCBaseFormModal {
-  visible: boolean = false;
-
+export abstract class MCBaseForm {
   formGroup: FormGroup | undefined;
 
   isSending: boolean = false;
@@ -19,10 +17,6 @@ export abstract class MCBaseFormModal {
   stopSending(): void {
     this.formGroup?.enable();
     this.isSending = false;
-  }
-
-  close() {
-    this.visible = false;
   }
 
   cleanForm() {

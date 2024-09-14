@@ -26,4 +26,5 @@ export * from './lib/components/print-service/print-service.component';
 export * from './lib/components/subtitle/subtitle.component';
 export * from './lib/components/image/image.component';
 export * from './lib/components/menu/menu.component';
+export * from './lib/components/mc-base-form';
 
