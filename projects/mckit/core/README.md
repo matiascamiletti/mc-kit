@@ -13,7 +13,7 @@ Core de todo el paquete de librerias de MC Kit, incluye servicios, componentes y
 ### 1. Install libraries
 
 ```bash
-npm install --save @mckit/core primeicons primeng @ngx-pwa/local-storage@18
+npm install --save @mckit/core primeicons primeng primeflex @ngx-pwa/local-storage@18
 ```
 
 ### 2. Add Styles
@@ -30,4 +30,10 @@ body, html {
     margin: 0;
     min-height: 100%;
 }
+```
+
+### 3. Add PrimeFlex in Angular.json
+
+```
+"node_modules/primeflex/primeflex.css",
 ```
