@@ -3,7 +3,7 @@ import { inject, Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { MCListResponse } from '../entities/mc-list-response';
 
-export abstract class ApiRestHttpService<T extends { id?: any }> {
+export abstract class MCApiRestHttpService<T extends { id?: any }> {
 
   http = inject(HttpClient);
   /**
