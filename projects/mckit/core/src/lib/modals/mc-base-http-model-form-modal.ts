@@ -2,41 +2,39 @@ import { DialogService, DynamicDialogRef } from "primeng/dynamicdialog";
 import { Component, inject, OnInit } from "@angular/core";
 import { MCApiRestHttpService } from "../services/api-rest-http.service";
 import { Observable, tap } from "rxjs";
-import { MCBaseForm } from "../components/mc-base-form";
+import { MCBaseModelForm } from "../components/mc-base-model-form";
 
 @Component({
-  selector: 'mc-base-http-form-modal',
+  selector: 'mc-base-http-model-form-modal',
   standalone: true,
   template: '',
 })
-export abstract class MCBaseHttpFormModal<T extends { id?: any }> extends MCBaseForm implements OnInit {
+export abstract class MCBaseHttpModelFormModal<T extends { id?: any }> extends MCBaseModelForm<T> implements OnInit {
   dialogService = inject(DialogService);
   dialogRef = inject(DynamicDialogRef);
 
   httpService?: MCApiRestHttpService<T>;
 
   ngOnInit(): void {
-    this.initForm();
     this.initData();
   }
 
   setItem(item: T): void {
-    this.formGroup?.patchValue(item);
+    this.item = item;
   }
 
   submit(): void {
-    if(this.formGroup!.invalid){
+    if(this.item == undefined){
       return;
     }
 
     this.cleanMessages();
     this.sending();
 
-    const item = this.formGroup!.value as T;
-    if(item.id){
-      this.onSubmit(this.httpService!.update(item));
+    if(this.item.id){
+      this.onSubmit(this.httpService!.update(this.item));
     } else {
-      this.onSubmit(this.httpService!.create(item));
+      this.onSubmit(this.httpService!.create(this.item));
     }
   }
 
@@ -52,7 +50,6 @@ export abstract class MCBaseHttpFormModal<T extends { id?: any }> extends MCBase
   }
 
   onClose() {
-    this.cleanForm();
     this.dialogRef.close();
   }
 

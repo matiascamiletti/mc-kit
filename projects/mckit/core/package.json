@@ -1,6 +1,6 @@
 {
   "name": "@mckit/core",
-  "version": "18.0.19",
+  "version": "18.0.20",
   "peerDependencies": {
     "@angular/common": "^18.1.0",
     "@angular/core": "^18.1.0"
