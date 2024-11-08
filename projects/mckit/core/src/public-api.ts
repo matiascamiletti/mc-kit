@@ -19,6 +19,7 @@ export * from './lib/services/api-rest-http.service';
  * Modals
  */
 export * from './lib/modals/mc-base-form-modal';
+export * from './lib/modals/mc-base-http-form-modal';
 
 /** Components */
 export * from './lib/components/mc-core-component';
