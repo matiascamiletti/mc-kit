@@ -1,4 +1,4 @@
-import { Component, HostListener, OnInit, WritableSignal } from '@angular/core';
+import { afterNextRender, Component, HostListener, OnInit, WritableSignal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { ID_SIDEBAR_MC_COMPONENT, MCSidebarService } from '../../services/sidebar.service';
 import { PrintServiceComponent } from '@mckit/core';
@@ -24,11 +24,14 @@ export class BasicLayout implements OnInit {
 
   constructor(
     protected sidebarService: MCSidebarService,
-  ) {}
+  ) {
+    afterNextRender(() => {
+      this.configResize();
+    });
+  }
 
   ngOnInit(): void {
     this.isOpen = this.sidebarService.isOpen;
-    this.configResize();
   }
 
   configResize() {
