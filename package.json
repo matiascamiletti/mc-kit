@@ -12,7 +12,8 @@
     "upload-npm": "ng build --project=@mckit/core --configuration production && npm publish dist/mckit/core --access public && ng build --project=@mckit/layout --configuration production && npm publish dist/mckit/layout --access public && ng build --project=@mckit/auth --configuration production && npm publish dist/mckit/auth --access public && ng build --project=@mckit/loader --configuration production && npm publish dist/mckit/loader --access public",
     "upload-npm-odata": "ng build --project=@mckit/odata --configuration production && npm publish dist/mckit/odata --access public",
     "publish-core": "ng build --project=@mckit/core --configuration production && npm publish dist/mckit/core --access public",
-    "publish-auth": "ng build --project=@mckit/auth --configuration production && npm publish dist/mckit/auth --access public"
+    "publish-auth": "ng build --project=@mckit/auth --configuration production && npm publish dist/mckit/auth --access public",
+    "publish-odata": "ng build --project=@mckit/odata --configuration production && npm publish dist/mckit/odata --access public"
   },
   "private": true,
   "dependencies": {

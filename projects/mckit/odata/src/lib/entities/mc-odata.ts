@@ -21,6 +21,10 @@ export class MCOdata {
    * Filter the items by the specified field.
    */
   filters = new MCFilterProcessor();
+  /**
+   * Expand the items by the specified field.
+   */
+  expands?: string;
 
   setPage(page: number, pageSize: number): void {
     this.top = pageSize;
@@ -42,6 +46,9 @@ export class MCOdata {
     }
     if (this.orderBy) {
       odata += `${odata ? '&' : ''}$orderby=${this.orderBy}`;
+    }
+    if (this.expands) {
+      odata += `${odata ? '&' : ''}$expand=${this.expands}`;
     }
     odata += `${odata ? '&' : ''}$filter=${this.filters.toString()}`;
 
