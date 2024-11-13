@@ -4,6 +4,8 @@ import { MC_AUTH_CONFIG } from '../entities/mc-auth-config';
 import { MCAuthenticationService } from '../services/authentication.service';
 import { catchError, switchMap, tap } from 'rxjs';
 
+export const MC_AUTH_SKIP_INTERCEPTOR = 'skip-interceptor';
+
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
   const config = inject(MC_AUTH_CONFIG);
@@ -11,6 +13,11 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
 
   if(req.url.indexOf(config.baseUrl) == -1){
     return next(req);
+  }
+
+  if (req.headers.has(MC_AUTH_SKIP_INTERCEPTOR)) {
+    const clonedReq = req.clone({ headers: req.headers.delete(MC_AUTH_SKIP_INTERCEPTOR) });
+    return next(clonedReq);
   }
 
   return authService.getUser()

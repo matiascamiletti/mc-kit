@@ -4,10 +4,10 @@
 <div class="mc-auth-basic-container">
   <p-card [header]="config.title ?? 'Log in'" [subheader]="config.subtitle ?? 'Please enter your details'">
 
-    <form class="" [formGroup]="group">
+    <form class="" [formGroup]="group" (ngSubmit)="onClickSubmit()">
       <p-iconField iconPosition="left">
         <p-inputIcon styleClass="pi pi-envelope" />
-        <input type="text" pInputText [placeholder]="config.emailPlaceholder ?? 'Email'" formControlName="email" />
+        <input type="text" pInputText [placeholder]="config.emailPlaceholder ?? 'Email'" formControlName="email" (keyup.enter)="onClickSubmit()" />
       </p-iconField>
 
       <br/><br/>
