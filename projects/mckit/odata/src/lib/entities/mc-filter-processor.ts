@@ -52,6 +52,7 @@ export class MCFilterProcessor {
   mapFilterToOData(key: string, filter: FilterMetadata): string {
     let odataOperator;
     let odataFunction = false;
+    let odataArray = false;
 
     switch (filter.matchMode) {
       case 'equals':
@@ -72,8 +73,16 @@ export class MCFilterProcessor {
         odataOperator = `endswith`;
         odataFunction = true;
         break;
+      case 'in':
+        odataOperator = `in`;
+        odataArray = true;
+        break;
       default:
         throw new Error(`Operator ${filter.matchMode} not supported`);
+    }
+
+    if (odataArray) {
+      return `${key} ${odataOperator} (${filter.value.map((v: any) => `'${v}'`).join(',')})`;
     }
 
     if(odataFunction){
