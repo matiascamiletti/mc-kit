@@ -31,6 +31,11 @@ export * from './lib/interceptors/auth.interceptor';
 export * from './lib/guards/auth.guard';
 
 /**
+ * Resolvers
+ */
+export * from './lib/resolvers/user.resolver';
+
+/**
  * Pages
  */
 export * from './lib/pages/auth-basic/auth-basic.component';

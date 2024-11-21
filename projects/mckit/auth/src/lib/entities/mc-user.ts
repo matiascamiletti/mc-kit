@@ -11,6 +11,7 @@ export class MCUser {
   public role: number = 0;
   public status: number = 0;
   public created_at: string = '';
+  public extra: any;
 
   public token_type: string = 'bearer';
   public access_token: string = '';
