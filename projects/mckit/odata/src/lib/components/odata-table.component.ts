@@ -4,7 +4,7 @@ import { StorageMap } from "@ngx-pwa/local-storage";
 import { ConfirmationService, MessageService, SortMeta } from "primeng/api";
 import { MCOdata } from "../entities/mc-odata";
 import { MCApiRestHttpService, MCColumn, MCListResponse } from "@mckit/core";
-import { catchError, Subscription, tap } from "rxjs";
+import { catchError, Observable, Subscription, tap } from "rxjs";
 import { TableFilterEvent, TablePageEvent } from "primeng/table";
 import { MultiSelectChangeEvent } from "primeng/multiselect";
 
@@ -78,13 +78,17 @@ export abstract class MCOdataTableComponent<T extends { id?: any }> implements O
     this.loadItems();
   }
 
+  requestList(): Observable<MCListResponse<T>> {
+    return this.httpService!.list(this.data.toString());
+  }
+
   loadItems() {
     this.isLoading = true;
     if (this.subscriptionList) {
       this.subscriptionList.unsubscribe();
     }
 
-    this.subscriptionList = this.httpService?.list(this.data.toString())
+    this.subscriptionList = this.requestList()
     .pipe(
       catchError((data) => {
         this.messageService.add({ severity: 'error', detail: data.error?.message?.message || data.error.message || data.message || 'Unknown error' });
