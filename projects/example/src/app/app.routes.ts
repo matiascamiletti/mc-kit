@@ -3,6 +3,7 @@ import { TestPageComponent } from './pages/test-page/test-page.component';
 import { BasicLayout } from '../../../mckit/layout/src/public-api';
 import { AuthBasicComponent } from './pages/auth-basic/auth-basic.component';
 import { AuthHalfComponent } from './pages/auth-half/auth-half.component';
+import { AuthSakaiComponent } from './pages/auth-sakai/auth-sakai.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'basic', pathMatch: 'full' },
@@ -18,5 +19,6 @@ export const routes: Routes = [
     ]
   },
   { path: 'login', component: AuthBasicComponent },
-  { path: 'login-half', component: AuthHalfComponent }
+  { path: 'login-half', component: AuthHalfComponent },
+  { path: 'login-sakai', component: AuthSakaiComponent },
 ];
