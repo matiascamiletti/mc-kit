@@ -1,0 +1,13 @@
+{
+  "name": "@mckit/layout-core",
+  "version": "18.0.3",
+  "peerDependencies": {
+    "@angular/common": "^18.1.0",
+    "@angular/core": "^18.1.0",
+    "@mckit/core": "^18.0.2"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}
