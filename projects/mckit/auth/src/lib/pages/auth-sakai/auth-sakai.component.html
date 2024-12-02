@@ -3,8 +3,8 @@
       @if (config().logo != undefined) {
         <img [src]="config().logo" class="mb-5 w-6rem flex-shrink-0">
       }
-      <div style="border-radius:56px; padding:0.3rem; background: linear-gradient(180deg, var(--primary-color) 10%, rgba(33, 150, 243, 0) 30%);">
-          <div class="w-full surface-card py-8 px-5 sm:px-8" style="border-radius:53px">
+      <div class="container-degradee" style="border-radius:56px; padding:0.3rem; background: linear-gradient(180deg, var(--primary-color) 10%, rgba(33, 150, 243, 0) 30%);">
+          <div class="container-content" class="w-full surface-card py-8 px-5 sm:px-8" style="border-radius:53px">
               <div class="text-center mb-5">
                   <div class="text-900 text-sm font-medium mb-3 uppercase tracking-widest">{{config().subtitle}}</div>
                   <h1 class="text-600 font-black text-2xl">{{config().title}}</h1>
@@ -15,7 +15,16 @@
                   <label for="email" class="block mb-0 text-xs">Email</label>
                   <input type="text" pInputText [placeholder]="config().emailPlaceholder ?? 'Email'" formControlName="email" name="email" class="w-full" />
 
-                  <label for="password1" class="block mb-0 mt-2 text-xs">Password</label>
+
+                  <div class="container-password-label flex justify-between justify-content-between align-items-end items-end">
+                    <label for="password1" class="block mb-0 mt-2 text-xs">Password</label>
+                    @if (config().resetPassword != undefined) {
+                      <div class="more-actions">
+                        <p-button [label]="config().resetPassword ?? 'Reset Password'" [link]="true" (onClick)="onAction('forgot-password')" styleClass="button-forgot-password" />
+                      </div>
+                    }
+                  </div>
+
                   <p-password id="password1" formControlName="password" name="password" placeholder="Password" [toggleMask]="true" styleClass="mb-5" inputStyleClass="w-full p-3 md:w-30rem" [placeholder]="config().passwordPlaceholder ?? 'Password'" (keyup.enter)="onClickSubmit()"></p-password>
 
                   <!--<div class="flex align-items-center items-center justify-between mb-5 gap-5">

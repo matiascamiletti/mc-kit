@@ -19,6 +19,10 @@ export class AuthSakaiComponent {
     console.log(data);
   }
 
+  onAction(type: string) {
+    console.log(type);
+  }
+
   loadConfig() {
     this.config = new MCAuthSakaiConfig();
     this.config.logo = 'https://sakai.primeng.org/assets/layout/images/logo-dark.svg';

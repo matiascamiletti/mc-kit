@@ -25,9 +25,14 @@ import { MessagesModule } from 'primeng/messages';
 export class MCAuthSakaiComponent extends MCBaseAuthPage {
   config = input.required<MCAuthSakaiConfig>();
   submit = output<MCAuthModel>();
+  action = output<string>();
 
   onSubmit(obj: MCAuthModel): void {
     this.submit.emit(obj);
+  }
+
+  onAction(type: string) {
+    this.action.emit(type);
   }
 }
 
