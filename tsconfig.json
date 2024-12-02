@@ -13,6 +13,12 @@
       "@mckit/layout": [
         "./dist/mckit/layout"
       ],
+      "@mckit/layout-core": [
+        "./dist/mckit/layout-core"
+      ],
+      "@mckit/layout-sakai": [
+        "./dist/mckit/layout-sakai"
+      ],
       "@mckit/loader": [
         "./dist/mckit/loader"
       ],
