@@ -1,6 +1,6 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { MCComponent, MCCoreComponent } from '@mckit/core';
-import { MCTopbarService } from '../../services/topbar.service';
+import { MCTopbarService } from '@mckit/layout-core';
 
 @Component({
   selector: 'lib-subtitle-in-topbar',

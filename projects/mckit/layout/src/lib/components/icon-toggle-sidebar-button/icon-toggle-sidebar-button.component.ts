@@ -1,7 +1,7 @@
 import { Component, inject } from '@angular/core';
 import { MCComponent, MCCoreComponent } from '@mckit/core';
+import { MCSidebarService } from '@mckit/layout-core';
 import { ButtonModule } from 'primeng/button';
-import { MCSidebarService } from '../../services/sidebar.service';
 
 
 @Component({

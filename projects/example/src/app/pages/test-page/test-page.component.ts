@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { MCTopbarService, MCMiniResumeCard } from '../../../../../mckit/layout/src/public-api';
+import { MCMiniResumeCard } from '../../../../../mckit/layout/src/public-api';
 import { MCSimplePage } from '../../../../../mckit/layout/src/lib/pages/simple-page/simple-page.component';
 import { MenuItem } from 'primeng/api';
 import { CurrencyPipe } from '@angular/common';
 import { MCTwoColumnItemComponent } from '../../../../../mckit/layout/src/lib/lists/two-column-item/two-column-item.component';
+import { MCTopbarService } from '../../../../../mckit/layout-core/src/public-api';
 
 @Component({
   selector: 'app-test-page',

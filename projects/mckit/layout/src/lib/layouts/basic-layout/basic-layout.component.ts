@@ -1,9 +1,8 @@
 import { afterNextRender, Component, HostListener, OnInit, WritableSignal } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { ID_SIDEBAR_MC_COMPONENT, MCSidebarService } from '../../services/sidebar.service';
 import { PrintServiceComponent } from '@mckit/core';
 import { ToolbarModule } from 'primeng/toolbar';
-import { ID_TOPBAR_MC_COMPONENT } from '../../services/topbar.service';
+import { ID_SIDEBAR_MC_COMPONENT, ID_TOPBAR_MC_COMPONENT, MCSidebarService } from '@mckit/layout-core';
 
 declare const window: any;
 

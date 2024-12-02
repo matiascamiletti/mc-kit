@@ -1,12 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
-import { MCIconToggleSidebarButton, MCSidebarService, MCTopbarService } from '../../../mckit/layout/src/public-api';
 import { MCSubtitle } from '../../../mckit/core/src/public-api';
 import { MCImage } from '../../../mckit/core/src/lib/components/image/image.component';
 import { MCMenu } from '../../../mckit/core/src/lib/components/menu/menu.component';
 import { ItemCustomMenuComponent } from './components/item-custom-menu/item-custom-menu.component';
 import { MCSubtitleInTopbar } from '../../../mckit/layout/src/lib/components/subtitle-in-topbar/subtitle-in-topbar.component';
 import { MCLoaderService, MCSpinnerFullScreenComponent } from '../../../mckit/loader/src/public-api';
+import { MCSidebarService, MCTopbarService } from '../../../mckit/layout-core/src/public-api';
+import { MCIconToggleSidebarButton } from '../../../mckit/layout/src/public-api';
 
 @Component({
   selector: 'app-root',
