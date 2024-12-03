@@ -5,7 +5,7 @@
     "@angular/common": "^18.1.0",
     "@angular/core": "^18.1.0",
     "@mckit/core": "^18.0.2",
-    "@mckit/layout-core": "^18.0.1"
+    "@mckit/layout-core": "^18.0.4"
   },
   "dependencies": {
     "tslib": "^2.3.0"

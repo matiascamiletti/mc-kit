@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, WritableSignal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { PrintServiceComponent } from '@mckit/core';
-import { ID_TOPBAR_MC_COMPONENT, MCSidebarService } from '@mckit/layout-core';
+import { ID_FOOTER_MC_COMPONENT, ID_SIDEBAR_MC_COMPONENT, ID_TOPBAR_MC_COMPONENT, MCSidebarService } from '@mckit/layout-core';
 
 @Component({
   selector: 'mc-sakai-layout',
@@ -17,6 +17,10 @@ export class MCSakaiLayoutComponent implements OnInit {
 
   topbarLeftId = ID_TOPBAR_MC_COMPONENT + '_left';
   topbarRightId = ID_TOPBAR_MC_COMPONENT + '_right';
+
+  sidebarId = ID_SIDEBAR_MC_COMPONENT;
+
+  footerId = ID_FOOTER_MC_COMPONENT;
 
   isOpen?: WritableSignal<boolean>;
 

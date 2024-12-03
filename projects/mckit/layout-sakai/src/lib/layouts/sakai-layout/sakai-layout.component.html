@@ -13,7 +13,7 @@
   <!-- Sidebar -->
   <div class="layout-sidebar">
     <ul class="layout-menu">
-      <mc-print-service [id]="'mc_sidebar'"></mc-print-service>
+      <mc-print-service [id]="sidebarId"></mc-print-service>
     </ul>
   </div>
   <!-- END Sidebar -->
@@ -22,12 +22,13 @@
       <div class="layout-main">
           <router-outlet></router-outlet>
       </div>
+
+      <!-- Footer -->
       <div class="layout-footer">
-        <img src="assets/layout/images/.svg" alt="Logo" height="20" class="mr-2"/>
-        by
-        <span class="font-medium ml-2">PrimeNG</span>
-    </div>
+        <mc-print-service [id]="footerId"></mc-print-service>
+      </div>
+      <!-- END Footer -->
+
   </div>
-  <!--<app-config></app-config>-->
   <div class="layout-mask"></div>
 </div>
