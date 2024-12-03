@@ -1,4 +1,4 @@
-<div class="layout-wrapper layout-static">
+<div class="layout-wrapper layout-static" [ngClass]="{'layout-static-inactive': !isOpen!()}">
   <!-- Topbar -->
   <div class="layout-topbar">
       <button #topbarmenubutton class="p-link layout-topbar-menu-button layout-topbar-button">
@@ -24,13 +24,14 @@
   </div>
   <!-- END Topbar -->
 
+  <!-- Sidebar -->
   <div class="layout-sidebar">
     <ul class="layout-menu">
       <mc-print-service [id]="'mc_sidebar'"></mc-print-service>
     </ul>
-
-      <!--<app-sidebar></app-sidebar>-->
   </div>
+  <!-- END Sidebar -->
+
   <div class="layout-main-container">
       <div class="layout-main">
           <router-outlet></router-outlet>

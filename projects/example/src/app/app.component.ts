@@ -32,7 +32,7 @@ export class AppComponent implements OnInit {
 
   loadTopbar() {
     this.topbarService.addComponentToLeft(new MCIconToggleSidebarButton());
-    this.topbarService.addComponentToLeft(new MCSubtitleInTopbar('Default'),);
+    this.topbarService.addComponentToLeft(new MCImage('https://tots.agency/assets/img/logos/logo-horiz-black-color.svg', 150));
   }
 
   loadSidebar() {
