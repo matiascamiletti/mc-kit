@@ -8,6 +8,7 @@ import { MCSubtitleInTopbar } from '../../../mckit/layout/src/lib/components/sub
 import { MCLoaderService, MCSpinnerFullScreenComponent } from '../../../mckit/loader/src/public-api';
 import { MCSidebarService, MCTopbarService } from '../../../mckit/layout-core/src/public-api';
 import { MCIconToggleSidebarButton } from '../../../mckit/layout/src/public-api';
+import { MCAvatar } from '../../../mckit/core/src/lib/components/avatar/avatar.component';
 
 @Component({
   selector: 'app-root',
@@ -33,6 +34,8 @@ export class AppComponent implements OnInit {
   loadTopbar() {
     this.topbarService.addComponentToLeft(new MCIconToggleSidebarButton());
     this.topbarService.addComponentToLeft(new MCImage('https://tots.agency/assets/img/logos/logo-horiz-black-color.svg', 150));
+
+    this.topbarService.addComponentToRight(new MCAvatar({ label: 'MC', shape: 'circle' }));
   }
 
   loadSidebar() {

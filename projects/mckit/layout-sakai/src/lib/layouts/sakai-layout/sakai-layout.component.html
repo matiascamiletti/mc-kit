@@ -6,21 +6,7 @@
       </button>
 
       <div class="p-toolbar-group-start"><mc-print-service [id]="topbarLeftId" [isFlexRow]="true"></mc-print-service></div>
-
-      <div #topbarmenu class="layout-topbar-menu" [ngClass]="{'layout-topbar-menu-mobile-active': true}">
-          <button class="p-link layout-topbar-button">
-              <i class="pi pi-calendar"></i>
-              <span>Calendar</span>
-          </button>
-          <button class="p-link layout-topbar-button">
-              <i class="pi pi-user"></i>
-              <span>Profile</span>
-          </button>
-          <button class="p-link layout-topbar-button" [routerLink]="'/documentation'">
-              <i class="pi pi-cog"></i>
-              <span>Settings</span>
-          </button>
-      </div>
+      <div class="p-toolbar-group-end layout-topbar-menu"><mc-print-service [id]="topbarRightId" [isFlexRow]="true"></mc-print-service></div>
   </div>
   <!-- END Topbar -->
 
