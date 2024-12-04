@@ -5,11 +5,12 @@ import { MenuItem } from 'primeng/api';
 import { CurrencyPipe } from '@angular/common';
 import { MCTwoColumnItemComponent } from '../../../../../mckit/layout/src/lib/lists/two-column-item/two-column-item.component';
 import { MCTopbarService } from '../../../../../mckit/layout-core/src/public-api';
+import { MCFilterButtonComponent } from '../../../../../mckit/filter/src/public-api';
 
 @Component({
   selector: 'app-test-page',
   standalone: true,
-  imports: [MCSimplePage, MCMiniResumeCard, CurrencyPipe, MCTwoColumnItemComponent],
+  imports: [MCSimplePage, MCMiniResumeCard, CurrencyPipe, MCTwoColumnItemComponent, MCFilterButtonComponent],
   templateUrl: './test-page.component.html',
   styleUrl: './test-page.component.scss'
 })

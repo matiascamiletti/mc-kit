@@ -10,6 +10,9 @@
       "@mckit/core": [
         "./dist/mckit/core"
       ],
+      "@mckit/filter": [
+        "./dist/mckit/filter"
+      ],
       "@mckit/layout": [
         "./dist/mckit/layout"
       ],
