@@ -36,6 +36,11 @@ export * from './lib/guards/auth.guard';
 export * from './lib/resolvers/user.resolver';
 
 /**
+ * Pipes
+ */
+export * from './lib/pipes/initial-name.pipe';
+
+/**
  * Pages
  */
 export * from './lib/pages/base-auth-page.component';
