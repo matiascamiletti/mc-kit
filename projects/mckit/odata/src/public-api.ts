@@ -12,3 +12,4 @@ export * from './lib/entities/mc-filter-processor';
  * Components
  */
 export * from './lib/components/odata-table.component';
+export * from './lib/components/odata-multiselect/odata-multiselect.component';

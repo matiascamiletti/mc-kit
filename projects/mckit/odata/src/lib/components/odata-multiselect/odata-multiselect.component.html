@@ -1,0 +1,13 @@
+@if (httpService) {
+  <p-multiSelect
+      [options]="items"
+      [(ngModel)]="selectedItems"
+      [filter]="true"
+      (onFilter)="search($event.filter)"
+      (ngModelChange)="onSelect($event)"
+      (onChange)="onChangeInternal($event)"
+      [loading]="isLoading"
+      optionValue="{{optionValue()}}"
+      optionLabel="{{optionLabel()}}"
+      placeholder="{{placeholder()}}" />
+}
