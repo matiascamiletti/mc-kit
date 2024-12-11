@@ -86,7 +86,7 @@ export class MCFilterProcessor {
     }
 
     if(odataFunction){
-      return `${odataOperator}('${filter.value}', ${key})`;
+      return `${odataOperator}(${key}, '${filter.value}')`;
     }
 
     return `${key} ${odataOperator} '${filter.value}'`;
@@ -129,7 +129,7 @@ export class MCFilterProcessor {
   }
 
   setPrependContains(key: string, value: any) {
-    this.prepend = `substringof('${value}', ${key})`;
+    this.prepend = `substringof(${key}, '${value}')`;
   }
 
   cleanPrepend(): void {
@@ -157,7 +157,7 @@ export class MCFilterProcessor {
   }
 
   setPostpendContains(key: string, value: any) {
-    this.postpend = `substringof('${value}', ${key})`;
+    this.postpend = `substringof(${key}, '${value}')`;
   }
 
   cleanPostpend(): void {

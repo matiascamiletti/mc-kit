@@ -36,9 +36,9 @@ export abstract class MCOdataTableComponent<T extends { id?: any }> implements O
 
   isLoading = true;
   /**
-   * Assign search field key for search in the table
+   * Assign search fields key for search in the table
    */
-  searchFieldKey = 'title';
+  searchFieldsKey: Array<string> = [];
 
   ngOnInit(): void {
     this.loaderService.hide();
@@ -70,11 +70,21 @@ export abstract class MCOdataTableComponent<T extends { id?: any }> implements O
 
   search(event: any) {
     let query = event.target.value;
-    if(query == ''){
-      this.data.filters.cleanPostpend();
-    } else {
-      this.data.filters.setPostpendContains(this.searchFieldKey, event.target.value);
+
+    this.data.filters.cleanPostpend();
+
+    if(query == '' || this.searchFieldsKey.length == 0){
+      this.loadItems();
+      return;
     }
+
+    let filters: Array<string> = [];
+    this.searchFieldsKey.forEach(key => {
+      filters.push(`substringof(${key}, '${query}')`);
+    });
+
+    this.data.filters.setPostpend(filters.join(' or '));
+
     this.loadItems();
   }
 
