@@ -4,5 +4,23 @@
         <div><h4>Quick Filters</h4></div>
         <div><p-button label="Clear all" [text]="true" severity="secondary" iconPos="right" /></div>
       </div>
+      <div class="flex quick-filter-container">
+
+       @for (item of quickFilters(); track $index) {
+        <div class="quick-filter">
+          <h5>{{item.title}}</h5>
+          <p-scroller
+            [items]="[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
+            [itemSize]="50"
+            scrollHeight="240px"
+            [style]="{'width': '160px', 'height': '240px'}">
+                <ng-template pTemplate="item" let-item let-options="options">
+                    <mc-item-quick-filter [item]="item"></mc-item-quick-filter>
+                </ng-template>
+          </p-scroller>
+        </div>
+       }
+
+      </div>
   </div>
 </p-overlayPanel>

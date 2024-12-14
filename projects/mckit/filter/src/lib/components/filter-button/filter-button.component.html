@@ -1,2 +1,2 @@
-<p-button label="Filters" [outlined]="true" icon="pi pi-filter" severity="info" iconPos="right" size="large" (onClick)="panel.toggle($event)" />
-<mc-filter-panel #panel />
+<p-button label="Filters" [outlined]="true" icon="pi pi-filter" severity="info" iconPos="left" size="large" (onClick)="panel.toggle($event)" [badge]="'2'" />
+<mc-filter-panel #panel [quickFilters]="config().quickFilters" />

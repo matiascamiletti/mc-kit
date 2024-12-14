@@ -6,6 +6,7 @@ import { CurrencyPipe } from '@angular/common';
 import { MCTwoColumnItemComponent } from '../../../../../mckit/layout/src/lib/lists/two-column-item/two-column-item.component';
 import { MCTopbarService } from '../../../../../mckit/layout-core/src/public-api';
 import { MCFilterButtonComponent } from '../../../../../mckit/filter/src/public-api';
+import { MCFilter } from '../../../../../mckit/filter/src/lib/entities/filter';
 
 @Component({
   selector: 'app-test-page',
@@ -21,16 +22,26 @@ export class TestPageComponent implements OnInit {
     { label: 'Test Page' }
   ];
 
+  filterConfig = new MCFilter();
+
   constructor(
     protected topbarService: MCTopbarService
   ) { }
 
   ngOnInit(): void {
     this.topbarService.subtitle.update(() => 'Test Page');
+    this.loadFilterConfig();
   }
 
   ngAfterViewInit(): void {
   }
 
-
+  loadFilterConfig() {
+    this.filterConfig.quickFilters = [
+      {
+        title: 'Game #',
+        items: []
+      }
+    ];
+  }
 }
