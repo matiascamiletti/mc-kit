@@ -1,0 +1,3 @@
+@for (message of messages(); track message; let first = $first) {
+  <p-message [severity]="message.severity" [text]="message.detail" [ngClass]="{ 'mt-4': !first }" />
+}

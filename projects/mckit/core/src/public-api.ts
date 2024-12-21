@@ -8,12 +8,14 @@
 export * from './lib/entities/mc-component';
 export * from './lib/entities/mc-list-response';
 export * from './lib/entities/mc-column';
+export * from './lib/entities/mc-message';
 
 /**
  * Services
  */
 export * from './lib/services/mc-component.service';
 export * from './lib/services/api-rest-http.service';
+export * from './lib/services/mc-messages.service';
 
 /** Components */
 export * from './lib/components/mc-core-component';
@@ -26,6 +28,7 @@ export * from './lib/components/menu/menu.component';
 export * from './lib/components/mc-base-form';
 export * from './lib/components/mc-base-model-form';
 export * from './lib/components/avatar/avatar.component';
+export * from './lib/components/messages/messages.component';
 
 /**
  * Modals

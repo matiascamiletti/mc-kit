@@ -35,7 +35,7 @@
                       <a class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: var(--primary-color)">Forgot password?</a>
                   </div>-->
 
-                  <p-messages />
+                  <mc-messages />
 
                   <p-button pRipple [label]="config().submitButton ?? 'Sign in'" [loading]="isSending" size="large" [style]="{ width: '100%' }" (click)="onClickSubmit()" [disabled]="group.invalid || isSending" />
 

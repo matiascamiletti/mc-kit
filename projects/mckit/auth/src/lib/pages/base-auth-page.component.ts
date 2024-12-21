@@ -1,10 +1,10 @@
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { MCAuthModel } from "../entities/mc-auth-model";
 import { inject } from "@angular/core";
-import { MessageService } from "primeng/api";
+import { MCMessagesService } from "@mckit/core";
 
 export abstract class MCBaseAuthPage {
-  messageService = inject(MessageService);
+  messageService = inject(MCMessagesService);
 
   group = new FormGroup({
     email: new FormControl<string>('', [Validators.required, Validators.email]),
@@ -31,11 +31,11 @@ export abstract class MCBaseAuthPage {
   }
 
   showSuccessMessage(message: string) {
-    this.messageService.add({ severity: 'success', summary: message});
+    this.messageService.add({ severity: 'success', detail: message});
   }
 
   showErrorMessage(message: string) {
-    this.messageService.add({ severity: 'error', summary: message});
+    this.messageService.add({ severity: 'error', detail: message});
   }
 
   clearMessages() {

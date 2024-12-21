@@ -1,9 +1,9 @@
 import { Component, inject, OnInit } from "@angular/core";
 import { MCLoaderService } from "@mckit/loader";
 import { StorageMap } from "@ngx-pwa/local-storage";
-import { ConfirmationService, MessageService, SortMeta } from "primeng/api";
+import { ConfirmationService, SortMeta } from "primeng/api";
 import { MCOdata } from "../entities/mc-odata";
-import { MCApiRestHttpService, MCColumn, MCListResponse } from "@mckit/core";
+import { MCApiRestHttpService, MCColumn, MCListResponse, MCMessagesService } from "@mckit/core";
 import { catchError, Observable, Subscription, tap } from "rxjs";
 import { TableFilterEvent, TablePageEvent } from "primeng/table";
 import { MultiSelectChangeEvent } from "primeng/multiselect";
@@ -17,7 +17,7 @@ export abstract class MCOdataTableComponent<T extends { id?: any }> implements O
   loaderService = inject(MCLoaderService);
   storageService = inject(StorageMap);
   confirmationService = inject(ConfirmationService);
-  messageService = inject(MessageService);
+  messageService = inject(MCMessagesService);
 
   httpService?: MCApiRestHttpService<T>;
 

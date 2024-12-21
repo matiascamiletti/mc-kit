@@ -1,11 +1,11 @@
 import { FormGroup } from "@angular/forms";
-import { Message } from "primeng/api";
 import { catchError, OperatorFunction } from "rxjs";
+import { MCMessage } from "../entities/mc-message";
 
 export abstract class MCBaseModelForm<T extends { id?: any }> {
   isSending: boolean = false;
 
-  messages: Message[] = [];
+  messages: MCMessage[] = [];
 
   copyItem?: T;
   item?: T;

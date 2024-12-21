@@ -1,13 +1,13 @@
 import { FormGroup } from "@angular/forms";
-import { Message } from "primeng/api";
 import { catchError, OperatorFunction } from "rxjs";
+import { MCMessage } from "../entities/mc-message";
 
 export abstract class MCBaseForm {
   formGroup: FormGroup | undefined;
 
   isSending: boolean = false;
 
-  messages: Message[] = [];
+  messages: MCMessage[] = [];
 
   abstract initForm(): void;
 

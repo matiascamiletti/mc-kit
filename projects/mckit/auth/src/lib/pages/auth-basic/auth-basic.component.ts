@@ -12,13 +12,14 @@ import { MCAuthModel } from '../../entities/mc-auth-model';
 import { MCBaseAuthPageConfig } from '../../entities/mc-base-auth-page-config';
 import { RouterModule } from '@angular/router';
 import { MCBaseAuthPage } from '../base-auth-page.component';
+import { MCMessagesComponent } from '@mckit/core';
 
 
 
 @Component({
   selector: 'mc-auth-basic',
   standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, ButtonModule, CardModule, IconFieldModule, InputIconModule, InputTextModule, PasswordModule, MessagesModule, RouterModule],
+  imports: [FormsModule, ReactiveFormsModule, ButtonModule, CardModule, IconFieldModule, InputIconModule, InputTextModule, PasswordModule, MessagesModule, RouterModule, MCMessagesComponent],
   providers: [MessageService],
   templateUrl: './auth-basic.component.html',
   styleUrl: './auth-basic.component.scss'

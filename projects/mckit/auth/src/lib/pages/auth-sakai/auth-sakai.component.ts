@@ -12,12 +12,12 @@ import { MCBaseAuthPageConfig } from '../../entities/mc-base-auth-page-config';
 import { MCBaseAuthPage } from '../base-auth-page.component';
 import { MCAuthModel } from '../../entities/mc-auth-model';
 import { MessageService } from 'primeng/api';
-import { MessagesModule } from 'primeng/messages';
+import { MCMessagesComponent } from '@mckit/core';
 
 @Component({
   selector: 'mc-auth-sakai',
   standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, ButtonModule, CardModule, IconFieldModule, InputIconModule, InputTextModule, PasswordModule, CheckboxModule, MessagesModule],
+  imports: [CommonModule, FormsModule, ReactiveFormsModule, ButtonModule, CardModule, IconFieldModule, InputIconModule, InputTextModule, PasswordModule, CheckboxModule, MCMessagesComponent],
   providers: [MessageService],
   templateUrl: './auth-sakai.component.html',
   styleUrl: './auth-sakai.component.scss'
