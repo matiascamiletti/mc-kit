@@ -65,7 +65,6 @@
               }
             ],
             "styles": [
-              "./node_modules/primeflex/primeflex.css",
               "projects/example/src/styles.scss"
             ],
             "scripts": [],

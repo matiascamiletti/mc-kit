@@ -13,15 +13,21 @@ export const appConfig: ApplicationConfig = {
     provideZoneChangeDetection({ eventCoalescing: true }),
     provideRouter(routes),
     provideClientHydration(),
-    importProvidersFrom(BrowserAnimationsModule),
+    //importProvidersFrom(BrowserAnimationsModule),
     provideAnimationsAsync(),
     providePrimeNG({
+      ripple: true,
       theme: {
           preset: Aura,
           options: {
-            darkModeSelector: '.my-app-dark'
+            prefix: 'p',
+            darkModeSelector: '.my-app-dark',
+            cssLayer: {
+              name: 'primeng',
+              order: 'tailwind-base, primeng, tailwind-utilities'
+            }
           }
-      },
+      }
   })
   ]
 };
