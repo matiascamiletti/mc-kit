@@ -25,7 +25,7 @@
                     }
                   </div>
 
-                  <p-password id="password1" formControlName="password" name="password" placeholder="Password" [toggleMask]="true" styleClass="mb-5" inputStyleClass="w-full p-3 md:w-30rem" [placeholder]="config().passwordPlaceholder ?? 'Password'" (keyup.enter)="onClickSubmit()"></p-password>
+                  <p-password id="password1" formControlName="password" name="password" placeholder="Password" [toggleMask]="true" styleClass="mb-5" inputStyleClass="w-full p-3 md:w-30rem" [placeholder]="config().passwordPlaceholder ?? 'Password'" (keyup.enter)="onClickSubmit()" [feedback]="false"></p-password>
 
                   <!--<div class="flex align-items-center items-center justify-between mb-5 gap-5">
                       <div class="flex align-items-center items-center">
@@ -37,7 +37,7 @@
 
                   <p-messages />
 
-                  <p-button pRipple [label]="config().submitButton ?? 'Sign in'" [loading]="isSending" size="large" [style]="{ width: '100%' }" (click)="onClickSubmit()" [disabled]="group.invalid || isSending" />
+                  <p-button pRipple [label]="config().submitButton ?? 'Log in'" [loading]="isSending" size="large" [style]="{ width: '100%' }" (click)="onClickSubmit()" [disabled]="group.invalid || isSending" />
 
                 </div>
               </form>
