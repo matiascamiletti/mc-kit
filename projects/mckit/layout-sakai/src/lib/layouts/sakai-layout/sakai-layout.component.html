@@ -1,10 +1,6 @@
-<div class="layout-wrapper layout-static" [ngClass]="{'layout-static-inactive': !isOpen!()}">
+<div class="layout-wrapper layout-static" [ngClass]="{'layout-static-inactive': !isOpen(), 'layout-mobile-active': isOpen()}">
   <!-- Topbar -->
   <div class="layout-topbar">
-      <button #topbarmenubutton class="p-link layout-topbar-menu-button layout-topbar-button">
-        <i class="pi pi-ellipsis-v"></i>
-      </button>
-
       <div class="p-toolbar-group-start"><mc-print-service [id]="topbarLeftId" [isFlexRow]="true"></mc-print-service></div>
       <div class="p-toolbar-group-end layout-topbar-menu"><mc-print-service [id]="topbarRightId" [isFlexRow]="true"></mc-print-service></div>
   </div>
@@ -30,5 +26,5 @@
       <!-- END Footer -->
 
   </div>
-  <div class="layout-mask"></div>
+  <div class="layout-mask" (click)="closeSidebar()"></div>
 </div>

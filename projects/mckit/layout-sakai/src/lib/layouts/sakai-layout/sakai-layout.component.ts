@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit, WritableSignal } from '@angular/core';
+import { afterNextRender, Component, inject, OnInit, WritableSignal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { PrintServiceComponent } from '@mckit/core';
 import { ID_FOOTER_MC_COMPONENT, ID_SIDEBAR_MC_COMPONENT, ID_TOPBAR_MC_COMPONENT, MCSidebarService } from '@mckit/layout-core';
@@ -11,7 +11,7 @@ import { ID_FOOTER_MC_COMPONENT, ID_SIDEBAR_MC_COMPONENT, ID_TOPBAR_MC_COMPONENT
   templateUrl: './sakai-layout.component.html',
   styleUrl: './sakai-layout.component.scss'
 })
-export class MCSakaiLayoutComponent implements OnInit {
+export class MCSakaiLayoutComponent {
 
   sidebarService = inject(MCSidebarService);
 
@@ -22,9 +22,27 @@ export class MCSakaiLayoutComponent implements OnInit {
 
   footerId = ID_FOOTER_MC_COMPONENT;
 
-  isOpen?: WritableSignal<boolean>;
+  isOpen: WritableSignal<boolean> = this.sidebarService.isOpen;
 
-  ngOnInit(): void {
-    this.isOpen = this.sidebarService.isOpen;
+  constructor() {
+    afterNextRender(() => {
+      this.initSidebar();
+    });
+  }
+
+  initSidebar() {
+    if(this.verifyIfMobile()) {
+      this.sidebarService.isOpen.update(() => false);
+    }
+  }
+
+  verifyIfMobile() {
+    return window.innerWidth < 768;
+  }
+
+  closeSidebar() {
+    if(this.verifyIfMobile()) {
+      this.sidebarService.isOpen.update(() => false);
+    }
   }
 }
