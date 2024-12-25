@@ -54,4 +54,10 @@ export class MCOdata {
 
     return odata;
   }
+
+  static fromOnlyTop(top: number): MCOdata {
+    const odata = new MCOdata();
+    odata.top = top;
+    return odata;
+  }
 }
