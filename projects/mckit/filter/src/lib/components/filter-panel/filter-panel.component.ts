@@ -5,12 +5,14 @@ import { OverlayPanel, OverlayPanelModule } from 'primeng/overlaypanel';
 import { ScrollerModule } from 'primeng/scroller';
 import { ItemQuickFilterComponent } from '../item-quick-filter/item-quick-filter.component';
 import { MCQuickFilter } from '../../entities/quick-filter';
+import { MCItemFilter } from '../../entities/item-filter';
+import { DividerModule } from 'primeng/divider';
 
 
 @Component({
   selector: 'mc-filter-panel',
   standalone: true,
-  imports: [CommonModule, OverlayPanelModule, ButtonModule, ScrollerModule, ItemQuickFilterComponent],
+  imports: [CommonModule, OverlayPanelModule, ButtonModule, ScrollerModule, ItemQuickFilterComponent, DividerModule],
   templateUrl: './filter-panel.component.html',
   styleUrl: './filter-panel.component.css'
 })
@@ -21,5 +23,10 @@ export class MCFilterPanelComponent {
 
   toggle($event: any): void {
     this.overlayPanel().toggle($event);
+  }
+
+  clickQuickFilterItem(quickFilter: MCQuickFilter, item: MCItemFilter): void {
+    quickFilter.items.forEach(i => i.isActive = false);
+    item.isActive = !item.isActive;
   }
 }

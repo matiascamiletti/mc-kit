@@ -40,8 +40,28 @@ export class TestPageComponent implements OnInit {
     this.filterConfig.quickFilters = [
       {
         title: 'Game #',
-        items: []
-      }
+        items: [
+          { label: '1', value: '1' },
+          { label: '2', value: '2' },
+          { label: '3', value: '3' },
+          { label: '4', value: '4' },
+          { label: '5', value: '5' }
+        ]
+      },
+      {
+        title: 'Status',
+        items: [
+          { label: 'In progress', value: '1' },
+          { label: 'Completed', value: '2' },
+          { label: 'Cancelled', value: '3' },
+        ]
+      },
+      {
+        title: 'Field',
+        items: [
+          { label: 'Field La bombonera', value: '1' },
+        ]
+      },
     ];
   }
 }

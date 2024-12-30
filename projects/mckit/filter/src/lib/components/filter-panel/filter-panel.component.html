@@ -1,5 +1,5 @@
 <p-overlayPanel #overlayPanel>
-  <div class="flex flex-column gap-3 w-25rem">
+  <div class="flex flex-column gap-2 mc-filter-panel">
       <div class="flex justify-between justify-content-between align-items-center items-center">
         <div><h4>Quick Filters</h4></div>
         <div><p-button label="Clear all" [text]="true" severity="secondary" iconPos="right" /></div>
@@ -10,17 +10,21 @@
         <div class="quick-filter">
           <h5>{{item.title}}</h5>
           <p-scroller
-            [items]="[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]"
-            [itemSize]="50"
-            scrollHeight="240px"
-            [style]="{'width': '160px', 'height': '240px'}">
-                <ng-template pTemplate="item" let-item let-options="options">
-                    <mc-item-quick-filter [item]="item"></mc-item-quick-filter>
+            [items]="item.items"
+            [itemSize]="item.items.length"
+            scrollHeight="180px"
+            [style]="{'width': '160px'}">
+                <ng-template pTemplate="item" let-subitem let-options="options">
+                    <mc-item-quick-filter [item]="subitem" (click)="clickQuickFilterItem(item, subitem)"></mc-item-quick-filter>
                 </ng-template>
           </p-scroller>
         </div>
        }
 
       </div>
+
+      <p-divider />
+
+      <p-button label="Switch to advanced filters" [text]="true" [severity]="'info'" />
   </div>
 </p-overlayPanel>

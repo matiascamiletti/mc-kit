@@ -2,3 +2,13 @@ h4 {
   margin: 0;
   padding: 0;
 }
+
+.mc-filter-panel {
+  width: 700px;
+  overflow: hidden;
+}
+
+.quick-filter-container {
+  width: auto;
+  overflow: scroll;
+}

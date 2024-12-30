@@ -1,0 +1,11 @@
+.subitem-quickfilter {
+  cursor: pointer;
+}
+
+.subitem-quickfilter:hover {
+  background-color: #f5f5f5;
+}
+
+.subitem-quickfilter.active {
+  background-color: #f5f5f5;
+}

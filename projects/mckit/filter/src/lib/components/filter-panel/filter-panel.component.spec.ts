@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FilterPanelComponent } from './filter-panel.component';
+import { MCFilterPanelComponent } from './filter-panel.component';
 
 describe('FilterPanelComponent', () => {
-  let component: FilterPanelComponent;
-  let fixture: ComponentFixture<FilterPanelComponent>;
+  let component: MCFilterPanelComponent;
+  let fixture: ComponentFixture<MCFilterPanelComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [FilterPanelComponent]
+      imports: [MCFilterPanelComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(FilterPanelComponent);
+    fixture = TestBed.createComponent(MCFilterPanelComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
