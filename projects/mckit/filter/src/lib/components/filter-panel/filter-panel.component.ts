@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, Signal, viewChild } from '@angular/core';
+import { Component, input, signal, Signal, viewChild } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { OverlayPanel, OverlayPanelModule } from 'primeng/overlaypanel';
 import { ScrollerModule } from 'primeng/scroller';
@@ -8,6 +8,10 @@ import { MCQuickFilter } from '../../entities/quick-filter';
 import { MCItemFilter } from '../../entities/item-filter';
 import { DividerModule } from 'primeng/divider';
 
+export enum MCShowPanel {
+  BASIC,
+  ADVANCED
+}
 
 @Component({
   selector: 'mc-filter-panel',
@@ -21,6 +25,10 @@ export class MCFilterPanelComponent {
 
   quickFilters = input<Array<MCQuickFilter>>();
 
+  showPanel = signal<MCShowPanel>(MCShowPanel.BASIC);
+  showPanelBasic = MCShowPanel.BASIC;
+  showPanelAdvanced = MCShowPanel.ADVANCED;
+
   toggle($event: any): void {
     this.overlayPanel().toggle($event);
   }
@@ -28,5 +36,13 @@ export class MCFilterPanelComponent {
   clickQuickFilterItem(quickFilter: MCQuickFilter, item: MCItemFilter): void {
     quickFilter.items.forEach(i => i.isActive = false);
     item.isActive = !item.isActive;
+  }
+
+  clickShowAdvancedPanel(): void {
+    this.showPanel.set(MCShowPanel.ADVANCED);
+  }
+
+  clickShowBasicPanel(): void {
+    this.showPanel.set(MCShowPanel.BASIC);
   }
 }

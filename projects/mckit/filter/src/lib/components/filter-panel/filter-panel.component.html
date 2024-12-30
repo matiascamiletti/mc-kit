@@ -4,7 +4,7 @@
         <div><h4>Quick Filters</h4></div>
         <div><p-button label="Clear all" [text]="true" severity="secondary" iconPos="right" /></div>
       </div>
-      <div class="flex quick-filter-container">
+      <div *ngIf="showPanel() == showPanelBasic" class="flex quick-filter-container">
 
        @for (item of quickFilters(); track $index) {
         <div class="quick-filter">
@@ -25,6 +25,7 @@
 
       <p-divider />
 
-      <p-button label="Switch to advanced filters" [text]="true" [severity]="'info'" />
+      <p-button *ngIf="showPanel() == showPanelBasic" label="Switch to advanced filters" [text]="true" [severity]="'info'" (onClick)="clickShowAdvancedPanel()" />
+      <p-button *ngIf="showPanel() == showPanelAdvanced" label="Switch to quick filters" [text]="true" [severity]="'info'" (onClick)="clickShowBasicPanel()" />
   </div>
 </p-overlayPanel>
