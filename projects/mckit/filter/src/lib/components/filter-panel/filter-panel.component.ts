@@ -33,7 +33,6 @@ export class MCFilterPanelComponent {
   results = signal<Array<MCResultFilter>>([]);
 
   addResult(result: MCResultFilter): void {
-    console.log(result);
     this.results.set([...this.results(), result]);
   }
 

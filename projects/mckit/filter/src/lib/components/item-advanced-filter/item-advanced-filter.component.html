@@ -1,21 +1,37 @@
 <div class="advanced-filter-item flex gap-2">
-  <div class="where">
+  <div class="where flex w-28">
     @if (isFirst()) {
-      <p>Where</p>
+      <p-dropdown [options]="operatorWhere" optionLabel="label" optionValue="value" [disabled]="true" styleClass="w-full" />
     } @else {
-      <p-dropdown [options]="operators" [(ngModel)]="result().operator" optionLabel="label" optionValue="value" />
+      <p-dropdown [options]="operators" [(ngModel)]="result().operator" optionLabel="label" optionValue="value" styleClass="w-full" />
     }
   </div>
 
-  <div class="filter w-full">
-    <p-dropdown [options]="filters()" [(ngModel)]="result().filter" optionLabel="title" styleClass="w-full" placeholder="Select a column" />
-  </div>
+  @if (result().childrens != undefined) {
 
-  <div class="condition w-36">
-    <p-dropdown [options]="conditions" [(ngModel)]="result().condition" optionLabel="label" optionValue="value" />
-  </div>
+    <div class="mc-filter-group flex flex-column gap-2 p-2 w-full">
 
-  <div class="value w-full">
-    <input type="text" pInputText [(ngModel)]="result().value" class="w-full" placeholder="Value" />
-  </div>
+      @for (children of result().childrens; track $index) {
+        <mc-item-advanced-filter [filters]="filters()" [result]="children" [isFirst]="$index == 0"></mc-item-advanced-filter>
+      }
+
+      <p-button label="+ New Filter" [text]="true" [severity]="'info'" (onClick)="clickAddFilter()"/>
+
+    </div>
+
+  } @else {
+    <div class="filter w-full">
+      <p-dropdown [options]="filters()" [(ngModel)]="result().filter" optionLabel="title" styleClass="w-full" placeholder="Select a column" />
+    </div>
+
+    <div class="condition w-36">
+      <p-dropdown [options]="conditions" [(ngModel)]="result().condition" optionLabel="label" optionValue="value" />
+    </div>
+
+    <div class="value w-full">
+      <input type="text" pInputText [(ngModel)]="result().value" class="w-full" placeholder="Value" />
+    </div>
+  }
+
+
 </div>

@@ -30,4 +30,10 @@ export class AdvancedFiltersPanelComponent {
     let result = new MCResultFilter();
     this.addNewFilter.emit(result);
   }
+
+  clickAddGroup() {
+    let result = new MCResultFilter();
+    result.childrens = [new MCResultFilter()];
+    this.addNewFilter.emit(result);
+  }
 }
