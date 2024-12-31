@@ -9,8 +9,8 @@
     <div class="quick-filter">
       <h5>{{item.title}}</h5>
       <p-scroller
-        [items]="item.items"
-        [itemSize]="item.items.length"
+        [items]="item.options"
+        [itemSize]="item.options.length"
         scrollHeight="180px"
         [style]="{'width': '160px'}">
             <ng-template pTemplate="item" let-subitem let-options="options">

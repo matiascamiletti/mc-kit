@@ -3,8 +3,17 @@
     <div><h4>Advanced Filters</h4></div>
     <div><p-button label="Clear all" [text]="true" severity="secondary" iconPos="right" /></div>
   </div>
-  <div class="flex quick-filter-container">
+  <div class="flex filters-container flex-column gap-2">
 
+    @for (result of results(); track $index) {
+      <mc-item-advanced-filter [filters]="filters()" [result]="result" [isFirst]="$index == 0"></mc-item-advanced-filter>
+    }
+
+  </div>
+
+  <div class="actions flex gap-2">
+    <p-button label="+ New Filter" [text]="true" [severity]="'info'" (onClick)="clickAddFilter()"/>
+    <p-button label="+ New group" [text]="true" [severity]="'info'"/>
   </div>
 
   <p-divider />

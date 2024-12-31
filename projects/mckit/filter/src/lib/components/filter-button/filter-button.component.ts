@@ -1,8 +1,8 @@
-import { Component, input } from '@angular/core';
+import { Component, computed, input } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { MCFilterPanelComponent } from '../filter-panel/filter-panel.component';
 import { BadgeModule } from 'primeng/badge';
-import { MCFilter } from '../../entities/filter';
+import { MCConfigFilter } from '../../entities/config';
 
 @Component({
   selector: 'mc-filter-button',
@@ -12,5 +12,6 @@ import { MCFilter } from '../../entities/filter';
   styleUrl: './filter-button.component.css'
 })
 export class MCFilterButtonComponent {
-  config = input.required<MCFilter>();
+  config = input.required<MCConfigFilter>();
+
 }

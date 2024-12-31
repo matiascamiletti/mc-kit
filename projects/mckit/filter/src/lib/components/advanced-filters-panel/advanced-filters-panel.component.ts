@@ -1,21 +1,33 @@
 import { CommonModule } from '@angular/common';
-import { Component, output } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { ScrollerModule } from 'primeng/scroller';
 import { DividerModule } from 'primeng/divider';
+import { ItemAdvancedFilterComponent } from '../item-advanced-filter/item-advanced-filter.component';
+import { MCFilter } from '../../entities/filter';
+import { MCResultFilter } from '../../entities/result';
 
 @Component({
   selector: 'mc-advanced-filters-panel',
   standalone: true,
-  imports: [CommonModule, ButtonModule, ScrollerModule, DividerModule],
+  imports: [CommonModule, ButtonModule, ScrollerModule, DividerModule, ItemAdvancedFilterComponent],
   templateUrl: './advanced-filters-panel.component.html',
   styleUrl: './advanced-filters-panel.component.css'
 })
 export class AdvancedFiltersPanelComponent {
 
+  filters = input.required<Array<MCFilter>>();
+  results = input.required<Array<MCResultFilter>>();
+
+  addNewFilter = output<MCResultFilter>();
   switchToQuick = output<void>();
 
   clickSwitchToQuick() {
     this.switchToQuick.emit();
+  }
+
+  clickAddFilter() {
+    let result = new MCResultFilter();
+    this.addNewFilter.emit(result);
   }
 }

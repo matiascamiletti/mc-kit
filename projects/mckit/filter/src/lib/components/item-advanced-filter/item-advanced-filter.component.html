@@ -1,0 +1,21 @@
+<div class="advanced-filter-item flex gap-2">
+  <div class="where">
+    @if (isFirst()) {
+      <p>Where</p>
+    } @else {
+      <p-dropdown [options]="operators" [(ngModel)]="result().operator" optionLabel="label" optionValue="value" />
+    }
+  </div>
+
+  <div class="filter w-full">
+    <p-dropdown [options]="filters()" [(ngModel)]="result().filter" optionLabel="title" styleClass="w-full" placeholder="Select a column" />
+  </div>
+
+  <div class="condition w-36">
+    <p-dropdown [options]="conditions" [(ngModel)]="result().condition" optionLabel="label" optionValue="value" />
+  </div>
+
+  <div class="value w-full">
+    <input type="text" pInputText [(ngModel)]="result().value" class="w-full" placeholder="Value" />
+  </div>
+</div>
