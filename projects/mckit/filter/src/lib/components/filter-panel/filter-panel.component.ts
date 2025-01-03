@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, input, signal, Signal, viewChild } from '@angular/core';
+import { Component, computed, input, output, signal, Signal, viewChild } from '@angular/core';
 import { OverlayPanel, OverlayPanelModule } from 'primeng/overlaypanel';
 import { AdvancedFiltersPanelComponent } from '../advanced-filters-panel/advanced-filters-panel.component';
 import { QuickFilterPanelComponent } from '../quick-filter-panel/quick-filter-panel.component';
@@ -24,6 +24,7 @@ export class MCFilterPanelComponent {
   overlayPanel: Signal<OverlayPanel> = viewChild.required('overlayPanel');
 
   config = input.required<MCConfigFilter>();
+  updateTotal = output<number>();
 
   quickFilters = computed(() => this.config().filters.filter(f => f.isQuickFilter));
 
@@ -35,14 +36,17 @@ export class MCFilterPanelComponent {
 
   addResult(result: MCResultFilter): void {
     this.results.set([...this.results(), result]);
+    this.update();
   }
 
   removeResultByIndex(index: number): void {
     this.results.set(this.results().filter((_, i) => i !== index));
+    this.update();
   }
 
   removeResultByFilter(filter: MCFilter): void {
     this.results.set(this.results().filter(r => r.filter !== filter));
+    this.update();
   }
 
   removeResultByFilterAndItem(data: { filter: MCFilter, item: MCItemFilter }): void {
@@ -53,6 +57,11 @@ export class MCFilterPanelComponent {
 
       return r.value !== data.item.value;
     }));
+    this.update();
+  }
+
+  update() {
+    this.updateTotal.emit(this.results().length);
   }
 
   toggle($event: any): void {
