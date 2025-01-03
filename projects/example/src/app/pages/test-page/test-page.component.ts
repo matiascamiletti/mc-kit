@@ -52,12 +52,12 @@ export class TestPageComponent implements OnInit {
           { label: '10', value: '10' }
       ]),
       MCFilter.textQuickFilter('Status', 'status', [
-        { label: 'In progress', value: '1' },
-        { label: 'Completed', value: '2' },
-        { label: 'Cancelled', value: '3' },
+        { label: 'In progress', value: 'In progress' },
+        { label: 'Completed', value: 'Completed' },
+        { label: 'Cancelled', value: 'Cancelled' },
       ]),
       MCFilter.textQuickFilter('Field', 'field', [
-        { label: 'Field La bombonera', value: '1' },
+        { label: 'Field La bombonera', value: 'Field La bombonera' },
       ]),
     ];
   }

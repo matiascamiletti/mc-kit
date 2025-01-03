@@ -1,4 +1,4 @@
 <p-overlayPanel #overlayPanel>
-  <mc-advanced-filters-panel *ngIf="showPanel() == showPanelAdvanced" (switchToQuick)="clickShowBasicPanel()" [filters]="config().filters" [results]="results()" (addNewFilter)="addResult($event)"></mc-advanced-filters-panel>
-  <mc-quick-filter-panel *ngIf="showPanel() == showPanelBasic" [quickFilters]="quickFilters()" (switchToAdvanced)="clickShowAdvancedPanel()"></mc-quick-filter-panel>
+  <mc-advanced-filters-panel *ngIf="showPanel() == showPanelAdvanced" (switchToQuick)="clickShowBasicPanel()" [filters]="config().filters" [results]="results()" (addNewFilter)="addResult($event)" (removeFilterByIndex)="removeResultByIndex($event)"></mc-advanced-filters-panel>
+  <mc-quick-filter-panel *ngIf="showPanel() == showPanelBasic" [quickFilters]="quickFilters()" [results]="results()" (switchToAdvanced)="clickShowAdvancedPanel()" (addNewFilter)="addResult($event)" (removeFilterAndItem)="removeResultByFilterAndItem($event)" (removeFilter)="removeResultByFilter($event)"></mc-quick-filter-panel>
 </p-overlayPanel>

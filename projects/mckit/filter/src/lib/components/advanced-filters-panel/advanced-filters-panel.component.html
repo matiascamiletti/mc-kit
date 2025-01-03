@@ -6,7 +6,7 @@
   <div class="flex filters-container flex-column gap-2">
 
     @for (result of results(); track $index) {
-      <mc-item-advanced-filter [filters]="filters()" [result]="result" [isFirst]="$index == 0"></mc-item-advanced-filter>
+      <mc-item-advanced-filter [filters]="filters()" [result]="result" [isFirst]="$index == 0" (clickRemove)="clickRemoveFilter($index)"></mc-item-advanced-filter>
     }
 
   </div>

@@ -31,6 +31,8 @@
     <div class="value w-full">
       <input type="text" pInputText [(ngModel)]="result().value" class="w-full" placeholder="Value" />
     </div>
+
+    <p-button [text]="true" icon="pi pi-times" (onClick)="clickRemoveFilter()"></p-button>
   }
 
 

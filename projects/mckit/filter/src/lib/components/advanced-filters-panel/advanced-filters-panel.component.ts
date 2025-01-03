@@ -20,6 +20,7 @@ export class AdvancedFiltersPanelComponent {
   results = input.required<Array<MCResultFilter>>();
 
   addNewFilter = output<MCResultFilter>();
+  removeFilterByIndex = output<number>();
   switchToQuick = output<void>();
 
   clickSwitchToQuick() {
@@ -35,5 +36,9 @@ export class AdvancedFiltersPanelComponent {
     let result = new MCResultFilter();
     result.childrens = [new MCResultFilter()];
     this.addNewFilter.emit(result);
+  }
+
+  clickRemoveFilter(index: number) {
+    this.removeFilterByIndex.emit(index);
   }
 }

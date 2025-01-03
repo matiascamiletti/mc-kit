@@ -1,4 +1,4 @@
-import { Component, computed, input } from '@angular/core';
+import { Component, computed, input, output } from '@angular/core';
 import { MCFilter } from '../../entities/filter';
 import { MCResultFilter } from '../../entities/result';
 import { CommonModule } from '@angular/common';
@@ -19,6 +19,8 @@ export class ItemAdvancedFilterComponent {
   result = input.required<MCResultFilter>();
   isFirst = input.required<boolean>();
 
+  clickRemove = output();
+
   operators = MCResultFilter.getOperators();
   conditions = MCResultFilter.getConditions();
   operatorWhere = [
@@ -27,5 +29,9 @@ export class ItemAdvancedFilterComponent {
 
   clickAddFilter(): void {
     this.result().childrens!.push(new MCResultFilter());
+  }
+
+  clickRemoveFilter(): void {
+    this.clickRemove.emit();
   }
 }

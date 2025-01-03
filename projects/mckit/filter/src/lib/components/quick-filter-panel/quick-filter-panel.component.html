@@ -14,7 +14,7 @@
         scrollHeight="180px"
         [style]="{'width': '160px'}">
             <ng-template pTemplate="item" let-subitem let-options="options">
-                <mc-item-quick-filter [item]="subitem" (click)="clickQuickFilterItem(item, subitem)"></mc-item-quick-filter>
+                <mc-item-quick-filter [item]="subitem" [isActive]="isItemSelected(item, subitem)" (click)="clickQuickFilterItem(item, subitem)"></mc-item-quick-filter>
             </ng-template>
       </p-scroller>
     </div>

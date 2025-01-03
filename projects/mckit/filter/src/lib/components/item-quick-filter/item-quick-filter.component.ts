@@ -11,4 +11,5 @@ import { CommonModule } from '@angular/common';
 })
 export class ItemQuickFilterComponent {
   item = input.required<MCItemFilter>();
+  isActive = input<boolean>();
 }
