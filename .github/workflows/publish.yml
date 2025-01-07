@@ -24,8 +24,8 @@ jobs:
       cron: ${{ steps.filter.outputs.cron }}
       filter: ${{ steps.filter.outputs.filter }}
       layout: ${{ steps.filter.outputs.layout }}
-      layout-core: ${{ steps.filter.outputs.layout-core }}
-      layout-sakai: ${{ steps.filter.outputs.layout-sakai }}
+      layout-core: ${{ steps.filter.outputs['layout-core'] }}
+      layout-sakai: ${{ steps.filter.outputs['layout-sakai'] }}
       loader: ${{ steps.filter.outputs.loader }}
       odata: ${{ steps.filter.outputs.odata }}
     steps:
@@ -36,6 +36,7 @@ jobs:
         id: filter
         uses: dorny/paths-filter@v2
         with:
+          base: 'main'
           filters: |
             auth:
               - 'projects/mckit/auth/package.json'
@@ -62,23 +63,27 @@ jobs:
     strategy:
       matrix:
         project: [auth, core, cron, filter, layout, layout-core, layout-sakai, loader, odata]
-    if: ${{ needs.filter.outputs[matrix.project] == 'true' }}
     steps:
       - name: Checkout repository
+        if: ${{ needs.filter.outputs[matrix.project] == 'true' }}
         uses: actions/checkout@v3
 
       - name: Set up Node.js
+        if: ${{ needs.filter.outputs[matrix.project] == 'true' }}
         uses: actions/setup-node@v3
         with:
           node-version: '18'
 
       - name: Install dependencies
+        if: ${{ needs.filter.outputs[matrix.project] == 'true' }}
         run: npm install
 
       - name: Build project
-        run: npm run build --project=@mckit/${{ matrix.project }} --configuration production
+        if: ${{ needs.filter.outputs[matrix.project] == 'true' }}
+        run: npm run build -- --project=@mckit/${{ matrix.project }} --configuration production
 
       - name: Publish to npm
+        if: ${{ needs.filter.outputs[matrix.project] == 'true' }}
         run: npm publish dist/mckit/${{ matrix.project }} --access public
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
