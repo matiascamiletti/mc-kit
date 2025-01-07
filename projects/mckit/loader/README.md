@@ -1,24 +1,51 @@
 # Loader
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.0.
+## Functionality
 
-## Code scaffolding
+The Loader library provides a service and components to manage and display loading states in your Angular application.
 
-Run `ng generate component component-name --project loader` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project loader`.
-> Note: Don't forget to add `--project loader` or else it will be added to the default project in your `angular.json` file. 
+### Services
 
-## Build
+#### MCLoaderService
 
-Run `ng build loader` to build the project. The build artifacts will be stored in the `dist/` directory.
+This service is used to control the loading state of the application.
 
-## Publishing
+- **isLoading**: A signal that indicates whether the loading state is active.
+- **show()**: Sets the loading state to true.
+- **hide()**: Sets the loading state to false.
 
-After building your library with `ng build loader`, go to the dist folder `cd dist/loader` and run `npm publish`.
+### Resolvers
 
-## Running unit tests
+#### mcLoaderResolver
 
-Run `ng test loader` to execute the unit tests via [Karma](https://karma-runner.github.io).
+This resolver hides the loading state when a route is resolved.
 
-## Further help
+### Components
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+#### MCSpinnerFullScreenComponent
+
+This component displays a full-screen spinner when the loading state is active.
+
+- **isLoading**: Binds to the `isLoading` signal from `MCLoaderService`.
+
+### Usage
+
+1. **Inject the MCLoaderService** in your components or services to control the loading state.
+
+```typescript
+import { MCLoaderService } from '@mckit/loader';
+
+constructor(private loaderService: MCLoaderService) {}
+
+someMethod() {
+  this.loaderService.show();
+  // Perform some action
+  this.loaderService.hide();
+}
+```
+
+2. **Use the MCSpinnerFullScreenComponent** in your templates to display the loading spinner.
+
+```html
+<mc-spinner-full-screen></mc-spinner-full-screen>
+```
