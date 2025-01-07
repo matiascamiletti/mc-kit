@@ -1,0 +1,84 @@
+name: Publish to npm
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - 'projects/mckit/auth/**'
+      - 'projects/mckit/core/**'
+      - 'projects/mckit/cron/**'
+      - 'projects/mckit/filter/**'
+      - 'projects/mckit/layout/**'
+      - 'projects/mckit/layout-core/**'
+      - 'projects/mckit/layout-sakai/**'
+      - 'projects/mckit/loader/**'
+      - 'projects/mckit/odata/**'
+
+jobs:
+  filter:
+    runs-on: ubuntu-latest
+    outputs:
+      auth: ${{ steps.filter.outputs.auth }}
+      core: ${{ steps.filter.outputs.core }}
+      cron: ${{ steps.filter.outputs.cron }}
+      filter: ${{ steps.filter.outputs.filter }}
+      layout: ${{ steps.filter.outputs.layout }}
+      layout-core: ${{ steps.filter.outputs.layout-core }}
+      layout-sakai: ${{ steps.filter.outputs.layout-sakai }}
+      loader: ${{ steps.filter.outputs.loader }}
+      odata: ${{ steps.filter.outputs.odata }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Filter changes
+        id: filter
+        uses: dorny/paths-filter@v2
+        with:
+          filters: |
+            auth:
+              - 'projects/mckit/auth/package.json'
+            core:
+              - 'projects/mckit/core/package.json'
+            cron:
+              - 'projects/mckit/cron/package.json'
+            filter:
+              - 'projects/mckit/filter/package.json'
+            layout:
+              - 'projects/mckit/layout/package.json'
+            layout-core:
+              - 'projects/mckit/layout-core/package.json'
+            layout-sakai:
+              - 'projects/mckit/layout-sakai/package.json'
+            loader:
+              - 'projects/mckit/loader/package.json'
+            odata:
+              - 'projects/mckit/odata/package.json'
+
+  build-and-publish:
+    needs: filter
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        project: [auth, core, cron, filter, layout, layout-core, layout-sakai, loader, odata]
+    if: ${{ needs.filter.outputs[matrix.project] == 'true' }}
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build project
+        run: npm run build --project=@mckit/${{ matrix.project }} --configuration production
+
+      - name: Publish to npm
+        run: npm publish dist/mckit/${{ matrix.project }} --access public
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
