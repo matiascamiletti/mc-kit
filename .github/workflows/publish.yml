@@ -5,15 +5,15 @@ on:
     branches:
       - master
     paths:
-      - 'projects/mckit/auth/**'
-      - 'projects/mckit/core/**'
-      - 'projects/mckit/cron/**'
-      - 'projects/mckit/filter/**'
-      - 'projects/mckit/layout/**'
-      - 'projects/mckit/layout-core/**'
-      - 'projects/mckit/layout-sakai/**'
-      - 'projects/mckit/loader/**'
-      - 'projects/mckit/odata/**'
+      - 'projects/mckit/auth/package.json'
+      - 'projects/mckit/core/package.json'
+      - 'projects/mckit/cron/package.json'
+      - 'projects/mckit/filter/package.json'
+      - 'projects/mckit/layout/package.json'
+      - 'projects/mckit/layout-core/package.json'
+      - 'projects/mckit/layout-sakai/package.json'
+      - 'projects/mckit/loader/package.json'
+      - 'projects/mckit/odata/package.json'
 
 jobs:
   filter:
