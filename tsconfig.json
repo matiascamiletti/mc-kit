@@ -10,6 +10,9 @@
       "@mckit/core": [
         "./dist/mckit/core"
       ],
+      "@mckit/cron": [
+        "./dist/mckit/cron"
+      ],
       "@mckit/filter": [
         "./dist/mckit/filter"
       ],

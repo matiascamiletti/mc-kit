@@ -17,7 +17,8 @@
     "publish-layout": "ng build --project=@mckit/layout --configuration production && npm publish dist/mckit/layout --access public",
     "publish-layout-core": "ng build --project=@mckit/layout-core --configuration production && npm publish dist/mckit/layout-core --access public",
     "publish-layout-sakai": "ng build --project=@mckit/layout-sakai --configuration production && npm publish dist/mckit/layout-sakai --access public",
-    "publish-filter": "ng build --project=@mckit/filter --configuration production && npm publish dist/mckit/filter --access public"
+    "publish-filter": "ng build --project=@mckit/filter --configuration production && npm publish dist/mckit/filter --access public",
+    "publish-cron": "ng build --project=@mckit/cron --configuration production && npm publish dist/mckit/cron --access public"
   },
   "private": true,
   "dependencies": {
