@@ -1,0 +1,26 @@
+<div
+  class="surface-ground flex align-items-center items-center justify-content-center justify-center min-h-screen min-w-screen overflow-hidden">
+  <div class="flex flex-col flex-column align-items-center items-center justify-content-center justify-center">
+    @if (config().logo != undefined) {
+      <img [src]="config().logo" class="mb-5 w-6rem flex-shrink-0" alt="logo">
+    }
+
+    <ng-content select="[pageheader]"></ng-content>
+    <div class="container-degradee"
+         style="border-radius:56px; padding:0.3rem; background: linear-gradient(180deg, var(--primary-color) 10%, rgba(33, 150, 243, 0) 30%);">
+      <div class="container-content w-full surface-card py-8 px-5 sm:px-8" style="border-radius:53px">
+        <div class="text-center mb-5">
+          <div class="text-900 text-sm font-medium mb-3 uppercase tracking-widest">{{ config().subtitle }}</div>
+          <h1 class="text-600 font-black text-2xl">{{ config().title }}</h1>
+        </div>
+
+        <form class="" [formGroup]="group" (ngSubmit)="onClickSubmit()">
+          <div>
+            <p-messages/>
+            <ng-content></ng-content>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

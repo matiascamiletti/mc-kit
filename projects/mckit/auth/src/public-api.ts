@@ -47,3 +47,4 @@ export * from './lib/pages/base-auth-page.component';
 export * from './lib/pages/auth-basic/auth-basic.component';
 export * from './lib/pages/auth-half/auth-half.component';
 export * from './lib/pages/auth-sakai/auth-sakai.component';
+export * from './lib/pages/auth-sakai-only-social/auth-sakai-only-social.component';
