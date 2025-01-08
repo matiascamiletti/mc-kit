@@ -23,6 +23,7 @@ export class AdvancedFiltersPanelComponent {
   removeFilterByIndex = output<number>();
   switchToQuick = output<void>();
   clearAll = output<void>();
+  refresh = output();
 
   clickSwitchToQuick() {
     this.switchToQuick.emit();
@@ -45,5 +46,9 @@ export class AdvancedFiltersPanelComponent {
 
   clickClearAll() {
     this.clearAll.emit();
+  }
+
+  onRefresh() {
+    this.refresh.emit();
   }
 }

@@ -20,6 +20,7 @@ export class ItemAdvancedFilterComponent {
   isFirst = input.required<boolean>();
 
   clickRemove = output();
+  refresh = output();
 
   operators = MCResultFilter.getOperators();
   conditions = MCResultFilter.getConditions();
@@ -36,5 +37,15 @@ export class ItemAdvancedFilterComponent {
 
   clickRemoveFilter(): void {
     this.clickRemove.emit();
+  }
+
+  onRefreshColumn() {
+    this.result().value = undefined;
+    this.refresh.emit();
+  }
+
+  onRefresh() {
+    console.log('seasdas ');
+    this.refresh.emit();
   }
 }

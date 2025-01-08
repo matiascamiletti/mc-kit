@@ -3,7 +3,7 @@
     @if (isFirst()) {
       <p-dropdown [options]="operatorWhere" optionLabel="label" optionValue="value" [disabled]="true" styleClass="w-full" />
     } @else {
-      <p-dropdown [options]="operators" [(ngModel)]="result().operator" optionLabel="label" optionValue="value" styleClass="w-full" />
+      <p-dropdown [options]="operators" [(ngModel)]="result().operator" optionLabel="label" optionValue="value" styleClass="w-full" (onChange)="onRefresh()" />
     }
   </div>
 
@@ -12,7 +12,7 @@
     <div class="mc-filter-group flex flex-column gap-2 p-2 w-full">
 
       @for (children of result().childrens; track $index) {
-        <mc-item-advanced-filter [filters]="filters()" [result]="children" [isFirst]="$index == 0"></mc-item-advanced-filter>
+        <mc-item-advanced-filter [filters]="filters()" [result]="children" [isFirst]="$index == 0" (refresh)="onRefresh()"></mc-item-advanced-filter>
       }
 
       <p-button label="+ New Filter" [text]="true" [severity]="'info'" (onClick)="clickAddFilter()"/>
@@ -21,17 +21,17 @@
 
   } @else {
     <div class="filter w-full">
-      <p-dropdown [options]="filters()" [(ngModel)]="result().filter" optionLabel="title" styleClass="w-full" placeholder="Select a column" />
+      <p-dropdown [options]="filters()" [(ngModel)]="result().filter" optionLabel="title" styleClass="w-full" placeholder="Select a column" (onChange)="onRefreshColumn()" />
     </div>
 
     <div class="condition w-36">
-      <p-dropdown [options]="conditions" [(ngModel)]="result().condition" optionLabel="label" optionValue="value" />
+      <p-dropdown [options]="conditions" [(ngModel)]="result().condition" optionLabel="label" optionValue="value" (onChange)="onRefresh()" />
     </div>
 
     <div class="value w-full">
 
       @if (result().filter?.type == typeSelect) {
-        <p-dropdown [options]="result().filter?.options" [(ngModel)]="result().value" optionLabel="label" optionValue="value" [placeholder]="result().filter?.data?.placeholder" styleClass="w-full" />
+        <p-dropdown [options]="result().filter?.options" [(ngModel)]="result().value" optionLabel="label" optionValue="value" [placeholder]="result().filter?.data?.placeholder" styleClass="w-full" (onChange)="onRefresh()" />
       } @else {
         <input type="text" pInputText [(ngModel)]="result().value" class="w-full" placeholder="Value" />
       }

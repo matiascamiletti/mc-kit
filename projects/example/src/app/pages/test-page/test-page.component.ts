@@ -8,6 +8,7 @@ import { MCTopbarService } from '../../../../../mckit/layout-core/src/public-api
 import { MCFilterButtonComponent } from '../../../../../mckit/filter/src/public-api';
 import { MCConfigFilter } from '../../../../../mckit/filter/src/lib/entities/config';
 import { MCFilter } from '../../../../../mckit/filter/src/lib/entities/filter';
+import { MCResultFilter } from '../../../../../mckit/filter/src/lib/entities/result';
 
 @Component({
   selector: 'app-test-page',
@@ -35,6 +36,10 @@ export class TestPageComponent implements OnInit {
   }
 
   ngAfterViewInit(): void {
+  }
+
+  onFilter(filters: Array<MCResultFilter>) {
+    console.log(filters);
   }
 
   loadFilterConfig() {
