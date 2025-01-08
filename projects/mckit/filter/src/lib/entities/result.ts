@@ -27,6 +27,18 @@ export class MCResultFilter {
 
   childrens?: Array<MCResultFilter>;
 
+  static isValid(result: MCResultFilter): boolean {
+    if(result.filter != undefined && result.value != undefined && result.value != ''){
+      return true;
+    }
+
+    if(result.childrens != undefined){
+      return result.childrens.every(r => MCResultFilter.isValid(r));
+    }
+
+    return false;
+  }
+
   static getOperators(): Array<{ label: string, value: string }> {
     return [
       { label: 'and', value: 'and' },

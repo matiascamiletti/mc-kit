@@ -47,6 +47,10 @@ export class TestPageComponent implements OnInit {
 
   loadFilterConfig() {
     this.filterConfig.filters = [
+      MCFilter.text({
+        title: 'Name',
+        key: 'name'
+      }),
       MCFilter.textQuickFilter({
         title: 'Game #',
         key: 'game_number',
@@ -79,7 +83,7 @@ export class TestPageComponent implements OnInit {
         options: [
           { label: 'Field La bombonera', value: 'Field La bombonera' },
         ]
-      }),
+      })
     ];
   }
 }

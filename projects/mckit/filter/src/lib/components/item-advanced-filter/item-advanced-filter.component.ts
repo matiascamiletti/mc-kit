@@ -45,7 +45,6 @@ export class ItemAdvancedFilterComponent {
   }
 
   onRefresh() {
-    console.log('seasdas ');
     this.refresh.emit();
   }
 }

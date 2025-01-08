@@ -16,7 +16,7 @@
     <p-button label="+ New group" [text]="true" [severity]="'info'" (onClick)="clickAddGroup()"/>
   </div>
 
-  <p-divider />
+  <p-divider *ngIf="hasQuickFilters()"  />
 
-  <p-button label="Switch to quick filters" [text]="true" [severity]="'info'" (onClick)="clickSwitchToQuick()" />
+  <p-button *ngIf="hasQuickFilters()" label="Switch to quick filters" [text]="true" [severity]="'info'" (onClick)="clickSwitchToQuick()" />
 </div>
