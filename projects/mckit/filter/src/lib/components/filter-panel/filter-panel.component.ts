@@ -75,4 +75,9 @@ export class MCFilterPanelComponent {
   clickShowBasicPanel(): void {
     this.showPanel.set(MCShowPanel.BASIC);
   }
+
+  clickClearAll(): void {
+    this.results.set([]);
+    this.update();
+  }
 }

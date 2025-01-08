@@ -29,7 +29,13 @@
     </div>
 
     <div class="value w-full">
-      <input type="text" pInputText [(ngModel)]="result().value" class="w-full" placeholder="Value" />
+
+      @if (result().filter?.type == typeSelect) {
+        <p-dropdown [options]="result().filter?.options" [(ngModel)]="result().value" optionLabel="label" optionValue="value" [placeholder]="result().filter?.data?.placeholder" styleClass="w-full" />
+      } @else {
+        <input type="text" pInputText [(ngModel)]="result().value" class="w-full" placeholder="Value" />
+      }
+
     </div>
 
     <p-button [text]="true" icon="pi pi-times" (onClick)="clickRemoveFilter()"></p-button>
