@@ -3,6 +3,14 @@
  */
 
 /**
+ * Entities
+ */
+export * from './lib/entities/filter';
+export * from './lib/entities/result';
+export * from './lib/entities/config';
+export * from './lib/entities/item-filter';
+
+/**
  * Services
  */
 export * from './lib/services/filter-odata-converter.service';
