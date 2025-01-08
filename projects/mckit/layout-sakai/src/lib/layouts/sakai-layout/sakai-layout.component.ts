@@ -13,7 +13,7 @@ import { ID_FOOTER_MC_COMPONENT, ID_SIDEBAR_MC_COMPONENT, ID_TOPBAR_MC_COMPONENT
 })
 export class MCSakaiLayoutComponent {
 
-  sidebarService = inject(MCSidebarService);
+  sidebarService: MCSidebarService = inject(MCSidebarService);
 
   topbarLeftId = ID_TOPBAR_MC_COMPONENT + '_left';
   topbarRightId = ID_TOPBAR_MC_COMPONENT + '_right';
