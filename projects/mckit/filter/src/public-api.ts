@@ -3,6 +3,11 @@
  */
 
 /**
+ * Services
+ */
+export * from './lib/services/filter-odata-converter.service';
+
+/**
  * Components
  */
 export * from './lib/components/filter-button/filter-button.component';

@@ -22,6 +22,8 @@ export class AdvancedFiltersPanelComponent {
   addNewFilter = output<MCResultFilter>();
   removeFilterByIndex = output<number>();
   switchToQuick = output<void>();
+  clearAll = output<void>();
+  refresh = output();
 
   clickSwitchToQuick() {
     this.switchToQuick.emit();
@@ -40,5 +42,13 @@ export class AdvancedFiltersPanelComponent {
 
   clickRemoveFilter(index: number) {
     this.removeFilterByIndex.emit(index);
+  }
+
+  clickClearAll() {
+    this.clearAll.emit();
+  }
+
+  onRefresh() {
+    this.refresh.emit();
   }
 }

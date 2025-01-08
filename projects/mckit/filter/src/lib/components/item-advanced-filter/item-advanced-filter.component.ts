@@ -1,5 +1,5 @@
 import { Component, computed, input, output } from '@angular/core';
-import { MCFilter } from '../../entities/filter';
+import { MCFilter, MCTypeFilter } from '../../entities/filter';
 import { MCResultFilter } from '../../entities/result';
 import { CommonModule } from '@angular/common';
 import { DropdownModule } from 'primeng/dropdown';
@@ -10,7 +10,7 @@ import { ButtonModule } from 'primeng/button';
 @Component({
   selector: 'mc-item-advanced-filter',
   standalone: true,
-  imports: [CommonModule, FormsModule, DropdownModule, InputTextModule, ButtonModule],
+  imports: [CommonModule, FormsModule, DropdownModule, InputTextModule, ButtonModule, DropdownModule],
   templateUrl: './item-advanced-filter.component.html',
   styleUrl: './item-advanced-filter.component.scss'
 })
@@ -20,6 +20,7 @@ export class ItemAdvancedFilterComponent {
   isFirst = input.required<boolean>();
 
   clickRemove = output();
+  refresh = output();
 
   operators = MCResultFilter.getOperators();
   conditions = MCResultFilter.getConditions();
@@ -27,11 +28,24 @@ export class ItemAdvancedFilterComponent {
     { label: 'Where', value: 'where' },
   ];
 
+  typeText = MCTypeFilter.TEXT;
+  typeSelect = MCTypeFilter.SELECT;
+
   clickAddFilter(): void {
     this.result().childrens!.push(new MCResultFilter());
   }
 
   clickRemoveFilter(): void {
     this.clickRemove.emit();
+  }
+
+  onRefreshColumn() {
+    this.result().value = undefined;
+    this.refresh.emit();
+  }
+
+  onRefresh() {
+    console.log('seasdas ');
+    this.refresh.emit();
   }
 }

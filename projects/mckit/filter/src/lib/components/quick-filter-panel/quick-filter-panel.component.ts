@@ -23,6 +23,7 @@ export class QuickFilterPanelComponent {
   removeFilter = output<MCFilter>();
   removeFilterAndItem = output<{ filter: MCFilter, item: MCItemFilter }>();
   switchToAdvanced = output<void>();
+  clearAll = output<void>();
 
   isItemSelected(quickFilter: MCFilter, item: MCItemFilter): boolean {
     let result = this.results().find(r => r.filter === quickFilter);
@@ -52,5 +53,9 @@ export class QuickFilterPanelComponent {
 
   clickSwitchToAdvanced() {
     this.switchToAdvanced.emit();
+  }
+
+  clickClearAll() {
+    this.clearAll.emit();
   }
 }

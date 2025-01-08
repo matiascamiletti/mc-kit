@@ -1,7 +1,8 @@
 import { MCItemFilter } from "./item-filter";
 
 export enum MCTypeFilter {
-  TEXT
+  TEXT,
+  SELECT
 }
 
 export class MCFilter {
@@ -15,18 +16,33 @@ export class MCFilter {
 
   isQuickFilter: boolean = false;
 
-  static text(title: string, key: string): MCFilter {
+  static text(data: { title: string, key: string }): MCFilter {
     let filter = new MCFilter();
-    filter.title = title;
-    filter.key = key;
+    filter.type = MCTypeFilter.TEXT;
+    filter.title = data.title;
+    filter.key = data.key;
     return filter;
   }
 
-  static textQuickFilter(title: string, key: string, options: Array<MCItemFilter>): MCFilter {
+  static select(data: { title: string, key: string, options: Array<MCItemFilter>, placeholder?: string }): MCFilter {
     let filter = new MCFilter();
-    filter.title = title;
-    filter.key = key;
-    filter.options = options;
+    filter.type = MCTypeFilter.SELECT;
+    filter.title = data.title;
+    filter.key = data.key;
+    filter.options = data.options;
+    filter.data = { placeholder: data.placeholder };
+    return filter;
+  }
+
+  static textQuickFilter(data: { title: string, key: string, options: Array<MCItemFilter>, placeholder?: string }): MCFilter {
+    let filter = this.text(data);
+    filter.options = data.options;
+    filter.isQuickFilter = true;
+    return filter;
+  }
+
+  static selectQuickFilter(data: { title: string, key: string, options: Array<MCItemFilter>, placeholder?: string }): MCFilter {
+    let filter = this.select(data);
     filter.isQuickFilter = true;
     return filter;
   }

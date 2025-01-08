@@ -34,19 +34,26 @@ export class MCFilterPanelComponent {
 
   results = signal<Array<MCResultFilter>>([]);
 
+  change = output<Array<MCResultFilter>>();
+
+  resultsBeforeLenght = 0;
+
   addResult(result: MCResultFilter): void {
     this.results.set([...this.results(), result]);
     this.update();
+    this.emit();
   }
 
   removeResultByIndex(index: number): void {
     this.results.set(this.results().filter((_, i) => i !== index));
     this.update();
+    this.emit();
   }
 
   removeResultByFilter(filter: MCFilter): void {
     this.results.set(this.results().filter(r => r.filter !== filter));
     this.update();
+    this.emit();
   }
 
   removeResultByFilterAndItem(data: { filter: MCFilter, item: MCItemFilter }): void {
@@ -58,10 +65,22 @@ export class MCFilterPanelComponent {
       return r.value !== data.item.value;
     }));
     this.update();
+    this.emit();
   }
 
   update() {
     this.updateTotal.emit(this.results().length);
+  }
+
+  emit() {
+    let validFilters = this.results().filter(r => r.filter !== undefined && r.value !== undefined && r.value !== '');
+    if(this.resultsBeforeLenght == 0 && validFilters.length == 0){
+      return;
+    }
+
+    this.resultsBeforeLenght = validFilters.length;
+
+    this.change.emit(validFilters);
   }
 
   toggle($event: any): void {
@@ -74,5 +93,11 @@ export class MCFilterPanelComponent {
 
   clickShowBasicPanel(): void {
     this.showPanel.set(MCShowPanel.BASIC);
+  }
+
+  clickClearAll(): void {
+    this.results.set([]);
+    this.update();
+    this.emit();
   }
 }
