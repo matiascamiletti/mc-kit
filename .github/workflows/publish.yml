@@ -83,6 +83,7 @@ jobs:
         run: npm run build -- --project=@mckit/${{ matrix.project }} --configuration production
 
       - name: Publish to npm
+        if: ${{ needs.filter.outputs[matrix.project] == 'true' }}
         uses: JS-DevTools/npm-publish@v1
         with:
           token: ${{ secrets.NPM_TOKEN }}
