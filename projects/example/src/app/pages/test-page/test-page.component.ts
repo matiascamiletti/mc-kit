@@ -1,11 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MCMiniResumeCard } from '../../../../../mckit/layout/src/public-api';
 import { MCSimplePage } from '../../../../../mckit/layout/src/lib/pages/simple-page/simple-page.component';
 import { MenuItem } from 'primeng/api';
 import { CurrencyPipe } from '@angular/common';
 import { MCTwoColumnItemComponent } from '../../../../../mckit/layout/src/lib/lists/two-column-item/two-column-item.component';
 import { MCTopbarService } from '../../../../../mckit/layout-core/src/public-api';
-import { MCFilterButtonComponent } from '../../../../../mckit/filter/src/public-api';
+import { MCFilterOdataConverterService, MCFilterButtonComponent } from '../../../../../mckit/filter/src/public-api';
 import { MCConfigFilter } from '../../../../../mckit/filter/src/lib/entities/config';
 import { MCFilter } from '../../../../../mckit/filter/src/lib/entities/filter';
 import { MCResultFilter } from '../../../../../mckit/filter/src/lib/entities/result';
@@ -18,6 +18,8 @@ import { MCResultFilter } from '../../../../../mckit/filter/src/lib/entities/res
   styleUrl: './test-page.component.scss'
 })
 export class TestPageComponent implements OnInit {
+
+  odataConverter = inject(MCFilterOdataConverterService);
 
   breadcrumb: MenuItem[] = [
     { label: 'Home', routerLink: '/' },
@@ -40,6 +42,7 @@ export class TestPageComponent implements OnInit {
 
   onFilter(filters: Array<MCResultFilter>) {
     console.log(filters);
+    console.log(this.odataConverter.convert(filters));
   }
 
   loadFilterConfig() {
