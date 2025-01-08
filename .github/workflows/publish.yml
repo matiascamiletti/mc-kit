@@ -86,4 +86,4 @@ jobs:
         if: ${{ needs.filter.outputs[matrix.project] == 'true' }}
         run: npm publish dist/mckit/${{ matrix.project }} --access public
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
