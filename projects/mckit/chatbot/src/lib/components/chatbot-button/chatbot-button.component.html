@@ -1,5 +1,5 @@
 <div class="mc-chatbot-button-container fixed bottom-4 right-4">
-  <p-button icon="pi pi-comment" size="large" (onClick)="op.toggle($event)" [rounded]="true" />
+  <p-button icon="pi pi-comment" size="large" (onClick)="onToggle(); op.toggle($event)" [rounded]="true" />
 </div>
 <p-overlayPanel #op styleClass="mc-chatbot-panel">
   <mc-chatbot-panel [config]="config()" (send)="onSend($event)"></mc-chatbot-panel>

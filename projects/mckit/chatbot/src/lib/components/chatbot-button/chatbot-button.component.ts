@@ -16,6 +16,16 @@ import { MCChatbotMessage } from '../../entities/chatbot-message';
 export class MCChatbotButtonComponent {
   config = input.required<MCChatbotConfig>();
   send = output<MCChatbotMessage>();
+  open = output();
+
+  isFirstOpen = false;
+
+  onToggle() {
+    if(this.isFirstOpen == false){
+      this.open.emit();
+      this.isFirstOpen = true;
+    }
+  }
 
   onSend(message: MCChatbotMessage) {
     this.send.emit(message);
