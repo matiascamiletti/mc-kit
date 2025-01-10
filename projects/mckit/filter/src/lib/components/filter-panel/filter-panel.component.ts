@@ -51,19 +51,16 @@ export class MCFilterPanelComponent {
   addResult(result: MCResultFilter): void {
     this.results.set([...this.results(), result]);
     this.update();
-    this.emit();
   }
 
   removeResultByIndex(index: number): void {
     this.results.set(this.results().filter((_, i) => i !== index));
     this.update();
-    this.emit();
   }
 
   removeResultByFilter(filter: MCFilter): void {
     this.results.set(this.results().filter(r => r.filter !== filter));
     this.update();
-    this.emit();
   }
 
   removeResultByFilterAndItem(data: { filter: MCFilter, item: MCItemFilter }): void {
@@ -75,7 +72,6 @@ export class MCFilterPanelComponent {
       return r.value !== data.item.value;
     }));
     this.update();
-    this.emit();
   }
 
   update() {

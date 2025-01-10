@@ -22,7 +22,6 @@ export class ItemAdvancedFilterComponent {
   isFirst = input.required<boolean>();
 
   clickRemove = output();
-  refresh = output();
 
   operators = MCResultFilter.getOperators();
   conditions = MCResultFilter.getConditions();
@@ -50,12 +49,6 @@ export class ItemAdvancedFilterComponent {
     if(this.result().filter?.isShowConditions == false){
       this.result().condition = MCConditionResult.EQUALS;
     }
-
-    this.refresh.emit();
-  }
-
-  onRefresh() {
-    this.refresh.emit();
   }
 
   onFilterAutocomplete(event: AutoCompleteCompleteEvent) {

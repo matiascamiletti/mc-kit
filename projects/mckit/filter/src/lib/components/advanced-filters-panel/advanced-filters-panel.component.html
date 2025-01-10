@@ -6,7 +6,7 @@
   <div class="flex filters-container flex-column gap-2 min-h-40">
 
     @for (result of results(); track $index) {
-      <mc-item-advanced-filter [filters]="filters()" [result]="result" [isFirst]="$index == 0" (clickRemove)="clickRemoveFilter($index)" (change)="onRefresh()"></mc-item-advanced-filter>
+      <mc-item-advanced-filter [filters]="filters()" [result]="result" [isFirst]="$index == 0" (clickRemove)="clickRemoveFilter($index)"></mc-item-advanced-filter>
     }
 
   </div>
@@ -19,6 +19,10 @@
 
     <p-divider *ngIf="hasQuickFilters()"  />
 
-    <p-button *ngIf="hasQuickFilters()" label="Switch to quick filters" [text]="true" [severity]="'info'" (onClick)="clickSwitchToQuick()" />
+    <div class="flex justify-between justify-content-between">
+      <p-button *ngIf="hasQuickFilters()" label="Switch to quick filters" [text]="true" [severity]="'info'" (onClick)="clickSwitchToQuick()" />
+      <p-button label="Apply" [severity]="'success'" (onClick)="onRefresh()"></p-button>
+    </div>
+
   </div>
 </div>
