@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, output } from '@angular/core';
+import { Component, input, output, signal } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { MCChatbotPanelComponent } from '../chatbot-panel/chatbot-panel.component';
@@ -15,6 +15,8 @@ import { MCChatbotMessage } from '../../entities/chatbot-message';
 })
 export class MCChatbotButtonComponent {
   config = input.required<MCChatbotConfig>();
+  loading = signal<boolean>(false);
+
   send = output<MCChatbotMessage>();
   open = output();
 
@@ -29,5 +31,13 @@ export class MCChatbotButtonComponent {
 
   onSend(message: MCChatbotMessage) {
     this.send.emit(message);
+  }
+
+  showLoading() {
+    this.loading.set(true);
+  }
+
+  hideLoading() {
+    this.loading.set(false);
   }
 }

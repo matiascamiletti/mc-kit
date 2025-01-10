@@ -6,16 +6,20 @@ import { ButtonModule } from 'primeng/button';
 import { MCChatbotConfig } from '../../entities/chatbot-config';
 import { MCChatbotMessage, MCChatbotMessageType } from '../../entities/chatbot-message';
 import { FormControl, ReactiveFormsModule } from '@angular/forms';
+import { ProgressBarModule } from 'primeng/progressbar';
 
 @Component({
   selector: 'mc-chatbot-panel',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, AvatarModule, InputTextModule, ButtonModule],
+  imports: [CommonModule, ReactiveFormsModule, AvatarModule, InputTextModule, ButtonModule, ProgressBarModule],
   templateUrl: './chatbot-panel.component.html',
   styleUrl: './chatbot-panel.component.css'
 })
 export class MCChatbotPanelComponent {
+
   config = input.required<MCChatbotConfig>();
+  loading = input<boolean>();
+
   send = output<MCChatbotMessage>();
 
   inputMessage = new FormControl();

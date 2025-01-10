@@ -1,4 +1,4 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, viewChild } from '@angular/core';
 import { MCMiniResumeCard } from '../../../../../mckit/layout/src/public-api';
 import { MCSimplePage } from '../../../../../mckit/layout/src/lib/pages/simple-page/simple-page.component';
 import { MenuItem } from 'primeng/api';
@@ -20,6 +20,8 @@ import { MCChatbotConfig } from '../../../../../mckit/chatbot/src/public-api';
   styleUrl: './test-page.component.scss'
 })
 export class TestPageComponent implements OnInit {
+
+  chatbotComp = viewChild.required<MCChatbotButtonComponent>('chatbot');
 
   odataConverter = inject(MCFilterOdataConverterService);
 
@@ -93,5 +95,6 @@ export class TestPageComponent implements OnInit {
     this.chatbotConfig.subtitle = 'Powered by TOTS';
     this.chatbotConfig.inputPlaceholder = 'Write a message';
     this.chatbotConfig.sendButton = 'Send';
+    this.chatbotComp().showLoading();
   }
 }
