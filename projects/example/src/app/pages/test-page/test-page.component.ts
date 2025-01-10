@@ -12,6 +12,7 @@ import { MCResultFilter } from '../../../../../mckit/filter/src/lib/entities/res
 import { MCChatbotButtonComponent } from "../../../../../mckit/chatbot/src/lib/components/chatbot-button/chatbot-button.component";
 import { MCChatbotConfig } from '../../../../../mckit/chatbot/src/public-api';
 import { MCChatbotMessage, MCChatbotMessageType } from '../../../../../mckit/chatbot/src/lib/entities/chatbot-message';
+import { TestService } from '../../services/test.service';
 
 @Component({
   selector: 'app-test-page',
@@ -25,6 +26,7 @@ export class TestPageComponent implements OnInit {
   chatbotComp = viewChild.required<MCChatbotButtonComponent>('chatbot');
 
   odataConverter = inject(MCFilterOdataConverterService);
+  testService = inject(TestService);
 
   breadcrumb: MenuItem[] = [
     { label: 'Home', routerLink: '/' },
@@ -99,6 +101,15 @@ export class TestPageComponent implements OnInit {
       message
     ]);
     this.chatbotComp().showLoading();
+
+    this.testService.sendMessage(message.message)
+    .subscribe((response) => {
+      this.messages.set([
+        ...this.messages(),
+        response
+      ]);
+      this.chatbotComp().hideLoading();
+    });
   }
 
   onOpenChatBot() {
