@@ -7,6 +7,9 @@
       "@mckit/auth": [
         "./dist/mckit/auth"
       ],
+      "@mckit/chatbot": [
+        "./dist/mckit/chatbot"
+      ],
       "@mckit/core": [
         "./dist/mckit/core"
       ],

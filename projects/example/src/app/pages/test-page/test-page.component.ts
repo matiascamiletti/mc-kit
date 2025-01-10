@@ -9,11 +9,12 @@ import { MCFilterOdataConverterService, MCFilterButtonComponent } from '../../..
 import { MCConfigFilter } from '../../../../../mckit/filter/src/lib/entities/config';
 import { MCFilter } from '../../../../../mckit/filter/src/lib/entities/filter';
 import { MCResultFilter } from '../../../../../mckit/filter/src/lib/entities/result';
+import { MCChatbotButtonComponent } from "../../../../../mckit/chatbot/src/lib/components/chatbot-button/chatbot-button.component";
 
 @Component({
   selector: 'app-test-page',
   standalone: true,
-  imports: [MCSimplePage, MCMiniResumeCard, CurrencyPipe, MCTwoColumnItemComponent, MCFilterButtonComponent],
+  imports: [MCSimplePage, MCMiniResumeCard, CurrencyPipe, MCTwoColumnItemComponent, MCFilterButtonComponent, MCChatbotButtonComponent],
   templateUrl: './test-page.component.html',
   styleUrl: './test-page.component.scss'
 })
