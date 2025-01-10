@@ -1,6 +1,6 @@
 import { Component, computed, input, output } from '@angular/core';
 import { MCFilter, MCTypeFilter } from '../../entities/filter';
-import { MCResultFilter } from '../../entities/result';
+import { MCConditionResult, MCResultFilter } from '../../entities/result';
 import { CommonModule } from '@angular/common';
 import { DropdownModule } from 'primeng/dropdown';
 import { FormsModule } from '@angular/forms';
@@ -41,6 +41,11 @@ export class ItemAdvancedFilterComponent {
 
   onRefreshColumn() {
     this.result().value = undefined;
+
+    if(this.result().filter?.isShowConditions == false){
+      this.result().condition = MCConditionResult.EQUALS;
+    }
+
     this.refresh.emit();
   }
 

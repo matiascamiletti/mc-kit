@@ -15,6 +15,7 @@ export class MCFilter {
   options: Array<MCItemFilter> = [];
 
   isQuickFilter: boolean = false;
+  isShowConditions: boolean = true;
 
   static text(data: { title: string, key: string }): MCFilter {
     let filter = new MCFilter();

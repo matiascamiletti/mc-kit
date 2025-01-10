@@ -24,7 +24,7 @@
       <p-dropdown [options]="filters()" [(ngModel)]="result().filter" optionLabel="title" styleClass="w-full" placeholder="Select a column" (onChange)="onRefreshColumn()" />
     </div>
 
-    <div class="condition w-36">
+    <div *ngIf="result().filter?.isShowConditions ?? true" class="condition w-36">
       <p-dropdown [options]="conditions" [(ngModel)]="result().condition" optionLabel="label" optionValue="value" (onChange)="onRefresh()" />
     </div>
 
