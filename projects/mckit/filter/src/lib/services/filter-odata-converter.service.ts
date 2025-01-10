@@ -41,6 +41,8 @@ export class MCFilterOdataConverterService {
     switch(filter.condition){
       case MCConditionResult.EQUALS:
         return `${filter.filter!.key} eq '${filter.value}'`;
+      case MCConditionResult.CONTAINS:
+        return `substringof(${filter.filter!.key}, '${filter.value}')`;
     }
 
     return '';

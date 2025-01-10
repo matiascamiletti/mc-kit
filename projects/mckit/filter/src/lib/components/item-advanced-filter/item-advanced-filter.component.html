@@ -21,7 +21,7 @@
 
   } @else {
     <div class="filter w-full">
-      <p-dropdown [options]="filters()" [(ngModel)]="result().filter" optionLabel="title" styleClass="w-full" placeholder="Select a column" (onChange)="onRefreshColumn()" />
+      <p-dropdown [options]="filters()" [(ngModel)]="result().filter" optionLabel="title" styleClass="w-full" placeholder="Select a column" (onChange)="onRefreshColumn()" [appendTo]="'body'" />
     </div>
 
     <div *ngIf="result().filter?.isShowConditions ?? true" class="condition w-36">
@@ -31,7 +31,9 @@
     <div class="value w-full">
 
       @if (result().filter?.type == typeSelect) {
-        <p-dropdown [options]="result().filter?.options" [(ngModel)]="result().value" optionLabel="label" optionValue="value" [placeholder]="result().filter?.data?.placeholder" styleClass="w-full" (onChange)="onRefresh()" />
+        <p-dropdown [options]="result().filter?.options" [(ngModel)]="result().value" optionLabel="label" optionValue="value" [placeholder]="result().filter?.data?.placeholder" styleClass="w-full" (onChange)="onRefresh()"  [appendTo]="'body'" />
+      } @else if (result().filter?.type == typeAutocomplete) {
+        <p-autoComplete [(ngModel)]="result().value" [suggestions]="filteredOptions" (completeMethod)="onFilterAutocomplete($event)" optionLabel="label" optionValue="value" [showClear]="true" [appendTo]="'body'" (onChange)="onRefresh()" />
       } @else {
         <input type="text" pInputText [(ngModel)]="result().value" class="w-full" placeholder="Value" (change)="onRefresh()" />
       }
