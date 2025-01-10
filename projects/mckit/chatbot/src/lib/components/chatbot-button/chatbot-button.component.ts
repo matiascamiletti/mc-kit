@@ -1,8 +1,10 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { OverlayPanelModule } from 'primeng/overlaypanel';
 import { MCChatbotPanelComponent } from '../chatbot-panel/chatbot-panel.component';
+import { MCChatbotConfig } from '../../entities/chatbot-config';
+import { MCChatbotMessage } from '../../entities/chatbot-message';
 
 @Component({
   selector: 'mc-chatbot-button',
@@ -12,5 +14,10 @@ import { MCChatbotPanelComponent } from '../chatbot-panel/chatbot-panel.componen
   styleUrl: './chatbot-button.component.scss'
 })
 export class MCChatbotButtonComponent {
+  config = input.required<MCChatbotConfig>();
+  send = output<MCChatbotMessage>();
 
+  onSend(message: MCChatbotMessage) {
+    this.send.emit(message);
+  }
 }

@@ -1,7 +1,7 @@
 <!-- Heading -->
 <div class="flex flex-col flex-column space-y-1.5 pb-1">
-  <h2 class="font-semibold text-lg m-0">Chatbot</h2>
-  <p class="text-sm p-0 m-0">Powered by Mendable and Vercel</p>
+  <h2 class="font-semibold text-lg m-0">{{config().title ?? 'Chatbot'}}</h2>
+  <p *ngIf="config().subtitle" class="text-sm p-0 m-0">{{config().subtitle}}</p>
 </div>
 
 <!-- Chat Container -->
@@ -41,7 +41,7 @@
 <!-- Input box  -->
 <div class="flex items-center pt-0">
   <form class="flex items-center justify-center w-full space-x-2">
-    <input type="text" pInputText placeholder="Type your message" class="w-full mr-2" />
-    <p-button label="Send" size="large" />
+    <input type="text" [formControl]="inputMessage" pInputText [placeholder]="config().inputPlaceholder ?? ''" class="w-full mr-2" />
+    <p-button [label]="config().sendButton ?? 'Send'" size="large" (onClick)="onClickSend()" [disabled]="inputMessage.value == undefined || inputMessage.value == ''" type="button" />
   </form>
 </div>

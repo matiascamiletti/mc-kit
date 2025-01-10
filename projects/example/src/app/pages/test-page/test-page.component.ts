@@ -10,6 +10,7 @@ import { MCConfigFilter } from '../../../../../mckit/filter/src/lib/entities/con
 import { MCFilter } from '../../../../../mckit/filter/src/lib/entities/filter';
 import { MCResultFilter } from '../../../../../mckit/filter/src/lib/entities/result';
 import { MCChatbotButtonComponent } from "../../../../../mckit/chatbot/src/lib/components/chatbot-button/chatbot-button.component";
+import { MCChatbotConfig } from '../../../../../mckit/chatbot/src/public-api';
 
 @Component({
   selector: 'app-test-page',
@@ -29,6 +30,8 @@ export class TestPageComponent implements OnInit {
 
   filterConfig = new MCConfigFilter();
 
+  chatbotConfig = new MCChatbotConfig();
+
   constructor(
     protected topbarService: MCTopbarService
   ) { }
@@ -36,6 +39,7 @@ export class TestPageComponent implements OnInit {
   ngOnInit(): void {
     this.topbarService.subtitle.update(() => 'Test Page');
     this.loadFilterConfig();
+    this.loadChatBot();
   }
 
   ngAfterViewInit(): void {
@@ -82,5 +86,12 @@ export class TestPageComponent implements OnInit {
         ]
       }),
     ];
+  }
+
+  loadChatBot() {
+    this.chatbotConfig.title = 'Chatbot';
+    this.chatbotConfig.subtitle = 'Powered by TOTS';
+    this.chatbotConfig.inputPlaceholder = 'Write a message';
+    this.chatbotConfig.sendButton = 'Send';
   }
 }
