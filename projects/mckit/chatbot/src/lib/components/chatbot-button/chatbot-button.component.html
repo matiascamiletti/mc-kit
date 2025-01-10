@@ -2,5 +2,5 @@
   <p-button icon="pi pi-comment" size="large" (onClick)="onToggle(); op.toggle($event)" [rounded]="true" />
 </div>
 <p-overlayPanel #op styleClass="mc-chatbot-panel">
-  <mc-chatbot-panel [config]="config()" [loading]="loading()" (send)="onSend($event)"></mc-chatbot-panel>
+  <mc-chatbot-panel [config]="config()" [loading]="loading()" [messages]="messages()" (send)="onSend($event)"></mc-chatbot-panel>
 </p-overlayPanel>

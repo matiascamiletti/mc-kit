@@ -19,10 +19,13 @@ export class MCChatbotPanelComponent {
 
   config = input.required<MCChatbotConfig>();
   loading = input<boolean>();
+  messages = input<Array<MCChatbotMessage>>();
 
   send = output<MCChatbotMessage>();
 
   inputMessage = new FormControl();
+
+  messageTypeUser = MCChatbotMessageType.USER;
 
   onClickSend() {
     if(this.inputMessage.value == '') {

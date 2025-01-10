@@ -6,35 +6,15 @@
 
 <!-- Chat Container -->
 <div class="pr-4" style="min-width: 100%; display: table;" style="max-width: 440px; height: 474px; overflow: scroll;">
-  <!-- Chat Message AI -->
-  <div class="flex gap-3 my-4 text-gray-600 text-sm flex-1">
-    <p-avatar icon="pi pi-sparkles" size="large" [style]="{ 'background-color': '#ece9fc', color: '#2a1261' }" shape="circle" />
-    <p class="leading-relaxed">
-      <span class="block font-bold text-gray-700">AI </span>Hi, how can I help you today?
-    </p>
-  </div>
 
-  <!--  User Chat Message -->
-  <div class="flex gap-3 my-4 text-gray-600 text-sm flex-1">
-    <p-avatar icon="pi pi-user" size="large" [style]="{ 'background-color': 'rgb(243 244 246, 1)', color: '#2a1261' }" shape="circle" />
-    <p class="leading-relaxed">
-      <span class="block font-bold text-gray-700">AI </span>Hi, how can I help you today?
-    </p>
-  </div>
-
-  <!-- Chat Message AI -->
-  <div class="flex gap-3 my-4 text-gray-600 text-sm flex-1">
-    <p-avatar icon="pi pi-sparkles" size="large" [style]="{ 'background-color': '#ece9fc', color: '#2a1261' }" shape="circle" />
-    <p class="leading-relaxed">
-      <span class="block font-bold text-gray-700">AI </span>Sorry, I couldn't find any
-      information in the documentation about that. Expect answer to be less accurateI could not find the answer to
-      this in the verified sources.
-      information in the documentation about that. Expect answer to be less accurateI could not find the answer to
-      this in the verified sources.
-      information in the documentation about that. Expect answer to be less accurateI could not find the answer to
-      this in the verified sources.
-    </p>
-  </div>
+  @for (message of messages(); track $index) {
+    <div class="flex gap-3 my-4 text-gray-600 text-sm flex-1">
+      <p-avatar icon="pi pi-sparkles" size="large" [style]="{ 'background-color': message.type == messageTypeUser ? 'rgb(243 244 246, 1)' : '#ece9fc', color: '#2a1261' }" shape="circle" />
+      <p class="leading-relaxed">
+        <span class="block font-bold text-gray-700">{{message.sender}} </span> {{message.message}}
+      </p>
+    </div>
+  }
 
   <p-progressBar *ngIf="loading()" mode="indeterminate" [style]="{ height: '6px' }" />
 

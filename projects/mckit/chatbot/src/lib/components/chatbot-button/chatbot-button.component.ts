@@ -15,10 +15,12 @@ import { MCChatbotMessage } from '../../entities/chatbot-message';
 })
 export class MCChatbotButtonComponent {
   config = input.required<MCChatbotConfig>();
-  loading = signal<boolean>(false);
+  messages = input<Array<MCChatbotMessage>>();
 
   send = output<MCChatbotMessage>();
   open = output();
+
+  loading = signal<boolean>(false);
 
   isFirstOpen = false;
 

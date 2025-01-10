@@ -1,4 +1,4 @@
-import { Component, inject, OnInit, viewChild } from '@angular/core';
+import { Component, inject, OnInit, signal, viewChild } from '@angular/core';
 import { MCMiniResumeCard } from '../../../../../mckit/layout/src/public-api';
 import { MCSimplePage } from '../../../../../mckit/layout/src/lib/pages/simple-page/simple-page.component';
 import { MenuItem } from 'primeng/api';
@@ -11,6 +11,7 @@ import { MCFilter } from '../../../../../mckit/filter/src/lib/entities/filter';
 import { MCResultFilter } from '../../../../../mckit/filter/src/lib/entities/result';
 import { MCChatbotButtonComponent } from "../../../../../mckit/chatbot/src/lib/components/chatbot-button/chatbot-button.component";
 import { MCChatbotConfig } from '../../../../../mckit/chatbot/src/public-api';
+import { MCChatbotMessage, MCChatbotMessageType } from '../../../../../mckit/chatbot/src/lib/entities/chatbot-message';
 
 @Component({
   selector: 'app-test-page',
@@ -33,6 +34,8 @@ export class TestPageComponent implements OnInit {
   filterConfig = new MCConfigFilter();
 
   chatbotConfig = new MCChatbotConfig();
+
+  messages = signal<Array<MCChatbotMessage>>([]);
 
   constructor(
     protected topbarService: MCTopbarService
@@ -90,11 +93,28 @@ export class TestPageComponent implements OnInit {
     ];
   }
 
+  onSendMessage(message: MCChatbotMessage) {
+    this.messages.set([
+      ...this.messages(),
+      message
+    ]);
+    this.chatbotComp().showLoading();
+  }
+
+  onOpenChatBot() {
+    this.messages.set([
+      {
+        sender: 'AI',
+        message: 'Hi, how can I help you today?',
+        type: MCChatbotMessageType.BOT
+      }
+    ]);
+  }
+
   loadChatBot() {
     this.chatbotConfig.title = 'Chatbot';
     this.chatbotConfig.subtitle = 'Powered by TOTS';
     this.chatbotConfig.inputPlaceholder = 'Write a message';
     this.chatbotConfig.sendButton = 'Send';
-    this.chatbotComp().showLoading();
   }
 }

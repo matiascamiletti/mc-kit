@@ -18,4 +18,4 @@
 </div>
 
 <h2>Installed chatbot</h2>
-<mc-chatbot-button #chatbot [config]="chatbotConfig"></mc-chatbot-button>
+<mc-chatbot-button #chatbot [config]="chatbotConfig" (open)="onOpenChatBot()" [messages]="messages()" (send)="onSendMessage($event)"></mc-chatbot-button>
