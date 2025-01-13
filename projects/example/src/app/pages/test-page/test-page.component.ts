@@ -5,10 +5,11 @@ import { MenuItem } from 'primeng/api';
 import { CurrencyPipe } from '@angular/common';
 import { MCTwoColumnItemComponent } from '../../../../../mckit/layout/src/lib/lists/two-column-item/two-column-item.component';
 import { MCTopbarService } from '../../../../../mckit/layout-core/src/public-api';
-import { MCFilterOdataConverterService, MCFilterButtonComponent } from '../../../../../mckit/filter/src/public-api';
+import { MCFilterOdataConverterService, MCFilterButtonComponent, MCItemFilter } from '../../../../../mckit/filter/src/public-api';
 import { MCConfigFilter } from '../../../../../mckit/filter/src/lib/entities/config';
 import { MCFilter } from '../../../../../mckit/filter/src/lib/entities/filter';
 import { MCResultFilter } from '../../../../../mckit/filter/src/lib/entities/result';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-test-page',
@@ -45,8 +46,21 @@ export class TestPageComponent implements OnInit {
     console.log(this.odataConverter.convert(filters));
   }
 
+  onFilterAutocomplete(query: string): Observable<Array<MCItemFilter>> {
+    return of([
+      { label: 'Field La bombonera', value: 'Field La bombonera' },
+      { label: 'Mostaza', value: 'Mostaza' },
+      { label: 'La bombonera', value: 'La bombonera' },
+      { label: 'McDonalds', value: 'McDonalds' },
+    ]);
+  }
+
   loadFilterConfig() {
     this.filterConfig.filters = [
+      MCFilter.text({
+        title: 'Name',
+        key: 'name'
+      }),
       MCFilter.textQuickFilter({
         title: 'Game #',
         key: 'game_number',
@@ -80,6 +94,11 @@ export class TestPageComponent implements OnInit {
           { label: 'Field La bombonera', value: 'Field La bombonera' },
         ]
       }),
+      MCFilter.autocomplete({
+        title: 'Field',
+        key: 'field',
+        filter: this.onFilterAutocomplete.bind(this)
+      })
     ];
   }
 }

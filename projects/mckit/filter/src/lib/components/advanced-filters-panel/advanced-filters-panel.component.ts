@@ -18,6 +18,7 @@ export class AdvancedFiltersPanelComponent {
 
   filters = input.required<Array<MCFilter>>();
   results = input.required<Array<MCResultFilter>>();
+  hasQuickFilters = input.required<boolean>();
 
   addNewFilter = output<MCResultFilter>();
   removeFilterByIndex = output<number>();

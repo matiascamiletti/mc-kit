@@ -1,8 +1,10 @@
+import { Observable } from "rxjs";
 import { MCItemFilter } from "./item-filter";
 
 export enum MCTypeFilter {
   TEXT,
-  SELECT
+  SELECT,
+  AUTOCOMPLETE
 }
 
 export class MCFilter {
@@ -15,6 +17,7 @@ export class MCFilter {
   options: Array<MCItemFilter> = [];
 
   isQuickFilter: boolean = false;
+  isShowConditions: boolean = true;
 
   static text(data: { title: string, key: string }): MCFilter {
     let filter = new MCFilter();
@@ -34,6 +37,15 @@ export class MCFilter {
     return filter;
   }
 
+  static autocomplete(data: { title: string, key: string, filter: (query: string) => Observable<Array<MCItemFilter>> }): MCFilter {
+    let filter = new MCFilter();
+    filter.type = MCTypeFilter.AUTOCOMPLETE;
+    filter.title = data.title;
+    filter.key = data.key;
+    filter.data = { filter: data.filter };
+    return filter;
+  }
+
   static textQuickFilter(data: { title: string, key: string, options: Array<MCItemFilter>, placeholder?: string }): MCFilter {
     let filter = this.text(data);
     filter.options = data.options;
@@ -43,6 +55,12 @@ export class MCFilter {
 
   static selectQuickFilter(data: { title: string, key: string, options: Array<MCItemFilter>, placeholder?: string }): MCFilter {
     let filter = this.select(data);
+    filter.isQuickFilter = true;
+    return filter;
+  }
+
+  static autocompleteQuickFilter(data: { title: string, key: string, filter: (query: string) => Observable<Array<MCItemFilter>> }): MCFilter {
+    let filter = this.autocomplete(data);
     filter.isQuickFilter = true;
     return filter;
   }

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, input, output, signal, Signal, viewChild } from '@angular/core';
+import { Component, computed, effect, input, output, signal, Signal, viewChild } from '@angular/core';
 import { OverlayPanel, OverlayPanelModule } from 'primeng/overlaypanel';
 import { AdvancedFiltersPanelComponent } from '../advanced-filters-panel/advanced-filters-panel.component';
 import { QuickFilterPanelComponent } from '../quick-filter-panel/quick-filter-panel.component';
@@ -38,22 +38,29 @@ export class MCFilterPanelComponent {
 
   resultsBeforeLenght = 0;
 
+  constructor() {
+    effect(() => {
+      if(this.quickFilters().length > 0){
+        this.showPanel.set(MCShowPanel.BASIC);
+      } else {
+        this.showPanel.set(MCShowPanel.ADVANCED);
+      }
+    }, { allowSignalWrites: true });
+  }
+
   addResult(result: MCResultFilter): void {
     this.results.set([...this.results(), result]);
     this.update();
-    this.emit();
   }
 
   removeResultByIndex(index: number): void {
     this.results.set(this.results().filter((_, i) => i !== index));
     this.update();
-    this.emit();
   }
 
   removeResultByFilter(filter: MCFilter): void {
     this.results.set(this.results().filter(r => r.filter !== filter));
     this.update();
-    this.emit();
   }
 
   removeResultByFilterAndItem(data: { filter: MCFilter, item: MCItemFilter }): void {
@@ -65,7 +72,6 @@ export class MCFilterPanelComponent {
       return r.value !== data.item.value;
     }));
     this.update();
-    this.emit();
   }
 
   update() {
@@ -73,7 +79,7 @@ export class MCFilterPanelComponent {
   }
 
   emit() {
-    let validFilters = this.results().filter(r => r.filter !== undefined && r.value !== undefined && r.value !== '');
+    let validFilters = this.results().filter(r => MCResultFilter.isValid(r));
     if(this.resultsBeforeLenght == 0 && validFilters.length == 0){
       return;
     }

@@ -27,6 +27,18 @@ export class MCResultFilter {
 
   childrens?: Array<MCResultFilter>;
 
+  static isValid(result: MCResultFilter): boolean {
+    if(result.filter != undefined && result.value != undefined && result.value != ''){
+      return true;
+    }
+
+    if(result.childrens != undefined){
+      return result.childrens.every(r => MCResultFilter.isValid(r));
+    }
+
+    return false;
+  }
+
   static getOperators(): Array<{ label: string, value: string }> {
     return [
       { label: 'and', value: 'and' },
@@ -37,12 +49,13 @@ export class MCResultFilter {
   static getConditions(): Array<{ label: string, value: MCConditionResult }> {
     return [
       { label: '=', value: MCConditionResult.EQUALS },
+      { label: 'Contains', value: MCConditionResult.CONTAINS },
       /*{ label: 'Not Equals', value: MCConditionResult.NOT_EQUALS },
       { label: 'Greater Than', value: MCConditionResult.GREATER_THAN },
       { label: 'Greater Than Or Equals', value: MCConditionResult.GREATER_THAN_OR_EQUALS },
       { label: 'Less Than', value: MCConditionResult.LESS_THAN },
       { label: 'Less Than Or Equals', value: MCConditionResult.LESS_THAN_OR_EQUALS },
-      { label: 'Contains', value: MCConditionResult.CONTAINS },
+
       { label: 'Not Contains', value: MCConditionResult.NOT_CONTAINS },
       { label: 'Starts With', value: MCConditionResult.STARTS_WITH },
       { label: 'Ends With', value: MCConditionResult.ENDS_WITH },
