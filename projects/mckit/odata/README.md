@@ -1,24 +1,25 @@
-# Odata
+# MC Odata Library
 
-This library was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.1.0.
+## Components
 
-## Code scaffolding
+### MCOdataTableComponent
 
-Run `ng generate component component-name --project odata` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module --project odata`.
-> Note: Don't forget to add `--project odata` or else it will be added to the default project in your `angular.json` file. 
+This abstract component provides a base for creating tables that interact with OData services. It includes functionalities for pagination, sorting, filtering, and searching.
 
-## Build
+### MCOdataSignalTableComponent
 
-Run `ng build odata` to build the project. The build artifacts will be stored in the `dist/` directory.
+Similar to `MCOdataTableComponent`, but uses Angular signals for state management.
 
-## Publishing
+### OdataMultiselectComponent
 
-After building your library with `ng build odata`, go to the dist folder `cd dist/odata` and run `npm publish`.
+A multi-select component that interacts with OData services. It supports searching and selecting multiple items.
 
-## Running unit tests
+## Entities
 
-Run `ng test odata` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### MCOdata
 
-## Further help
+Represents the OData query parameters such as top, skip, orderBy, filters, and expands. It includes methods for setting pagination and converting the parameters to a query string.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+### MCFilterProcessor
+
+Handles the conversion of table filters to OData filter strings. It supports various filter operations like equals, notEquals, startsWith, contains, and endsWith.

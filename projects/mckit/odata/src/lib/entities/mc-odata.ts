@@ -38,7 +38,7 @@ export class MCOdata {
 
   toString(): string {
     let odata = '';
-    if (this.top) {
+    if (this.top || this.top === 0) {
       odata += `$top=${this.top}`;
     }
     if (this.skip) {
