@@ -37,7 +37,7 @@ export class MCFilter {
     return filter;
   }
 
-  static autocomplete(data: { title: string, key: string, filter: (query: string) => Observable<Array<MCItemFilter>> }): MCFilter {
+  static autocomplete(data: { title: string, key: string, placeholder?: string, filter: (query: string) => Observable<Array<MCItemFilter>> }): MCFilter {
     let filter = new MCFilter();
     filter.type = MCTypeFilter.AUTOCOMPLETE;
     filter.title = data.title;
@@ -59,7 +59,7 @@ export class MCFilter {
     return filter;
   }
 
-  static autocompleteQuickFilter(data: { title: string, key: string, filter: (query: string) => Observable<Array<MCItemFilter>> }): MCFilter {
+  static autocompleteQuickFilter(data: { title: string, key: string, placeholder?: string, filter: (query: string) => Observable<Array<MCItemFilter>> }): MCFilter {
     let filter = this.autocomplete(data);
     filter.isQuickFilter = true;
     return filter;

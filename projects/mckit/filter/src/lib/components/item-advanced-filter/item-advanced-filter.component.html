@@ -33,7 +33,7 @@
       @if (result().filter?.type == typeSelect) {
         <p-dropdown [options]="result().filter?.options" [(ngModel)]="result().value" optionLabel="label" optionValue="value" [placeholder]="result().filter?.data?.placeholder" styleClass="w-full" [appendTo]="'body'" />
       } @else if (result().filter?.type == typeAutocomplete) {
-        <p-autoComplete [(ngModel)]="result().value" [suggestions]="filteredOptions" (completeMethod)="onFilterAutocomplete($event)" optionLabel="label" optionValue="value" [showClear]="true" [appendTo]="'body'" />
+        <p-autoComplete [(ngModel)]="result().value" [suggestions]="filteredOptions" (completeMethod)="onFilterAutocomplete($event)" [placeholder]="result().filter?.data?.placeholder" optionLabel="label" optionValue="value" [showClear]="true" [appendTo]="'body'" styleClass="w-full" inputStyleClass="w-full" />
       } @else {
         <input type="text" pInputText [(ngModel)]="result().value" class="w-full" placeholder="Value" />
       }
