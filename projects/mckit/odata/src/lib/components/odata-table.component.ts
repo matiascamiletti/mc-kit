@@ -78,6 +78,8 @@ export abstract class MCOdataTableComponent<T extends { id?: any }> implements O
       return;
     }
 
+    query = query.replace('+', '%2B');
+
     let filters: Array<string> = [];
     this.searchFieldsKey.forEach(key => {
       filters.push(`substringof(${key}, '${query}')`);
