@@ -13,7 +13,7 @@ Core de todo el paquete de librerias de MC Kit, incluye servicios, componentes y
 ### 1. Install libraries
 
 ```bash
-npm install --save @mckit/core primeicons primeng @ngx-pwa/local-storage@18
+npm install --save @mckit/core @primeng/themes primeicons @ngx-pwa/local-storage@19
 npm install -D tailwindcss postcss autoprefixer
 npx tailwindcss init
 ```
@@ -23,8 +23,6 @@ npx tailwindcss init
 **File**: ./src/styles.scss
 
 ```scss
-@import "primeng/resources/themes/lara-light-blue/theme.css";
-@import "primeng/resources/primeng.css";
 @import "primeicons/primeicons.css";
 
 /* CSS Layer Configuration for Tailwind and PrimeNG */
