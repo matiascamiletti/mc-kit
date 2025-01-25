@@ -14,9 +14,32 @@ Core de todo el paquete de librerias de MC Kit, incluye servicios, componentes y
 
 ```bash
 npm install --save @mckit/core @primeng/themes primeicons @ngx-pwa/local-storage@19
-npm install -D tailwindcss postcss autoprefixer
-npx tailwindcss init
+npm install tailwindcss @tailwindcss/postcss postcss --force
+npm i tailwindcss-primeui --save
 ```
+
+Configure PostCSS Plugins: ".postcssrc.json"
+```json
+{
+  "plugins": {
+    "@tailwindcss/postcss": {}
+  }
+}
+```
+
+Import Tailwind CSS: "styles.css"
+
+```scss
+@import "tailwindcss";
+```
+
+Create tailwind.config.js
+
+module.exports = {
+    // ...
+    plugins: [require('tailwindcss-primeui')]
+};
+
 
 ### 2. Add Styles
 
