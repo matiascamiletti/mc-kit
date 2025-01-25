@@ -32,7 +32,7 @@
     "@angular/platform-server": "^18.1.0",
     "@angular/router": "^18.1.0",
     "@angular/ssr": "^18.1.0",
-    "@mckit/auth": "^18.0.27",
+    "@mckit/auth": "^19.0.0",
     "@mckit/core": "^18.0.21",
     "@mckit/cron": "^18.0.2",
     "@mckit/filter": "^18.0.4",
