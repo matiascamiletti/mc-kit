@@ -1,6 +1,6 @@
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { MCAuthModel } from "../entities/mc-auth-model";
-import { inject } from "@angular/core";
+import { inject, signal } from "@angular/core";
 import { MessageService } from "primeng/api";
 
 export abstract class MCBaseAuthPage {
@@ -11,12 +11,16 @@ export abstract class MCBaseAuthPage {
     password: new FormControl<string>('', Validators.required)
   });
 
-  isSending = false;
+  isSending = signal(false);
 
   abstract onSubmit(obj: MCAuthModel): void;
 
   onClickSubmit() {
-    if(this.isSending){
+    if(this.group.invalid){
+      return;
+    }
+
+    if(this.isSending()){
       return;
     }
 
@@ -43,10 +47,10 @@ export abstract class MCBaseAuthPage {
   }
 
   showLoading() {
-    this.isSending = true;
+    this.isSending.set(true);
   }
 
   hideLoading() {
-    this.isSending = false;
+    this.isSending.set(false);
   }
 }
