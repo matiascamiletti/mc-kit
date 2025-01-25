@@ -5,11 +5,10 @@ import { PrintServiceComponent } from '@mckit/core';
 import { ID_FOOTER_MC_COMPONENT, ID_SIDEBAR_MC_COMPONENT, ID_TOPBAR_MC_COMPONENT, MCSidebarService } from '@mckit/layout-core';
 
 @Component({
-  selector: 'mc-sakai-layout',
-  standalone: true,
-  imports: [CommonModule, RouterModule, PrintServiceComponent],
-  templateUrl: './sakai-layout.component.html',
-  styleUrl: './sakai-layout.component.scss'
+    selector: 'mc-sakai-layout',
+    imports: [CommonModule, RouterModule, PrintServiceComponent],
+    templateUrl: './sakai-layout.component.html',
+    styleUrl: './sakai-layout.component.scss'
 })
 export class MCSakaiLayoutComponent {
 

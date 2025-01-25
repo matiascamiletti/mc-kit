@@ -12,11 +12,10 @@ import { MCResultFilter } from '../../../../../mckit/filter/src/lib/entities/res
 import { Observable, of } from 'rxjs';
 
 @Component({
-  selector: 'app-test-page',
-  standalone: true,
-  imports: [MCSimplePage, MCMiniResumeCard, CurrencyPipe, MCTwoColumnItemComponent, MCFilterButtonComponent],
-  templateUrl: './test-page.component.html',
-  styleUrl: './test-page.component.scss'
+    selector: 'app-test-page',
+    imports: [MCSimplePage, MCMiniResumeCard, CurrencyPipe, MCTwoColumnItemComponent, MCFilterButtonComponent],
+    templateUrl: './test-page.component.html',
+    styleUrl: './test-page.component.scss'
 })
 export class TestPageComponent implements OnInit {
 

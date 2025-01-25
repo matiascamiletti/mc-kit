@@ -15,12 +15,11 @@ import { MessagesModule } from 'primeng/messages';
 import { MCAuthSakaiConfig } from '../auth-sakai/auth-sakai.component';
 
 @Component({
-  selector: 'mc-auth-sakai-social',
-  standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, ButtonModule, CardModule, IconFieldModule, InputIconModule, InputTextModule, PasswordModule, CheckboxModule, MessagesModule],
-  providers: [MessageService],
-  templateUrl: './auth-sakai-only-social.component.html',
-  styleUrl: './auth-sakai-only-social.component.scss'
+    selector: 'mc-auth-sakai-social',
+    imports: [CommonModule, FormsModule, ReactiveFormsModule, ButtonModule, CardModule, IconFieldModule, InputIconModule, InputTextModule, PasswordModule, CheckboxModule, MessagesModule],
+    providers: [MessageService],
+    templateUrl: './auth-sakai-only-social.component.html',
+    styleUrl: './auth-sakai-only-social.component.scss'
 })
 export class MCAuthSakaiSocialComponent extends MCBaseAuthPage {
   config = input.required<MCAuthSakaiConfig>();

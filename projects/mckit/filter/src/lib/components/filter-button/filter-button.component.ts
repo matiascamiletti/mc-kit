@@ -6,11 +6,10 @@ import { MCConfigFilter } from '../../entities/config';
 import { MCResultFilter } from '../../entities/result';
 
 @Component({
-  selector: 'mc-filter-button',
-  standalone: true,
-  imports: [ButtonModule, MCFilterPanelComponent, BadgeModule],
-  templateUrl: './filter-button.component.html',
-  styleUrl: './filter-button.component.css'
+    selector: 'mc-filter-button',
+    imports: [ButtonModule, MCFilterPanelComponent, BadgeModule],
+    templateUrl: './filter-button.component.html',
+    styleUrl: './filter-button.component.css'
 })
 export class MCFilterButtonComponent {
   config = input.required<MCConfigFilter>();

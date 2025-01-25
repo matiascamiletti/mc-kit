@@ -16,12 +16,11 @@ import { MCBaseAuthPage } from '../base-auth-page.component';
 
 
 @Component({
-  selector: 'mc-auth-basic',
-  standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, ButtonModule, CardModule, IconFieldModule, InputIconModule, InputTextModule, PasswordModule, MessagesModule, RouterModule],
-  providers: [MessageService],
-  templateUrl: './auth-basic.component.html',
-  styleUrl: './auth-basic.component.scss'
+    selector: 'mc-auth-basic',
+    imports: [FormsModule, ReactiveFormsModule, ButtonModule, CardModule, IconFieldModule, InputIconModule, InputTextModule, PasswordModule, MessagesModule, RouterModule],
+    providers: [MessageService],
+    templateUrl: './auth-basic.component.html',
+    styleUrl: './auth-basic.component.scss'
 })
 export class MCAuthBasicComponent extends MCBaseAuthPage {
   config = input.required<MCAuthBasicConfig>();

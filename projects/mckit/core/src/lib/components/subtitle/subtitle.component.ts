@@ -3,11 +3,10 @@ import { MCCoreComponent } from '../mc-core-component';
 import { MCComponent } from '../../entities/mc-component';
 
 @Component({
-  selector: 'mc-subtitle',
-  standalone: true,
-  imports: [],
-  templateUrl: './subtitle.component.html',
-  styleUrl: './subtitle.component.css'
+    selector: 'mc-subtitle',
+    imports: [],
+    templateUrl: './subtitle.component.html',
+    styleUrl: './subtitle.component.css'
 })
 export class SubtitleComponent extends MCCoreComponent {
 }

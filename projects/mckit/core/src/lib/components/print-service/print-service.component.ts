@@ -4,11 +4,10 @@ import { McComponentService } from '../../services/mc-component.service';
 import { MCComponent } from '../../entities/mc-component';
 
 @Component({
-  selector: 'mc-print-service',
-  standalone: true,
-  imports: [PrintListComponent],
-  templateUrl: './print-service.component.html',
-  styleUrl: './print-service.component.css'
+    selector: 'mc-print-service',
+    imports: [PrintListComponent],
+    templateUrl: './print-service.component.html',
+    styleUrl: './print-service.component.css'
 })
 export class PrintServiceComponent implements OnInit {
 

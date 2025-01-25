@@ -11,11 +11,10 @@ import { MCIconToggleSidebarButton } from '../../../mckit/layout/src/public-api'
 import { MCAvatar } from '../../../mckit/core/src/lib/components/avatar/avatar.component';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, MCSpinnerFullScreenComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+    selector: 'app-root',
+    imports: [RouterOutlet, MCSpinnerFullScreenComponent],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
 

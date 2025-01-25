@@ -5,11 +5,10 @@ import { ButtonModule } from 'primeng/button';
 
 
 @Component({
-  selector: 'mc-icon-toggle-sidebar-button',
-  standalone: true,
-  imports: [ButtonModule],
-  templateUrl: './icon-toggle-sidebar-button.component.html',
-  styleUrl: './icon-toggle-sidebar-button.component.css'
+    selector: 'mc-icon-toggle-sidebar-button',
+    imports: [ButtonModule],
+    templateUrl: './icon-toggle-sidebar-button.component.html',
+    styleUrl: './icon-toggle-sidebar-button.component.css'
 })
 export class IconToggleSidebarButtonComponent extends MCCoreComponent {
 

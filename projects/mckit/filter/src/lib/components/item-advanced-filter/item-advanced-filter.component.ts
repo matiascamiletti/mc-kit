@@ -10,11 +10,10 @@ import { AutoCompleteCompleteEvent, AutoCompleteModule } from 'primeng/autocompl
 import { MCItemFilter } from '../../entities/item-filter';
 
 @Component({
-  selector: 'mc-item-advanced-filter',
-  standalone: true,
-  imports: [CommonModule, FormsModule, DropdownModule, InputTextModule, ButtonModule, DropdownModule, AutoCompleteModule],
-  templateUrl: './item-advanced-filter.component.html',
-  styleUrl: './item-advanced-filter.component.scss'
+    selector: 'mc-item-advanced-filter',
+    imports: [CommonModule, FormsModule, DropdownModule, InputTextModule, ButtonModule, DropdownModule, AutoCompleteModule],
+    templateUrl: './item-advanced-filter.component.html',
+    styleUrl: './item-advanced-filter.component.scss'
 })
 export class ItemAdvancedFilterComponent {
   filters = input.required<Array<MCFilter>>();

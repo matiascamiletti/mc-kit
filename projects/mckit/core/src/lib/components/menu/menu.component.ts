@@ -7,11 +7,10 @@ import { RouterModule } from '@angular/router';
 
 // TODO: Complete the implementation
 @Component({
-  selector: 'mc-menu',
-  standalone: true,
-  imports: [CommonModule, RouterModule, RippleModule],
-  templateUrl: './menu.component.html',
-  styleUrl: './menu.component.scss'
+    selector: 'mc-menu',
+    imports: [CommonModule, RouterModule, RippleModule],
+    templateUrl: './menu.component.html',
+    styleUrl: './menu.component.scss'
 })
 export class MenuComponent extends MCCoreComponent {
 

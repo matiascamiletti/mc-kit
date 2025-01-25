@@ -14,11 +14,10 @@ export enum MCShowPanel {
 }
 
 @Component({
-  selector: 'mc-filter-panel',
-  standalone: true,
-  imports: [CommonModule, OverlayPanelModule, AdvancedFiltersPanelComponent, QuickFilterPanelComponent],
-  templateUrl: './filter-panel.component.html',
-  styleUrl: './filter-panel.component.css'
+    selector: 'mc-filter-panel',
+    imports: [CommonModule, OverlayPanelModule, AdvancedFiltersPanelComponent, QuickFilterPanelComponent],
+    templateUrl: './filter-panel.component.html',
+    styleUrl: './filter-panel.component.css'
 })
 export class MCFilterPanelComponent {
   overlayPanel: Signal<OverlayPanel> = viewChild.required('overlayPanel');

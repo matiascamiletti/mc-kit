@@ -1,11 +1,10 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'mc-two-column-item',
-  standalone: true,
-  imports: [],
-  templateUrl: './two-column-item.component.html',
-  styleUrl: './two-column-item.component.scss'
+    selector: 'mc-two-column-item',
+    imports: [],
+    templateUrl: './two-column-item.component.html',
+    styleUrl: './two-column-item.component.scss'
 })
 export class MCTwoColumnItemComponent {
   @Input() title?: string|null;

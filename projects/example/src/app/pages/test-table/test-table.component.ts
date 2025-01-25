@@ -7,11 +7,10 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 
 @Component({
-  selector: 'app-test-table',
-  standalone: true,
-  imports: [CommonModule, TableModule, IconFieldModule, InputIconModule, InputTextModule, ButtonModule],
-  templateUrl: './test-table.component.html',
-  styleUrl: './test-table.component.scss'
+    selector: 'app-test-table',
+    imports: [CommonModule, TableModule, IconFieldModule, InputIconModule, InputTextModule, ButtonModule],
+    templateUrl: './test-table.component.html',
+    styleUrl: './test-table.component.scss'
 })
 export class TestTableComponent {
 
