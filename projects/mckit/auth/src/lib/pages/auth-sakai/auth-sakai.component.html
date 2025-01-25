@@ -34,7 +34,9 @@
                       <a class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: var(--primary-color)">Forgot password?</a>
                   </div>-->
 
-                  <p-messages />
+                  @for (message of messages(); track message; let first = $first) {
+                    <p-message [severity]="message.severity" [text]="message.text" [ngClass]="{ 'mt-4': !first }" />
+                  }
 
                   <p-button pRipple [label]="config().submitButton ?? 'Log in'" [loading]="isSending()" size="large" [style]="{ width: '100%' }" (click)="onClickSubmit()" [disabled]="group.invalid || isSending()" />
 

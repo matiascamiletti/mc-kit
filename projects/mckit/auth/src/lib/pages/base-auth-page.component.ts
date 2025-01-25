@@ -1,17 +1,17 @@
 import { FormControl, FormGroup, Validators } from "@angular/forms";
 import { MCAuthModel } from "../entities/mc-auth-model";
 import { inject, signal } from "@angular/core";
-import { MessageService } from "primeng/api";
+import { MCMessage } from "@mckit/core";
 
 export abstract class MCBaseAuthPage {
-  messageService = inject(MessageService);
-
   group = new FormGroup({
     email: new FormControl<string>('', [Validators.required, Validators.email]),
     password: new FormControl<string>('', Validators.required)
   });
 
   isSending = signal(false);
+
+  messages = signal<Array<MCMessage>>([]);
 
   abstract onSubmit(obj: MCAuthModel): void;
 
@@ -35,15 +35,15 @@ export abstract class MCBaseAuthPage {
   }
 
   showSuccessMessage(message: string) {
-    this.messageService.add({ severity: 'success', summary: message});
+    this.messages.set([{ severity: 'success', text: message}]);
   }
 
   showErrorMessage(message: string) {
-    this.messageService.add({ severity: 'error', summary: message});
+    this.messages.set([{ severity: 'error', text: message}]);
   }
 
   clearMessages() {
-    this.messageService.clear();
+    this.messages.set([]);
   }
 
   showLoading() {
