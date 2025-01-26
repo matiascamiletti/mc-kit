@@ -22,7 +22,7 @@
 </div>
 
 <h2 class="text-2xl">Table</h2>
-<mc-table [columns]="tableColumns" [response]="tableResponse">
+<mc-table [columns]="tableColumns" [response]="tableResponse" [paginator]="true">
   <ng-template mcThTemplate="game_number">
     <h2>Game Test Head # <p-button label="send" /></h2>
   </ng-template>

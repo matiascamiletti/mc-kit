@@ -22,6 +22,8 @@ export class MCTableComponent {
   thTemplates = contentChildren(MCThTemplateDirective);
   tdTemplates = contentChildren(MCTdTemplateDirective);
 
+  paginator = input<boolean>(true);
+
   isThTemplate(field: string): boolean {
     return this.thTemplates().some(template => template.getFieldName() === field);
   }
