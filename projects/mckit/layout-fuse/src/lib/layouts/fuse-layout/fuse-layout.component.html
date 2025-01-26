@@ -1,0 +1,31 @@
+<div id="mc-fuse-layout" class="layout-wrapper md:flex md:justify-content-between">
+  <!-- Sidebar -->
+  <div class="layout-sidebar md:w-2xs md:border-r-1 border-gray-800">
+      <mc-print-service [id]="sidebarId"></mc-print-service>
+  </div>
+  <!-- END Sidebar -->
+
+  <div class="layout-main-container">
+    <!-- Topbar -->
+    <!--<div class="layout-topbar">
+      <div class="p-toolbar-group-start"><mc-print-service [id]="topbarLeftId" [isFlexRow]="true"></mc-print-service></div>
+      <div class="p-toolbar-group-end layout-topbar-menu"><mc-print-service [id]="topbarRightId" [isFlexRow]="true"></mc-print-service></div>
+    </div>-->
+    <!-- END Topbar -->
+
+    <div class="layout-main">
+        <router-outlet></router-outlet>
+    </div>
+
+    <!-- Footer -->
+    <!--<div class="layout-footer">
+      <mc-print-service [id]="footerId"></mc-print-service>
+    </div>-->
+    <!-- END Footer -->
+
+  </div>
+
+
+
+
+</div>

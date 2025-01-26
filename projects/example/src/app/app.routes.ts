@@ -6,6 +6,7 @@ import { AuthHalfComponent } from './pages/auth-half/auth-half.component';
 import { AuthSakaiComponent } from './pages/auth-sakai/auth-sakai.component';
 import { MCSakaiLayoutComponent } from '../../../mckit/layout-sakai/src/public-api';
 import { TestTableComponent } from './pages/test-table/test-table.component';
+import { MCFuseLayoutComponent } from '../../../mckit/layout-fuse/src/public-api';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'basic', pathMatch: 'full' },
@@ -23,6 +24,22 @@ export const routes: Routes = [
   {
     path: 'sakai',
     component: MCSakaiLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: TestPageComponent,
+        title: 'Test page'
+      },
+      {
+        path: 'table',
+        component: TestTableComponent,
+        title: 'Test Table'
+      },
+    ]
+  },
+  {
+    path: 'fuse',
+    component: MCFuseLayoutComponent,
     children: [
       {
         path: '',
