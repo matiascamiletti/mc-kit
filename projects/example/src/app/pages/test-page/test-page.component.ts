@@ -111,7 +111,7 @@ export class TestPageComponent implements OnInit {
 
   loadTable() {
     this.tableColumns = [
-      { field: 'name', title: 'Name' },
+      { field: 'name', title: 'Name', isSortable: true },
       { field: 'game_number', title: 'Game #' },
       { field: 'status', title: 'Status', isShow: true },
       { field: 'field', title: 'Field' },

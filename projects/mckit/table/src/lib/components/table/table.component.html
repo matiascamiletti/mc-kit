@@ -3,9 +3,16 @@
       <tr>
         @for (column of columnsPrinted(); track column) {
           @if (isThTemplate(column.field)) {
-            <th><ng-container [ngTemplateOutlet]="getThTemplate(column.field)"></ng-container></th>
+            <th [pSortableColumn]="column.isSortable ? column.field : undefined"><ng-container [ngTemplateOutlet]="getThTemplate(column.field)"></ng-container></th>
           } @else {
-            <th>{{column.title}}</th>
+            <th [pSortableColumn]="column.isSortable ? column.field : undefined">
+              {{column.title}}
+
+              @if (column.isSortable) {
+                <p-sortIcon [field]="column.field" />
+              }
+
+            </th>
           }
         }
       </tr>
