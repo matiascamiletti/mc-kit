@@ -3,6 +3,7 @@ import { Component, computed, contentChildren, input, TemplateRef } from '@angul
 import { MCColumn, MCListResponse } from '@mckit/core';
 import { TableModule } from 'primeng/table';
 import { MCThTemplateDirective } from '../../directives/th-template.directive';
+import { MCTdTemplateDirective } from '../../directives/td-template.directive';
 
 @Component({
   selector: 'mc-table',
@@ -19,6 +20,7 @@ export class MCTableComponent {
   items = computed(() => this.response()?.data ?? []);
 
   thTemplates = contentChildren(MCThTemplateDirective);
+  tdTemplates = contentChildren(MCTdTemplateDirective);
 
   isThTemplate(field: string): boolean {
     return this.thTemplates().some(template => template.getFieldName() === field);
@@ -26,5 +28,13 @@ export class MCTableComponent {
 
   getThTemplate(field: string): TemplateRef<any> | null {
     return this.thTemplates().find(template => template.getFieldName() === field)?.template ?? null;
+  }
+
+  isTdTemplate(field: string): boolean {
+    return this.tdTemplates().some(template => template.getFieldName() === field);
+  }
+
+  getTdTemplate(field: string): TemplateRef<any> | null {
+    return this.tdTemplates().find(template => template.getFieldName() === field)?.template ?? null;
   }
 }

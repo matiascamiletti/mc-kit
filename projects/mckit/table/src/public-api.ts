@@ -6,6 +6,7 @@
  * Directives
  */
 export * from './lib/directives/th-template.directive';
+export * from './lib/directives/td-template.directive';
 
 /**
  * Components

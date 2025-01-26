@@ -13,7 +13,11 @@
   <ng-template #body let-row>
       <tr>
         @for (column of columnsPrinted(); track column) {
-          <td>{{ row[column.field] }}</td>
+          @if (isTdTemplate(column.field)) {
+            <td><ng-container [ngTemplateOutlet]="getTdTemplate(column.field)"></ng-container></td>
+          } @else {
+            <td>{{ row[column.field] }}</td>
+          }
         }
       </tr>
   </ng-template>
