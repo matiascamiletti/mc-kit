@@ -14,6 +14,7 @@ on:
       - 'projects/mckit/layout-sakai/package.json'
       - 'projects/mckit/layout-fuse/package.json'
       - 'projects/mckit/loader/package.json'
+      - 'projects/mckit/table/package.json'
       - 'projects/mckit/odata/package.json'
 
 jobs:
@@ -29,6 +30,7 @@ jobs:
       layout-sakai: ${{ steps.filter.outputs['layout-sakai'] }}
       layout-fuse: ${{ steps.filter.outputs['layout-fuse'] }}
       loader: ${{ steps.filter.outputs.loader }}
+      odata: ${{ steps.filter.outputs.table }}
       odata: ${{ steps.filter.outputs.odata }}
     steps:
       - name: Checkout repository
@@ -58,6 +60,8 @@ jobs:
               - 'projects/mckit/layout-fuse/package.json'
             loader:
               - 'projects/mckit/loader/package.json'
+            table:
+              - 'projects/mckit/table/package.json'
             odata:
               - 'projects/mckit/odata/package.json'
 
@@ -66,7 +70,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        project: [auth, core, cron, filter, layout, layout-core, layout-sakai, layout-fuse, loader, odata]
+        project: [auth, core, cron, filter, layout, layout-core, layout-sakai, layout-fuse, loader, table, odata]
     steps:
       - name: Checkout repository
         if: ${{ needs.filter.outputs[matrix.project] == 'true' }}
