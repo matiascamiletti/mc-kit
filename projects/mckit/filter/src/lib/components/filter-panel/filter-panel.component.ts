@@ -44,7 +44,7 @@ export class MCFilterPanelComponent {
       } else {
         this.showPanel.set(MCShowPanel.ADVANCED);
       }
-    }, { allowSignalWrites: true });
+    });
   }
 
   addResult(result: MCResultFilter): void {
