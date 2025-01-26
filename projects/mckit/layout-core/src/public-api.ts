@@ -8,3 +8,8 @@
 export * from './lib/services/topbar.service';
 export * from './lib/services/sidebar.service';
 export * from './lib/services/footer.service';
+
+/**
+ * Directives
+ */
+export * from './lib/directives/dark-mode-click.directive';

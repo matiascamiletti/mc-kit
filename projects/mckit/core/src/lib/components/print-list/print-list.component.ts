@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, input, Input } from '@angular/core';
 import { MCComponent } from '../../entities/mc-component';
 import { PrintComponent } from '../print/print.component';
 
@@ -11,4 +11,6 @@ import { PrintComponent } from '../print/print.component';
 export class PrintListComponent {
   @Input() components: Array<MCComponent> = [];
   @Input() isFlexRow = false;
+
+  classes = input<string>('');
 }

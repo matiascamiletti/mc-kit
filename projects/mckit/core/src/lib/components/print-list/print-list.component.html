@@ -1,4 +1,4 @@
-<div class="mc-print-list" [class]="{ 'mc-print-list-row': isFlexRow }">
+<div class="{{classes()}}" [class]="{'mc-print-list': true, 'mc-print-list-row': isFlexRow }">
   @for (comp of components; track $index) {
     <div class="mc-print-component">
       <mc-print [component]="comp"></mc-print>

@@ -9,6 +9,7 @@ import { MCLoaderService, MCSpinnerFullScreenComponent } from '../../../mckit/lo
 import { MCFooterService, MCSidebarService, MCTopbarService } from '../../../mckit/layout-core/src/public-api';
 import { MCIconToggleSidebarButton } from '../../../mckit/layout/src/public-api';
 import { MCAvatar } from '../../../mckit/core/src/lib/components/avatar/avatar.component';
+import { DarkModeButton, DarkModeButtonComponent } from './components/dark-mode-button/dark-mode-button.component';
 
 @Component({
     selector: 'app-root',
@@ -37,6 +38,7 @@ export class AppComponent implements OnInit {
     this.topbarService.addComponentToLeft(new MCIconToggleSidebarButton());
     //this.topbarService.addComponentToLeft(new MCImage('https://tots.agency/assets/img/logos/logo-horiz-black-color.svg', 150));
 
+    this.topbarService.addComponentToRight(new DarkModeButton());
     this.topbarService.addComponentToRight(new MCAvatar({ label: 'MC', shape: 'circle' }));
   }
 
