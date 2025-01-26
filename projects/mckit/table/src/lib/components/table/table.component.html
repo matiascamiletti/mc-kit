@@ -1,14 +1,14 @@
 <p-table [value]="items()" styleClass="w-full">
   <ng-template #header>
       <tr>
-        @for (column of columns(); track column) {
+        @for (column of columnsPrinted(); track column) {
           <th>{{column.title}}</th>
         }
       </tr>
   </ng-template>
   <ng-template #body let-row>
       <tr>
-        @for (column of columns(); track column) {
+        @for (column of columnsPrinted(); track column) {
           <td>{{ row[column.field] }}</td>
         }
       </tr>

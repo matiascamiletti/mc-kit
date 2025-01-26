@@ -12,8 +12,8 @@ import { TableModule } from 'primeng/table';
 export class MCTableComponent {
 
   columns = input.required<Array<MCColumn>>();
+  columnsPrinted = computed(() => this.columns().filter((column: MCColumn) => column.isShow == undefined || column.isShow));
 
   response = input<MCListResponse<any>>();
   items = computed(() => this.response()?.data ?? []);
-
 }
