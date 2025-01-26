@@ -13,3 +13,8 @@ export * from './lib/services/footer.service';
  * Directives
  */
 export * from './lib/directives/dark-mode-click.directive';
+
+/**
+ * Components
+ */
+export * from './lib/components/page-heading/page-heading.component';

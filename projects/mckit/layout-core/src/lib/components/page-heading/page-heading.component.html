@@ -1,0 +1,20 @@
+<div class="mc-page-heading-container">
+  @if (hasBreadcrumb()) {
+    <div class="mc-page-heading-breadcrumb">
+      <p-breadcrumb [model]="breadcrumb()"></p-breadcrumb>
+    </div>
+  }
+
+  <div class="mc-page-heading-content flex justify-between items-center pt-4 pb-4">
+    <div class="mc-page-heading-title pl-4">
+      <h1 class="text-2xl">{{ title() }}</h1>
+      <p *ngIf="subtitle()" class="mc-page-heading-subtitle">{{ subtitle() }}</p>
+    </div>
+
+    <div class="mc-page-heading-actions pr-4">
+      <ng-content></ng-content>
+    </div>
+
+  </div>
+
+</div>
