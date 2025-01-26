@@ -2,7 +2,7 @@ import { CommonModule } from '@angular/common';
 import { afterNextRender, Component, inject, Signal } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { PrintServiceComponent } from '@mckit/core';
-import { ID_SIDEBAR_MC_COMPONENT, ID_TOPBAR_MC_COMPONENT, MCSidebarService } from '@mckit/layout-core';
+import { ID_FOOTER_MC_COMPONENT, ID_SIDEBAR_MC_COMPONENT, ID_TOPBAR_MC_COMPONENT, MCSidebarService } from '@mckit/layout-core';
 import { ButtonModule } from 'primeng/button';
 
 @Component({
@@ -18,6 +18,7 @@ export class MCFuseLayoutComponent {
   sidebarId = ID_SIDEBAR_MC_COMPONENT;
   topbarLeftId = ID_TOPBAR_MC_COMPONENT + '_left';
   topbarRightId = ID_TOPBAR_MC_COMPONENT + '_right';
+  footerId = ID_FOOTER_MC_COMPONENT;
 
   isOpen = this.sidebarService.isOpen;
 

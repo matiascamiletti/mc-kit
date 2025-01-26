@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MCSubtitle } from '../../../mckit/core/src/public-api';
 import { MCImage } from '../../../mckit/core/src/lib/components/image/image.component';
@@ -6,7 +6,7 @@ import { MCMenu } from '../../../mckit/core/src/lib/components/menu/menu.compone
 import { ItemCustomMenuComponent } from './components/item-custom-menu/item-custom-menu.component';
 import { MCSubtitleInTopbar } from '../../../mckit/layout/src/lib/components/subtitle-in-topbar/subtitle-in-topbar.component';
 import { MCLoaderService, MCSpinnerFullScreenComponent } from '../../../mckit/loader/src/public-api';
-import { MCSidebarService, MCTopbarService } from '../../../mckit/layout-core/src/public-api';
+import { MCFooterService, MCSidebarService, MCTopbarService } from '../../../mckit/layout-core/src/public-api';
 import { MCIconToggleSidebarButton } from '../../../mckit/layout/src/public-api';
 import { MCAvatar } from '../../../mckit/core/src/lib/components/avatar/avatar.component';
 
@@ -18,6 +18,8 @@ import { MCAvatar } from '../../../mckit/core/src/lib/components/avatar/avatar.c
 })
 export class AppComponent implements OnInit {
 
+  footerService = inject(MCFooterService);
+
   constructor(
     protected sidebarService: MCSidebarService,
     protected topbarService: MCTopbarService,
@@ -28,6 +30,7 @@ export class AppComponent implements OnInit {
     this.configLoader();
     this.loadSidebar();
     this.loadTopbar();
+    this.loadFooter();
   }
 
   loadTopbar() {
@@ -62,6 +65,10 @@ export class AppComponent implements OnInit {
         ] }
       ])
     ]);
+  }
+
+  loadFooter() {
+    this.footerService.addComponent(new MCSubtitle('© 2025 - Todos los derechos reservados'));
   }
 
   configLoader() {
