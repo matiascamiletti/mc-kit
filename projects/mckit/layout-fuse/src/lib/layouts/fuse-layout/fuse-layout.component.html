@@ -1,4 +1,4 @@
-<div id="mc-fuse-layout" class="layout-wrapper md:flex md:justify-content-between">
+<div id="mc-fuse-layout" class="layout-wrapper md:flex md:justify-between">
   <!-- Sidebar -->
   <div class="layout-sidebar fixed bg-white dark:bg-black w-full md:relative md:w-2xs md:border-r-1 border-gray-800" [ngClass]="{'open': isOpen()}">
     <div class="layout-sidebar-close-button absolute right-1 top-1 md:hidden">
@@ -10,13 +10,13 @@
 
   <div class="layout-main-container w-full" [ngClass]="{'without-sidebar': !isOpen()}">
     <!-- Topbar -->
-    <div class="layout-topbar w-full">
-      <div class="p-toolbar-group-start"><mc-print-service [id]="topbarLeftId" [isFlexRow]="true"></mc-print-service></div>
-      <div class="p-toolbar-group-end layout-topbar-menu"><mc-print-service [id]="topbarRightId" [isFlexRow]="true"></mc-print-service></div>
+    <div class="layout-topbar h-16 w-full flex justify-between items-center border-b-1 border-gray-800 px-4">
+      <div class="p-toolbar-group-start h-16 flex items-center"><mc-print-service [id]="topbarLeftId" [isFlexRow]="true"></mc-print-service></div>
+      <div class="p-toolbar-group-end h-16 flex items-center layout-topbar-menu "><mc-print-service [id]="topbarRightId" [isFlexRow]="true"></mc-print-service></div>
     </div>
     <!-- END Topbar -->
 
-    <div class="layout-main w-full">
+    <div class="layout-main w-full p-8">
         <router-outlet></router-outlet>
     </div>
 
