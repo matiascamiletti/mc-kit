@@ -22,6 +22,9 @@
       "@mckit/layout-core": [
         "./dist/mckit/layout-core"
       ],
+      "@mckit/layout-fuse": [
+        "./dist/mckit/layout-fuse"
+      ],
       "@mckit/layout-sakai": [
         "./dist/mckit/layout-sakai"
       ],

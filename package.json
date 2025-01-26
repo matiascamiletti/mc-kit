@@ -18,7 +18,8 @@
     "publish-layout-core": "ng build --project=@mckit/layout-core --configuration production && npm publish dist/mckit/layout-core --access public",
     "publish-layout-sakai": "ng build --project=@mckit/layout-sakai --configuration production && npm publish dist/mckit/layout-sakai --access public",
     "publish-filter": "ng build --project=@mckit/filter --configuration production && npm publish dist/mckit/filter --access public",
-    "publish-cron": "ng build --project=@mckit/cron --configuration production && npm publish dist/mckit/cron --access public"
+    "publish-cron": "ng build --project=@mckit/cron --configuration production && npm publish dist/mckit/cron --access public",
+    "publish-layout-fuse": "ng build --project=@mckit/layout-fuse --configuration production && npm publish dist/mckit/layout-fuse --access public"
   },
   "private": true,
   "dependencies": {
@@ -45,6 +46,7 @@
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "^19.1.4",
+    "@angular/build": "^19.1.4",
     "@angular/cli": "^19.1.4",
     "@angular/compiler-cli": "^19.1.3",
     "@types/express": "^4.17.17",
