@@ -1,0 +1,14 @@
+{
+  "name": "@mckit/table",
+  "version": "19.0.0",
+  "peerDependencies": {
+    "@angular/common": "^19.0.0",
+    "@angular/core": "^19.0.0",
+    "@primeng/themes": "^19.0.0",
+    "@mckit/core": "^19.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

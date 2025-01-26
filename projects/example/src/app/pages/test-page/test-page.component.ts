@@ -10,10 +10,12 @@ import { MCConfigFilter } from '../../../../../mckit/filter/src/lib/entities/con
 import { MCFilter } from '../../../../../mckit/filter/src/lib/entities/filter';
 import { MCResultFilter } from '../../../../../mckit/filter/src/lib/entities/result';
 import { Observable, of } from 'rxjs';
+import { MCTableComponent } from '../../../../../mckit/table/src/lib/components/table/table.component';
+import { MCColumn, MCListResponse } from '@mckit/core';
 
 @Component({
     selector: 'app-test-page',
-    imports: [MCSimplePage, MCMiniResumeCard, CurrencyPipe, MCTwoColumnItemComponent, MCFilterButtonComponent, MCPageHeadingComponent],
+    imports: [MCSimplePage, MCMiniResumeCard, CurrencyPipe, MCTwoColumnItemComponent, MCFilterButtonComponent, MCPageHeadingComponent, MCTableComponent],
     templateUrl: './test-page.component.html',
     styleUrl: './test-page.component.scss'
 })
@@ -28,6 +30,9 @@ export class TestPageComponent implements OnInit {
 
   filterConfig = new MCConfigFilter();
 
+  tableColumns: Array<MCColumn> = [];
+  tableResponse = new MCListResponse<any>();
+
   constructor(
     protected topbarService: MCTopbarService
   ) { }
@@ -35,6 +40,7 @@ export class TestPageComponent implements OnInit {
   ngOnInit(): void {
     this.topbarService.subtitle.update(() => 'Test Page');
     this.loadFilterConfig();
+    this.loadTable();
   }
 
   ngAfterViewInit(): void {
@@ -99,5 +105,19 @@ export class TestPageComponent implements OnInit {
         filter: this.onFilterAutocomplete.bind(this)
       })
     ];
+  }
+
+  loadTable() {
+    this.tableColumns = [
+      { field: 'name', title: 'Name' },
+      { field: 'game_number', title: 'Game #' },
+      { field: 'status', title: 'Status' },
+      { field: 'field', title: 'Field' },
+    ]
+
+    this.tableResponse.data = [
+      { name: 'Name 1', game_number: 1, status: 'In progress', field: 'Field La bombonera' },
+      { name: 'Name 2', game_number: 2, status: 'Completed', field: 'Mostaza' },
+    ]
   }
 }

@@ -33,6 +33,9 @@
       ],
       "@mckit/odata": [
         "./dist/mckit/odata"
+      ],
+      "@mckit/table": [
+        "./dist/mckit/table"
       ]
     },
     "outDir": "./dist/out-tsc",
