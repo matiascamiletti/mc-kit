@@ -1,12 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, effect, input, output, signal, Signal, viewChild } from '@angular/core';
-import { OverlayPanel, OverlayPanelModule } from 'primeng/overlaypanel';
 import { AdvancedFiltersPanelComponent } from '../advanced-filters-panel/advanced-filters-panel.component';
 import { QuickFilterPanelComponent } from '../quick-filter-panel/quick-filter-panel.component';
 import { MCFilter, MCTypeFilter } from '../../entities/filter';
 import { MCResultFilter } from '../../entities/result';
 import { MCConfigFilter } from '../../entities/config';
 import { MCItemFilter } from '../../entities/item-filter';
+import { Popover, PopoverModule } from 'primeng/popover';
 
 export enum MCShowPanel {
   BASIC,
@@ -15,12 +15,12 @@ export enum MCShowPanel {
 
 @Component({
     selector: 'mc-filter-panel',
-    imports: [CommonModule, OverlayPanelModule, AdvancedFiltersPanelComponent, QuickFilterPanelComponent],
+    imports: [CommonModule, PopoverModule, AdvancedFiltersPanelComponent, QuickFilterPanelComponent],
     templateUrl: './filter-panel.component.html',
     styleUrl: './filter-panel.component.css'
 })
 export class MCFilterPanelComponent {
-  overlayPanel: Signal<OverlayPanel> = viewChild.required('overlayPanel');
+  overlayPanel: Signal<Popover> = viewChild.required('overlayPanel');
 
   config = input.required<MCConfigFilter>();
   updateTotal = output<number>();
