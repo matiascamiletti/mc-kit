@@ -2,7 +2,11 @@
   <ng-template #header>
       <tr>
         @for (column of columnsPrinted(); track column) {
-          <th>{{column.title}}</th>
+          @if (isThTemplate(column.field)) {
+            <th><ng-container [ngTemplateOutlet]="getThTemplate(column.field)"></ng-container></th>
+          } @else {
+            <th>{{column.title}}</th>
+          }
         }
       </tr>
   </ng-template>
