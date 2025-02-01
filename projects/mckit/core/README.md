@@ -13,7 +13,7 @@ Core de todo el paquete de librerias de MC Kit, incluye servicios, componentes y
 ### 1. Install libraries
 
 ```bash
-npm install --save @mckit/core @primeng/themes primeicons @ngx-pwa/local-storage@19
+npm install --save @mckit/core primeng @primeng/themes primeicons @ngx-pwa/local-storage@19
 npm install tailwindcss @tailwindcss/postcss postcss --force
 npm i tailwindcss-primeui --save
 ```
@@ -27,38 +27,13 @@ Configure PostCSS Plugins: ".postcssrc.json"
 }
 ```
 
-Import Tailwind CSS: "styles.css"
-
-```scss
-@import "tailwindcss";
-```
-
-Create tailwind.config.js
-
-module.exports = {
-    // ...
-    plugins: [require('tailwindcss-primeui')]
-};
-
-
 ### 2. Add Styles
 
 **File**: ./src/styles.scss
 
 ```scss
-@import "primeicons/primeicons.css";
-
-/* CSS Layer Configuration for Tailwind and PrimeNG */
-@layer tailwind-base, primeng, tailwind-utilities;
-
-/* PrimeNG Layer (no need to modify as the imports handle this) */
-@layer primeng {}
-
-/* Components and Utilities Layer for Tailwind */
-@layer tailwind-utilities {
-    @tailwind components;
-    @tailwind utilities;
-}
+@use "tailwindcss";
+@use "primeicons/primeicons.css";
 
 body, html {
     height: 100%;
@@ -73,12 +48,39 @@ Add the paths to all of your template files in your tailwind.config.js file.
 ```js
 /** @type {import('tailwindcss').Config} */
 module.exports = {
-  content: [
-    "./src/**/*.{html,ts}",
-  ],
-  theme: {
-    extend: {},
-  },
-  plugins: [],
-}
+    // ...
+    plugins: [require('tailwindcss-primeui')]
+};
+```
+
+### 4. Configure PrimeNg
+
+Open the "app.config.ts" and add lines:
+
+```ts
+
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { providePrimeNG } from 'primeng/config';
+import Aura from '@primeng/themes/aura';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    // Others providers
+    // ....
+
+    provideAnimationsAsync(),
+    providePrimeNG({
+      theme: {
+        preset: Aura,
+        options: {
+          prefix: 'p',
+          darkModeSelector: '.my-app-dark',
+          cssLayer: false
+        }
+      }
+    })
+  ]
+};
+
+
 ```
