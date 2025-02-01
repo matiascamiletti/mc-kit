@@ -22,6 +22,7 @@ export * from './lib/lists/two-column-item/two-column-item.component';
  * Pages
  */
 export * from './lib/pages/simple-page/simple-page.component';
+export * from './lib/pages/split-page/split-page.component';
 
 /**
  * Layouts
