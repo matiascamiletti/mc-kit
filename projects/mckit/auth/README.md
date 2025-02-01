@@ -22,7 +22,7 @@ Core para integrar facilmente Auth en tu plataforma. Incluye paginas de login ya
 ### 2. Install libraries
 
 ```bash
-npm install --save @ngx-pwa/local-storage@18 @mckit/auth
+npm install --save @ngx-pwa/local-storage@19 @mckit/auth
 ```
 
 ## Use Login Page Layout
