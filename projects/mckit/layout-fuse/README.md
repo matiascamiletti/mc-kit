@@ -1,3 +1,8 @@
+Para utilizar tailwind css v4, agregar en el styles.scss del proyecto:
+
+@use "tailwindcss";
+@source "../node_modules/@mckit/layout-fuse";
+
 # LayoutFuse
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.0.
