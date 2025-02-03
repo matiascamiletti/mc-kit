@@ -9,14 +9,14 @@
 </ul>
 
 <ng-template #itemTemplate let-item="item">
-  <a *ngIf="item.externalLink != undefined" [attr.href]="item.externalLink" (click)="onClickItem(item)" pRipple>
-    <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
+  <a *ngIf="item.externalLink != undefined" [attr.href]="item.externalLink" (click)="onClickItem(item)" pRipple class="block p-3 dark:text-white text-gray-950 hover:bg-gray-100 dark:hover:bg-white/5 w-full items-center text-md">
+    <i [ngClass]="item.icon" class="pr-3 layout-menuitem-icon"></i>
     <span class="layout-menuitem-text">{{item.label}}</span>
     <i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.children"></i>
   </a>
 
-  <a *ngIf="item.link" (click)="onClickItem(item)" [routerLink]="item.link" routerLinkActive="active-route" pRipple>
-    <i [ngClass]="item.icon" class="layout-menuitem-icon"></i>
+  <a *ngIf="item.link" (click)="onClickItem(item)" [routerLink]="item.link" routerLinkActive="active-route" pRipple  class="block p-3 dark:text-white text-gray-950 hover:bg-gray-100 dark:hover:bg-white/5 w-full items-center text-md">
+    <i [ngClass]="item.icon" class="pr-3 layout-menuitem-icon"></i>
     <span class="layout-menuitem-text">{{item.label}}</span>
     <i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.children"></i>
   </a>

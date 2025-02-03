@@ -14,7 +14,7 @@ declare const document: any;
 export class DarkModeButtonComponent extends MCCoreComponent {
   isDarkModeActive = signal<boolean>(false);
 
-  darkModeClass = 'my-app-dark';
+  darkModeClass = 'dark';
 
   constructor() {
     super();
