@@ -1,6 +1,9 @@
 @use "tailwindcss";
 @use "primeicons/primeicons.css";
 
+@source "../../node_modules/@mckit/auth";
+@source "../../mckit/auth/src/lib";
+
 @custom-variant dark (&:where(.dark, .dark *));
 
 /* You can add global styles to this file, and also import other style files */
