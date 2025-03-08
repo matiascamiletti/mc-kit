@@ -7,9 +7,9 @@ import { ItemCustomMenuComponent } from './components/item-custom-menu/item-cust
 import { MCSubtitleInTopbar } from '../../../mckit/layout/src/lib/components/subtitle-in-topbar/subtitle-in-topbar.component';
 import { MCLoaderService, MCSpinnerFullScreenComponent } from '../../../mckit/loader/src/public-api';
 import { MCFooterService, MCSidebarService, MCTopbarService } from '../../../mckit/layout-core/src/public-api';
-import { MCIconToggleSidebarButton } from '../../../mckit/layout/src/public-api';
 import { MCAvatar } from '../../../mckit/core/src/lib/components/avatar/avatar.component';
 import { DarkModeButton, DarkModeButtonComponent } from './components/dark-mode-button/dark-mode-button.component';
+import { MCIconToggleSidebarButton } from '@mckit/layout';
 
 @Component({
     selector: 'app-root',
