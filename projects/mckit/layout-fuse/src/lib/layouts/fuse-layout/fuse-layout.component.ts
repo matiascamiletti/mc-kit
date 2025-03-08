@@ -28,7 +28,7 @@ export class MCFuseLayoutComponent {
 
   initSidebar() {
     if(this.verifyIfMobile()) {
-      //this.sidebarService.isOpen.set(false);
+      this.sidebarService.isOpen.set(false);
     }
   }
 
