@@ -8,6 +8,7 @@
 export * from './lib/services/topbar.service';
 export * from './lib/services/sidebar.service';
 export * from './lib/services/footer.service';
+export * from './lib/services/navigation.service';
 
 /**
  * Directives
