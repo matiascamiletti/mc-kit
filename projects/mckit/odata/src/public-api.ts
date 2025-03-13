@@ -14,3 +14,4 @@ export * from './lib/entities/mc-filter-processor';
 export * from './lib/components/odata-table.component';
 export * from './lib/components/odata-signal-table.component';
 export * from './lib/components/odata-multiselect/odata-multiselect.component';
+export * from './lib/components/load-more-button-odata/load-more-button-odata.component';

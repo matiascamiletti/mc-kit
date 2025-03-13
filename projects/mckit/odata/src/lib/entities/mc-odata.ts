@@ -55,6 +55,16 @@ export class MCOdata {
     return odata;
   }
 
+  clone(): MCOdata {
+    let odata = new MCOdata();
+    odata.top = this.top;
+    odata.skip = this.skip;
+    odata.orderBy = this.orderBy;
+    odata.filters = this.filters.clone();
+    odata.expands = this.expands;
+    return odata;
+  }
+
   static fromOnlyTop(top: number): MCOdata {
     const odata = new MCOdata();
     odata.top = top;

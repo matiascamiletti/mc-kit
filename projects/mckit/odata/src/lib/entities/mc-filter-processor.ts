@@ -178,4 +178,12 @@ export class MCFilterProcessor {
 
     return data;
   }
+
+  clone(): MCFilterProcessor {
+    let filter = new MCFilterProcessor();
+    filter.odata = this.odata;
+    filter.prepend = this.prepend;
+    filter.postpend = this.postpend;
+    return filter;
+  }
 }
