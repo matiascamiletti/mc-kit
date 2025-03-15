@@ -15,6 +15,12 @@ Core para integrar facilmente Auth en tu plataforma. Incluye paginas de login ya
 
 ## Installation
 
+### Use Schematics
+
+```bash
+ng g @mckit/schematics:add-login-page
+```
+
 ### 1. Install MIA Core
 
 [Instalar MIA Core](https://github.com/matiascamiletti/mc-kit/blob/main/projects/mckit/core/README.md#1-install-libraries)
