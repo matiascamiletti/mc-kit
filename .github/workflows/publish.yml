@@ -16,6 +16,7 @@ on:
       - 'projects/mckit/loader/package.json'
       - 'projects/mckit/table/package.json'
       - 'projects/mckit/odata/package.json'
+      - 'projects/mckit/form/package.json'
 
 jobs:
   filter:
@@ -32,6 +33,7 @@ jobs:
       loader: ${{ steps.filter.outputs.loader }}
       odata: ${{ steps.filter.outputs.table }}
       odata: ${{ steps.filter.outputs.odata }}
+      form: ${{ steps.filter.outputs.form }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -64,13 +66,15 @@ jobs:
               - 'projects/mckit/table/package.json'
             odata:
               - 'projects/mckit/odata/package.json'
+            form:
+              - 'projects/mckit/form/package.json'
 
   build-and-publish:
     needs: filter
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        project: [auth, core, cron, filter, layout, layout-core, layout-sakai, layout-fuse, loader, table, odata]
+        project: [auth, core, cron, filter, layout, layout-core, layout-sakai, layout-fuse, loader, table, odata, form]
     steps:
       - name: Checkout repository
         if: ${{ needs.filter.outputs[matrix.project] == 'true' }}
