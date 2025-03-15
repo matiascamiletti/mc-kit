@@ -10,6 +10,14 @@ Core de todo el paquete de librerias de MC Kit, incluye servicios, componentes y
 
 ## Installation
 
+### Auto install with Schematics
+
+```bash
+ng g @mckit/schematics:init
+```
+
+Esto se encarga de ejecutar todos los pasos, si no hubo error, ya ha dejado todo listo.
+
 ### 1. Install libraries
 
 ```bash
