@@ -19,3 +19,8 @@ export * from './lib/directives/dark-mode-click.directive';
  * Components
  */
 export * from './lib/components/page-heading/page-heading.component';
+
+/**
+ * Pages
+ */
+export * from './lib/pages/base-back-page';
