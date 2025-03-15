@@ -16,6 +16,9 @@
       "@mckit/filter": [
         "./dist/mckit/filter"
       ],
+      "@mckit/form": [
+        "./dist/mckit/form"
+      ],
       "@mckit/layout": [
         "./dist/mckit/layout"
       ],
