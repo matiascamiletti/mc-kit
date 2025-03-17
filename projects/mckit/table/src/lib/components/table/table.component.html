@@ -17,11 +17,11 @@
         }
       </tr>
   </ng-template>
-  <ng-template #body let-row>
+  <ng-template #body let-row let-rowIndex="rowIndex">
       <tr>
         @for (column of columnsPrinted(); track column) {
           @if (isTdTemplate(column.field)) {
-            <td><ng-container [ngTemplateOutlet]="getTdTemplate(column.field)" [ngTemplateOutletContext]="{ $implicit: row, row: row }"></ng-container></td>
+            <td><ng-container [ngTemplateOutlet]="getTdTemplate(column.field)" [ngTemplateOutletContext]="{ $implicit: row, row: row, rowIndex: rowIndex }"></ng-container></td>
           } @else {
             <td>{{ row[column.field] }}</td>
           }
