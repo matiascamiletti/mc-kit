@@ -21,7 +21,7 @@
       <tr>
         @for (column of columnsPrinted(); track column) {
           @if (isTdTemplate(column.field)) {
-            <td><ng-container [ngTemplateOutlet]="getTdTemplate(column.field)"></ng-container></td>
+            <td><ng-container [ngTemplateOutlet]="getTdTemplate(column.field)" [ngTemplateOutletContext]="{ $implicit: row, row: row }"></ng-container></td>
           } @else {
             <td>{{ row[column.field] }}</td>
           }
