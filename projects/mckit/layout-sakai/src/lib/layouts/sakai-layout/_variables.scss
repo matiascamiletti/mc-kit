@@ -1,4 +1,6 @@
 /* General */
-$scale:12px;                    /* main font size */
-$borderRadius:12px;             /* border radius of layout element e.g. card, sidebar */
-$transitionDuration:.2s;        /* transition duration of layout elements e.g. sidebar, overlay menus */
+:root {
+  --scale: 12px;
+  --border-radius: 12px;
+  --transition-duration: .2s;
+}

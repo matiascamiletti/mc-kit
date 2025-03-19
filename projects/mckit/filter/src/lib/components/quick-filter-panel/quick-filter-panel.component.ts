@@ -9,11 +9,10 @@ import { MCFilter, MCTypeFilter } from '../../entities/filter';
 import { MCResultFilter } from '../../entities/result';
 
 @Component({
-  selector: 'mc-quick-filter-panel',
-  standalone: true,
-  imports: [CommonModule, ButtonModule, ScrollerModule, ItemQuickFilterComponent, DividerModule],
-  templateUrl: './quick-filter-panel.component.html',
-  styleUrl: './quick-filter-panel.component.css'
+    selector: 'mc-quick-filter-panel',
+    imports: [CommonModule, ButtonModule, ScrollerModule, ItemQuickFilterComponent, DividerModule],
+    templateUrl: './quick-filter-panel.component.html',
+    styleUrl: './quick-filter-panel.component.css'
 })
 export class QuickFilterPanelComponent {
   quickFilters = input<Array<MCFilter>>();

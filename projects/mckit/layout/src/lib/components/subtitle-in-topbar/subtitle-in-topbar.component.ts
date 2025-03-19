@@ -3,11 +3,10 @@ import { MCComponent, MCCoreComponent } from '@mckit/core';
 import { MCTopbarService } from '@mckit/layout-core';
 
 @Component({
-  selector: 'lib-subtitle-in-topbar',
-  standalone: true,
-  imports: [],
-  templateUrl: './subtitle-in-topbar.component.html',
-  styleUrl: './subtitle-in-topbar.component.css'
+    selector: 'lib-subtitle-in-topbar',
+    imports: [],
+    templateUrl: './subtitle-in-topbar.component.html',
+    styleUrl: './subtitle-in-topbar.component.css'
 })
 export class SubtitleInTopbarComponent extends MCCoreComponent implements OnInit {
   topbarService: MCTopbarService = inject(MCTopbarService);

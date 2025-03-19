@@ -12,7 +12,6 @@ import { MultiSelectModule } from 'primeng/multiselect';
 
 @Component({
   selector: 'mc-item-advanced-filter',
-  standalone: true,
   imports: [CommonModule, FormsModule, DropdownModule, InputTextModule, ButtonModule, DropdownModule, AutoCompleteModule, MultiSelectModule],
   templateUrl: './item-advanced-filter.component.html',
   styleUrl: './item-advanced-filter.component.scss'

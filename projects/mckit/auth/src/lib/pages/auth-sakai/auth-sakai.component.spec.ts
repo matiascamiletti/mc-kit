@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AuthSakaiComponent } from './auth-sakai.component';
+import { MCAuthSakaiComponent } from './auth-sakai.component';
 
 describe('AuthSakaiComponent', () => {
-  let component: AuthSakaiComponent;
-  let fixture: ComponentFixture<AuthSakaiComponent>;
+  let component: MCAuthSakaiComponent;
+  let fixture: ComponentFixture<MCAuthSakaiComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AuthSakaiComponent]
+      imports: [MCAuthSakaiComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(AuthSakaiComponent);
+    fixture = TestBed.createComponent(MCAuthSakaiComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

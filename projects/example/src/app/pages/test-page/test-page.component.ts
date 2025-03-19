@@ -4,19 +4,22 @@ import { MCSimplePage } from '../../../../../mckit/layout/src/lib/pages/simple-p
 import { MenuItem } from 'primeng/api';
 import { CurrencyPipe } from '@angular/common';
 import { MCTwoColumnItemComponent } from '../../../../../mckit/layout/src/lib/lists/two-column-item/two-column-item.component';
-import { MCTopbarService } from '../../../../../mckit/layout-core/src/public-api';
+import { MCPageHeadingComponent, MCTopbarService } from '../../../../../mckit/layout-core/src/public-api';
 import { MCFilterOdataConverterService, MCFilterButtonComponent, MCItemFilter } from '../../../../../mckit/filter/src/public-api';
 import { MCConfigFilter } from '../../../../../mckit/filter/src/lib/entities/config';
 import { MCFilter } from '../../../../../mckit/filter/src/lib/entities/filter';
 import { MCResultFilter } from '../../../../../mckit/filter/src/lib/entities/result';
 import { Observable, of } from 'rxjs';
+import { MCTableComponent } from '../../../../../mckit/table/src/lib/components/table/table.component';
+import { MCColumn, MCListResponse } from '@mckit/core';
+import { MCTdTemplateDirective, MCThTemplateDirective } from '../../../../../mckit/table/src/public-api';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
-  selector: 'app-test-page',
-  standalone: true,
-  imports: [MCSimplePage, MCMiniResumeCard, CurrencyPipe, MCTwoColumnItemComponent, MCFilterButtonComponent],
-  templateUrl: './test-page.component.html',
-  styleUrl: './test-page.component.scss'
+    selector: 'app-test-page',
+    imports: [MCSimplePage, MCMiniResumeCard, CurrencyPipe, MCTwoColumnItemComponent, MCFilterButtonComponent, MCPageHeadingComponent, MCTableComponent, MCThTemplateDirective, MCTdTemplateDirective, ButtonModule],
+    templateUrl: './test-page.component.html',
+    styleUrl: './test-page.component.scss'
 })
 export class TestPageComponent implements OnInit {
 
@@ -29,6 +32,9 @@ export class TestPageComponent implements OnInit {
 
   filterConfig = new MCConfigFilter();
 
+  tableColumns: Array<MCColumn> = [];
+  tableResponse = new MCListResponse<any>();
+
   constructor(
     protected topbarService: MCTopbarService
   ) { }
@@ -36,6 +42,7 @@ export class TestPageComponent implements OnInit {
   ngOnInit(): void {
     this.topbarService.subtitle.update(() => 'Test Page');
     this.loadFilterConfig();
+    this.loadTable();
   }
 
   ngAfterViewInit(): void {
@@ -118,5 +125,19 @@ export class TestPageComponent implements OnInit {
         ],
       }),
     ];
+  }
+
+  loadTable() {
+    this.tableColumns = [
+      { field: 'name', title: 'Name', isSortable: true },
+      { field: 'game_number', title: 'Game #' },
+      { field: 'status', title: 'Status', isShow: true },
+      { field: 'field', title: 'Field' },
+    ]
+
+    this.tableResponse.data = [
+      { name: 'Name 1', game_number: 1, status: 'In progress', field: 'Field La bombonera' },
+      { name: 'Name 2', game_number: 2, status: 'Completed', field: 'Mostaza' },
+    ]
   }
 }

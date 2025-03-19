@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MCAuthHalfComponent, MCAuthHalfConfig } from '../../../../../mckit/auth/src/lib/pages/auth-half/auth-half.component';
 
 @Component({
-  selector: 'app-auth-half',
-  standalone: true,
-  imports: [MCAuthHalfComponent],
-  templateUrl: './auth-half.component.html',
-  styleUrl: './auth-half.component.scss'
+    selector: 'app-auth-half',
+    imports: [MCAuthHalfComponent],
+    templateUrl: './auth-half.component.html',
+    styleUrl: './auth-half.component.scss'
 })
 export class AuthHalfComponent implements OnInit {
 

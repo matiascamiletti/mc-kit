@@ -11,16 +11,13 @@ import { PasswordModule } from 'primeng/password';
 import { MCBaseAuthPageConfig } from '../../entities/mc-base-auth-page-config';
 import { MCBaseAuthPage } from '../base-auth-page.component';
 import { MCAuthModel } from '../../entities/mc-auth-model';
-import { MessageService } from 'primeng/api';
-import { MessagesModule } from 'primeng/messages';
+import { MessageModule } from 'primeng/message';
 
 @Component({
-  selector: 'mc-auth-sakai',
-  standalone: true,
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, ButtonModule, CardModule, IconFieldModule, InputIconModule, InputTextModule, PasswordModule, CheckboxModule, MessagesModule],
-  providers: [MessageService],
-  templateUrl: './auth-sakai.component.html',
-  styleUrl: './auth-sakai.component.scss'
+    selector: 'mc-auth-sakai',
+    imports: [CommonModule, FormsModule, ReactiveFormsModule, ButtonModule, CardModule, IconFieldModule, InputIconModule, InputTextModule, PasswordModule, CheckboxModule, MessageModule],
+    templateUrl: './auth-sakai.component.html',
+    styleUrl: './auth-sakai.component.scss'
 })
 export class MCAuthSakaiComponent extends MCBaseAuthPage {
   config = input.required<MCAuthSakaiConfig>();

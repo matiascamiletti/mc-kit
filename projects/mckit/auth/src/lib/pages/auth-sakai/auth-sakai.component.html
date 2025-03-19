@@ -1,23 +1,22 @@
-<div class="surface-ground flex align-items-center items-center justify-content-center justify-center min-h-screen min-w-screen overflow-hidden">
-  <div class="flex flex-col flex-column align-items-center items-center justify-content-center justify-center">
+<div class="bg-surface-50 dark:bg-surface-950 flex items-center justify-center min-h-screen min-w-[100vw] overflow-hidden">
+  <div class="flex flex-col items-center justify-center">
       @if (config().logo != undefined) {
         <img [src]="config().logo" class="mb-5 w-6rem flex-shrink-0">
       }
-      <div class="container-degradee" style="border-radius:56px; padding:0.3rem; background: linear-gradient(180deg, var(--primary-color) 10%, rgba(33, 150, 243, 0) 30%);">
-          <div class="container-content" class="w-full surface-card py-8 px-5 sm:px-8" style="border-radius:53px">
-              <div class="text-center mb-5">
-                  <div class="text-900 text-sm font-medium mb-3 uppercase tracking-widest">{{config().subtitle}}</div>
-                  <h1 class="text-600 font-black text-2xl">{{config().title}}</h1>
+      <div class="container-degradee" style="border-radius: 56px; padding: 0.3rem; background: linear-gradient(180deg, var(--primary-color) 10%, rgba(33, 150, 243, 0) 30%)">
+          <div class="container-content" class="w-full bg-surface-0 dark:bg-surface-900 py-20 px-8 sm:px-20" style="border-radius:53px">
+              <div class="text-center mb-8">
+                  <div class="text-surface-900 dark:text-surface-0 text-3xl font-medium mb-4">{{config().subtitle}}</div>
+                  <h1 class="text-muted-color font-medium">{{config().title}}</h1>
               </div>
 
               <form class="" [formGroup]="group" (ngSubmit)="onClickSubmit()">
                 <div>
-                  <label for="email" class="block mb-0 text-xs">Email</label>
-                  <input type="text" pInputText [placeholder]="config().emailPlaceholder ?? 'Email'" formControlName="email" name="email" class="w-full" />
-
+                  <label for="email" class="block text-surface-900 dark:text-surface-0 text-xl font-medium mb-2">Email</label>
+                  <input type="text" pInputText [placeholder]="config().emailPlaceholder ?? 'Email'" formControlName="email" name="email" class="w-full md:w-[30rem] mb-8" />
 
                   <div class="container-password-label flex justify-between justify-content-between align-items-end items-end">
-                    <label for="password1" class="block mb-0 mt-2 text-xs">Password</label>
+                    <label for="password1" class="block text-surface-900 dark:text-surface-0 font-medium text-xl mb-2">Password</label>
                     @if (config().resetPassword != undefined) {
                       <div class="more-actions">
                         <p-button [label]="config().resetPassword ?? 'Reset Password'" [link]="true" (onClick)="onAction('forgot-password')" styleClass="button-forgot-password" />
@@ -25,7 +24,7 @@
                     }
                   </div>
 
-                  <p-password id="password1" formControlName="password" name="password" placeholder="Password" [toggleMask]="true" styleClass="mb-5" inputStyleClass="w-full p-3 md:w-30rem" [placeholder]="config().passwordPlaceholder ?? 'Password'" (keyup.enter)="onClickSubmit()" [feedback]="false"></p-password>
+                  <p-password id="password1" formControlName="password" name="password" placeholder="Password" [toggleMask]="true" styleClass="mb-5 w-full" inputStyleClass="w-full p-3 md:w-30rem" [placeholder]="config().passwordPlaceholder ?? 'Password'" (keyup.enter)="onClickSubmit()" [feedback]="false"></p-password>
 
                   <!--<div class="flex align-items-center items-center justify-between mb-5 gap-5">
                       <div class="flex align-items-center items-center">
@@ -35,9 +34,11 @@
                       <a class="font-medium no-underline ml-2 text-right cursor-pointer" style="color: var(--primary-color)">Forgot password?</a>
                   </div>-->
 
-                  <p-messages />
+                  @for (message of messages(); track message; let first = $first) {
+                    <p-message [severity]="message.severity" [text]="message.text" [ngClass]="{ 'mt-4': !first }" />
+                  }
 
-                  <p-button pRipple [label]="config().submitButton ?? 'Log in'" [loading]="isSending" size="large" [style]="{ width: '100%' }" (click)="onClickSubmit()" [disabled]="group.invalid || isSending" />
+                  <p-button pRipple [label]="config().submitButton ?? 'Log in'" [loading]="isSending()" size="large" [style]="{ width: '100%' }" (click)="onClickSubmit()" [disabled]="group.invalid || isSending()" />
 
                 </div>
               </form>

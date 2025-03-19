@@ -8,11 +8,10 @@ import { MCFilter } from '../../entities/filter';
 import { MCResultFilter } from '../../entities/result';
 
 @Component({
-  selector: 'mc-advanced-filters-panel',
-  standalone: true,
-  imports: [CommonModule, ButtonModule, ScrollerModule, DividerModule, ItemAdvancedFilterComponent],
-  templateUrl: './advanced-filters-panel.component.html',
-  styleUrl: './advanced-filters-panel.component.css'
+    selector: 'mc-advanced-filters-panel',
+    imports: [CommonModule, ButtonModule, ScrollerModule, DividerModule, ItemAdvancedFilterComponent],
+    templateUrl: './advanced-filters-panel.component.html',
+    styleUrl: './advanced-filters-panel.component.css'
 })
 export class AdvancedFiltersPanelComponent {
 

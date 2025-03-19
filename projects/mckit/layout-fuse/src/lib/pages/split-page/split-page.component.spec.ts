@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { CoreComponent } from './core.component';
+import { MCSplitPageComponent } from './split-page.component';
 
-describe('CoreComponent', () => {
-  let component: CoreComponent;
-  let fixture: ComponentFixture<CoreComponent>;
+describe('MCSplitPageComponent', () => {
+  let component: MCSplitPageComponent;
+  let fixture: ComponentFixture<MCSplitPageComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [CoreComponent]
+      imports: [MCSplitPageComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(CoreComponent);
+    fixture = TestBed.createComponent(MCSplitPageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

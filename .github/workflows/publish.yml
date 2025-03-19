@@ -12,8 +12,11 @@ on:
       - 'projects/mckit/layout/package.json'
       - 'projects/mckit/layout-core/package.json'
       - 'projects/mckit/layout-sakai/package.json'
+      - 'projects/mckit/layout-fuse/package.json'
       - 'projects/mckit/loader/package.json'
+      - 'projects/mckit/table/package.json'
       - 'projects/mckit/odata/package.json'
+      - 'projects/mckit/form/package.json'
 
 jobs:
   filter:
@@ -26,8 +29,11 @@ jobs:
       layout: ${{ steps.filter.outputs.layout }}
       layout-core: ${{ steps.filter.outputs['layout-core'] }}
       layout-sakai: ${{ steps.filter.outputs['layout-sakai'] }}
+      layout-fuse: ${{ steps.filter.outputs['layout-fuse'] }}
       loader: ${{ steps.filter.outputs.loader }}
+      odata: ${{ steps.filter.outputs.table }}
       odata: ${{ steps.filter.outputs.odata }}
+      form: ${{ steps.filter.outputs.form }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -52,17 +58,23 @@ jobs:
               - 'projects/mckit/layout-core/package.json'
             layout-sakai:
               - 'projects/mckit/layout-sakai/package.json'
+            layout-fuse:
+              - 'projects/mckit/layout-fuse/package.json'
             loader:
               - 'projects/mckit/loader/package.json'
+            table:
+              - 'projects/mckit/table/package.json'
             odata:
               - 'projects/mckit/odata/package.json'
+            form:
+              - 'projects/mckit/form/package.json'
 
   build-and-publish:
     needs: filter
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        project: [auth, core, cron, filter, layout, layout-core, layout-sakai, loader, odata]
+        project: [auth, core, cron, filter, layout, layout-core, layout-sakai, layout-fuse, loader, table, odata, form]
     steps:
       - name: Checkout repository
         if: ${{ needs.filter.outputs[matrix.project] == 'true' }}

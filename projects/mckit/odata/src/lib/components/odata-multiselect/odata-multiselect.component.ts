@@ -7,11 +7,10 @@ import { debounceTime, of, Subscription, switchMap, tap } from 'rxjs';
 import { MCOdata } from '../../entities/mc-odata';
 
 @Component({
-  selector: 'mc-odata-multiselect',
-  standalone: true,
-  imports: [CommonModule, FormsModule, MultiSelectModule],
-  templateUrl: './odata-multiselect.component.html',
-  styleUrl: './odata-multiselect.component.css'
+    selector: 'mc-odata-multiselect',
+    imports: [CommonModule, FormsModule, MultiSelectModule],
+    templateUrl: './odata-multiselect.component.html',
+    styleUrl: './odata-multiselect.component.css'
 })
 export class OdataMultiselectComponent implements OnInit {
 

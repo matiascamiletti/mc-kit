@@ -16,11 +16,17 @@
       "@mckit/filter": [
         "./dist/mckit/filter"
       ],
+      "@mckit/form": [
+        "./dist/mckit/form"
+      ],
       "@mckit/layout": [
         "./dist/mckit/layout"
       ],
       "@mckit/layout-core": [
         "./dist/mckit/layout-core"
+      ],
+      "@mckit/layout-fuse": [
+        "./dist/mckit/layout-fuse"
       ],
       "@mckit/layout-sakai": [
         "./dist/mckit/layout-sakai"
@@ -30,6 +36,9 @@
       ],
       "@mckit/odata": [
         "./dist/mckit/odata"
+      ],
+      "@mckit/table": [
+        "./dist/mckit/table"
       ]
     },
     "outDir": "./dist/out-tsc",

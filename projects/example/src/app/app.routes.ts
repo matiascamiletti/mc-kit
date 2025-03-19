@@ -6,6 +6,8 @@ import { AuthHalfComponent } from './pages/auth-half/auth-half.component';
 import { AuthSakaiComponent } from './pages/auth-sakai/auth-sakai.component';
 import { MCSakaiLayoutComponent } from '../../../mckit/layout-sakai/src/public-api';
 import { TestTableComponent } from './pages/test-table/test-table.component';
+import { MCFuseLayoutComponent } from '../../../mckit/layout-fuse/src/public-api';
+import { RegisterSplitPageComponent } from './pages/register-split-page/register-split-page.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'basic', pathMatch: 'full' },
@@ -36,7 +38,24 @@ export const routes: Routes = [
       },
     ]
   },
+  {
+    path: 'fuse',
+    component: MCFuseLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: TestPageComponent,
+        title: 'Test page'
+      },
+      {
+        path: 'table',
+        component: TestTableComponent,
+        title: 'Test Table'
+      },
+    ]
+  },
   { path: 'login', component: AuthBasicComponent },
   { path: 'login-half', component: AuthHalfComponent },
   { path: 'login-sakai', component: AuthSakaiComponent },
+  { path: 'register-split', component: RegisterSplitPageComponent },
 ];

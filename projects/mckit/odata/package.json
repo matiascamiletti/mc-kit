@@ -1,11 +1,11 @@
 {
   "name": "@mckit/odata",
-  "version": "18.0.14",
+  "version": "19.0.2",
   "peerDependencies": {
-    "@angular/common": "^18.1.0",
-    "@angular/core": "^18.1.0",
-    "primeng": "^17.18.9",
-    "@mckit/core": "^18.0.18"
+    "@angular/common": "^19.0.0",
+    "@angular/core": "^19.0.0",
+    "@primeng/themes": "^19.0.0",
+    "@mckit/core": "^19.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"

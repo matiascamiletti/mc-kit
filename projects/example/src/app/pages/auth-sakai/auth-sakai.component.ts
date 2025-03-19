@@ -2,11 +2,10 @@ import { Component } from '@angular/core';
 import { MCAuthModel, MCAuthSakaiComponent, MCAuthSakaiConfig } from '../../../../../mckit/auth/src/public-api';
 
 @Component({
-  selector: 'app-auth-sakai',
-  standalone: true,
-  imports: [MCAuthSakaiComponent],
-  templateUrl: './auth-sakai.component.html',
-  styleUrl: './auth-sakai.component.scss'
+    selector: 'app-auth-sakai',
+    imports: [MCAuthSakaiComponent],
+    templateUrl: './auth-sakai.component.html',
+    styleUrl: './auth-sakai.component.scss'
 })
 export class AuthSakaiComponent {
   config!: MCAuthSakaiConfig;

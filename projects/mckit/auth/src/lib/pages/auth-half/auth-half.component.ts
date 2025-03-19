@@ -4,11 +4,10 @@ import { MCAuthModel } from '../../entities/mc-auth-model';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'mc-auth-half',
-  standalone: true,
-  imports: [CommonModule],
-  templateUrl: './auth-half.component.html',
-  styleUrl: './auth-half.component.scss'
+    selector: 'mc-auth-half',
+    imports: [CommonModule],
+    templateUrl: './auth-half.component.html',
+    styleUrl: './auth-half.component.scss'
 })
 export class MCAuthHalfComponent {
   @Input() config!: MCAuthHalfConfig;
