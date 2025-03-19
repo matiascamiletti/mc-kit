@@ -66,14 +66,14 @@ export class TestPageComponent implements OnInit {
         key: 'game_number',
         options: [
           { label: '1', value: '1' },
-            { label: '2', value: '2' },
-            { label: '3', value: '3' },
-            { label: '4', value: '4' },
-            { label: '5', value: '5' },
-            { label: '6', value: '6' },
-            { label: '7', value: '7' },
-            { label: '8', value: '8' },
-            { label: '9', value: '9' },
+          { label: '2', value: '2' },
+          { label: '3', value: '3' },
+          { label: '4', value: '4' },
+          { label: '5', value: '5' },
+          { label: '6', value: '6' },
+          { label: '7', value: '7' },
+          { label: '8', value: '8' },
+          { label: '9', value: '9' },
             { label: '10', value: '10' }
         ]
       }),
@@ -88,17 +88,35 @@ export class TestPageComponent implements OnInit {
         placeholder: 'Select a status'
       }),
       MCFilter.textQuickFilter({
-        title: 'Field',
+        title: 'Text Quick Filter Field',
+        key: 'field',
+        options: [{ label: 'Field La bombonera', value: 'Field La bombonera' }],
+      }),
+      MCFilter.autocomplete({
+        title: 'Autocomplete Field',
+        key: 'field',
+        filter: this.onFilterAutocomplete.bind(this),
+      }),
+      MCFilter.multiselect({
+        title: 'Multi Select Field',
         key: 'field',
         options: [
           { label: 'Field La bombonera', value: 'Field La bombonera' },
-        ]
+          { label: 'Mostaza', value: 'Mostaza' },
+          { label: 'La bombonera', value: 'La bombonera' },
+          { label: 'McDonalds', value: 'McDonalds' },
+        ],
       }),
-      MCFilter.autocomplete({
-        title: 'Field',
+      MCFilter.select({
+        title: 'Select Field',
         key: 'field',
-        filter: this.onFilterAutocomplete.bind(this)
-      })
+        options: [
+          { label: 'Field La bombonera', value: 'Field La bombonera' },
+          { label: 'Mostaza', value: 'Mostaza' },
+          { label: 'La bombonera', value: 'La bombonera' },
+          { label: 'McDonalds', value: 'McDonalds' },
+        ],
+      }),
     ];
   }
 }
