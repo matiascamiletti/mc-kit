@@ -51,6 +51,7 @@ export class ShowColumnsButton implements OnInit {
     .subscribe((value: any) => {
       if(value){
         this.selectedColumns = JSON.parse(value);
+        this.onSelected.emit(this.selectedColumns ?? []);
       }
     });
   }
