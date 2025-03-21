@@ -4,10 +4,13 @@
 
     <div class="flex">
       @if (hasSearch()) {
-        <mc-search-field #searchField [key]="keySearch()" [placeholder]="'Search...'" (onSearch)="onSearch($event)" />
+        <mc-search-field #searchField [key]="key()" [placeholder]="'Search...'" (onSearch)="onSearch($event)" />
       }
       @if(filters()){
         <mc-filter-button [config]="filters()!" (change)="onFilter($event)" class="ml-3" />
+      }
+      @if (hasEditColumns()) {
+        <mc-show-columns-button [initialColumns]="columns()" [key]="key()" (onSelected)="onChangeColumns($event)" class="ml-3" />
       }
 
     </div>

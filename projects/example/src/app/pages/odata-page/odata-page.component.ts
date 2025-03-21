@@ -20,6 +20,13 @@ export class OdataPageComponent implements OnInit {
 
   filters = new MCConfigFilter();
 
+  columns = [
+    { field: 'name', title: 'Name', isSortable: true },
+    { field: 'game_number', title: 'Game #' },
+    { field: 'status', title: 'Status', isShow: true },
+    { field: 'field', title: 'Field' },
+  ];
+
   ngOnInit(): void {
     this.loadFilterConfig();
   }
