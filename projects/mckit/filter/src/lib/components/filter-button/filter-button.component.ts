@@ -1,4 +1,4 @@
-import { Component, input, output, signal } from '@angular/core';
+import { Component, computed, input, output, signal } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { MCFilterPanelComponent } from '../filter-panel/filter-panel.component';
 import { BadgeModule } from 'primeng/badge';
@@ -17,6 +17,7 @@ export class MCFilterButton {
   change = output<Array<MCResultFilter>>();
 
   total = signal<string>('');
+  severity = computed(() => this.total() == '' ? 'secondary' : 'primary');
 
   updateTotal(total: number) {
     if(total == 0){
