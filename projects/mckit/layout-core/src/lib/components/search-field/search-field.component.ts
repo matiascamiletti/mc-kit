@@ -28,8 +28,8 @@ export class MCSearchField implements OnInit, OnDestroy {
   inputSubscription?: Subscription;
 
   ngOnInit(): void {
-    this.loadStorage();
     this.loadInput();
+    this.loadStorage();
   }
 
   ngOnDestroy(): void {
