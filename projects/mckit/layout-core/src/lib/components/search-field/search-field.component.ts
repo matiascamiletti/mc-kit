@@ -11,7 +11,7 @@ import { debounceTime, Subscription } from 'rxjs';
   selector: 'mc-search-field',
   imports: [CommonModule, FormsModule, ReactiveFormsModule, IconFieldModule, InputIconModule, InputTextModule],
   templateUrl: './search-field.component.html',
-  styleUrl: './search-field.component.css'
+  styleUrl: './search-field.component.scss'
 })
 export class MCSearchField implements OnInit, OnDestroy {
   key = input<string>();
@@ -26,6 +26,7 @@ export class MCSearchField implements OnInit, OnDestroy {
 
   input = new FormControl<string>('');
   inputSubscription?: Subscription;
+  inputActive = signal<boolean>(false);
 
   ngOnInit(): void {
     this.loadInput();
@@ -46,6 +47,7 @@ export class MCSearchField implements OnInit, OnDestroy {
     .subscribe((value: string|null) => {
       this.isLoading.set(true);
       this.onSearch.emit(value ?? '');
+      this.inputActive.set(value != null && value != '');
       this.saveStorage(value);
     });
   }
