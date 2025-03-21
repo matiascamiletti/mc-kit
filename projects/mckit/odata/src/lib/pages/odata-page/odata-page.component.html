@@ -1,7 +1,14 @@
 <div class="odata-page">
 
   <mc-page-heading [breadcrumb]="breadcrumb()" [title]="title()" [subtitle]="subtitle()">
-    <button>Testing</button>
+
+    <div class="flex">
+      @if (hasSearch()) {
+        <mc-search-field #searchField [key]="keySearch()" [placeholder]="'Search...'" (onSearch)="onSearch($event)" />
+      }
+
+    </div>
+
   </mc-page-heading>
 
 
