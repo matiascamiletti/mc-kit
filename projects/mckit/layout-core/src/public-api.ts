@@ -19,6 +19,7 @@ export * from './lib/directives/dark-mode-click.directive';
  * Components
  */
 export * from './lib/components/page-heading/page-heading.component';
+export * from './lib/components/search-field/search-field.component';
 
 /**
  * Pages

@@ -1,11 +1,13 @@
 {
   "name": "@mckit/layout-core",
-  "version": "19.0.3",
+  "version": "19.0.4",
   "peerDependencies": {
     "@angular/common": "^19.0.0",
     "@angular/core": "^19.0.0",
     "@mckit/core": "^19.0.0",
-    "primeng": "^19.0.0"
+    "primeng": "^19.0.0",
+    "@primeng/themes": "^19.0.0",
+    "@ngx-pwa/local-storage": "^19.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
