@@ -8,6 +8,7 @@ import { MCSakaiLayoutComponent } from '../../../mckit/layout-sakai/src/public-a
 import { TestTableComponent } from './pages/test-table/test-table.component';
 import { MCFuseLayoutComponent } from '../../../mckit/layout-fuse/src/public-api';
 import { RegisterSplitPageComponent } from './pages/register-split-page/register-split-page.component';
+import { OdataPageComponent } from './pages/odata-page/odata-page.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'basic', pathMatch: 'full' },
@@ -51,6 +52,11 @@ export const routes: Routes = [
         path: 'table',
         component: TestTableComponent,
         title: 'Test Table'
+      },
+      {
+        path: 'odata',
+        component: OdataPageComponent,
+        title: 'Odata Table'
       },
     ]
   },
