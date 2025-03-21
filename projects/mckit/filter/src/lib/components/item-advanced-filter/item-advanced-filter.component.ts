@@ -8,12 +8,13 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { AutoCompleteCompleteEvent, AutoCompleteModule } from 'primeng/autocomplete';
 import { MCItemFilter } from '../../entities/item-filter';
+import { MultiSelectModule } from 'primeng/multiselect';
 
 @Component({
-    selector: 'mc-item-advanced-filter',
-    imports: [CommonModule, FormsModule, DropdownModule, InputTextModule, ButtonModule, DropdownModule, AutoCompleteModule],
-    templateUrl: './item-advanced-filter.component.html',
-    styleUrl: './item-advanced-filter.component.scss'
+  selector: 'mc-item-advanced-filter',
+  imports: [CommonModule, FormsModule, DropdownModule, InputTextModule, ButtonModule, DropdownModule, AutoCompleteModule, MultiSelectModule],
+  templateUrl: './item-advanced-filter.component.html',
+  styleUrl: './item-advanced-filter.component.scss'
 })
 export class ItemAdvancedFilterComponent {
   filters = input.required<Array<MCFilter>>();
@@ -31,6 +32,7 @@ export class ItemAdvancedFilterComponent {
   typeText = MCTypeFilter.TEXT;
   typeSelect = MCTypeFilter.SELECT;
   typeAutocomplete = MCTypeFilter.AUTOCOMPLETE;
+  typeMultiselect = MCTypeFilter.MULTISELECT;
 
   filteredOptions: Array<MCItemFilter> = [];
 

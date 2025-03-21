@@ -34,6 +34,8 @@
         <p-dropdown [options]="result().filter?.options" [(ngModel)]="result().value" optionLabel="label" optionValue="value" [placeholder]="result().filter?.data?.placeholder" styleClass="w-full" [appendTo]="'body'" />
       } @else if (result().filter?.type == typeAutocomplete) {
         <p-autoComplete [(ngModel)]="result().value" [suggestions]="filteredOptions" (completeMethod)="onFilterAutocomplete($event)" [placeholder]="result().filter?.data?.placeholder" optionLabel="label" optionValue="value" [showClear]="true" [appendTo]="'body'" styleClass="w-full" inputStyleClass="w-full" />
+      } @else if (result().filter?.type == typeMultiselect) {
+        <p-multiSelect [(ngModel)]="result().value" [options]="result().filter?.options" optionLabel="label" optionValue="value" [placeholder]="result().filter?.data?.placeholder" [appendTo]="'body'" styleClass="w-full" [showToggleAll]="false" />
       } @else {
         <input type="text" pInputText [(ngModel)]="result().value" class="w-full" placeholder="Value" />
       }
