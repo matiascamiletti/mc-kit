@@ -6,6 +6,9 @@
       @if (hasSearch()) {
         <mc-search-field #searchField [key]="keySearch()" [placeholder]="'Search...'" (onSearch)="onSearch($event)" />
       }
+      @if(filters()){
+        <mc-filter-button [config]="filters()!" (change)="onFilter($event)" class="ml-3" />
+      }
 
     </div>
 

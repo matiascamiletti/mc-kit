@@ -6,6 +6,7 @@
     "@angular/core": "^19.0.0",
     "@primeng/themes": "^19.0.0",
     "@mckit/core": "^19.0.0",
+    "@mckit/filter": "^19.0.0",
     "@mckit/layout-core": "^19.0.0"
   },
   "dependencies": {
