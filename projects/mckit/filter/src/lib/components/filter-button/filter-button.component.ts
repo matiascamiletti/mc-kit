@@ -11,7 +11,7 @@ import { MCResultFilter } from '../../entities/result';
     templateUrl: './filter-button.component.html',
     styleUrl: './filter-button.component.css'
 })
-export class MCFilterButtonComponent {
+export class MCFilterButton {
   config = input.required<MCConfigFilter>();
 
   change = output<Array<MCResultFilter>>();

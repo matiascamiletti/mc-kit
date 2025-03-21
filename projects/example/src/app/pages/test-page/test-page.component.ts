@@ -5,7 +5,7 @@ import { MenuItem } from 'primeng/api';
 import { CurrencyPipe } from '@angular/common';
 import { MCTwoColumnItemComponent } from '../../../../../mckit/layout/src/lib/lists/two-column-item/two-column-item.component';
 import { MCPageHeadingComponent, MCTopbarService } from '../../../../../mckit/layout-core/src/public-api';
-import { MCFilterOdataConverterService, MCFilterButtonComponent, MCItemFilter } from '../../../../../mckit/filter/src/public-api';
+import { MCFilterOdataConverterService, MCFilterButton, MCItemFilter } from '../../../../../mckit/filter/src/public-api';
 import { MCConfigFilter } from '../../../../../mckit/filter/src/lib/entities/config';
 import { MCFilter } from '../../../../../mckit/filter/src/lib/entities/filter';
 import { MCResultFilter } from '../../../../../mckit/filter/src/lib/entities/result';
@@ -17,7 +17,7 @@ import { ButtonModule } from 'primeng/button';
 
 @Component({
     selector: 'app-test-page',
-    imports: [MCSimplePage, MCMiniResumeCard, CurrencyPipe, MCTwoColumnItemComponent, MCFilterButtonComponent, MCPageHeadingComponent, MCTableComponent, MCThTemplateDirective, MCTdTemplateDirective, ButtonModule],
+    imports: [MCSimplePage, MCMiniResumeCard, CurrencyPipe, MCTwoColumnItemComponent, MCFilterButton, MCPageHeadingComponent, MCTableComponent, MCThTemplateDirective, MCTdTemplateDirective, ButtonModule],
     templateUrl: './test-page.component.html',
     styleUrl: './test-page.component.scss'
 })
