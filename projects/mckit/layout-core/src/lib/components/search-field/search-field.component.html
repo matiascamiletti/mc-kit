@@ -1,7 +1,7 @@
-<div class="mc-search-field-container">
-  <p-iconField>
+<div class="mc-search-field-container w-full md:w-auto">
+  <p-iconField styleClass="w-full md:w-auto">
     <p-inputIcon styleClass="pi pi-search" />
-    <input type="text" pInputText [placeholder]="placeholder()" [formControl]="input" [ngClass]="{'ng-primary': inputActive()}" class="" />
+    <input type="text" pInputText [placeholder]="placeholder()" [formControl]="input" [ngClass]="{'ng-primary': inputActive()}" class="w-full md:w-auto" />
     @if (isLoading()) {
       <p-inputicon styleClass="pi pi-spin pi-spinner" />
     }
