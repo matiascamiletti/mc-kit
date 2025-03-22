@@ -4,19 +4,20 @@ import { MCApiRestHttpService, MCColumn, MCListResponse } from '@mckit/core';
 import { MCConfigFilter, MCFilterButton, MCFilterOdataConverterService, MCResultFilter } from '@mckit/filter';
 import { MCPageHeadingComponent, MCSearchField } from '@mckit/layout-core';
 import { MCTable, MCTdTemplateDirective, MCThTemplateDirective, ShowColumnsButton } from '@mckit/table';
-import { MenuItem, MessageService, SortMeta } from 'primeng/api';
+import { ConfirmationService, MenuItem, MessageService, SortMeta } from 'primeng/api';
 import { catchError, Observable, Subscription, tap } from 'rxjs';
 import { MCOdata } from '../../entities/mc-odata';
 import { ToastModule } from 'primeng/toast';
 import { TablePageEvent } from 'primeng/table';
+import { ConfirmDialogModule } from 'primeng/confirmdialog';
 
 
 @Component({
   selector: 'mc-odata-page',
-  imports: [CommonModule, MCPageHeadingComponent, MCSearchField, MCFilterButton, ShowColumnsButton, MCTable, MCThTemplateDirective, MCTdTemplateDirective, ToastModule],
+  imports: [CommonModule, MCPageHeadingComponent, MCSearchField, MCFilterButton, ShowColumnsButton, MCTable, MCThTemplateDirective, MCTdTemplateDirective, ToastModule, ConfirmDialogModule],
   templateUrl: './odata-page.component.html',
   styleUrl: './odata-page.component.css',
-  providers: [MessageService]
+  providers: [MessageService, ConfirmationService]
 
 })
 export class MCOdataPage {
@@ -55,6 +56,7 @@ export class MCOdataPage {
   isLoading = signal<boolean>(true);
 
   messageService = inject(MessageService);
+  confirmationService = inject(ConfirmationService);
 
   onPage(event: TablePageEvent) {
     this.data.setPageByPrimeNg(event);
@@ -109,27 +111,45 @@ export class MCOdataPage {
     this.selectedColumns.set(filtered);
   }
 
+  onDelete(id: any) {
+    this.httpService()?.delete(id).subscribe(() => {
+      this.loadItems();
+    });
+  }
+
   requestList(): Observable<MCListResponse<any>> {
     return this.httpService().list(this.data.toString());
   }
 
   loadItems() {
-      this.isLoading.set(true);
-      if (this.subscriptionList) {
-        this.subscriptionList.unsubscribe();
-      }
-
-      this.subscriptionList = this.requestList()
-      .pipe(
-        catchError((data) => {
-          this.messageService.add({ severity: 'error', summary: 'An error has occurred', detail: data.error?.message?.message || data.error.message || data.message || 'Unknown error' });
-          this.searchField()?.stopLoading();
-          this.isLoading.set(false);
-          throw data;
-        }),
-        tap(response => this.items.set(response)),
-        tap(response => this.searchField()?.stopLoading())
-      )
-      .subscribe(() => this.isLoading.set(false));
+    this.isLoading.set(true);
+    if (this.subscriptionList) {
+      this.subscriptionList.unsubscribe();
     }
+
+    this.subscriptionList = this.requestList()
+    .pipe(
+      catchError((data) => {
+        this.messageService.add({ severity: 'error', summary: 'An error has occurred', detail: data.error?.message?.message || data.error.message || data.message || 'Unknown error' });
+        this.searchField()?.stopLoading();
+        this.isLoading.set(false);
+        throw data;
+      }),
+      tap(response => this.items.set(response)),
+      tap(response => this.searchField()?.stopLoading())
+    )
+    .subscribe(() => this.isLoading.set(false));
+  }
+
+  onClickRemove(id: any) {
+    this.confirmationService.confirm({
+      message: 'Are you sure that you want to proceed?',
+      header: 'Delete Confirmation',
+      icon: 'pi pi-exclamation-triangle',
+      acceptIcon:"none",
+      rejectIcon:"none",
+      rejectButtonStyleClass:"p-button-text",
+      accept: () => { this.onDelete(id); },
+    });
+  }
 }
