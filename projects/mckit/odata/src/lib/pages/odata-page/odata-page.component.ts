@@ -4,7 +4,7 @@ import { MCApiRestHttpService, MCColumn, MCListResponse } from '@mckit/core';
 import { MCConfigFilter, MCFilterButton, MCResultFilter } from '@mckit/filter';
 import { MCPageHeadingComponent, MCSearchField } from '@mckit/layout-core';
 import { MCTable, MCTdTemplateDirective, MCThTemplateDirective, ShowColumnsButton } from '@mckit/table';
-import { MenuItem, MessageService } from 'primeng/api';
+import { MenuItem, MessageService, SortMeta } from 'primeng/api';
 import { catchError, Observable, Subscription, tap } from 'rxjs';
 import { MCOdata } from '../../entities/mc-odata';
 import { ToastModule } from 'primeng/toast';
@@ -57,6 +57,15 @@ export class MCOdataPage {
 
   onPage(event: TablePageEvent) {
     this.data.setPageByPrimeNg(event);
+    this.loadItems();
+  }
+
+  onSort(event: SortMeta) {
+    if(event.order == -1){
+      this.data.orderBy = event.field + ' desc';
+    } else {
+      this.data.orderBy = event.field + ' asc';
+    }
     this.loadItems();
   }
 
