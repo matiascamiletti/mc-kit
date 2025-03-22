@@ -25,6 +25,12 @@ export class MCTable {
   paginator = input<boolean>(true);
   onPage = output<TablePageEvent>();
 
+  onSort = output<any>();
+
+  onSortChange(event: any) {
+    this.onSort.emit(event);
+  }
+
   onPageChange(event: TablePageEvent) {
     this.onPage.emit(event);
   }
