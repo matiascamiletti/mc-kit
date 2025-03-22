@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, contentChildren, input, TemplateRef } from '@angular/core';
+import { Component, computed, contentChildren, input, output, TemplateRef } from '@angular/core';
 import { MCColumn, MCListResponse } from '@mckit/core';
-import { TableModule } from 'primeng/table';
+import { TableModule, TablePageEvent } from 'primeng/table';
 import { MCThTemplateDirective } from '../../directives/th-template.directive';
 import { MCTdTemplateDirective } from '../../directives/td-template.directive';
 
@@ -23,6 +23,11 @@ export class MCTable {
   tdTemplates = contentChildren(MCTdTemplateDirective);
 
   paginator = input<boolean>(true);
+  onPage = output<TablePageEvent>();
+
+  onPageChange(event: TablePageEvent) {
+    this.onPage.emit(event);
+  }
 
   isThTemplate(field: string): boolean {
     return this.thTemplates().some(template => template.getFieldName() === field);
