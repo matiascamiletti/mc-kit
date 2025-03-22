@@ -17,4 +17,10 @@
   <p-button label="Change status" /> {{ row.status }}
 </ng-template>
 
+<ng-template mcTdTemplate="actions" let-row>
+  <mc-actions-column [item]="row"></mc-actions-column>
+</ng-template>
+
+
+
 </mc-odata-page>

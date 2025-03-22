@@ -5,12 +5,12 @@ import { MenuItem } from 'primeng/api';
 import { MCConfigFilter, MCFilter, MCItemFilter } from '../../../../../mckit/filter/src/public-api';
 import { Observable, of } from 'rxjs';
 import { ButtonModule } from 'primeng/button';
-import { MCTdTemplateDirective, MCThTemplateDirective } from '@mckit/table';
+import { MCActionsColumn, MCTdTemplateDirective, MCThTemplateDirective } from '@mckit/table';
 import { TestService } from '../../services/test.service';
 
 @Component({
   selector: 'app-odata-page',
-  imports: [CommonModule, MCOdataPage, ButtonModule, MCThTemplateDirective, MCTdTemplateDirective],
+  imports: [CommonModule, MCOdataPage, ButtonModule, MCThTemplateDirective, MCTdTemplateDirective, MCActionsColumn],
   templateUrl: './odata-page.component.html',
   styleUrl: './odata-page.component.scss'
 })
@@ -30,6 +30,7 @@ export class OdataPageComponent implements OnInit {
     { field: 'game_number', title: 'Game #' },
     { field: 'status', title: 'Status', isShow: true },
     { field: 'field', title: 'Field' },
+    { field: 'actions', title: 'Actions' },
   ];
 
   searchFieldsKey = ['name'];
