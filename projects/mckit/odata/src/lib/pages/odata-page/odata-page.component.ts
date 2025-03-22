@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, contentChildren, inject, input, signal, viewChild } from '@angular/core';
 import { MCApiRestHttpService, MCColumn, MCListResponse } from '@mckit/core';
-import { MCConfigFilter, MCFilterButton, MCResultFilter } from '@mckit/filter';
+import { MCConfigFilter, MCFilterButton, MCFilterOdataConverterService, MCResultFilter } from '@mckit/filter';
 import { MCPageHeadingComponent, MCSearchField } from '@mckit/layout-core';
 import { MCTable, MCTdTemplateDirective, MCThTemplateDirective, ShowColumnsButton } from '@mckit/table';
 import { MenuItem, MessageService, SortMeta } from 'primeng/api';
@@ -46,6 +46,7 @@ export class MCOdataPage {
   httpService = input.required<MCApiRestHttpService<any>>();
 
   data = new MCOdata();
+  odataConverter = inject(MCFilterOdataConverterService);
 
   subscriptionList?: Subscription;
 
@@ -95,8 +96,12 @@ export class MCOdataPage {
   }
 
   onFilter(filters: Array<MCResultFilter>) {
-    //console.log(filters);
-    //console.log(this.odataConverter.convert(filters));
+    let filterOdata = this.odataConverter.convert(filters);
+
+    this.data.filters.cleanOdata();
+    this.data.filters.setOdata(filterOdata);
+
+    this.loadItems();
   }
 
   onChangeColumns(columns: Array<MCColumn>) {
