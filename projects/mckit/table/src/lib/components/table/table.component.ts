@@ -11,7 +11,7 @@ import { MCTdTemplateDirective } from '../../directives/td-template.directive';
   templateUrl: './table.component.html',
   styleUrl: './table.component.scss'
 })
-export class MCTableComponent {
+export class MCTable {
 
   columns = input.required<Array<MCColumn>>();
   columnsPrinted = computed(() => this.columns().filter((column: MCColumn) => column.isShow == undefined || column.isShow));
