@@ -10,14 +10,14 @@ import { MCConfigFilter } from '../../../../../mckit/filter/src/lib/entities/con
 import { MCFilter } from '../../../../../mckit/filter/src/lib/entities/filter';
 import { MCResultFilter } from '../../../../../mckit/filter/src/lib/entities/result';
 import { Observable, of } from 'rxjs';
-import { MCTableComponent } from '../../../../../mckit/table/src/lib/components/table/table.component';
+import { MCTable } from '../../../../../mckit/table/src/lib/components/table/table.component';
 import { MCColumn, MCListResponse } from '@mckit/core';
 import { MCTdTemplateDirective, MCThTemplateDirective } from '../../../../../mckit/table/src/public-api';
 import { ButtonModule } from 'primeng/button';
 
 @Component({
     selector: 'app-test-page',
-    imports: [MCSimplePage, MCMiniResumeCard, CurrencyPipe, MCTwoColumnItemComponent, MCFilterButton, MCPageHeadingComponent, MCTableComponent, MCThTemplateDirective, MCTdTemplateDirective, ButtonModule],
+    imports: [MCSimplePage, MCMiniResumeCard, CurrencyPipe, MCTwoColumnItemComponent, MCFilterButton, MCPageHeadingComponent, MCTable, MCThTemplateDirective, MCTdTemplateDirective, ButtonModule],
     templateUrl: './test-page.component.html',
     styleUrl: './test-page.component.scss'
 })
