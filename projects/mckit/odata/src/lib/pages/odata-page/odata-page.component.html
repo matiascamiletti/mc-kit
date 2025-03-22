@@ -2,16 +2,18 @@
 
   <mc-page-heading [breadcrumb]="breadcrumb()" [title]="title()" [subtitle]="subtitle()">
 
-    <div class="flex">
+    <div class="flex flex-col md:flex-row">
       @if (hasSearch()) {
         <mc-search-field #searchField [key]="key()" [placeholder]="'Search...'" (onSearch)="onSearch($event)" />
       }
-      @if(filters()){
-        <mc-filter-button [config]="filters()!" (change)="onFilter($event)" class="ml-3" />
-      }
-      @if (hasEditColumns()) {
-        <mc-show-columns-button [initialColumns]="columns()" [key]="key()" (onSelected)="onChangeColumns($event)" class="ml-3" />
-      }
+      <div class="mt-3 w-full md:mt-0 md:w-auto">
+        @if(filters()){
+          <mc-filter-button [config]="filters()!" (change)="onFilter($event)" class="md:ml-3" />
+        }
+        @if (hasEditColumns()) {
+          <mc-show-columns-button [initialColumns]="columns()" [key]="key()" (onSelected)="onChangeColumns($event)" class="ml-3" />
+        }
+      </div>
 
     </div>
 
