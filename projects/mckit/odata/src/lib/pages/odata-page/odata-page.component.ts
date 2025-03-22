@@ -53,6 +53,7 @@ export class MCOdataPage {
   }
 
   onChangeColumns(columns: Array<MCColumn>) {
-    this.selectedColumns.set(columns);
+    let filtered = this.columns().filter((column: MCColumn) => columns.some((c: MCColumn) => c.field === column.field));
+    this.selectedColumns.set(filtered);
   }
 }
