@@ -6,4 +6,5 @@ import { MCApiRestHttpService } from '@mckit/core';
 })
 export class TestService extends MCApiRestHttpService<any> {
 
+  override baseUrl: string = 'https://tots.agency/';
 }

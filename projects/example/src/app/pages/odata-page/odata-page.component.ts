@@ -32,6 +32,8 @@ export class OdataPageComponent implements OnInit {
     { field: 'field', title: 'Field' },
   ];
 
+  searchFieldsKey = ['name'];
+
   ngOnInit(): void {
     this.loadFilterConfig();
   }

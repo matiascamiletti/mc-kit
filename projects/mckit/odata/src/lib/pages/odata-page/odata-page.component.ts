@@ -29,6 +29,7 @@ export class MCOdataPage {
   hasSearch = input<boolean>(true);
 
   searchField = viewChild(MCSearchField);
+  searchFieldsKey = input<Array<string>>();
 
   filters = input<MCConfigFilter>();
 
@@ -53,12 +54,28 @@ export class MCOdataPage {
 
   messageService = inject(MessageService);
 
-  ngOnInit(): void {
-    this.loadItems();
-  }
-
   onSearch(query: string) {
-    this.searchField()?.stopLoading();
+    this.data.filters.cleanPostpend();
+
+    if(query == '' || this.searchFieldsKey()?.length == 0){
+      this.loadItems();
+      return;
+    }
+
+    query = query.replace('+', '%2B');
+
+    let filters: Array<string> = [];
+    this.searchFieldsKey()?.forEach(key => {
+      filters.push(`substringof(${key}, '${query}')`);
+    });
+
+    if(filters.length == 0){
+      return;
+    }
+
+    this.data.filters.setPostpend(filters.join(' or '));
+
+    this.loadItems();
   }
 
   onFilter(filters: Array<MCResultFilter>) {
@@ -84,11 +101,13 @@ export class MCOdataPage {
       this.subscriptionList = this.requestList()
       .pipe(
         catchError((data) => {
-          this.messageService.add({ severity: 'error', detail: data.error?.message?.message || data.error.message || data.message || 'Unknown error' });
+          this.messageService.add({ severity: 'error', summary: 'An error has occurred', detail: data.error?.message?.message || data.error.message || data.message || 'Unknown error' });
+          this.searchField()?.stopLoading();
           this.isLoading.set(false);
           throw data;
         }),
         tap(response => this.items.set(response)),
+        tap(response => this.searchField()?.stopLoading())
       )
       .subscribe(() => this.isLoading.set(false));
     }
