@@ -8,6 +8,7 @@ import { MenuItem, MessageService } from 'primeng/api';
 import { catchError, Observable, Subscription, tap } from 'rxjs';
 import { MCOdata } from '../../entities/mc-odata';
 import { ToastModule } from 'primeng/toast';
+import { TablePageEvent } from 'primeng/table';
 
 
 @Component({
@@ -54,8 +55,14 @@ export class MCOdataPage {
 
   messageService = inject(MessageService);
 
+  onPage(event: TablePageEvent) {
+    this.data.setPageByPrimeNg(event);
+    this.loadItems();
+  }
+
   onSearch(query: string) {
     this.data.filters.cleanPostpend();
+    this.data.cleanPage();
 
     if(query == '' || this.searchFieldsKey()?.length == 0){
       this.loadItems();

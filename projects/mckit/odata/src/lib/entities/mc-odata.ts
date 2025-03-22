@@ -36,6 +36,10 @@ export class MCOdata {
     this.skip = event.first;
   }
 
+  cleanPage(): void {
+    this.skip = 0;
+  }
+
   toString(): string {
     let odata = '';
     if (this.top || this.top === 0) {
