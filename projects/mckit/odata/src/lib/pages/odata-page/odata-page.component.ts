@@ -1,14 +1,15 @@
 import { CommonModule } from '@angular/common';
-import { Component, input, viewChild } from '@angular/core';
-import { MCColumn } from '@mckit/core';
+import { Component, contentChildren, input, signal, viewChild } from '@angular/core';
+import { MCColumn, MCListResponse } from '@mckit/core';
 import { MCConfigFilter, MCFilterButton, MCResultFilter } from '@mckit/filter';
 import { MCPageHeadingComponent, MCSearchField } from '@mckit/layout-core';
-import { ShowColumnsButton } from '@mckit/table';
+import { MCTable, MCTdTemplateDirective, MCThTemplateDirective, ShowColumnsButton } from '@mckit/table';
 import { MenuItem } from 'primeng/api';
+
 
 @Component({
   selector: 'mc-odata-page',
-  imports: [CommonModule, MCPageHeadingComponent, MCSearchField, MCFilterButton, ShowColumnsButton],
+  imports: [CommonModule, MCPageHeadingComponent, MCSearchField, MCFilterButton, ShowColumnsButton, MCTable, MCThTemplateDirective, MCTdTemplateDirective],
   templateUrl: './odata-page.component.html',
   styleUrl: './odata-page.component.css'
 })
@@ -28,6 +29,19 @@ export class MCOdataPage {
 
   columns = input.required<Array<MCColumn>>();
   hasEditColumns = input<boolean>(true);
+  selectedColumns = signal<Array<MCColumn>>([]);
+
+  hasPagination = input<boolean>(true);
+
+  thTemplates = contentChildren(MCThTemplateDirective);
+  tdTemplates = contentChildren(MCTdTemplateDirective);
+
+  tableResponse: MCListResponse<any> = {
+    data: [
+      { name: 'Name 1', game_number: 1, status: 'In progress', field: 'Field La bombonera' },
+      { name: 'Name 2', game_number: 2, status: 'Completed', field: 'Mostaza' },
+    ]
+  }
 
   onSearch(query: string) {
     this.searchField()?.stopLoading();
@@ -39,6 +53,6 @@ export class MCOdataPage {
   }
 
   onChangeColumns(columns: Array<MCColumn>) {
-    console.log(columns);
+    this.selectedColumns.set(columns);
   }
 }

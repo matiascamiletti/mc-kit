@@ -7,7 +7,8 @@
     "@primeng/themes": "^19.0.0",
     "@mckit/core": "^19.0.0",
     "@mckit/filter": "^19.0.0",
-    "@mckit/layout-core": "^19.0.0"
+    "@mckit/layout-core": "^19.0.0",
+    "@mckit/table": "^19.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"

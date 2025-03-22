@@ -4,10 +4,12 @@ import { MCOdataPage } from '../../../../../mckit/odata/src/public-api';
 import { MenuItem } from 'primeng/api';
 import { MCConfigFilter, MCFilter, MCItemFilter } from '../../../../../mckit/filter/src/public-api';
 import { Observable, of } from 'rxjs';
+import { ButtonModule } from 'primeng/button';
+import { MCTdTemplateDirective, MCThTemplateDirective } from '@mckit/table';
 
 @Component({
   selector: 'app-odata-page',
-  imports: [CommonModule, MCOdataPage],
+  imports: [CommonModule, MCOdataPage, ButtonModule, MCThTemplateDirective, MCTdTemplateDirective],
   templateUrl: './odata-page.component.html',
   styleUrl: './odata-page.component.scss'
 })
