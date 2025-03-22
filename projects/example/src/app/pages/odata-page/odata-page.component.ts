@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { MCOdataPage } from '../../../../../mckit/odata/src/public-api';
 import { MenuItem } from 'primeng/api';
 import { MCConfigFilter, MCFilter, MCItemFilter } from '../../../../../mckit/filter/src/public-api';
 import { Observable, of } from 'rxjs';
 import { ButtonModule } from 'primeng/button';
 import { MCTdTemplateDirective, MCThTemplateDirective } from '@mckit/table';
+import { TestService } from '../../services/test.service';
 
 @Component({
   selector: 'app-odata-page',
@@ -19,6 +20,8 @@ export class OdataPageComponent implements OnInit {
       { label: 'Home', routerLink: '/' },
       { label: 'Users' }
   ];
+
+  testService = inject(TestService);
 
   filters = new MCConfigFilter();
 

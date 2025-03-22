@@ -1,17 +1,22 @@
 import { CommonModule } from '@angular/common';
-import { Component, contentChildren, input, signal, viewChild } from '@angular/core';
-import { MCColumn, MCListResponse } from '@mckit/core';
+import { Component, contentChildren, inject, input, signal, viewChild } from '@angular/core';
+import { MCApiRestHttpService, MCColumn, MCListResponse } from '@mckit/core';
 import { MCConfigFilter, MCFilterButton, MCResultFilter } from '@mckit/filter';
 import { MCPageHeadingComponent, MCSearchField } from '@mckit/layout-core';
 import { MCTable, MCTdTemplateDirective, MCThTemplateDirective, ShowColumnsButton } from '@mckit/table';
-import { MenuItem } from 'primeng/api';
+import { MenuItem, MessageService } from 'primeng/api';
+import { catchError, Observable, Subscription, tap } from 'rxjs';
+import { MCOdata } from '../../entities/mc-odata';
+import { ToastModule } from 'primeng/toast';
 
 
 @Component({
   selector: 'mc-odata-page',
-  imports: [CommonModule, MCPageHeadingComponent, MCSearchField, MCFilterButton, ShowColumnsButton, MCTable, MCThTemplateDirective, MCTdTemplateDirective],
+  imports: [CommonModule, MCPageHeadingComponent, MCSearchField, MCFilterButton, ShowColumnsButton, MCTable, MCThTemplateDirective, MCTdTemplateDirective, ToastModule],
   templateUrl: './odata-page.component.html',
-  styleUrl: './odata-page.component.css'
+  styleUrl: './odata-page.component.css',
+  providers: [MessageService]
+
 })
 export class MCOdataPage {
   breadcrumb = input<Array<MenuItem>>();
@@ -36,11 +41,20 @@ export class MCOdataPage {
   thTemplates = contentChildren(MCThTemplateDirective);
   tdTemplates = contentChildren(MCTdTemplateDirective);
 
-  tableResponse: MCListResponse<any> = {
-    data: [
-      { name: 'Name 1', game_number: 1, status: 'In progress', field: 'Field La bombonera' },
-      { name: 'Name 2', game_number: 2, status: 'Completed', field: 'Mostaza' },
-    ]
+  httpService = input.required<MCApiRestHttpService<any>>();
+
+  data = new MCOdata();
+
+  subscriptionList?: Subscription;
+
+  items = signal<MCListResponse<any>>(new MCListResponse<any>());
+
+  isLoading = signal<boolean>(true);
+
+  messageService = inject(MessageService);
+
+  ngOnInit(): void {
+    this.loadItems();
   }
 
   onSearch(query: string) {
@@ -56,4 +70,26 @@ export class MCOdataPage {
     let filtered = this.columns().filter((column: MCColumn) => columns.some((c: MCColumn) => c.field === column.field));
     this.selectedColumns.set(filtered);
   }
+
+  requestList(): Observable<MCListResponse<any>> {
+    return this.httpService().list(this.data.toString());
+  }
+
+  loadItems() {
+      this.isLoading.set(true);
+      if (this.subscriptionList) {
+        this.subscriptionList.unsubscribe();
+      }
+
+      this.subscriptionList = this.requestList()
+      .pipe(
+        catchError((data) => {
+          this.messageService.add({ severity: 'error', detail: data.error?.message?.message || data.error.message || data.message || 'Unknown error' });
+          this.isLoading.set(false);
+          throw data;
+        }),
+        tap(response => this.items.set(response)),
+      )
+      .subscribe(() => this.isLoading.set(false));
+    }
 }

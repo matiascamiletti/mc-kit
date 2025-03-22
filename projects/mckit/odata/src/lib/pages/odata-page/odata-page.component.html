@@ -20,7 +20,7 @@
   </mc-page-heading>
 
   <div class="odata-content pl-4 pr-4">
-    <mc-table [columns]="selectedColumns()" [response]="tableResponse" [paginator]="hasPagination()">
+    <mc-table [columns]="selectedColumns()" [response]="items()" [paginator]="hasPagination()">
 
       <ng-container *ngFor="let template of thTemplates()">
         <ng-template mcThTemplate="{{template.getFieldName()}}" let-row let-rowIndex>
@@ -35,6 +35,10 @@
       </ng-container>
 
     </mc-table>
+  </div>
+
+  <div class="odata-toast">
+    <p-toast />
   </div>
 
 </div>
