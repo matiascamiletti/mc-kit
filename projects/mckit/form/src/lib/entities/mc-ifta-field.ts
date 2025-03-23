@@ -1,13 +1,28 @@
+import { ValidatorFn } from "@angular/forms";
 import { MCField } from "./mc-field";
 
 export class MCIftaField {
 
-  static init(data: { key?: string|string[], component: any, label:string }): MCField {
-    let field = new MCField();
-    field.key = data.key;
-    field.component = data.component;
-    field.config = { label: data.label };
-    return field;
-  }
+  static init(data: {
+      key?: string,
+      component: any,
+      label: string,
+      validators?: ValidatorFn[],
+      default_value?: any,
+      disabled?: boolean,
+      no_control?: boolean
+    }): MCField {
+      let field = new MCField();
+      field.key = data.key;
+      field.component = data.component;
+      field.config = {
+        label: data.label,
+        validators: data.validators,
+        default_value: data.default_value,
+        disabled: data.disabled,
+        no_control: data.no_control
+      };
+      return field;
+    }
 
 }
