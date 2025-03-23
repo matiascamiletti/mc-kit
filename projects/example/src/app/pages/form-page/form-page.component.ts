@@ -1,6 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, signal } from '@angular/core';
 import { MCConfigForm, MCFormComponent } from '../../../../../mckit/form/src/public-api';
+import { IftaTextField } from '../../../../../mckit/form/src/lib/fields/ifta-text-field/ifta-text-field.component';
 
 @Component({
   selector: 'app-form-page',
@@ -19,7 +20,8 @@ export class FormPageComponent implements OnInit {
   loadForm() {
     let config = this.formConfig();
     config.fields = [
-
+      IftaTextField.init('firstname', 'Firstname'),
+      IftaTextField.init('lastname', 'Lastname'),
     ];
 
     this.formConfig.set(config);
