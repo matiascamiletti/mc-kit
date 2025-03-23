@@ -1,4 +1,5 @@
 <mc-odata-page
+  #odataPage
 [breadcrumb]="breadcrumb"
 [title]="'Users'"
 [subtitle]="'Listado de usuarios para administrarlos, usted puede editar, borrar y actualizar.'"
@@ -18,7 +19,7 @@
 </ng-template>
 
 <ng-template mcTdTemplate="actions" let-row>
-  <mc-actions-column [item]="row"></mc-actions-column>
+  <mc-actions-column [item]="row" (onEdit)="onClickEdit($event)" (onRemove)="onClickRemove($event)"></mc-actions-column>
 </ng-template>
 
 

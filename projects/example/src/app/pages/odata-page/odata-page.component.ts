@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, viewChild } from '@angular/core';
 import { MCOdataPage } from '../../../../../mckit/odata/src/public-api';
 import { MenuItem } from 'primeng/api';
 import { MCConfigFilter, MCFilter, MCItemFilter } from '../../../../../mckit/filter/src/public-api';
@@ -15,6 +15,8 @@ import { TestService } from '../../services/test.service';
   styleUrl: './odata-page.component.scss'
 })
 export class OdataPageComponent implements OnInit {
+
+  odataPage = viewChild(MCOdataPage);
 
   breadcrumb: MenuItem[] = [
       { label: 'Home', routerLink: '/' },
@@ -37,6 +39,14 @@ export class OdataPageComponent implements OnInit {
 
   ngOnInit(): void {
     this.loadFilterConfig();
+  }
+
+  onClickEdit(item: any) {
+    // this.router.navigate(['edit', item.id], { relativeTo: this.route });
+  }
+
+  onClickRemove(item: any) {
+    this.odataPage()?.onClickRemove(item);
   }
 
   loadFilterConfig() {
