@@ -40,14 +40,7 @@ export class MCFormComponent implements OnInit {
   loadFields() {
     let group = new UntypedFormGroup({});
     let fields = this.config().fields ?? [];
-
-    for (const field of fields) {
-      if(field.key == undefined || field.key == '' || field.config.no_control) {
-        continue;
-      }
-      group.addControl(field.key, this.formService.createControl(field));
-    }
-
+    this.formService.loadFields(group, fields);
     this.formGroup.set(group);
   }
 }
