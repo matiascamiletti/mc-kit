@@ -1,24 +1,27 @@
 import { CommonModule } from '@angular/common';
-import { Component, OnInit } from '@angular/core';
-import { MCConfigForm } from '../../../../../mckit/form/src/public-api';
+import { Component, OnInit, signal } from '@angular/core';
+import { MCConfigForm, MCFormComponent } from '../../../../../mckit/form/src/public-api';
 
 @Component({
   selector: 'app-form-page',
-  imports: [CommonModule],
+  imports: [CommonModule, MCFormComponent],
   templateUrl: './form-page.component.html',
   styleUrl: './form-page.component.scss'
 })
 export class FormPageComponent implements OnInit {
 
-  formConfig = new MCConfigForm();
+  formConfig = signal<MCConfigForm>(new MCConfigForm());
 
   ngOnInit(): void {
     this.loadForm();
   }
 
   loadForm() {
-    this.formConfig.fields = [
+    let config = this.formConfig();
+    config.fields = [
 
     ];
+
+    this.formConfig.set(config);
   }
 }
