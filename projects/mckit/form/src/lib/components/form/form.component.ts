@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import { MCConfigForm } from '../../entities/mc-config-form';
 
 @Component({
   selector: 'mc-form',
@@ -8,5 +9,5 @@ import { Component } from '@angular/core';
   styleUrl: './form.component.scss'
 })
 export class MCFormComponent {
-
+  config = input.required<MCConfigForm>();
 }
