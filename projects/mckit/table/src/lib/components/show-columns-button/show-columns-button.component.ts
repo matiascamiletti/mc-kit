@@ -30,6 +30,10 @@ export class ShowColumnsButton implements OnInit {
     this.loadStorage();
   }
 
+  setSelectedColumns(columnsSelected: Array<MCColumn>) {
+    this.selectedColumns = this.initialColumns().filter(column => columnsSelected.some(c => c.field == column.field));
+  }
+
   columnsChange(event: MultiSelectChangeEvent) {
     this.saveStorage();
     this.onSelected.emit(this.selectedColumns ?? []);
@@ -51,7 +55,7 @@ export class ShowColumnsButton implements OnInit {
     this.storageService.get(this.getKey(), { type: 'string' })
     .subscribe((value: any) => {
       if(value){
-        this.selectedColumns = JSON.parse(value);
+        this.setSelectedColumns(JSON.parse(value));
         this.onSelected.emit(this.selectedColumns ?? []);
       }
     });
