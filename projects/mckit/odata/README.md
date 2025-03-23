@@ -2,7 +2,7 @@
 
 ## Generar desde Schematics
 
-ng g @mckit/schematics:add-table --name src/app/features/person/entities/person.ts --component src/app/features/person/pages/PersonListPage
+ng g @mckit/schematics:add-table --name Person --component src/app/features/person/pages/PersonListPage
 
 Donde --name es la clase/entidad/modelo
 y --component es la ruta y nombre del componente
