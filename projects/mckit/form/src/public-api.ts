@@ -5,16 +5,25 @@
 /**
  * Entities
  */
-export { MCField } from './lib/entities/mc-field';
-export { MCIftaField } from './lib/entities/mc-ifta-field';
-export { MCConfigForm } from './lib/entities/mc-config-form';
+export * from './lib/entities/mc-field';
+export * from './lib/entities/mc-ifta-field';
+export * from './lib/entities/mc-config-form';
+export * from './lib/entities/mc-event-form';
+
+/**
+ * Services
+ */
+export * from './lib/services/mc-form.service';
 
 /**
  * Fields
  */
-export { MCFieldComponent } from './lib/fields/mc-field.component';
+export * from './lib/fields/mc-field.component';
+export * from './lib/fields/ifta-text-field/ifta-text-field.component';
+export * from './lib/fields/submit-button-field/submit-button-field.component';
 
 /**
  * Components
  */
-export { MCFormComponent } from './lib/components/form/form.component';
+export * from './lib/components/print-field/print-field.component';
+export * from './lib/components/form/form.component';
