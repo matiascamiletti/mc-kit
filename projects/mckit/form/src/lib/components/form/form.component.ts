@@ -1,14 +1,53 @@
 import { CommonModule } from '@angular/common';
-import { Component, input } from '@angular/core';
+import { Component, inject, input, OnInit, output, signal } from '@angular/core';
 import { MCConfigForm } from '../../entities/mc-config-form';
 import { PrintFieldComponent } from '../print-field/print-field.component';
+import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
+import { MCFormService } from '../../services/mc-form.service';
+import { MCEventForm } from '../../entities/mc-event-form';
+import { Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'mc-form',
-  imports: [CommonModule, PrintFieldComponent],
+  imports: [CommonModule, ReactiveFormsModule, PrintFieldComponent],
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss'
 })
-export class MCFormComponent {
+export class MCFormComponent implements OnInit {
   config = input.required<MCConfigForm>();
+
+  formGroup = signal<UntypedFormGroup|undefined>(undefined);
+
+  formService = inject(MCFormService);
+
+  onEvent = output<MCEventForm>();
+  eventObs = new Subject<MCEventForm>();
+  eventSubscription?: Subscription;
+
+  ngOnInit(): void {
+    this.eventSubscription = this.eventObs.subscribe(event => this.onEvent.emit(event));
+    this.loadFields();
+  }
+
+  ngOnDestroy(): void {
+    this.eventSubscription?.unsubscribe();
+  }
+
+  emitEvent(event: MCEventForm) {
+    this.eventObs.next(event);
+  }
+
+  loadFields() {
+    let group = new UntypedFormGroup({});
+    let fields = this.config().fields ?? [];
+
+    for (const field of fields) {
+      if(field.key == undefined || field.key == '' || field.config.no_control) {
+        continue;
+      }
+      group.addControl(field.key, this.formService.createControl(field));
+    }
+
+    this.formGroup.set(group);
+  }
 }

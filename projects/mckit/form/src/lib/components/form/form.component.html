@@ -1,7 +1,9 @@
-<div class="mc-form">
-  @for (field of config().fields; track $index) {
-    <div class="{{(config().containerFieldClass || 'mb-3')}}">
-      <mc-print-field [field]="field" />
-    </div>
-  }
-</div>
+@if(formGroup()) {
+  <form [formGroup]="formGroup()!" class="mc-form">
+    @for (field of config().fields; track $index) {
+      <div class="{{(config().containerFieldClass || 'mb-3')}}">
+        <mc-print-field [field]="field" [control]="formGroup()!.get(field.key ?? '')" [group]="formGroup()!" [eventObs]="eventObs" />
+      </div>
+    }
+  </form>
+}
