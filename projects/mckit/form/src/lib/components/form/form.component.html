@@ -1,1 +1,7 @@
-<p>form works!</p>
+<div class="mc-form">
+  @for (field of config().fields; track $index) {
+    <div class="{{(config().containerFieldClass || 'mb-3')}}">
+      <mc-print-field [field]="field" />
+    </div>
+  }
+</div>
