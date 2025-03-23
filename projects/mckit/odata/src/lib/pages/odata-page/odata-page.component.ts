@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, contentChildren, inject, input, OnInit, signal, viewChild } from '@angular/core';
+import { Component, contentChildren, inject, input, OnDestroy, OnInit, signal, viewChild } from '@angular/core';
 import { MCApiRestHttpService, MCColumn, MCListResponse } from '@mckit/core';
 import { MCConfigFilter, MCFilterButton, MCFilterOdataConverterService, MCResultFilter } from '@mckit/filter';
 import { MCPageHeadingComponent, MCSearchField } from '@mckit/layout-core';
@@ -20,7 +20,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
   providers: [MessageService, ConfirmationService]
 
 })
-export class MCOdataPage implements OnInit {
+export class MCOdataPage implements OnInit, OnDestroy {
   breadcrumb = input<Array<MenuItem>>();
 
   title = input<string>();
@@ -63,6 +63,10 @@ export class MCOdataPage implements OnInit {
 
   ngOnInit(): void {
     this.initialSort();
+  }
+
+  ngOnDestroy(): void {
+    this.subscriptionList?.unsubscribe();
   }
 
   onPage(event: TablePageEvent) {
@@ -145,9 +149,7 @@ export class MCOdataPage implements OnInit {
 
   loadItems() {
     this.isLoading.set(true);
-    if (this.subscriptionList) {
-      this.subscriptionList.unsubscribe();
-    }
+    this.subscriptionList?.unsubscribe();
 
     this.subscriptionList = this.requestList()
     .pipe(
