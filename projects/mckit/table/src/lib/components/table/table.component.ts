@@ -26,10 +26,14 @@ export class MCTable {
   onPage = output<TablePageEvent>();
 
   onSort = output<any>();
+  sortField = input<string>();
+  sortOrder = input<number>(-1);
 
   onSortChange(event: any) {
     this.onSort.emit(event);
   }
+
+  customSort(event: any) { }
 
   onPageChange(event: TablePageEvent) {
     this.onPage.emit(event);

@@ -1,4 +1,4 @@
-<p-table [value]="items()" [paginator]="paginator()" [rows]="response()?.per_page ?? 50" [totalRecords]="response()?.total ?? 0" [rowsPerPageOptions]="[5, 10, 20, 50]" (onPage)="onPageChange($event)" (onSort)="onSortChange($event)" styleClass="w-full">
+<p-table [value]="items()" [paginator]="paginator()" [rows]="response()?.per_page ?? 50" [totalRecords]="response()?.total ?? 0" [rowsPerPageOptions]="[5, 10, 20, 50]" (onPage)="onPageChange($event)" [sortField]="sortField()" [sortOrder]="sortOrder()" (onSort)="onSortChange($event)" [customSort]="true" (sortFunction)="customSort($event)" [lazy]="true" styleClass="w-full">
   <ng-template #header>
       <tr>
         @for (column of columnsPrinted(); track column) {
