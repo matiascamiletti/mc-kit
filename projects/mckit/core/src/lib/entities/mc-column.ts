@@ -3,4 +3,6 @@ export class MCColumn {
   title: string = '';
   isShow?: boolean;
   isSortable?: boolean;
+  isSortDefault?: boolean;
+  isSortDescDefault?: boolean;
 }
