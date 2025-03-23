@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, contentChildren, inject, input, signal, viewChild } from '@angular/core';
+import { Component, contentChildren, inject, input, OnInit, signal, viewChild } from '@angular/core';
 import { MCApiRestHttpService, MCColumn, MCListResponse } from '@mckit/core';
 import { MCConfigFilter, MCFilterButton, MCFilterOdataConverterService, MCResultFilter } from '@mckit/filter';
 import { MCPageHeadingComponent, MCSearchField } from '@mckit/layout-core';
@@ -20,7 +20,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
   providers: [MessageService, ConfirmationService]
 
 })
-export class MCOdataPage {
+export class MCOdataPage implements OnInit {
   breadcrumb = input<Array<MenuItem>>();
 
   title = input<string>();
@@ -58,15 +58,37 @@ export class MCOdataPage {
   messageService = inject(MessageService);
   confirmationService = inject(ConfirmationService);
 
+  sortField = signal<string|undefined>(undefined);
+  sortOrder = signal<number>(-1);
+
+  ngOnInit(): void {
+    this.initialSort();
+  }
+
   onPage(event: TablePageEvent) {
     this.data.setPageByPrimeNg(event);
     this.loadItems();
   }
 
+  initialSort() {
+    let column = this.columns().find((column: MCColumn) => column.isSortDefault);
+    if(column == undefined){
+      return;
+    }
+
+    this.sortField.set(column.field);
+    this.sortOrder.set(column.isSortDescDefault ? -1 : 1);
+  }
+
   onSort(event: SortMeta) {
+    this.data.cleanPage();
+
+    this.sortField.set(event.field);
     if(event.order == -1){
+      this.sortOrder.set(-1);
       this.data.orderBy = event.field + ' desc';
     } else {
+      this.sortOrder.set(1);
       this.data.orderBy = event.field + ' asc';
     }
     this.loadItems();
