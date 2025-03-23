@@ -26,6 +26,7 @@ export class ShowColumnsButton implements OnInit {
 
   ngOnInit(): void {
     this.selectedColumns = this.initialColumns().filter(column => column.isShow);
+    this.onSelected.emit(this.selectedColumns ?? []);
     this.loadStorage();
   }
 
