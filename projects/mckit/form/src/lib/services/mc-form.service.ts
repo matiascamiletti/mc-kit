@@ -28,17 +28,23 @@ export class MCFormService {
     group.addControl(key, newGroup);
   }
 
+  loadFieldsWithChildren(group: UntypedFormGroup, field: MCField, item: any) {
+    if(field.config?.is_new_group){
+      let fieldKey = field.key ?? 'row';
+      let subitem = item && item[fieldKey] ? item[fieldKey] : undefined;
+      this.loadFieldsInNewGroup(group, field.config.fields, fieldKey, subitem);
+    } else {
+      this.loadFields(group, field.config.fields, item);
+    }
+  }
+
   loadFields(group: UntypedFormGroup, fields: MCField[], item: any) {
     for (const field of fields) {
       if(field.config?.has_children){
-        if(field.config?.is_new_group){
-          this.loadFieldsInNewGroup(group, field.config.fields, field.key ?? 'row', item && item[field.key ?? 'row'] ? item[field.key ?? 'row'] : undefined);
-        } else {
-          this.loadFields(group, field.config.fields, item);
-        }
+        this.loadFieldsWithChildren(group, field, item);
         continue;
       }
-      if(field.key == undefined || field.key == '' || field.config.no_control) {
+      if(field.key == undefined || field.key == '' || field.config?.no_control) {
         continue;
       }
 
