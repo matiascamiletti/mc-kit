@@ -13,7 +13,7 @@ import { Subject, Subscription } from 'rxjs';
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss'
 })
-export class MCFormComponent implements OnInit {
+export class MCForm implements OnInit {
   config = input.required<MCConfigForm>();
 
   formGroup = signal<UntypedFormGroup|undefined>(undefined);

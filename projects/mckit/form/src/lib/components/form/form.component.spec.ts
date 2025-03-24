@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MCFormComponent } from './form.component';
+import { MCForm } from './form.component';
 
-describe('MCFormComponent', () => {
-  let component: MCFormComponent;
-  let fixture: ComponentFixture<MCFormComponent>;
+describe('MCForm', () => {
+  let component: MCForm;
+  let fixture: ComponentFixture<MCForm>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MCFormComponent]
+      imports: [MCForm]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MCFormComponent);
+    fixture = TestBed.createComponent(MCForm);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
