@@ -4,7 +4,6 @@ import { MCConfigForm, MCEventForm, MCFormComponent, RowField } from '../../../.
 import { IftaTextField } from '../../../../../mckit/form/src/lib/fields/ifta-text-field/ifta-text-field.component';
 import { SubmitButtonField } from '../../../../../mckit/form/src/lib/fields/submit-button-field/submit-button-field.component';
 import { Validators } from '@angular/forms';
-import { AnyNaptrRecord } from 'node:dns';
 
 @Component({
   selector: 'app-form-page',
@@ -22,7 +21,7 @@ export class FormPageComponent implements OnInit {
     this.loadForm();
   }
 
-  onSubmit(result: AnyNaptrRecord) {
+  onSubmit(result: any) {
     setTimeout(() => {
       this.formComponent()?.emitEvent(MCEventForm.init('stop-loading'));
     }, 2000);
