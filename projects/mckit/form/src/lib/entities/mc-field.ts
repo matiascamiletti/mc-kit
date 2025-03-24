@@ -6,6 +6,14 @@ export class MCField {
 
   config?: any
 
+  static initCustom(key: string, component: any, config: any): MCField {
+    let field = new MCField();
+    field.key = key;
+    field.component = component;
+    field.config = config;
+    return field;
+  }
+
   static init(data: {
     key?: string,
     component: any,
