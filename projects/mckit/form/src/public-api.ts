@@ -14,6 +14,7 @@ export * from './lib/entities/mc-event-form';
  * Services
  */
 export * from './lib/services/mc-form.service';
+export * from './lib/services/form-modal.service';
 
 /**
  * Fields
@@ -28,3 +29,4 @@ export * from './lib/fields/row-field/row-field.component';
  */
 export * from './lib/components/print-field/print-field.component';
 export * from './lib/components/form/form.component';
+export * from './lib/components/form-modal/form-modal.component';
