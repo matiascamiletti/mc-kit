@@ -40,7 +40,7 @@ export class MCFormComponent implements OnInit {
   loadFields() {
     let group = new UntypedFormGroup({});
     let fields = this.config().fields ?? [];
-    this.formService.loadFields(group, fields);
+    this.formService.loadFields(group, fields, this.config().item);
     this.formGroup.set(group);
   }
 }

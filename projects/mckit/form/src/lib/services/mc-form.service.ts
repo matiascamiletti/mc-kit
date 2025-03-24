@@ -22,19 +22,19 @@ export class MCFormService {
     return input;
   }
 
-  loadFieldsInNewGroup(group: UntypedFormGroup, fields: MCField[], key: string) {
+  loadFieldsInNewGroup(group: UntypedFormGroup, fields: MCField[], key: string, item: any) {
     let newGroup = new UntypedFormGroup({});
-    this.loadFields(newGroup, fields);
+    this.loadFields(newGroup, fields, item);
     group.addControl(key, newGroup);
   }
 
-  loadFields(group: UntypedFormGroup, fields: MCField[]) {
+  loadFields(group: UntypedFormGroup, fields: MCField[], item: any) {
     for (const field of fields) {
       if(field.config?.has_children){
         if(field.config?.is_new_group){
-          this.loadFieldsInNewGroup(group, field.config.fields, field.key ?? 'row');
+          this.loadFieldsInNewGroup(group, field.config.fields, field.key ?? 'row', item && item[field.key ?? 'row'] ? item[field.key ?? 'row'] : undefined);
         } else {
-          this.loadFields(group, field.config.fields);
+          this.loadFields(group, field.config.fields, item);
         }
         continue;
       }
@@ -43,6 +43,10 @@ export class MCFormService {
       }
 
       group.addControl(field.key, this.createControl(field));
+
+      if(item && item[field.key]){
+        group.get(field.key)?.setValue(item[field.key]);
+      }
     }
   }
 }

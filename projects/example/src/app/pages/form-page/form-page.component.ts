@@ -39,6 +39,12 @@ export class FormPageComponent implements OnInit {
 
   loadForm() {
     let config = this.formConfig();
+    config.item = {
+      lastname: 'Doe',
+      address: {
+        country: 'USA'
+      }
+    };
     config.fields = [
       IftaTextField.init('firstname', 'Firstname', { validators: [Validators.required] }),
       IftaTextField.init('lastname', 'Lastname'),
