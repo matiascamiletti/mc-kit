@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { Validators } from '@angular/forms';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
-import { Subscription } from 'rxjs';
+import { Subscription, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-open-modal-field',
@@ -24,7 +24,7 @@ export class OpenModalFieldComponent extends MCFieldComponent implements OnDestr
   }
 
   onClick() {
-    let eventObs = this.formModalService.openRight({
+    let dialogRef = this.formModalService.openRight({
       title: 'Test Modal',
       item: undefined,
       fields: [
@@ -33,7 +33,9 @@ export class OpenModalFieldComponent extends MCFieldComponent implements OnDestr
       ]
     });
 
-    this.eventSubscription = eventObs.subscribe(event => {
+    this.eventSubscription = dialogRef
+    .pipe(switchMap(dialog => dialog.getEventObs()))
+    .subscribe(event => {
 
       if(event.key == 'submit'){
         console.log(event.content);

@@ -1,7 +1,7 @@
 import { inject, Injectable } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { MCConfigForm } from '../entities/mc-config-form';
-import { MCEventModalForm, MCFormModalComponent } from '../components/form-modal/form-modal.component';
+import { MCEventModalForm, MCFormModal } from '../components/form-modal/form-modal.component';
 import { MCFooterModalForm } from '../components/footer-modal-form/footer-modal-form.component';
 import { Observable, switchMap } from 'rxjs';
 
@@ -19,8 +19,8 @@ export class MCFormModalService {
 
   dialogService = inject(DialogService);
 
-  open(config: MCConfigModalForm): Observable<MCEventModalForm> {
-    let dialog: DynamicDialogRef<MCFormModalComponent> = this.dialogService.open(MCFormModalComponent, {
+  open(config: MCConfigModalForm): Observable<MCFormModal> {
+    let dialog: DynamicDialogRef<MCFormModal> = this.dialogService.open(MCFormModal, {
       header: config.title,
       footer: 'Test footer',
       style: config.style,
@@ -34,11 +34,10 @@ export class MCFormModalService {
       data: config
     });
 
-    return dialog.onChildComponentLoaded
-    .pipe(switchMap((comp: MCFormModalComponent) => comp.getEventObs()));
+    return dialog.onChildComponentLoaded;
   }
 
-  openRight(config: MCConfigModalForm): Observable<MCEventModalForm> {
+  openRight(config: MCConfigModalForm): Observable<MCFormModal> {
     config.position = 'right';
     config.style = { margin: '0px !important', 'max-height': '100%' };
     config.styleClass = 'w-full md:w-2xl mc-form-modal';
