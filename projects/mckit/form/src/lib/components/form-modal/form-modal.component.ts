@@ -17,7 +17,7 @@ export class MCEventModalForm extends MCEventForm {
   templateUrl: './form-modal.component.html',
   styleUrl: './form-modal.component.css'
 })
-export class MCFormModalComponent implements OnInit {
+export class MCFormModal implements OnInit {
 
   formComponent = viewChild(MCForm);
 
