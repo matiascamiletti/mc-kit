@@ -34,7 +34,12 @@ export class OpenModalFieldComponent extends MCFieldComponent implements OnDestr
     });
 
     this.eventSubscription = eventObs.subscribe(event => {
-      console.log(event);
+
+      if(event.key == 'submit'){
+        console.log(event.content);
+        event.dialog?.close();
+      }
+
     });
   }
 }
