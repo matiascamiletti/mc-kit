@@ -9,6 +9,12 @@ export * from './lib/entities/mc-odata';
 export * from './lib/entities/mc-filter-processor';
 
 /**
+ * Directives
+ */
+export * from './lib/directives/left-header-template.directive';
+export * from './lib/directives/right-header-template.directive';
+
+/**
  * Components
  */
 export * from './lib/components/odata-table.component';

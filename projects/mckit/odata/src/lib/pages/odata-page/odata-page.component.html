@@ -3,6 +3,10 @@
   <mc-page-heading [breadcrumb]="breadcrumb()" [title]="title()" [subtitle]="subtitle()">
 
     <div class="flex flex-col md:flex-row">
+      @if(leftHeaderTemplate()){
+        <ng-container [ngTemplateOutlet]="leftHeaderTemplate()!.template"></ng-container>
+      }
+
       @if (hasSearch()) {
         <mc-search-field #searchField [key]="key()" [placeholder]="'Search...'" (onSearch)="onSearch($event)" />
       }
@@ -14,6 +18,9 @@
           <mc-show-columns-button [initialColumns]="columns()" [key]="key()" (onSelected)="onChangeColumns($event)" class="ml-3" />
         }
       </div>
+      @if(rightHeaderTemplate()){
+        <ng-container [ngTemplateOutlet]="rightHeaderTemplate()!.template"></ng-container>
+      }
 
     </div>
 

@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, contentChildren, inject, input, OnDestroy, OnInit, signal, viewChild } from '@angular/core';
+import { Component, contentChild, contentChildren, inject, input, OnDestroy, OnInit, signal, viewChild } from '@angular/core';
 import { MCApiRestHttpService, MCColumn, MCListResponse } from '@mckit/core';
 import { MCConfigFilter, MCFilterButton, MCFilterOdataConverterService, MCResultFilter } from '@mckit/filter';
 import { MCPageHeadingComponent, MCSearchField } from '@mckit/layout-core';
@@ -10,6 +10,8 @@ import { MCOdata } from '../../entities/mc-odata';
 import { ToastModule } from 'primeng/toast';
 import { TablePageEvent } from 'primeng/table';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
+import { MCLeftHeaderTemplateDirective } from '../../directives/left-header-template.directive';
+import { MCRightHeaderTemplateDirective } from '../../directives/right-header-template.directive';
 
 
 @Component({
@@ -60,6 +62,9 @@ export class MCOdataPage implements OnInit, OnDestroy {
 
   sortField = signal<string|undefined>(undefined);
   sortOrder = signal<number>(-1);
+
+  leftHeaderTemplate = contentChild(MCLeftHeaderTemplateDirective);
+  rightHeaderTemplate = contentChild(MCRightHeaderTemplateDirective);
 
   ngOnInit(): void {
     this.initialSort();

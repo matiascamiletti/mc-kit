@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, viewChild } from '@angular/core';
-import { MCOdataPage } from '../../../../../mckit/odata/src/public-api';
+import { MCRightHeaderTemplateDirective, MCOdataPage } from '../../../../../mckit/odata/src/public-api';
 import { MenuItem } from 'primeng/api';
 import { MCConfigFilter, MCFilter, MCItemFilter } from '../../../../../mckit/filter/src/public-api';
 import { Observable, of } from 'rxjs';
@@ -10,7 +10,7 @@ import { TestService } from '../../services/test.service';
 
 @Component({
   selector: 'app-odata-page',
-  imports: [CommonModule, MCOdataPage, ButtonModule, MCThTemplateDirective, MCTdTemplateDirective, MCActionsColumn],
+  imports: [CommonModule, MCOdataPage, ButtonModule, MCThTemplateDirective, MCTdTemplateDirective, MCActionsColumn, MCRightHeaderTemplateDirective],
   templateUrl: './odata-page.component.html',
   styleUrl: './odata-page.component.scss'
 })
