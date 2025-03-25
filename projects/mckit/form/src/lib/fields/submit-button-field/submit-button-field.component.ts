@@ -1,4 +1,4 @@
-import { Component, OnInit, signal } from '@angular/core';
+import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { MCFieldComponent } from '../mc-field.component';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
@@ -13,7 +13,7 @@ import { Subscription } from 'rxjs';
   templateUrl: './submit-button-field.component.html',
   styleUrl: './submit-button-field.component.css'
 })
-export class SubmitButtonFieldComponent extends MCFieldComponent implements OnInit {
+export class SubmitButtonFieldComponent extends MCFieldComponent implements OnInit, OnDestroy {
 
   isLoading = signal<boolean>(false);
 
@@ -25,6 +25,10 @@ export class SubmitButtonFieldComponent extends MCFieldComponent implements OnIn
         this.isLoading.set(false);
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this.eventSubscription?.unsubscribe();
   }
 
   onClick() {
