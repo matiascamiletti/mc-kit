@@ -1,10 +1,10 @@
-import { Component, inject, OnInit, signal, WritableSignal } from '@angular/core';
+import { Component, inject, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
 import { DialogService, DynamicDialogComponent, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { MCEventModalForm, MCFormModalComponent } from '../form-modal/form-modal.component';
+import { MCEventModalForm, MCFormModal } from '../form-modal/form-modal.component';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { UntypedFormGroup } from '@angular/forms';
-import { Subject, take } from 'rxjs';
+import { Subject, Subscription, take } from 'rxjs';
 
 @Component({
   selector: 'mc-footer-modal-form',
@@ -12,10 +12,10 @@ import { Subject, take } from 'rxjs';
   templateUrl: './footer-modal-form.component.html',
   styleUrl: './footer-modal-form.component.css'
 })
-export class MCFooterModalForm implements OnInit {
+export class MCFooterModalForm implements OnInit, OnDestroy {
 
   dialogService = inject(DialogService);
-  dialogRef = inject(DynamicDialogRef<MCFormModalComponent>);
+  dialogRef = inject(DynamicDialogRef<MCFormModal>);
 
   isLoading = signal<boolean>(false);
 
@@ -23,8 +23,14 @@ export class MCFooterModalForm implements OnInit {
 
   eventObs?: Subject<MCEventModalForm>;
 
+  eventSubscription?: Subscription;
+
   ngOnInit(): void {
     this.initConfig();
+  }
+
+  ngOnDestroy(): void {
+    this.eventSubscription?.unsubscribe();
   }
 
   onClickCancel() {
@@ -57,6 +63,15 @@ export class MCFooterModalForm implements OnInit {
     .subscribe((comp) => {
       this.group = comp.formComponent()?.formGroup;
       this.eventObs = comp.getEventObs();
+      this.initObs();
+    });
+  }
+
+  initObs() {
+    this.eventSubscription = this.eventObs?.subscribe(event => {
+      if(event.key == 'stop-loading') {
+        this.isLoading.set(false);
+      }
     });
   }
 }
