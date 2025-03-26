@@ -21,7 +21,7 @@ export class MCFilterOdataConverterService {
   }
 
   filterToOdata(filter: MCResultFilter, isFirst: boolean): string {
-    console.log(filter);
+
     let result = '';
     if(filter.childrens != undefined){
       result += !isFirst ? ' ' + filter.operator + ' (' : '(';
