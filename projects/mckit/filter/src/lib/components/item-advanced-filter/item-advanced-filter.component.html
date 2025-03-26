@@ -24,22 +24,33 @@
       <p-dropdown [options]="filters()" [(ngModel)]="result().filter" optionLabel="title" styleClass="w-full" placeholder="Select a column" (onChange)="onRefreshColumn()" [appendTo]="'body'" />
     </div>
 
-    <div *ngIf="result().filter?.isShowConditions ?? true" class="condition w-36">
-      <p-dropdown [options]="conditions" [(ngModel)]="result().condition" optionLabel="label" optionValue="value" />
-    </div>
+    @if (result().filter?.isShowConditions ?? true) {
+      @if (result().filter?.type != typeMultiselect) {
+        <div class="condition w-36">
+          <p-dropdown [options]="conditions" [(ngModel)]="result().condition" optionLabel="label" optionValue="value" />
+        </div>
+      } @else {
+        <div class="condition w-36">
+          <p-dropdown [options]="[{label: 'In', value: MCConditionResult.IN}]"  [disabled]="true" optionLabel="label" optionValue="value" />
+        </div>
+      }
+    }
 
     <div class="value w-full">
-
-      @if (result().filter?.type == typeSelect) {
-        <p-dropdown [options]="result().filter?.options" [(ngModel)]="result().value" optionLabel="label" optionValue="value" [placeholder]="result().filter?.data?.placeholder" styleClass="w-full" [appendTo]="'body'" />
-      } @else if (result().filter?.type == typeAutocomplete) {
-        <p-autoComplete [(ngModel)]="result().value" [suggestions]="filteredOptions" (completeMethod)="onFilterAutocomplete($event)" [placeholder]="result().filter?.data?.placeholder" optionLabel="label" optionValue="value" [showClear]="true" [appendTo]="'body'" styleClass="w-full" inputStyleClass="w-full" />
-      } @else if (result().filter?.type == typeMultiselect) {
-        <p-multiSelect [(ngModel)]="result().value" [options]="result().filter?.options" optionLabel="label" optionValue="value" [placeholder]="result().filter?.data?.placeholder" [appendTo]="'body'" styleClass="w-full" [showToggleAll]="false" />
-      } @else {
-        <input type="text" pInputText [(ngModel)]="result().value" class="w-full" placeholder="Value" />
+      @switch (result().filter?.type) {
+        @case (typeSelect) {
+          <p-dropdown [options]="result().filter?.options" [(ngModel)]="result().value" optionLabel="label" optionValue="value" [placeholder]="result().filter?.data?.placeholder" styleClass="w-full" [appendTo]="'body'" />
+        }
+        @case (typeAutocomplete) {
+          <p-autoComplete [(ngModel)]="result().value" [suggestions]="filteredOptions" (completeMethod)="onFilterAutocomplete($event)" [placeholder]="result().filter?.data?.placeholder" optionLabel="label" optionValue="value" [showClear]="true" [appendTo]="'body'" styleClass="w-full" inputStyleClass="w-full" />
+        }
+        @case (typeMultiselect) {
+          <p-multiSelect [(ngModel)]="result().value" [options]="result().filter?.options" optionLabel="label" optionValue="value" [placeholder]="result().filter?.data?.placeholder" [appendTo]="'body'" styleClass="w-full" [showToggleAll]="false" />
+        }
+        @default {
+          <input type="text" pInputText [(ngModel)]="result().value" class="w-full" placeholder="Value" />
+        }
       }
-
     </div>
 
     <p-button [text]="true" icon="pi pi-times" (onClick)="clickRemoveFilter()"></p-button>
