@@ -1,22 +1,21 @@
 import { inject, Injectable } from '@angular/core';
 import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { MCConfigForm } from '../entities/mc-config-form';
-import { MCFormModal } from '../components/form-modal/form-modal.component';
-import { MCFooterModalForm } from '../components/footer-modal-form/footer-modal-form.component';
 import { Observable } from 'rxjs';
-import { MCConfigModalForm } from '../entities/mc-config-modal-form';
+import { MCFooterModalForm } from '../components/footer-modal-form/footer-modal-form.component';
+import { MCHttpFormModal } from '../components/http-form-modal/http-form-modal.component';
+import { MCConfigHttpModalForm } from '../entities/mc-config-http-modal-form';
 
 
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class MCFormModalService {
+export class MCHttpFormModalService {
 
   dialogService = inject(DialogService);
 
-  open(config: MCConfigModalForm): Observable<MCFormModal> {
-    let dialog: DynamicDialogRef<MCFormModal> = this.dialogService.open(MCFormModal, {
+  open(config: MCConfigHttpModalForm): Observable<MCHttpFormModal> {
+    let dialog: DynamicDialogRef<MCHttpFormModal> = this.dialogService.open(MCHttpFormModal, {
       header: config.title,
       style: config.style,
       styleClass: config.styleClass,
@@ -32,7 +31,7 @@ export class MCFormModalService {
     return dialog.onChildComponentLoaded;
   }
 
-  openRight(config: MCConfigModalForm): Observable<MCFormModal> {
+  openRight(config: MCConfigHttpModalForm): Observable<MCHttpFormModal> {
     config.position = 'right';
     config.style = { margin: '0px !important', 'max-height': '100%' };
     config.styleClass = 'w-full md:w-2xl mc-form-modal';
