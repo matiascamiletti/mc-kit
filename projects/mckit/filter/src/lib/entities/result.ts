@@ -50,12 +50,13 @@ export class MCResultFilter {
     return [
       { label: '=', value: MCConditionResult.EQUALS },
       { label: 'Contains', value: MCConditionResult.CONTAINS },
+
       /*{ label: 'Not Equals', value: MCConditionResult.NOT_EQUALS },
       { label: 'Greater Than', value: MCConditionResult.GREATER_THAN },
       { label: 'Greater Than Or Equals', value: MCConditionResult.GREATER_THAN_OR_EQUALS },
       { label: 'Less Than', value: MCConditionResult.LESS_THAN },
       { label: 'Less Than Or Equals', value: MCConditionResult.LESS_THAN_OR_EQUALS },
-
+      { label: 'In', value: MCConditionResult.IN },
       { label: 'Not Contains', value: MCConditionResult.NOT_CONTAINS },
       { label: 'Starts With', value: MCConditionResult.STARTS_WITH },
       { label: 'Ends With', value: MCConditionResult.ENDS_WITH },
