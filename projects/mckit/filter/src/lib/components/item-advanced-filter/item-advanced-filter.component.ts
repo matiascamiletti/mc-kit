@@ -36,6 +36,7 @@ export class ItemAdvancedFilterComponent {
   typeMultiselect = MCTypeFilter.MULTISELECT;
 
   filteredOptions: Array<MCItemFilter> = [];
+  MCConditionResult = MCConditionResult;
 
   clickAddFilter(): void {
     this.result().childrens!.push(new MCResultFilter());
@@ -50,6 +51,10 @@ export class ItemAdvancedFilterComponent {
 
     if(this.result().filter?.isShowConditions == false){
       this.result().condition = MCConditionResult.EQUALS;
+    }
+
+    if(this.result().filter?.type == this.typeMultiselect){
+      this.result().condition = MCConditionResult.IN;
     }
   }
 
