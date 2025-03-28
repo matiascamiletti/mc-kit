@@ -26,6 +26,7 @@ export * from './lib/fields/mc-field.component';
 export * from './lib/fields/ifta-text-field/ifta-text-field.component';
 export * from './lib/fields/submit-button-field/submit-button-field.component';
 export * from './lib/fields/row-field/row-field.component';
+export * from './lib/fields/hidden-field/hidden-field.component';
 
 /**
  * Components

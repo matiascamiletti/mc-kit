@@ -26,7 +26,7 @@ export class OpenModalFieldComponent extends MCFieldComponent implements OnDestr
   onClick() {
     let dialogRef = this.formModalService.openRight({
       title: 'Test Modal',
-      item: undefined,
+      item: { lastname: 'Doe' },
       fields: [
         IftaTextField.init('firstname', 'Firstname', { validators: [Validators.required] }),
         IftaTextField.init('lastname', 'Lastname'),
