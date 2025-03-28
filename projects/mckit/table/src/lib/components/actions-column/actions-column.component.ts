@@ -20,10 +20,10 @@ export class MCActionsColumn {
   onRemove = output<any>();
 
   onClickEdit() {
-    this.onEdit.emit(this.item);
+    this.onEdit.emit(this.item());
   }
 
   onClickRemove() {
-    this.onRemove.emit(this.item);
+    this.onRemove.emit(this.item());
   }
 }
