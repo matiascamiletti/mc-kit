@@ -1,9 +1,9 @@
-import { Component, computed, inject } from '@angular/core';
-import { MCFieldComponent } from '../mc-field.component';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MCField } from '../../entities/mc-field';
 import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 import { PrintFieldComponent } from '../../components/print-field/print-field.component';
+import { GroupFieldComponent } from '../group-field/group-field.component';
 
 @Component({
   selector: 'mc-row-field',
@@ -11,15 +11,8 @@ import { PrintFieldComponent } from '../../components/print-field/print-field.co
   templateUrl: './row-field.component.html',
   styleUrl: './row-field.component.css'
 })
-export class RowFieldComponent extends MCFieldComponent {
+export class RowFieldComponent extends GroupFieldComponent {
 
-  newGroup = computed<UntypedFormGroup|undefined>(() => {
-    if(this.field().config?.is_new_group) {
-      return this.group().get(this.field().key!) as UntypedFormGroup;
-    }
-
-    return undefined;
-  });
 }
 
 export class RowField {
