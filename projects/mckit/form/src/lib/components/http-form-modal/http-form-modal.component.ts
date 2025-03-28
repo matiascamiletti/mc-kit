@@ -33,7 +33,7 @@ export class MCHttpFormModal extends MCFormModal implements OnInit, AfterViewIni
     .pipe(
       catchError((error: any) => {
         this.emitEvent({ key: 'stop-loading', content: undefined, dialog: this.dialogRef });
-        this.messageService.add({ severity: 'error', summary: 'An error has occurred.', detail: error?.error?.message || error?.message || 'Unknown error', life: 3000 });
+        this.messageService.add({ severity: 'error', summary: 'An error has occurred.', detail: error?.error?.message || error?.message?.message || error?.message || 'Unknown error', life: 3000 });
         throw error;
       })
     )
