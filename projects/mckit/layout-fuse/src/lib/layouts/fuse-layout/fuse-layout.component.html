@@ -1,6 +1,6 @@
 <div id="mc-fuse-layout" class="layout-wrapper md:flex md:justify-between">
   <!-- Sidebar -->
-  <div class="layout-sidebar fixed w-full md:relative md:w-2xs md:border-r-1 border-gray-800" [ngClass]="{'open': isOpen()}">
+  <div class="layout-sidebar fixed w-full md:relative md:border-r-1 border-gray-800" [ngClass]="{'open': isOpen()}">
     <div class="layout-sidebar-close-button absolute right-1 top-1 md:hidden">
       <p-button icon="pi pi-times" [rounded]="true" [text]="true" (onClick)="closeSidebar()" />
     </div>
@@ -16,7 +16,7 @@
     </div>
     <!-- END Topbar -->
 
-    <div class="layout-main w-full">
+    <div class="layout-main w-full" [ngClass]="{'open': isOpen()}">
         <router-outlet></router-outlet>
     </div>
 

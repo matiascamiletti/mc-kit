@@ -14,6 +14,15 @@
   margin-left: 0;
 }
 
+.layout-main {
+  width: 100vw;
+  overflow: scroll;
+}
+
+.layout-main.open {
+  width: calc(100vw - var(--container-2xs));
+}
+
 .layout-topbar {
 
   img {
