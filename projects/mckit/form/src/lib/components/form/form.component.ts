@@ -25,7 +25,9 @@ export class MCForm implements OnInit {
   eventSubscription?: Subscription;
 
   ngOnInit(): void {
-    this.eventSubscription = this.eventObs.subscribe(event => this.onEvent.emit(event));
+    this.eventSubscription = this.eventObs.subscribe(event => {
+      this.emitEvent(event);
+    });
     this.loadFields();
   }
 
@@ -34,7 +36,7 @@ export class MCForm implements OnInit {
   }
 
   emitEvent(event: MCEventForm) {
-    this.eventObs.next(event);
+    this.onEvent.emit(event);
   }
 
   loadFields() {
@@ -42,5 +44,9 @@ export class MCForm implements OnInit {
     let fields = this.config().fields ?? [];
     this.formService.loadFields(group, fields, this.config().item);
     this.formGroup.set(group);
+  }
+
+  getEventObs(): Subject<MCEventForm> {
+    return this.eventObs;
   }
 }

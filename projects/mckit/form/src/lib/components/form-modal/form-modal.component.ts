@@ -26,14 +26,12 @@ export class MCFormModal implements OnInit {
 
   formConfig = signal<MCConfigForm>(new MCConfigForm());
 
-  eventObs = new Subject<MCEventModalForm>();
-
   ngOnInit(): void {
     this.initForm();
   }
 
-  onEventForm(event: MCEventForm) {
-    this.eventObs.next({ ...event, dialog: this.dialogRef });
+  emitEvent(event: MCEventModalForm) {
+    this.formComponent()!.getEventObs().next(event);
   }
 
   initForm() {
@@ -51,6 +49,6 @@ export class MCFormModal implements OnInit {
   }
 
   getEventObs(): Subject<MCEventModalForm> {
-    return this.eventObs;
+    return this.formComponent()!.getEventObs();
   }
 }

@@ -4,7 +4,7 @@ import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { Validators } from '@angular/forms';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
-import { of, Subscription, switchMap } from 'rxjs';
+import { delay, map, of, Subscription, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-open-modal-field',
@@ -32,18 +32,21 @@ export class OpenModalFieldComponent extends MCFieldComponent implements OnDestr
         IftaTextField.init('lastname', 'Lastname'),
       ],
       http: (item: any) => {
-        console.log('llego aca');
-        return of({});
+        return of({})
+        .pipe(delay(2000))
+        .pipe(map(() => {
+          throw 'not implemented';
+        }));
       }
     });
 
     this.eventSubscription = dialogRef
+    .pipe(switchMap(formModal => formModal.getEventObs()))
     .subscribe(event => {
 
-      /*if(event.key == 'submit'){
-        console.log(event.content);
-        event.dialog?.close();
-      }*/
+      if(event.key == 'saved'){
+        alert('Thanks');
+      }
 
     });
   }
