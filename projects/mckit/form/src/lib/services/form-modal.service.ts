@@ -1,5 +1,5 @@
 import { inject, Injectable } from '@angular/core';
-import { DialogService, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialogConfig, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { MCConfigForm } from '../entities/mc-config-form';
 import { MCFormModal } from '../components/form-modal/form-modal.component';
 import { MCFooterModalForm } from '../components/footer-modal-form/footer-modal-form.component';
@@ -33,9 +33,13 @@ export class MCFormModalService {
   }
 
   openRight(config: MCConfigModalForm): Observable<MCFormModal> {
-    config.position = 'right';
-    config.style = { margin: '0px !important', 'max-height': '100%' };
-    config.styleClass = 'w-full md:w-2xl mc-form-modal';
-    return this.open(config);
+    return this.open(MCFormModalService.initConfigRight(config));
+  }
+
+  static initConfigRight(config: any): any {
+    config.position = config.position ?? 'right';
+    config.style = config.style ?? { margin: '0px !important', 'max-height': '100%' };
+    config.styleClass = config.styleClass ?? 'w-full md:w-2xl mc-form-modal';
+    return config;
   }
 }

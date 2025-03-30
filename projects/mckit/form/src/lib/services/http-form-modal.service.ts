@@ -4,17 +4,16 @@ import { Observable } from 'rxjs';
 import { MCFooterModalForm } from '../components/footer-modal-form/footer-modal-form.component';
 import { MCHttpFormModal } from '../components/http-form-modal/http-form-modal.component';
 import { MCConfigHttpModalForm } from '../entities/mc-config-http-modal-form';
+import { MCFormModalService } from './form-modal.service';
 
 
 
 @Injectable({
   providedIn: 'root'
 })
-export class MCHttpFormModalService {
+export class MCHttpFormModalService extends MCFormModalService {
 
-  dialogService = inject(DialogService);
-
-  open(config: MCConfigHttpModalForm): Observable<MCHttpFormModal> {
+  override open(config: MCConfigHttpModalForm): Observable<MCHttpFormModal> {
     let dialog: DynamicDialogRef<MCHttpFormModal> = this.dialogService.open(MCHttpFormModal, {
       header: config.title,
       style: config.style,
@@ -31,10 +30,7 @@ export class MCHttpFormModalService {
     return dialog.onChildComponentLoaded;
   }
 
-  openRight(config: MCConfigHttpModalForm): Observable<MCHttpFormModal> {
-    config.position = 'right';
-    config.style = { margin: '0px !important', 'max-height': '100%' };
-    config.styleClass = 'w-full md:w-2xl mc-form-modal';
-    return this.open(config);
+  override openRight(config: MCConfigHttpModalForm): Observable<MCHttpFormModal> {
+    return this.open(MCFormModalService.initConfigRight(config));
   }
 }
