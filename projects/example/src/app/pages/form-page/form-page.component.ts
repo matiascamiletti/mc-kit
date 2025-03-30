@@ -1,11 +1,12 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, signal, viewChild } from '@angular/core';
-import { IftaSelectField, MCConfigForm, MCEventForm, MCField, MCForm, RowField } from '../../../../../mckit/form/src/public-api';
+import { IftaSelectField, IftaSelectObsField, MCConfigForm, MCEventForm, MCField, MCForm, RowField } from '../../../../../mckit/form/src/public-api';
 import { IftaTextField } from '../../../../../mckit/form/src/lib/fields/ifta-text-field/ifta-text-field.component';
 import { SubmitButtonField } from '../../../../../mckit/form/src/lib/fields/submit-button-field/submit-button-field.component';
 import { Validators } from '@angular/forms';
 import { OpenModalFieldComponent } from '../../fields/open-modal-field/open-modal-field.component';
 import { IftaTextConditionalField } from '../../../../../mckit/form/src/lib/fields/ifta-text-conditional-field/ifta-text-conditional-field.component';
+import { of } from 'rxjs';
 
 @Component({
   selector: 'app-form-page',
@@ -65,6 +66,13 @@ export class FormPageComponent implements OnInit {
         ], 'label', 'value'),
         IftaTextConditionalField.init('department', 'Department', 'country', 'canada-country'),
       ]),
+      IftaSelectObsField.init('client', 'Client', () => of([
+        { id: 'client-1', title: 'Client 1' },
+        { id: 'client-2', title: 'Client 2' },
+        { id: 'client-3', title: 'Client 3' },
+        { id: 'client-4', title: 'Client 4' },
+        { id: 'client-5', title: 'Client 5' }
+      ]), 'title', 'id'),
       SubmitButtonField.init('submit', 'Submit', { icon: 'pi pi-check' })
     ];
 

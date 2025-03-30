@@ -1,0 +1,5 @@
+<p-iftalabel>
+    <p-select [formControl]="control()!" inputId="{{field().key}}" [options]="options()" [optionLabel]="field().config.optionLabel" [optionValue]="field().config.optionValue" styleClass="w-full" [appendTo]="'body'" [loading]="isLoading()" />
+    <label for="{{field().key}}">{{field().config.label}}</label>
+</p-iftalabel>
+  
