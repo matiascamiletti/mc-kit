@@ -1,6 +1,6 @@
 {
   "name": "@mckit/form",
-  "version": "19.0.11",
+  "version": "19.0.12",
   "peerDependencies": {
     "@angular/common": "^19.1.0",
     "@angular/core": "^19.1.0",
