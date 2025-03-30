@@ -29,6 +29,7 @@ export * from './lib/fields/row-field/row-field.component';
 export * from './lib/fields/hidden-field/hidden-field.component';
 export * from './lib/fields/group-field/group-field.component';
 export * from './lib/fields/ifta-select-field/ifta-select-field.component';
+export * from './lib/fields/ifta-text-conditional-field/ifta-text-conditional-field.component';
 
 /**
  * Components

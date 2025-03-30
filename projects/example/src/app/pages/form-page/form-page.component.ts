@@ -5,6 +5,7 @@ import { IftaTextField } from '../../../../../mckit/form/src/lib/fields/ifta-tex
 import { SubmitButtonField } from '../../../../../mckit/form/src/lib/fields/submit-button-field/submit-button-field.component';
 import { Validators } from '@angular/forms';
 import { OpenModalFieldComponent } from '../../fields/open-modal-field/open-modal-field.component';
+import { IftaTextConditionalField } from '../../../../../mckit/form/src/lib/fields/ifta-text-conditional-field/ifta-text-conditional-field.component';
 
 @Component({
   selector: 'app-form-page',
@@ -62,8 +63,8 @@ export class FormPageComponent implements OnInit {
           { label: 'Canada', value: 'canada-country' },
           { label: 'Mexico', value: 'mexico' }
         ], 'label', 'value'),
+        IftaTextConditionalField.init('department', 'Department', 'country', 'canada-country'),
       ]),
-
       SubmitButtonField.init('submit', 'Submit', { icon: 'pi pi-check' })
     ];
 
