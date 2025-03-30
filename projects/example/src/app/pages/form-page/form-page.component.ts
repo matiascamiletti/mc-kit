@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, signal, viewChild } from '@angular/core';
-import { MCConfigForm, MCEventForm, MCField, MCForm, RowField } from '../../../../../mckit/form/src/public-api';
+import { IftaSelectField, MCConfigForm, MCEventForm, MCField, MCForm, RowField } from '../../../../../mckit/form/src/public-api';
 import { IftaTextField } from '../../../../../mckit/form/src/lib/fields/ifta-text-field/ifta-text-field.component';
 import { SubmitButtonField } from '../../../../../mckit/form/src/lib/fields/submit-button-field/submit-button-field.component';
 import { Validators } from '@angular/forms';
@@ -57,8 +57,13 @@ export class FormPageComponent implements OnInit {
       RowField.initWithGroup('address', [
         IftaTextField.init('address', 'Address'),
         IftaTextField.init('state', 'State'),
-        IftaTextField.init('country', 'Country'),
+        IftaSelectField.init('country', 'Country', [
+          { label: 'USA', value: 'usa' },
+          { label: 'Canada', value: 'canada-country' },
+          { label: 'Mexico', value: 'mexico' }
+        ], 'label', 'value'),
       ]),
+
       SubmitButtonField.init('submit', 'Submit', { icon: 'pi pi-check' })
     ];
 
