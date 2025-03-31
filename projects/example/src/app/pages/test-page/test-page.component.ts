@@ -91,11 +91,13 @@ export class TestPageComponent implements OnInit {
         title: 'Text Quick Filter Field',
         key: 'field',
         options: [{ label: 'Field La bombonera', value: 'Field La bombonera' }],
+        placeholder: 'Search a field',
       }),
       MCFilter.autocomplete({
         title: 'Autocomplete Field',
         key: 'field',
         filter: this.onFilterAutocomplete.bind(this),
+        placeholder: 'Search a field',
       }),
       MCFilter.multiselect({
         title: 'Multi Select Field',
@@ -106,6 +108,7 @@ export class TestPageComponent implements OnInit {
           { label: 'La bombonera', value: 'La bombonera' },
           { label: 'McDonalds', value: 'McDonalds' },
         ],
+        placeholder: 'Search a field',
       }),
       MCFilter.select({
         title: 'Select Field',
@@ -116,6 +119,7 @@ export class TestPageComponent implements OnInit {
           { label: 'La bombonera', value: 'La bombonera' },
           { label: 'McDonalds', value: 'McDonalds' },
         ],
+        placeholder: 'Search a field',
       }),
     ];
   }

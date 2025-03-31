@@ -43,7 +43,7 @@ export class MCFilter {
     filter.type = MCTypeFilter.AUTOCOMPLETE;
     filter.title = data.title;
     filter.key = data.key;
-    filter.data = { filter: data.filter };
+    filter.data = { filter: data.filter, placeholder: data.placeholder };
     return filter;
   }
 
