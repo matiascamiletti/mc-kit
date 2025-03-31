@@ -82,7 +82,7 @@ export class FormPageComponent implements OnInit {
           IftaTextField.init('quantity', 'Quantity'),
           IftaTextField.init('price', 'Price'),
         ],
-        { labelAddButton: 'Add Item' }
+        { labelAddButton: 'Add Item', labelTitlePanel: 'Producto' }
       ),
       SubmitButtonField.init('submit', 'Submit', { icon: 'pi pi-check' })
     ];

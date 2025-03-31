@@ -1,13 +1,21 @@
 
 <div class="mc-array-form">
     <div *ngFor="let row of formArray().controls; let i = index">
+
+      <p-panel [header]="field().config?.labelTitlePanel" styleClass="mb-3">
+        <ng-template #icons>
+          <p-button icon="pi pi-trash" severity="danger" rounded text (onClick)="onClickRemove(i)" />
+        </ng-template>
+
         <div [formGroup]="row" class="mc-array-group-form">
-            @for (field of field().config.fields; track $index) {
-              <div class="{{(field.config.containerFieldClass || 'mb-3 w-full')}}">
-                <mc-print-field [field]="field" [control]="row.get(field.key ?? '')" [group]="row" [eventObs]="eventObs()" />
-              </div>
-            }
+          @for (field of field().config.fields; track $index) {
+            <div class="{{(field.config.containerFieldClass || 'mb-3 w-full')}}">
+              <mc-print-field [field]="field" [control]="row.get(field.key ?? '')" [group]="row" [eventObs]="eventObs()" />
+            </div>
+          }
         </div>
+      </p-panel>
+
     </div>
 </div>
 
