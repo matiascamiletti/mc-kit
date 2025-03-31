@@ -5,10 +5,11 @@ import { CommonModule } from '@angular/common';
 import { FormArray, ReactiveFormsModule, UntypedFormArray, UntypedFormGroup } from '@angular/forms';
 import { MCFormService } from '../../services/mc-form.service';
 import { PrintFieldComponent } from '../../components/print-field/print-field.component';
+import { ButtonModule } from 'primeng/button';
 
 @Component({
   selector: 'mc-array-field',
-  imports: [CommonModule, ReactiveFormsModule, PrintFieldComponent],
+  imports: [CommonModule, ReactiveFormsModule, PrintFieldComponent, ButtonModule],
   templateUrl: './array-field.component.html',
   styleUrl: './array-field.component.css'
 })
@@ -34,14 +35,17 @@ export class ArrayFieldComponent  extends MCFieldComponent {
 
 export class ArrayField {
 
-  static init(key: string, fields: MCField[]): MCField {
+  static init(key: string, fields: MCField[], data?: {
+    labelAddButton: string,
+  }): MCField {
     let field = MCField.init({
       key: key,
       component: ArrayFieldComponent,
     });
     field.config = {
       is_array: true,
-      fields: fields
+      fields: fields,
+      labelAddButton: data?.labelAddButton,
     }
 
     return field;

@@ -75,11 +75,15 @@ export class FormPageComponent implements OnInit {
         { id: 'client-5', title: 'Client 5' }
       ]), 'title', 'id'),
       DividerField.init('Products'),
-      ArrayField.init('items', [
-        IftaTextField.init('item', 'Item'),
-        IftaTextField.init('quantity', 'Quantity'),
-        IftaTextField.init('price', 'Price'),
-      ]),
+      ArrayField.init(
+        'items',
+        [
+          IftaTextField.init('item', 'Item'),
+          IftaTextField.init('quantity', 'Quantity'),
+          IftaTextField.init('price', 'Price'),
+        ],
+        { labelAddButton: 'Add Item' }
+      ),
       SubmitButtonField.init('submit', 'Submit', { icon: 'pi pi-check' })
     ];
 

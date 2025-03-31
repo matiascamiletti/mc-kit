@@ -10,6 +10,6 @@
         </div>
     </div>
 </div>
-   
-<button (click)="onClickAdd()">Add row</button>
-    
+
+<p-button [label]="field().config?.labelAddButton ?? 'Add row'" [link]="true" icon="pi pi-plus-circle" (onClick)="onClickAdd()" />
+
