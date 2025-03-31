@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { MCField } from '../entities/mc-field';
 
 @Injectable({
@@ -22,6 +22,26 @@ export class MCFormService {
     return input;
   }
 
+  createArrayControl(field: MCField): UntypedFormArray {
+    let array = new UntypedFormArray([]);
+    return array;
+  }
+
+  loadFieldsInArray(group: UntypedFormGroup, field: MCField, item: any) {
+    let fieldKey = field.key ?? 'rows';
+    let subitem = item && item[fieldKey] ? item[fieldKey] : undefined;
+    let array = this.createArrayControl(field);
+    group.addControl(fieldKey, array);
+
+    if(subitem && Array.isArray(subitem)){
+      for(let i = 0; i < subitem.length; i++){
+        let newGroup = new UntypedFormGroup({});
+        this.loadFields(newGroup, field.config.fields, subitem[i]);
+        array.push(newGroup);
+      }
+    }
+  }
+
   loadFieldsInNewGroup(group: UntypedFormGroup, fields: MCField[], key: string, item: any) {
     let newGroup = new UntypedFormGroup({});
     this.loadFields(newGroup, fields, item);
@@ -40,6 +60,10 @@ export class MCFormService {
 
   loadFields(group: UntypedFormGroup, fields: MCField[], item: any) {
     for (const field of fields) {
+      if(field.config.is_array){
+        this.loadFieldsInArray(group, field, item);
+        continue;
+      }
       if(field.config?.has_children){
         this.loadFieldsWithChildren(group, field, item);
         continue;

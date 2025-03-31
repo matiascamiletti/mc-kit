@@ -5,7 +5,7 @@ import { MCField } from '../../entities/mc-field';
 import { MCFieldComponent } from '../mc-field.component';
 
 @Component({
-  selector: 'lib-divider-field',
+  selector: 'mc-divider-field',
   imports: [CommonModule, DividerModule],
   templateUrl: './divider-field.component.html',
   styleUrl: './divider-field.component.css'

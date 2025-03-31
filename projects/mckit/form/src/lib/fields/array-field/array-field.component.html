@@ -1,0 +1,15 @@
+
+<div class="mc-array-form">
+    <div *ngFor="let row of formArray().controls; let i = index">
+        <div [formGroup]="row" class="mc-array-group-form">
+            @for (field of field().config.fields; track $index) {
+              <div class="{{(field.config.containerFieldClass || 'mb-3 w-full')}}">
+                <mc-print-field [field]="field" [control]="row.get(field.key ?? '')" [group]="row" [eventObs]="eventObs()" />
+              </div>
+            }
+        </div>
+    </div>
+</div>
+   
+<button (click)="onClickAdd()">Add row</button>
+    
