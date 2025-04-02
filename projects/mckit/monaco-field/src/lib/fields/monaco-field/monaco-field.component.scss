@@ -1,0 +1,25 @@
+.mc-monaco-field {
+  position: relative;
+  border: 1px solid var(--p-select-border-color);
+  border-radius: var(--p-select-border-radius);
+  background: var(--p-select-background);
+  box-shadow: var(--p-select-shadow);
+
+  label {
+    padding-left: 10px;
+    pointer-events: none;
+    top: var(--p-iftalabel-top);
+    transition-property: all;
+    transition-timing-function: ease;
+    line-height: 1;
+    font-size: var(--p-iftalabel-font-size);
+    font-weight: var(--p-iftalabel-font-weight);
+    inset-inline-start: var(--p-iftalabel-position-x);
+    color: var(--p-iftalabel-color);
+    transition-duration: var(--p-iftalabel-transition-duration);
+  }
+}
+
+.monaco-one-line {
+  height: 34px;
+}

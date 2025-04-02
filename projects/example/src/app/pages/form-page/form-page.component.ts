@@ -86,6 +86,7 @@ export class FormPageComponent implements OnInit {
         { labelAddButton: 'Add Item', labelTitlePanel: 'Producto' }
       ),
       DividerField.init('Monaco Editor'),
+      MonacoField.initOneLine({ key: 'one_line', language: 'nodejs', label: 'Variable' }),
       MonacoField.init({ key: 'json_data', language: 'json' }),
       SubmitButtonField.init('submit', 'Submit', { icon: 'pi pi-check' })
     ];
