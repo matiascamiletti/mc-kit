@@ -34,6 +34,9 @@
       "@mckit/loader": [
         "./dist/mckit/loader"
       ],
+      "@mckit/monaco-field": [
+        "./dist/mckit/monaco-field"
+      ],
       "@mckit/odata": [
         "./dist/mckit/odata"
       ],

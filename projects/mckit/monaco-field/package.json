@@ -1,0 +1,14 @@
+{
+  "name": "@mckit/monaco-field",
+  "version": "19.0.0",
+  "peerDependencies": {
+    "@angular/common": "^19.0.0",
+    "@angular/core": "^19.0.0",
+    "monaco-editor": "^0.52.2",
+    "ngx-monaco-editor-v2": "^19.0.2"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}
