@@ -59,6 +59,7 @@
             "tsConfig": "projects/example/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
+              { "glob": "**/*", "input": "node_modules/monaco-editor", "output": "/assets/monaco/" },
               {
                 "glob": "**/*",
                 "input": "projects/example/public"
