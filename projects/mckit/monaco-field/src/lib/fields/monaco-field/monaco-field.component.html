@@ -1,7 +1,7 @@
 @if (isClient()) {
   <div class="mc-monaco-field">
     @if (field().config?.label) {<label for="{{field().key}}">{{field().config.label}}</label>}
-    <ngx-monaco-editor [formControl]="control()!" id="{{field().key}}" [options]="options()" class="{{field().config.class}}"></ngx-monaco-editor>
+    <ngx-monaco-editor [formControl]="control()!" id="{{field().key}}" [options]="options()" class="{{field().config.class}}" (onInit)="onInitEditor($event)"></ngx-monaco-editor>
   </div>
 }
 

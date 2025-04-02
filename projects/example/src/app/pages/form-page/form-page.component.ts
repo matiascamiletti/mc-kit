@@ -86,7 +86,21 @@ export class FormPageComponent implements OnInit {
         { labelAddButton: 'Add Item', labelTitlePanel: 'Producto' }
       ),
       DividerField.init('Monaco Editor'),
-      MonacoField.initOneLine({ key: 'one_line', language: 'nodejs', label: 'Variable' }),
+      MonacoField.initOneLine({
+        key: 'one_line',
+        language: 'json',
+        label: 'Variable',
+        suggestions: {
+          trigger: '{',
+          labelConfig: '{{__VAR__}}',
+          insertText: '{__VAR__}',
+          suggestions: [
+            { title: 'var1', detail: 'Variable 1' },
+            { title: 'var2', detail: 'Variable 2' },
+            { title: 'var3', detail: 'Variable 3' },
+          ]
+        }
+      }),
       MonacoField.init({ key: 'json_data', language: 'json' }),
       SubmitButtonField.init('submit', 'Submit', { icon: 'pi pi-check' })
     ];

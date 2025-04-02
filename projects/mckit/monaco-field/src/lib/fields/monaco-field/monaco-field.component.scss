@@ -4,9 +4,10 @@
   border-radius: var(--p-select-border-radius);
   background: var(--p-select-background);
   box-shadow: var(--p-select-shadow);
+  padding-left: 10px;
+  padding-right: 10px;
 
   label {
-    padding-left: 10px;
     pointer-events: none;
     top: var(--p-iftalabel-top);
     transition-property: all;
