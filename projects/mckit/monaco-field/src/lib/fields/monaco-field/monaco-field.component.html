@@ -1,0 +1,6 @@
+@if (isClient()) {
+  <div class="mc-monaco-field">
+    <ngx-monaco-editor [formControl]="control()!" id="{{field().key}}" [options]="options()"></ngx-monaco-editor>
+  </div>
+}
+

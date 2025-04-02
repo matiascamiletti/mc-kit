@@ -4,7 +4,8 @@
   "peerDependencies": {
     "@angular/common": "^19.0.0",
     "@angular/core": "^19.0.0",
-    "monaco-editor": "^0.52.2",
+    "@mckit/form": "^19.0.0",
+    "monaco-editor": "^0.50.0",
     "ngx-monaco-editor-v2": "^19.0.2"
   },
   "dependencies": {

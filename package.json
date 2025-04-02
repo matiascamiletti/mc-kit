@@ -22,7 +22,8 @@
     "publish-cron": "ng build --project=@mckit/cron --configuration production && npm publish dist/mckit/cron --access public",
     "publish-layout-fuse": "ng build --project=@mckit/layout-fuse --configuration production && npm publish dist/mckit/layout-fuse --access public",
     "publish-form": "ng build --project=@mckit/form --configuration production && npm publish dist/mckit/form --access public",
-    "publish-table": "ng build --project=@mckit/table --configuration production && npm publish dist/mckit/table --access public"
+    "publish-table": "ng build --project=@mckit/table --configuration production && npm publish dist/mckit/table --access public",
+    "publish-monaco-field": "ng build --project=@mckit/monaco-field --configuration production && npm publish dist/mckit/monaco-field --access public"
   },
   "private": true,
   "dependencies": {
@@ -40,7 +41,7 @@
     "@primeng/themes": "^19.0.5",
     "@tailwindcss/postcss": "^4.0.0",
     "express": "^4.18.2",
-    "monaco-editor": "^0.52.2",
+    "monaco-editor": "^0.50.0",
     "ngx-monaco-editor-v2": "^19.0.2",
     "primeicons": "^7.0.0",
     "primeng": "^19.0.5",

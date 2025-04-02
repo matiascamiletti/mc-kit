@@ -9,6 +9,13 @@ import { provideAnimationsAsync } from '@angular/platform-browser/animations/asy
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
 import { provideHttpClient } from '@angular/common/http';
+import { MonacoEditorModule, NgxMonacoEditorConfig } from 'ngx-monaco-editor-v2';
+
+/*const monacoConfig: NgxMonacoEditorConfig = {
+  baseUrl: 'assets',
+  defaultOptions: { scrollBeyondLastLine: false },
+  onMonacoLoad: () => console.log('Monaco Editor Loaded'),
+};*/
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -25,6 +32,10 @@ export const appConfig: ApplicationConfig = {
               darkModeSelector: '.dark'
             }
         }
-    })
+    }),
+
+    importProvidersFrom([
+      MonacoEditorModule.forRoot()
+    ]),
   ]
 };

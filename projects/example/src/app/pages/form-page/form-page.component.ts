@@ -7,6 +7,7 @@ import { Validators } from '@angular/forms';
 import { OpenModalFieldComponent } from '../../fields/open-modal-field/open-modal-field.component';
 import { IftaTextConditionalField } from '../../../../../mckit/form/src/lib/fields/ifta-text-conditional-field/ifta-text-conditional-field.component';
 import { of } from 'rxjs';
+import { MonacoField } from '../../../../../mckit/monaco-field/src/public-api';
 
 @Component({
   selector: 'app-form-page',
@@ -84,6 +85,8 @@ export class FormPageComponent implements OnInit {
         ],
         { labelAddButton: 'Add Item', labelTitlePanel: 'Producto' }
       ),
+      DividerField.init('Monaco Editor'),
+      MonacoField.init({ key: 'json_data', language: 'json' }),
       SubmitButtonField.init('submit', 'Submit', { icon: 'pi pi-check' })
     ];
 
