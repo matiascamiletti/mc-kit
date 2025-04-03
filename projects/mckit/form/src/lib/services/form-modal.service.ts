@@ -5,6 +5,7 @@ import { MCFormModal } from '../components/form-modal/form-modal.component';
 import { MCFooterModalForm } from '../components/footer-modal-form/footer-modal-form.component';
 import { Observable } from 'rxjs';
 import { MCConfigModalForm } from '../entities/mc-config-modal-form';
+import { MCFooterWithDeleteModalForm } from '../components/footer-with-delete-modal-form/footer-with-delete-modal-form.component';
 
 
 
@@ -15,7 +16,7 @@ export class MCFormModalService {
 
   dialogService = inject(DialogService);
 
-  open(config: MCConfigModalForm): Observable<MCFormModal> {
+  open(config: MCConfigModalForm, withDelete?: boolean): Observable<MCFormModal> {
     let dialog: DynamicDialogRef<MCFormModal> = this.dialogService.open(MCFormModal, {
       header: config.title,
       style: config.style,
@@ -24,7 +25,7 @@ export class MCFormModalService {
       dismissableMask: true,
       position: config.position,
       templates: {
-        footer: MCFooterModalForm
+        footer: withDelete ? MCFooterWithDeleteModalForm : MCFooterModalForm
       },
       data: config
     });
@@ -34,6 +35,14 @@ export class MCFormModalService {
 
   openRight(config: MCConfigModalForm): Observable<MCFormModal> {
     return this.open(MCFormModalService.initConfigRight(config));
+  }
+
+  openRightWithDelete(config: MCConfigModalForm): Observable<MCFormModal> {
+    return this.open(MCFormModalService.initConfigRight(config), true);
+  }
+
+  openWithDelete(config: MCConfigModalForm) {
+    return this.open(config, true);
   }
 
   static initConfigRight(config: any): any {

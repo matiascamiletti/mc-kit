@@ -1,0 +1,11 @@
+<div class="flex justify-between">
+  <div >
+    <p-button label="Delete" severity="danger" (onClick)="onClickDelete()" />
+  </div>
+  <div>
+    <p-button label="Cancel" severity="secondary" (onClick)="onClickCancel()" styleClass="mr-3" />
+    @if(group != undefined){
+      <p-button label="Submit" severity="primary" (onClick)="onClickSubmit()" icon="pi pi-send" [disabled]="!group()?.valid || group()?.disabled" [loading]="isLoading()" />
+    }
+  </div>
+</div>
