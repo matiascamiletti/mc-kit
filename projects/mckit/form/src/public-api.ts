@@ -33,6 +33,7 @@ export * from './lib/fields/ifta-text-conditional-field/ifta-text-conditional-fi
 export * from './lib/fields/ifta-select-obs-field/ifta-select-obs-field.component';
 export * from './lib/fields/divider-field/divider-field.component';
 export * from './lib/fields/array-field/array-field.component';
+export * from './lib/fields/ifta-textarea-field/ifta-textarea-field.component';
 
 /**
  * Components
