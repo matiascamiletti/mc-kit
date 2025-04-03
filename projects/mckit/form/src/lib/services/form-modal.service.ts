@@ -33,12 +33,12 @@ export class MCFormModalService {
     return dialog.onChildComponentLoaded;
   }
 
-  openRight(config: MCConfigModalForm): Observable<MCFormModal> {
-    return this.open(MCFormModalService.initConfigRight(config));
+  openRight(config: MCConfigModalForm, withDelete?: boolean): Observable<MCFormModal> {
+    return this.open(MCFormModalService.initConfigRight(config), withDelete);
   }
 
   openRightWithDelete(config: MCConfigModalForm): Observable<MCFormModal> {
-    return this.open(MCFormModalService.initConfigRight(config), true);
+    return this.openRight(config, true);
   }
 
   openWithDelete(config: MCConfigModalForm) {
