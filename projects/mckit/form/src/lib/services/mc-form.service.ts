@@ -74,7 +74,7 @@ export class MCFormService {
 
       group.addControl(field.key, this.createControl(field));
 
-      if(item && item[field.key]){
+      if(item && item[field.key] != undefined){
         group.get(field.key)?.setValue(item[field.key]);
       }
     }
