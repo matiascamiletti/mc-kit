@@ -10,21 +10,16 @@ import { AutoCompleteCompleteEvent, AutoCompleteModule } from 'primeng/autocompl
 import { MCItemFilter } from '../../entities/item-filter';
 import { MultiSelectModule } from 'primeng/multiselect';
 
-export interface MCAdvancedFilterConfig {
-  initialFilters?: MCResultFilter[];
-}
-
 @Component({
   selector: 'mc-item-advanced-filter',
   imports: [CommonModule, FormsModule, DropdownModule, InputTextModule, ButtonModule, DropdownModule, AutoCompleteModule, MultiSelectModule],
   templateUrl: './item-advanced-filter.component.html',
   styleUrl: './item-advanced-filter.component.scss'
 })
-export class ItemAdvancedFilterComponent implements OnInit {
+export class ItemAdvancedFilterComponent {
   filters = input.required<Array<MCFilter>>();
   result = input.required<MCResultFilter>();
   isFirst = input.required<boolean>();
-  config = input<MCAdvancedFilterConfig>();
 
   clickRemove = output();
   filtersChanged = output<MCResultFilter[]>();
@@ -42,18 +37,6 @@ export class ItemAdvancedFilterComponent implements OnInit {
 
   filteredOptions: Array<MCItemFilter> = [];
   MCConditionResult = MCConditionResult;
-
-  ngOnInit() {
-    // Initialize with saved filters if they exist
-    const initialFilters = this.config()?.initialFilters;
-    if (initialFilters && initialFilters.length > 0) {
-      const currentResult = this.result();
-      if (currentResult) {
-        currentResult.childrens = [...initialFilters];
-        this.emitFiltersChanged();
-      }
-    }
-  }
 
   clickAddFilter(): void {
     const currentResult = this.result();

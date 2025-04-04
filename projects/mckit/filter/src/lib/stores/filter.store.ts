@@ -89,20 +89,20 @@ export class FilterStore {
     return savedFilters.map(filter => {
       const resultFilter = new MCResultFilter();
       
-      // Asignar propiedades básicas
+      // Assign operator
       resultFilter.operator = filter.operator;
       
-      // Reconstruir el filtro configurado
+      // Reconstruct the configured filter
       const filterConfig = filter.filter;
       if (filterConfig?.key) {
-        // Buscar todos los filtros que coincidan con el key
+        // Search all filters that match the key
         const matchingFilters = configFilters.filter(f => f.key === filterConfig.key);
         
         if (matchingFilters.length > 0) {
-          // Si hay múltiples filtros con el mismo key, buscar el que coincida con el tipo
+          // If there are multiple filters with the same key, search for the one that matches the type
           const originalFilter = matchingFilters.find(f => f.type === filterConfig.type) || matchingFilters[0];
 
-          // Crear una copia completa del filtro original para preservar todas sus propiedades
+          // Create a complete copy of the original filter to preserve all its properties
           resultFilter.filter = {
             ...originalFilter,
             title: originalFilter.title,
@@ -114,7 +114,7 @@ export class FilterStore {
             data: originalFilter.data
           };
 
-          // Manejar específicamente cada tipo de filtro
+          // Handle each type of filter specifically
           switch (originalFilter.type) {
             case MCTypeFilter.MULTISELECT:
               resultFilter.condition = MCConditionResult.IN;
@@ -122,7 +122,7 @@ export class FilterStore {
               break;
             case MCTypeFilter.TEXT:
             case MCTypeFilter.SELECT:
-              // Para text y select, mantener el operador y condición original para permitir OR/AND
+              // For text and select, keep the original operator and condition to allow OR/AND
               resultFilter.condition = filter.condition || MCConditionResult.EQUALS;
               resultFilter.value = filter.value;
               break;
@@ -131,24 +131,24 @@ export class FilterStore {
               resultFilter.value = filter.value;
           }
 
-          // Si hay múltiples filtros del mismo tipo y key, asegurarse de mantener el operador
+          // If there are multiple filters of the same type and key, ensure to keep the operator
           if (matchingFilters.length > 1) {
-            resultFilter.operator = filter.operator || 'or'; // Default a 'or' si no hay operador
+            resultFilter.operator = filter.operator || 'or'; // Default to 'or' if no operator
           }
         } else {
           console.warn(`No filter found with key ${filterConfig.key}`);
-          // Mantener los valores originales si no encontramos ningún filtro
+          // Keep the original values if no filter is found
           resultFilter.filter = filterConfig;
           resultFilter.condition = filter.condition;
           resultFilter.value = filter.value;
         }
       } else {
-        // Si no hay filtro configurado, mantener los valores originales
+        // If there is no configured filter, keep the original values
         resultFilter.condition = filter.condition;
         resultFilter.value = filter.value;
       }
 
-      // Reconstruir filtros hijos recursivamente
+      // Reconstruct child filters recursively
       const childrens = filter.childrens;
       if (childrens && childrens.length > 0) {
         resultFilter.childrens = this.reconstructFilters(childrens, configFilters);
