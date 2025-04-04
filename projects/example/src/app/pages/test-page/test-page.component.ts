@@ -1,4 +1,5 @@
-import { Component, inject, OnInit } from '@angular/core';
+import { Component, inject, OnInit, PLATFORM_ID, Inject } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { MCMiniResumeCard } from '../../../../../mckit/layout/src/public-api';
 import { MCSimplePage } from '../../../../../mckit/layout/src/lib/pages/simple-page/simple-page.component';
 import { MenuItem } from 'primeng/api';
@@ -14,16 +15,23 @@ import { MCTable } from '../../../../../mckit/table/src/lib/components/table/tab
 import { MCColumn, MCListResponse } from '@mckit/core';
 import { MCTdTemplateDirective, MCThTemplateDirective } from '../../../../../mckit/table/src/public-api';
 import { ButtonModule } from 'primeng/button';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
+import { FilterStore } from '../../../../../mckit/filter/src/lib/stores/filter.store';
 
 @Component({
     selector: 'app-test-page',
-    imports: [MCSimplePage, MCMiniResumeCard, CurrencyPipe, MCTwoColumnItemComponent, MCFilterButton, MCPageHeadingComponent, MCTable, MCThTemplateDirective, MCTdTemplateDirective, ButtonModule],
+    imports: [MCSimplePage, MCMiniResumeCard, CurrencyPipe, MCTwoColumnItemComponent, MCFilterButton, MCPageHeadingComponent, MCTable, MCThTemplateDirective, MCTdTemplateDirective, ButtonModule, ToastModule],
+    providers: [MessageService],
     templateUrl: './test-page.component.html',
     styleUrl: './test-page.component.scss'
 })
 export class TestPageComponent implements OnInit {
-
+  private readonly STORAGE_KEY = 'test-page-filters';
+  
   odataConverter = inject(MCFilterOdataConverterService);
+  messageService = inject(MessageService);
+  filterStore = inject(FilterStore);
 
   breadcrumb: MenuItem[] = [
     { label: 'Home', routerLink: '/' },
@@ -36,21 +44,38 @@ export class TestPageComponent implements OnInit {
   tableResponse = new MCListResponse<any>();
 
   constructor(
-    protected topbarService: MCTopbarService
-  ) { }
+    protected topbarService: MCTopbarService,
+  ) {
+    this.filterStore.setStorageKey(this.STORAGE_KEY);
+  }
 
   ngOnInit(): void {
     this.topbarService.subtitle.update(() => 'Test Page');
     this.loadFilterConfig();
     this.loadTable();
-  }
-
-  ngAfterViewInit(): void {
+    this.loadSavedFilters();
   }
 
   onFilter(filters: Array<MCResultFilter>) {
     console.log(filters);
     console.log(this.odataConverter.convert(filters));
+    
+    this.filterStore.saveFilters(filters);
+    this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Filtros guardados correctamente' });
+  }
+
+  loadSavedFilters() {
+    this.filterStore.loadFilters(this.filterConfig.filters);
+    if (this.filterStore.hasFilters()) {
+      this.filterConfig.initialFilters = this.filterStore.filters();
+      this.messageService.add({ severity: 'info', summary: 'Información', detail: 'Filtros cargados del almacenamiento local' });
+    }
+  }
+
+  clearSavedFilters() {
+    this.filterStore.clearFilters();
+    this.filterConfig.initialFilters = [];
+    this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Filtros eliminados correctamente' });
   }
 
   onFilterAutocomplete(query: string): Observable<Array<MCItemFilter>> {

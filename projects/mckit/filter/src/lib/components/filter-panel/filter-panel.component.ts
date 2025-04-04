@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, effect, input, output, signal, Signal, viewChild } from '@angular/core';
+import { Component, computed, effect, input, output, signal, Signal, viewChild, OnInit } from '@angular/core';
 import { AdvancedFiltersPanelComponent } from '../advanced-filters-panel/advanced-filters-panel.component';
 import { QuickFilterPanelComponent } from '../quick-filter-panel/quick-filter-panel.component';
 import { MCFilter, MCTypeFilter } from '../../entities/filter';
@@ -19,7 +19,7 @@ export enum MCShowPanel {
     templateUrl: './filter-panel.component.html',
     styleUrl: './filter-panel.component.css'
 })
-export class MCFilterPanelComponent {
+export class MCFilterPanelComponent implements OnInit {
   overlayPanel: Signal<Popover> = viewChild.required('overlayPanel');
 
   config = input.required<MCConfigFilter>();
@@ -45,6 +45,17 @@ export class MCFilterPanelComponent {
         this.showPanel.set(MCShowPanel.ADVANCED);
       }
     });
+  }
+
+  ngOnInit() {
+    // Initialize with saved filters if they exist
+    const currentConfig = this.config();
+    const initialFilters = currentConfig?.initialFilters;
+    if (initialFilters && Array.isArray(initialFilters) && initialFilters.length > 0) {
+      this.results.set([...initialFilters]);
+      this.update();
+      this.emit();
+    }
   }
 
   addResult(result: MCResultFilter): void {
