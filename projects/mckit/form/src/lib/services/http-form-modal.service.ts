@@ -20,6 +20,7 @@ export class MCHttpFormModalService extends MCFormModalService {
       styleClass: config.styleClass,
       closable: true,
       dismissableMask: true,
+      duplicate: true,
       position: config.position,
       templates: {
         footer: MCFooterModalForm
