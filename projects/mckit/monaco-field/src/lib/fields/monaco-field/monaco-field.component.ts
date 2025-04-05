@@ -1,10 +1,11 @@
 import { CommonModule, isPlatformBrowser } from '@angular/common';
-import { afterNextRender, Component, computed, effect, inject, PLATFORM_ID } from '@angular/core';
+import { Component, computed, inject, PLATFORM_ID } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MCField, MCFieldComponent } from '@mckit/form';
 import { MonacoEditorModule } from 'ngx-monaco-editor-v2';
 import type * as monaco from 'monaco-editor';
 import { MBSuggestionConfig } from '../../entities/suggestion-config';
+import { MonacoFieldService } from '../../services/monaco-field.service';
 
 declare const window: any;
 
@@ -25,6 +26,8 @@ export class MonacoFieldComponent extends MCFieldComponent {
     return this.field().config.options;
   });
 
+  fieldService = inject(MonacoFieldService);
+
   getColorFromCssByVar(variable: string) {
     const rootElement = document.documentElement;
     const styles = window.getComputedStyle(rootElement);
@@ -37,12 +40,14 @@ export class MonacoFieldComponent extends MCFieldComponent {
   }
 
   initSuggestions() {
+    this.fieldService.cleanCompletionProviders();
+
     let config: MBSuggestionConfig = this.field().config.suggestionConfig;
     if(config == undefined||config.suggestions.length == 0){
       return;
     }
 
-    window.monaco.languages.registerCompletionItemProvider(this.field().config.options.language, {
+    let provider = window.monaco.languages.registerCompletionItemProvider(this.field().config.options.language, {
       triggerCharacters: [config.trigger],
       provideCompletionItems: (model: any, position: any) => {
         const wordRange = model.getWordUntilPosition(position);
@@ -72,6 +77,7 @@ export class MonacoFieldComponent extends MCFieldComponent {
         return { suggestions };
       }
     });
+    this.fieldService.addCompletionProvider(provider);
 
     /*window.monaco.languages.setMonarchTokensProvider(this.field().config.options.language, {
       tokenizer: {
