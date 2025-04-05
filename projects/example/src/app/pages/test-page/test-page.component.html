@@ -11,7 +11,10 @@
 <mc-mini-resume-card [title]="'USD'" [subtitle]="'Billetera'" [value]="350000|currency"></mc-mini-resume-card>
 
 <h2>Filter Button</h2>
-<mc-filter-button [config]="filterConfig" (change)="onFilter($event)"></mc-filter-button>
+<div class="flex gap-2 items-center mb-4">
+  <mc-filter-button [config]="filterConfig" (change)="onFilter($event)"></mc-filter-button>
+  <p-button label="Limpiar filtros guardados" icon="pi pi-trash" severity="danger" (onClick)="clearSavedFilters()"></p-button>
+</div>
 
 <h2>List</h2>
 <div class="">
@@ -31,3 +34,5 @@
     <p-button label="Change status" /> {{ row.status }}
   </ng-template>
 </mc-table>
+
+<p-toast></p-toast>
