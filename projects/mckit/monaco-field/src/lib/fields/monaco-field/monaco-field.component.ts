@@ -38,7 +38,7 @@ export class MonacoFieldComponent extends MCFieldComponent {
 
   initSuggestions() {
     let config: MBSuggestionConfig = this.field().config.suggestionConfig;
-    if(config == undefined){
+    if(config == undefined||config.suggestions.length == 0){
       return;
     }
 
