@@ -34,6 +34,7 @@ export * from './lib/fields/ifta-select-obs-field/ifta-select-obs-field.componen
 export * from './lib/fields/divider-field/divider-field.component';
 export * from './lib/fields/array-field/array-field.component';
 export * from './lib/fields/ifta-textarea-field/ifta-textarea-field.component';
+export * from './lib/fields/conditional-field/conditional-field.component';
 
 /**
  * Components

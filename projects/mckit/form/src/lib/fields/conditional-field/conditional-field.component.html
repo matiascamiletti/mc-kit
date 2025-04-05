@@ -1,0 +1,5 @@
+@if(isShow()){
+  @for (field of field().config.fields; track $index) {
+    <mc-print-field [field]="field" [control]="group()!.get(field.key ?? '')" [group]="group()!" [eventObs]="eventObs()" />
+  }
+}
