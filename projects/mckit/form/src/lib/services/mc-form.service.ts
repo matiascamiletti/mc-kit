@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
+import { FormArray, FormControl, UntypedFormArray, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
 import { MCField } from '../entities/mc-field';
 
 @Injectable({
@@ -27,6 +27,11 @@ export class MCFormService {
     return array;
   }
 
+  createArrayStringControl(field: MCField): FormArray<FormControl<string|null>> {
+    let array = new FormArray<FormControl<string|null>>([]);
+    return array;
+  }
+
   loadFieldsInArray(group: UntypedFormGroup, field: MCField, item: any) {
     let fieldKey = field.key ?? 'rows';
     let subitem = item && item[fieldKey] ? item[fieldKey] : undefined;
@@ -38,6 +43,20 @@ export class MCFormService {
         let newGroup = new UntypedFormGroup({});
         this.loadFields(newGroup, field.config.fields, subitem[i]);
         array.push(newGroup);
+      }
+    }
+  }
+
+  loadFieldsInArrayString(group: UntypedFormGroup, field: MCField, item: any) {
+    let fieldKey = field.key ?? 'rows';
+    let subitem = item && item[fieldKey] ? item[fieldKey] : undefined;
+    let array = this.createArrayStringControl(field);
+    group.addControl(fieldKey, array);
+
+    if(subitem && Array.isArray(subitem)){
+      for(let i = 0; i < subitem.length; i++){
+        let newControl = new FormControl<string|null>(subitem[i]);
+        array.push(newControl);
       }
     }
   }
@@ -62,6 +81,10 @@ export class MCFormService {
     for (const field of fields) {
       if(field.config.is_array){
         this.loadFieldsInArray(group, field, item);
+        continue;
+      }
+      if(field.config.is_array_string){
+        this.loadFieldsInArrayString(group, field, item);
         continue;
       }
       if(field.config?.has_children){
