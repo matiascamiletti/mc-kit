@@ -14,16 +14,23 @@ import { MCTable } from '../../../../../mckit/table/src/lib/components/table/tab
 import { MCColumn, MCListResponse } from '@mckit/core';
 import { MCTdTemplateDirective, MCThTemplateDirective } from '../../../../../mckit/table/src/public-api';
 import { ButtonModule } from 'primeng/button';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
     selector: 'app-test-page',
-    imports: [MCSimplePage, MCMiniResumeCard, CurrencyPipe, MCTwoColumnItemComponent, MCFilterButton, MCPageHeadingComponent, MCTable, MCThTemplateDirective, MCTdTemplateDirective, ButtonModule],
+    imports: [MCSimplePage, MCMiniResumeCard, CurrencyPipe, MCTwoColumnItemComponent, MCFilterButton, MCPageHeadingComponent, MCTable, MCThTemplateDirective, MCTdTemplateDirective, ButtonModule, ToastModule],
+    providers: [MessageService],
     templateUrl: './test-page.component.html',
     styleUrl: './test-page.component.scss'
 })
 export class TestPageComponent implements OnInit {
 
+  readonly STORAGE_KEY = 'test-page-filters';
+  readonly STORAGE_KEY_2 = 'test-page-filters-2';
+  
   odataConverter = inject(MCFilterOdataConverterService);
+  messageService = inject(MessageService);
 
   breadcrumb: MenuItem[] = [
     { label: 'Home', routerLink: '/' },
@@ -36,16 +43,14 @@ export class TestPageComponent implements OnInit {
   tableResponse = new MCListResponse<any>();
 
   constructor(
-    protected topbarService: MCTopbarService
-  ) { }
+    protected topbarService: MCTopbarService,
+  ) {
+  }
 
   ngOnInit(): void {
     this.topbarService.subtitle.update(() => 'Test Page');
     this.loadFilterConfig();
     this.loadTable();
-  }
-
-  ngAfterViewInit(): void {
   }
 
   onFilter(filters: Array<MCResultFilter>) {
