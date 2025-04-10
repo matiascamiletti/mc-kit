@@ -20,8 +20,3 @@ export * from './lib/services/filter-odata-converter.service';
  */
 export * from './lib/components/filter-button/filter-button.component';
 export * from './lib/components/filter-panel/filter-panel.component';
-
-/**
- * Stores
- */
-export * from './lib/stores/filter.store';

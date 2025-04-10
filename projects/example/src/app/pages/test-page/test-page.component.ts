@@ -1,5 +1,4 @@
-import { Component, inject, OnInit, PLATFORM_ID, Inject } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Component, inject, OnInit } from '@angular/core';
 import { MCMiniResumeCard } from '../../../../../mckit/layout/src/public-api';
 import { MCSimplePage } from '../../../../../mckit/layout/src/lib/pages/simple-page/simple-page.component';
 import { MenuItem } from 'primeng/api';
@@ -17,7 +16,6 @@ import { MCTdTemplateDirective, MCThTemplateDirective } from '../../../../../mck
 import { ButtonModule } from 'primeng/button';
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-import { FilterStore } from '../../../../../mckit/filter/src/lib/stores/filter.store';
 
 @Component({
     selector: 'app-test-page',
@@ -27,11 +25,12 @@ import { FilterStore } from '../../../../../mckit/filter/src/lib/stores/filter.s
     styleUrl: './test-page.component.scss'
 })
 export class TestPageComponent implements OnInit {
-  private readonly STORAGE_KEY = 'test-page-filters';
+
+  readonly STORAGE_KEY = 'test-page-filters';
+  readonly STORAGE_KEY_2 = 'test-page-filters-2';
   
   odataConverter = inject(MCFilterOdataConverterService);
   messageService = inject(MessageService);
-  filterStore = inject(FilterStore);
 
   breadcrumb: MenuItem[] = [
     { label: 'Home', routerLink: '/' },
@@ -46,36 +45,17 @@ export class TestPageComponent implements OnInit {
   constructor(
     protected topbarService: MCTopbarService,
   ) {
-    this.filterStore.setStorageKey(this.STORAGE_KEY);
   }
 
   ngOnInit(): void {
     this.topbarService.subtitle.update(() => 'Test Page');
     this.loadFilterConfig();
     this.loadTable();
-    this.loadSavedFilters();
   }
 
   onFilter(filters: Array<MCResultFilter>) {
     console.log(filters);
     console.log(this.odataConverter.convert(filters));
-    
-    this.filterStore.saveFilters(filters);
-    this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Filtros guardados correctamente' });
-  }
-
-  loadSavedFilters() {
-    this.filterStore.loadFilters(this.filterConfig.filters);
-    if (this.filterStore.hasFilters()) {
-      this.filterConfig.initialFilters = this.filterStore.filters();
-      this.messageService.add({ severity: 'info', summary: 'Información', detail: 'Filtros cargados del almacenamiento local' });
-    }
-  }
-
-  clearSavedFilters() {
-    this.filterStore.clearFilters();
-    this.filterConfig.initialFilters = [];
-    this.messageService.add({ severity: 'success', summary: 'Éxito', detail: 'Filtros eliminados correctamente' });
   }
 
   onFilterAutocomplete(query: string): Observable<Array<MCItemFilter>> {

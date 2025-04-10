@@ -13,7 +13,7 @@ const initialState: FilterState = {
   storageKey: undefined
 };
 
-@Injectable({ providedIn: 'root' })
+@Injectable()
 export class FilterStore {
   private isBrowser: boolean;
   

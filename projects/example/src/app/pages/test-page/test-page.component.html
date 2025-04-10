@@ -12,8 +12,11 @@
 
 <h2>Filter Button</h2>
 <div class="flex gap-2 items-center mb-4">
-  <mc-filter-button [config]="filterConfig" (change)="onFilter($event)"></mc-filter-button>
-  <p-button label="Limpiar filtros guardados" icon="pi pi-trash" severity="danger" (onClick)="clearSavedFilters()"></p-button>
+  <mc-filter-button #filterButton1 [config]="filterConfig" [storageKey]="STORAGE_KEY" (change)="onFilter($event)"></mc-filter-button>
+</div>
+
+<div class="flex gap-2 items-center mb-4">
+  <mc-filter-button #filterButton2 [config]="filterConfig" [storageKey]="STORAGE_KEY_2" (change)="onFilter($event)"></mc-filter-button>
 </div>
 
 <h2>List</h2>
