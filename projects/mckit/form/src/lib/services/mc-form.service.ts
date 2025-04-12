@@ -99,6 +99,8 @@ export class MCFormService {
 
       if(item && item[field.key] != undefined){
         group.get(field.key)?.setValue(item[field.key]);
+      } else if (field.config?.default_value != undefined) {
+        group.get(field.key)?.setValue(field.config.default_value);
       }
     }
   }
