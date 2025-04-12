@@ -1,0 +1,18 @@
+
+<div class="mc-array-text-form">
+  <div *ngFor="let row of formArray().controls; let i = index">
+
+    <div class="flex flex-row justify-between mc-array-group-form">
+      <p-iftalabel class="mb-3 w-full">
+        <input pInputText id="{{field().key}}_{{i}}" class="w-full" [formControl]="row" />
+        <label for="{{field().key}}_{{i}}">Param {{(i+1)}}</label>
+      </p-iftalabel>
+
+      <p-button icon="pi pi-trash" severity="danger" rounded text (onClick)="onClickRemove(i)" styleClass="ml-3" />
+    </div>
+
+  </div>
+</div>
+
+<p-button [label]="field().config?.labelAddButton ?? 'Add row'" [link]="true" icon="pi pi-plus-circle" (onClick)="onClickAdd()" />
+
