@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, computed, effect, input, output, signal, Signal, viewChild } from '@angular/core';
+import { Component, computed, effect, input, output, signal, Signal, viewChild, OnInit, inject, Optional } from '@angular/core';
 import { AdvancedFiltersPanelComponent } from '../advanced-filters-panel/advanced-filters-panel.component';
 import { QuickFilterPanelComponent } from '../quick-filter-panel/quick-filter-panel.component';
 import { MCFilter, MCTypeFilter } from '../../entities/filter';
@@ -7,6 +7,7 @@ import { MCResultFilter } from '../../entities/result';
 import { MCConfigFilter } from '../../entities/config';
 import { MCItemFilter } from '../../entities/item-filter';
 import { Popover, PopoverModule } from 'primeng/popover';
+import { FilterStore } from '../../stores/filter.store';
 
 export enum MCShowPanel {
   BASIC,
@@ -19,7 +20,7 @@ export enum MCShowPanel {
     templateUrl: './filter-panel.component.html',
     styleUrl: './filter-panel.component.css'
 })
-export class MCFilterPanelComponent {
+export class MCFilterPanelComponent implements OnInit {
   overlayPanel: Signal<Popover> = viewChild.required('overlayPanel');
 
   config = input.required<MCConfigFilter>();
@@ -36,6 +37,8 @@ export class MCFilterPanelComponent {
   change = output<Array<MCResultFilter>>();
 
   resultsBeforeLenght = 0;
+  
+  private filterStore = inject(FilterStore, { optional: true });
 
   constructor() {
     effect(() => {
@@ -45,6 +48,28 @@ export class MCFilterPanelComponent {
         this.showPanel.set(MCShowPanel.ADVANCED);
       }
     });
+  }
+
+  ngOnInit() {
+    // First try to load filters from the FilterStore if there is a configured storage key
+    if (this.filterStore && this.filterStore.storageKey()) {
+      this.filterStore.loadFilters(this.config().filters);
+      if (this.filterStore.hasFilters()) {
+        this.results.set([...this.filterStore.filters()]);
+        this.update();
+        this.emit();
+        return;
+      }
+    }
+    
+    // If there are no filters in the FilterStore, use the initial filters from the configuration
+    const currentConfig = this.config();
+    const initialFilters = currentConfig?.initialFilters;
+    if (initialFilters && Array.isArray(initialFilters) && initialFilters.length > 0) {
+      this.results.set([...initialFilters]);
+      this.update();
+      this.emit();
+    }
   }
 
   addResult(result: MCResultFilter): void {
