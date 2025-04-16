@@ -16,6 +16,11 @@ export * from './lib/entities/item-filter';
 export * from './lib/services/filter-odata-converter.service';
 
 /**
+ * Stores
+ */
+export * from './lib/stores/filter.store';
+
+/**
  * Components
  */
 export * from './lib/components/filter-button/filter-button.component';

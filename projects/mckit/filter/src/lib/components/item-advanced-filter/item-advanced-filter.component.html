@@ -12,7 +12,7 @@
     <div class="mc-filter-group flex flex-column gap-2 p-2 w-full">
 
       @for (children of result().childrens; track $index) {
-        <mc-item-advanced-filter [filters]="filters()" [result]="children" [isFirst]="$index == 0"></mc-item-advanced-filter>
+        <mc-item-advanced-filter [filters]="filters()" [result]="children" [isFirst]="$index == 0" (clickRemove)="clickRemoveFilter()"></mc-item-advanced-filter>
       }
 
       <p-button label="+ New Filter" [text]="true" [severity]="'info'" (onClick)="clickAddFilter()"/>

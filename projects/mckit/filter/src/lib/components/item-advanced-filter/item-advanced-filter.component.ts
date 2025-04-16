@@ -1,4 +1,4 @@
-import { Component, computed, input, output } from '@angular/core';
+import { Component, computed, input, output, OnInit } from '@angular/core';
 import { MCFilter, MCTypeFilter } from '../../entities/filter';
 import { MCConditionResult, MCResultFilter } from '../../entities/result';
 import { CommonModule } from '@angular/common';
@@ -23,6 +23,7 @@ export class ItemAdvancedFilterComponent {
   isFirst = input.required<boolean>();
 
   clickRemove = output();
+  filtersChanged = output<MCResultFilter[]>();
 
   operators = MCResultFilter.getOperators();
   conditions = MCResultFilter.getConditions();
@@ -39,29 +40,53 @@ export class ItemAdvancedFilterComponent {
   MCConditionResult = MCConditionResult;
 
   clickAddFilter(): void {
-    this.result().childrens!.push(new MCResultFilter());
+    const currentResult = this.result();
+    if (currentResult) {
+      if (!currentResult.childrens) {
+        currentResult.childrens = [];
+      }
+      currentResult.childrens.push(new MCResultFilter());
+      this.emitFiltersChanged();
+    }
   }
 
   clickRemoveFilter(): void {
     this.clickRemove.emit();
+    this.emitFiltersChanged();
   }
 
   onRefreshColumn() {
-    this.result().value = undefined;
+    const currentResult = this.result();
+    if (currentResult) {
+      currentResult.value = undefined;
 
-    if(this.result().filter?.isShowConditions == false){
-      this.result().condition = MCConditionResult.EQUALS;
-    }
+      if(currentResult.filter?.isShowConditions == false){
+        currentResult.condition = MCConditionResult.EQUALS;
+      }
 
-    if(this.result().filter?.type == this.typeMultiselect){
-      this.result().condition = MCConditionResult.IN;
+      if(currentResult.filter?.type == this.typeMultiselect){
+        currentResult.condition = MCConditionResult.IN;
+        currentResult.value = [];
+      }
+
+      this.emitFiltersChanged();
     }
   }
 
   onFilterAutocomplete(event: AutoCompleteCompleteEvent) {
-    this.result().filter!.data.filter!(event.query)
-    .subscribe((data: Array<MCItemFilter>) => {
-      this.filteredOptions = data;
-    });
+    const currentResult = this.result();
+    if (currentResult?.filter?.data?.filter) {
+      currentResult.filter.data.filter(event.query)
+      .subscribe((data: Array<MCItemFilter>) => {
+        this.filteredOptions = data;
+      });
+    }
+  }
+
+  private emitFiltersChanged() {
+    const currentResult = this.result();
+    if (currentResult?.childrens && currentResult.childrens.length > 0) {
+      this.filtersChanged.emit(currentResult.childrens);
+    }
   }
 }

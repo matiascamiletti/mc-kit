@@ -5,22 +5,30 @@ import { MenuItem } from 'primeng/api';
 import { CurrencyPipe } from '@angular/common';
 import { MCTwoColumnItemComponent } from '../../../../../mckit/layout/src/lib/lists/two-column-item/two-column-item.component';
 import { MCTopbarService } from '../../../../../mckit/layout-core/src/public-api';
-import { MCFilterOdataConverterService, MCFilterButtonComponent, MCItemFilter } from '../../../../../mckit/filter/src/public-api';
+import { MCFilterOdataConverterService, MCFilterButton, MCItemFilter } from '../../../../../mckit/filter/src/public-api';
 import { MCConfigFilter } from '../../../../../mckit/filter/src/lib/entities/config';
 import { MCFilter } from '../../../../../mckit/filter/src/lib/entities/filter';
 import { MCResultFilter } from '../../../../../mckit/filter/src/lib/entities/result';
 import { Observable, of } from 'rxjs';
+import { ButtonModule } from 'primeng/button';
+import { ToastModule } from 'primeng/toast';
+import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'app-test-page',
   standalone: true,
-  imports: [MCSimplePage, MCMiniResumeCard, CurrencyPipe, MCTwoColumnItemComponent, MCFilterButtonComponent],
+  imports: [MCSimplePage, MCMiniResumeCard, CurrencyPipe, MCTwoColumnItemComponent, MCFilterButton, ButtonModule, ToastModule],
+  providers: [MessageService],
   templateUrl: './test-page.component.html',
   styleUrl: './test-page.component.scss'
 })
 export class TestPageComponent implements OnInit {
 
+  readonly STORAGE_KEY = 'test-page-filters';
+  readonly STORAGE_KEY_2 = 'test-page-filters-2';
+
   odataConverter = inject(MCFilterOdataConverterService);
+  messageService = inject(MessageService);
 
   breadcrumb: MenuItem[] = [
     { label: 'Home', routerLink: '/' },
