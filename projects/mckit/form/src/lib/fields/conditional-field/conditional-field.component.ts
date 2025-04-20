@@ -15,8 +15,6 @@ import { Subscription } from 'rxjs';
 export class ConditionalFieldComponent extends MCFieldComponent implements OnInit, OnDestroy {
   isShow = signal<boolean>(false);
 
-  isCleanControl = false;
-
   valuesSubscription?: Subscription;
 
   ngOnInit(): void {
@@ -28,11 +26,6 @@ export class ConditionalFieldComponent extends MCFieldComponent implements OnIni
   }
 
   verifyCondition(values: any) {
-    if(this.isCleanControl){
-      this.isCleanControl = false;
-      return;
-    }
-
     let field = this.field();
 
     let value = values[field.config.conditionalKey];
@@ -49,13 +42,14 @@ export class ConditionalFieldComponent extends MCFieldComponent implements OnIni
       this.isShow.set(true);
     } else {
       this.isShow.set(false);
-      this.isCleanControl = true;
-      this.control()?.setValue(null);
+      this.control()?.setValue(null, { emitEvent: false });
     }
   }
 
   loadObs() {
     this.valuesSubscription?.unsubscribe();
+
+    this.verifyCondition(this.group().value);
 
     this.valuesSubscription = this.group().valueChanges
     .subscribe((value: any) => {
@@ -69,7 +63,8 @@ export class ConditionalField {
   static init(
     conditionalKey: string,
     conditionalValue: any,
-    fields: MCField[]
+    fields: MCField[],
+    valuesAreNumbers?: boolean
   ): MCField {
     let field = MCField.init({
       component: ConditionalFieldComponent,
@@ -79,7 +74,8 @@ export class ConditionalField {
       fields: fields,
       is_new_group: false,
       conditionalKey: conditionalKey,
-      conditionalValue: conditionalValue
+      conditionalValue: conditionalValue,
+      valuesAreNumbers: valuesAreNumbers,
     }
 
     return field;

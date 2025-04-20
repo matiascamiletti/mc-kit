@@ -46,7 +46,7 @@ export class FormPageComponent implements OnInit {
     config.item = {
       lastname: 'Doe',
       address: {
-        country: 'USA'
+        country: 'mexico'
       }
     };
     config.fields = [

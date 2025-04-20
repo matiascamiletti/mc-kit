@@ -18,8 +18,6 @@ export class IftaTextConditionalFieldComponent extends MCFieldComponent implemen
 
   isShow = signal<boolean>(false);
 
-  isCleanControl = false;
-
   valuesSubscription?: Subscription;
 
   ngOnInit(): void {
@@ -31,11 +29,6 @@ export class IftaTextConditionalFieldComponent extends MCFieldComponent implemen
   }
 
   verifyCondition(values: any) {
-    if(this.isCleanControl){
-      this.isCleanControl = false;
-      return;
-    }
-
     let field = this.field();
 
     let value = values[field.config.conditionalKey];
@@ -43,13 +36,14 @@ export class IftaTextConditionalFieldComponent extends MCFieldComponent implemen
       this.isShow.set(true);
     } else {
       this.isShow.set(false);
-      this.isCleanControl = true;
-      this.control()?.setValue(null);
+      this.control()?.setValue(null, { emitEvent: false });
     }
   }
 
   loadObs() {
     this.valuesSubscription?.unsubscribe();
+
+    this.verifyCondition(this.group().value);
 
     this.valuesSubscription = this.group().valueChanges
     .subscribe((value: any) => {
