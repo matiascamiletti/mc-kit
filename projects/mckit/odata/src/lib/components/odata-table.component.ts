@@ -65,6 +65,7 @@ export abstract class MCOdataTableComponent<T extends { id?: any }> implements O
 
   filter(event: TableFilterEvent) {
     this.data.filters.setTableFilters(event);
+    this.data.setPage(1, this.data.top || 50);
     this.loadItems();
   }
 
