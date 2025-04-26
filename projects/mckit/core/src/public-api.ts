@@ -27,6 +27,7 @@ export * from './lib/components/menu/menu.component';
 export * from './lib/components/mc-base-form';
 export * from './lib/components/mc-base-model-form';
 export * from './lib/components/avatar/avatar.component';
+export * from './lib/components/loaded-object/loaded-object.component';
 
 /**
  * Modals
