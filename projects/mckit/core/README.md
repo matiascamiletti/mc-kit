@@ -7,6 +7,8 @@ Core de todo el paquete de librerias de MC Kit, incluye servicios, componentes y
 - [Installation](#installation)
   - [1. Install libraries](#1-install-libraries)
   - [2. Add Styles](#2-add-styles)
+- [Components](#components)
+  - [Loaded Object](#loaded-object)
 
 ## Installation
 
@@ -91,4 +93,37 @@ export const appConfig: ApplicationConfig = {
 };
 
 
+```
+
+## Components
+
+### Loaded Object
+
+Componente para implementar facilmente que obtenga un item a traves de un endpoint, se puede asignar el nombre del parametro a tener en cuenta desde el path.
+
+#### - Import component
+
+```ts
+imports: [MCLoadedObject],
+```
+
+#### - Init service
+
+```ts
+itemService = inject(ItemService);
+
+onLoaded(item: any) {
+  // Set in signal
+  // ...
+}
+```
+
+#### - HTML
+
+```html
+<mc-loaded-object [key]="'id'" [httpService]="itemService" (onLoaded)="onLoaded($event)">
+
+  <h1>Title item</h1>
+
+</mc-loaded-object>
 ```
