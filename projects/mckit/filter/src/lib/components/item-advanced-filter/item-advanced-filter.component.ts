@@ -8,7 +8,7 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { AutoCompleteCompleteEvent, AutoCompleteModule } from 'primeng/autocomplete';
 import { MCItemFilter } from '../../entities/item-filter';
-import { MultiSelectModule } from 'primeng/multiselect';
+import { MultiSelectModule, MultiSelectFilterEvent } from 'primeng/multiselect';
 
 @Component({
   selector: 'mc-item-advanced-filter',
@@ -17,7 +17,7 @@ import { MultiSelectModule } from 'primeng/multiselect';
   templateUrl: './item-advanced-filter.component.html',
   styleUrl: './item-advanced-filter.component.scss'
 })
-export class ItemAdvancedFilterComponent {
+export class ItemAdvancedFilterComponent implements OnInit {
   filters = input.required<Array<MCFilter>>();
   result = input.required<MCResultFilter>();
   isFirst = input.required<boolean>();
@@ -35,9 +35,26 @@ export class ItemAdvancedFilterComponent {
   typeSelect = MCTypeFilter.SELECT;
   typeAutocomplete = MCTypeFilter.AUTOCOMPLETE;
   typeMultiselect = MCTypeFilter.MULTISELECT;
+  typeMultiselectAutocomplete = MCTypeFilter.MULTISELECT_AUTOCOMPLETE;
 
-  filteredOptions: Array<MCItemFilter> = [];
+  filteredOptions: MCItemFilter[] = [];
   MCConditionResult = MCConditionResult;
+
+  ngOnInit() {
+    // Load initial values for multiselect autocomplete if they exist
+    const currentResult = this.result();
+    if (currentResult?.filter?.type === MCTypeFilter.MULTISELECT_AUTOCOMPLETE && 
+        currentResult.value && 
+        Array.isArray(currentResult.value)) {
+      // Convert values back to MCItemFilter format if they're not already
+      this.filteredOptions = currentResult.value.map((value: unknown) => {
+        if (typeof value === 'object' && value !== null && 'label' in value && 'value' in value) {
+          return value as MCItemFilter;
+        }
+        return { label: String(value), value: value } as MCItemFilter;
+      });
+    }
+  }
 
   clickAddFilter(): void {
     const currentResult = this.result();
@@ -64,7 +81,7 @@ export class ItemAdvancedFilterComponent {
         currentResult.condition = MCConditionResult.EQUALS;
       }
 
-      if(currentResult.filter?.type == this.typeMultiselect){
+      if(currentResult.filter?.type == this.typeMultiselect || currentResult.filter?.type == this.typeMultiselectAutocomplete){
         currentResult.condition = MCConditionResult.IN;
         currentResult.value = [];
       }
@@ -73,12 +90,20 @@ export class ItemAdvancedFilterComponent {
     }
   }
 
-  onFilterAutocomplete(event: AutoCompleteCompleteEvent) {
+  onFilterAutocomplete(event: AutoCompleteCompleteEvent | MultiSelectFilterEvent) {
     const currentResult = this.result();
     if (currentResult?.filter?.data?.filter) {
-      currentResult.filter.data.filter(event.query)
+      const query = 'query' in event ? event.query : event.filter;
+      currentResult.filter.data.filter(query)
       .subscribe((data: Array<MCItemFilter>) => {
-        this.filteredOptions = data;
+        // Merge new options with existing selected options for multiselect autocomplete
+        if (currentResult.filter?.type === MCTypeFilter.MULTISELECT_AUTOCOMPLETE) {
+          const existingValues = new Set(this.filteredOptions.map(opt => opt.value));
+          const newOptions = data.filter(opt => !existingValues.has(opt.value));
+          this.filteredOptions = [...this.filteredOptions, ...newOptions];
+        } else {
+          this.filteredOptions = data;
+        }
       });
     }
   }

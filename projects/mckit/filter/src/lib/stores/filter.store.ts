@@ -117,6 +117,7 @@ export class FilterStore {
           // Handle each type of filter specifically
           switch (originalFilter.type) {
             case MCTypeFilter.MULTISELECT:
+            case MCTypeFilter.MULTISELECT_AUTOCOMPLETE:
               resultFilter.condition = MCConditionResult.IN;
               resultFilter.value = Array.isArray(filter.value) ? filter.value : (filter.value ? [filter.value] : []);
               break;

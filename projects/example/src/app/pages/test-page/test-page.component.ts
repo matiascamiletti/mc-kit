@@ -82,7 +82,7 @@ export class TestPageComponent implements OnInit {
           { label: '7', value: '7' },
           { label: '8', value: '8' },
           { label: '9', value: '9' },
-            { label: '10', value: '10' }
+          { label: '10', value: '10' }
         ]
       }),
       MCFilter.selectQuickFilter({
@@ -117,6 +117,12 @@ export class TestPageComponent implements OnInit {
           { label: 'McDonalds', value: 'McDonalds' },
         ],
         placeholder: 'Search a field',
+      }),
+      MCFilter.multiselectAutocomplete({
+        title: 'Multi Select Autocomplete Field',
+        key: 'field',
+        filter: this.onFilterAutocomplete.bind(this),
+        placeholder: 'Search and select multiple fields',
       }),
       MCFilter.select({
         title: 'Select Field',
