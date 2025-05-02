@@ -47,6 +47,9 @@ export class ItemAdvancedFilterComponent implements OnInit {
   // Store all available options for filtering locally
   availableOptions: MCItemFilter[] = [];
   MCConditionResult = MCConditionResult;
+  
+  // Loading state
+  isLoading = false;
 
   ngOnInit() {
     // Load initial values for multiselect autocomplete if they exist
@@ -128,77 +131,76 @@ export class ItemAdvancedFilterComponent implements OnInit {
     const currentResult = this.result();
     if (!currentResult?.filter) return;
 
-    // For multiselect without autocomplete, we want to do local filtering
-    if (currentResult.filter.type === MCTypeFilter.MULTISELECT) {
-      if (currentResult.filter?.options) {
-        const query = 'query' in event ? event.query : event.filter;
-        // No need to do anything, PrimeNG's built-in filter will handle it
-        return;
-      }
-    }
-    
     // For multiselect with autocomplete, we need to handle server filtering
     if (currentResult.filter?.type === MCTypeFilter.MULTISELECT_AUTOCOMPLETE && currentResult.filter?.data?.filter) {
       const query = 'query' in event ? event.query : event.filter;
       
-      // When the search input is empty, show all available options
-      if (!query || query.trim() === '') {
-        // Sort alphabetically
-        this.filteredOptions = this.sortAlphabetically([...this.availableOptions]);
-        return;
-      }
+      // Set loading state to true before making the request
+      this.isLoading = true;
       
       currentResult.filter.data.filter(query)
-      .subscribe((data: Array<MCItemFilter>) => {
-        // Sort new data alphabetically
-        const sortedData = this.sortAlphabetically([...data]);
-        
-        // Add new results to our available options 
-        const existingValues = new Set(this.availableOptions.map(opt => opt.value));
-        const newOptions = sortedData.filter(opt => !existingValues.has(opt.value));
-        
-        if (newOptions.length > 0) {
-          this.availableOptions = [...this.availableOptions, ...newOptions];
+      .subscribe({
+        next: (data: Array<MCItemFilter>) => {
+          // Sort new data alphabetically
+          const sortedData = this.sortAlphabetically([...data]);
           
-          // Sort available options
-          this.sortAlphabetically(this.availableOptions);
-        }
-        
-        // Keep selected options along with new search results
-        const selectedValues = new Set(currentResult.value || []);
-        const selectedOptions = this.availableOptions.filter(opt => selectedValues.has(opt.value));
-        
-        // Local filtering on the combined set of options
-        const filterValue = query.toLowerCase();
-        let filteredAvailableOptions = this.availableOptions;
-        
-        // Only filter if we have a query
-        if (query) {
-          filteredAvailableOptions = this.availableOptions.filter(option => 
-            option.label && option.label.toLowerCase().includes(filterValue)
-          );
+          // Add new results to our available options
+          // This prevents duplicate options when searching multiple times
+          const existingValues = new Set(this.availableOptions.map(opt => opt.value));
+          const newOptions = sortedData.filter(opt => !existingValues.has(opt.value));
           
-          // Sort filtered options
-          this.sortAlphabetically(filteredAvailableOptions);
+          if (newOptions.length > 0) {
+            this.availableOptions = [...this.availableOptions, ...newOptions];
+            
+            // Sort available options
+            this.sortAlphabetically(this.availableOptions);
+          }
+          
+          // Always keep selected options in the results
+          const selectedValues = new Set(currentResult.value || []);
+          const selectedOptions = this.availableOptions.filter(opt => selectedValues.has(opt.value));
+          
+          // Update filtered options to show all results that match the query
+          // This ensures the dropdown shows the actual search results from the server
+          let filteredAvailableOptions = sortedData;
+          
+          // Check if any selected options are missing from the current results
+          const filteredOptionsSet = new Set(filteredAvailableOptions.map(opt => opt.value));
+          const missingSelectedOptions = selectedOptions.filter(opt => !filteredOptionsSet.has(opt.value));
+          
+          // Sort missing selected options alphabetically
+          this.sortAlphabetically(missingSelectedOptions);
+          
+          // Update filtered options - show selected options first, then search results
+          // This improves UX by prioritizing what the user has already selected
+          this.filteredOptions = [...missingSelectedOptions, ...filteredAvailableOptions];
+          
+          // Set loading state to false after processing the data
+          this.isLoading = false;
+        },
+        error: (err: Error) => {
+          console.error('Error loading autocomplete options:', err);
+          this.isLoading = false;
         }
-        
-        // Ensure selected options are always present even if they don't match the filter
-        const filteredOptionsSet = new Set(filteredAvailableOptions.map(opt => opt.value));
-        const missingSelectedOptions = selectedOptions.filter(opt => !filteredOptionsSet.has(opt.value));
-        
-        // Sort missing selected options
-        this.sortAlphabetically(missingSelectedOptions);
-        
-        // Update filtered options
-        this.filteredOptions = [...filteredAvailableOptions, ...missingSelectedOptions];
       });
     } else if (currentResult?.filter?.data?.filter) {
       // Handle standard autocomplete filter
       const query = 'query' in event ? event.query : event.filter;
+      
+      // Set loading state to true before making the request
+      this.isLoading = true;
+      
       currentResult.filter.data.filter(query)
-      .subscribe((data: Array<MCItemFilter>) => {
-        // Sort data alphabetically
-        this.filteredOptions = this.sortAlphabetically([...data]);
+      .subscribe({
+        next: (data: Array<MCItemFilter>) => {
+          // Sort data alphabetically
+          this.filteredOptions = this.sortAlphabetically([...data]);
+          this.isLoading = false;
+        },
+        error: (err: Error) => {
+          console.error('Error loading autocomplete options:', err);
+          this.isLoading = false;
+        }
       });
     }
   }
@@ -291,6 +293,7 @@ export class ItemAdvancedFilterComponent implements OnInit {
     if (currentResult?.filter?.type === MCTypeFilter.MULTISELECT_AUTOCOMPLETE) {
       // When the dropdown is shown, display all available options - sorted alphabetically
       this.filteredOptions = this.sortAlphabetically([...this.availableOptions]);
+      this.isLoading = false;
     }
   }
 
