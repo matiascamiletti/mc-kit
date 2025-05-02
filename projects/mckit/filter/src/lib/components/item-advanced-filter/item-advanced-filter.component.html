@@ -58,7 +58,11 @@
             [group]="true"
             optionGroupLabel="label"
             optionGroupChildren="items"
-            emptyFilterMessage="No results found" />
+            emptyFilterMessage="No results found">
+            <ng-template pTemplate="emptyfilter">
+              <div class="p-multiselect-empty-message">No results found</div>
+            </ng-template>
+          </p-multiSelect>
         }
         @case (typeMultiselectAutocomplete) {
           <p-multiSelect [(ngModel)]="result().value" 
@@ -77,7 +81,18 @@
             emptyFilterMessage="No results found"
             (onFilter)="onFilterAutocomplete($event)" 
             (onChange)="onMultiselectChange($event)" 
-            (onShow)="onShowDropdown()" />
+            (onShow)="onShowDropdown()">
+            <ng-template pTemplate="emptyfilter">
+              @if (isLoading) {
+                <div class="p-multiselect-loading-message">
+                  <i class="pi pi-spin pi-spinner mr-2"></i>
+                  <span>Loading results...</span>
+                </div>
+              } @else {
+                <div class="p-multiselect-empty-message">No results found</div>
+              }
+            </ng-template>
+          </p-multiSelect>
         }
         @default {
           <input type="text" pInputText [(ngModel)]="result().value" class="w-full" placeholder="Value" />
