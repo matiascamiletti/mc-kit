@@ -45,10 +45,39 @@
           <p-autoComplete [(ngModel)]="result().value" [suggestions]="filteredOptions" (completeMethod)="onFilterAutocomplete($event)" [placeholder]="result().filter?.data?.placeholder" optionLabel="label" optionValue="value" [showClear]="true" [appendTo]="'body'" styleClass="w-full" inputStyleClass="w-full" />
         }
         @case (typeMultiselect) {
-          <p-multiSelect [(ngModel)]="result().value" [options]="result().filter?.options" optionLabel="label" optionValue="value" [placeholder]="result().filter?.data?.placeholder" [appendTo]="'body'" styleClass="w-full" [showToggleAll]="false" />
+          <p-multiSelect [(ngModel)]="result().value" 
+            [options]="getGroupedOptions(result().filter?.options, result().value)"
+            optionLabel="label" 
+            optionValue="value" 
+            [placeholder]="result().filter?.data?.placeholder" 
+            [appendTo]="'body'" 
+            styleClass="w-full" 
+            [showToggleAll]="false"
+            [filter]="true"
+            [resetFilterOnHide]="true"
+            [group]="true"
+            optionGroupLabel="label"
+            optionGroupChildren="items"
+            emptyFilterMessage="No results found" />
         }
         @case (typeMultiselectAutocomplete) {
-          <p-multiSelect [(ngModel)]="result().value" [options]="filteredOptions" optionLabel="label" optionValue="value" [placeholder]="result().filter?.data?.placeholder" [appendTo]="'body'" styleClass="w-full" [showToggleAll]="false" [filter]="true" (onFilter)="onFilterAutocomplete($event)" />
+          <p-multiSelect [(ngModel)]="result().value" 
+            [options]="getGroupedOptions(filteredOptions, result().value)" 
+            optionLabel="label" 
+            optionValue="value" 
+            [placeholder]="result().filter?.data?.placeholder" 
+            [appendTo]="'body'" 
+            styleClass="w-full" 
+            [showToggleAll]="false" 
+            [filter]="true" 
+            [resetFilterOnHide]="true"
+            [group]="true"
+            optionGroupLabel="label"
+            optionGroupChildren="items"
+            emptyFilterMessage="No results found"
+            (onFilter)="onFilterAutocomplete($event)" 
+            (onChange)="onMultiselectChange($event)" 
+            (onShow)="onShowDropdown()" />
         }
         @default {
           <input type="text" pInputText [(ngModel)]="result().value" class="w-full" placeholder="Value" />
