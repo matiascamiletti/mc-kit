@@ -1,6 +1,6 @@
 {
   "name": "@mckit/odata",
-  "version": "18.0.15",
+  "version": "18.0.16",
   "peerDependencies": {
     "@angular/common": "^18.1.0",
     "@angular/core": "^18.1.0",
