@@ -5,7 +5,8 @@ export enum MCTypeFilter {
   TEXT,
   SELECT,
   AUTOCOMPLETE,
-  MULTISELECT
+  MULTISELECT,
+  MULTISELECT_AUTOCOMPLETE
 }
 
 export class MCFilter {
@@ -78,6 +79,21 @@ export class MCFilter {
 
   static multiselectQuickFilter(data: { title: string, key: string, options: Array<MCItemFilter>, placeholder?: string }): MCFilter {
     let filter = this.multiselect(data);
+    filter.isQuickFilter = true;
+    return filter;
+  }
+
+  static multiselectAutocomplete(data: { title: string, key: string, placeholder?: string, filter: (query: string) => Observable<Array<MCItemFilter>> }): MCFilter {
+    let filter = new MCFilter();
+    filter.type = MCTypeFilter.MULTISELECT_AUTOCOMPLETE;
+    filter.title = data.title;
+    filter.key = data.key;
+    filter.data = { filter: data.filter, placeholder: data.placeholder };
+    return filter;
+  }
+
+  static multiselectAutocompleteQuickFilter(data: { title: string, key: string, placeholder?: string, filter: (query: string) => Observable<Array<MCItemFilter>> }): MCFilter {
+    let filter = this.multiselectAutocomplete(data);
     filter.isQuickFilter = true;
     return filter;
   }
