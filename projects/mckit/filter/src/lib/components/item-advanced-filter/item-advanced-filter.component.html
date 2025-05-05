@@ -45,10 +45,54 @@
           <p-autoComplete [(ngModel)]="result().value" [suggestions]="filteredOptions" (completeMethod)="onFilterAutocomplete($event)" [placeholder]="result().filter?.data?.placeholder" optionLabel="label" optionValue="value" [showClear]="true" [appendTo]="'body'" styleClass="w-full" inputStyleClass="w-full" />
         }
         @case (typeMultiselect) {
-          <p-multiSelect [(ngModel)]="result().value" [options]="result().filter?.options" optionLabel="label" optionValue="value" [placeholder]="result().filter?.data?.placeholder" [appendTo]="'body'" styleClass="w-full" [showToggleAll]="false" />
+          <p-multiSelect [(ngModel)]="result().value" 
+            [options]="getGroupedOptions(result().filter?.options, result().value)"
+            optionLabel="label" 
+            optionValue="value" 
+            [placeholder]="result().filter?.data?.placeholder" 
+            [appendTo]="'body'" 
+            styleClass="w-full" 
+            [showToggleAll]="false"
+            [filter]="true"
+            [resetFilterOnHide]="true"
+            [group]="true"
+            optionGroupLabel="label"
+            optionGroupChildren="items"
+            emptyFilterMessage="No results found">
+            <ng-template pTemplate="emptyfilter">
+              <div class="p-multiselect-empty-message">No results found</div>
+            </ng-template>
+          </p-multiSelect>
         }
         @case (typeMultiselectAutocomplete) {
-          <p-multiSelect [(ngModel)]="result().value" [options]="filteredOptions" optionLabel="label" optionValue="value" [placeholder]="result().filter?.data?.placeholder" [appendTo]="'body'" styleClass="w-full" [showToggleAll]="false" [filter]="true" (onFilter)="onFilterAutocomplete($event)" />
+          <p-multiSelect [(ngModel)]="result().value" 
+            [options]="getGroupedOptions(filteredOptions, result().value)" 
+            optionLabel="label" 
+            optionValue="value" 
+            [placeholder]="result().filter?.data?.placeholder" 
+            [appendTo]="'body'" 
+            styleClass="w-full" 
+            [showToggleAll]="false" 
+            [filter]="true" 
+            [resetFilterOnHide]="true"
+            [group]="true"
+            optionGroupLabel="label"
+            optionGroupChildren="items"
+            emptyFilterMessage="No results found"
+            (onFilter)="onFilterAutocomplete($event)" 
+            (onChange)="onMultiselectChange($event)" 
+            (onShow)="onShowDropdown()">
+            <ng-template pTemplate="emptyfilter">
+              @if (isLoading) {
+                <div class="p-multiselect-loading-message">
+                  <i class="pi pi-spin pi-spinner mr-2"></i>
+                  <span>Loading results...</span>
+                </div>
+              } @else {
+                <div class="p-multiselect-empty-message">No results found</div>
+              }
+            </ng-template>
+          </p-multiSelect>
         }
         @default {
           <input type="text" pInputText [(ngModel)]="result().value" class="w-full" placeholder="Value" />

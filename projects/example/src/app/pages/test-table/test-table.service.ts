@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { MCApiRestHttpService } from '@mckit/core';
 import { Observable, of, delay } from 'rxjs';
-import { MOCK_PRODUCTS } from './mock-data';
+import { MOCK_PRODUCTS, MOCK_CATEGORIES } from './mock-data';
 
 export interface Product {
   id: number;
@@ -54,7 +54,6 @@ export class TestTableService implements MCApiRestHttpService<Product> {
   }
 
   private applyFilter(data: Product[], filter: string): Product[] {
-    console.log('filter', filter);
     // Simple filter implementation for common operators
     return data.filter(item => {
       // Handle basic equality filters (e.g., category eq 'Electronics')
@@ -169,10 +168,11 @@ export class TestTableService implements MCApiRestHttpService<Product> {
   }
 
   getCategories(query: string): Observable<Array<{ label: string, value: string }>> {
-    const uniqueCategories = [...new Set(this.mockData.map(p => p.category))];
-    const filteredCategories = uniqueCategories
-      .filter(category => category.toLowerCase().includes(query.toLowerCase()))
-      .map(category => ({ label: category, value: category }));
-    return of(filteredCategories).pipe(delay(500));
+    // Filter categories based on the search query
+    const filteredCategories = MOCK_CATEGORIES
+      .filter(category => category.label.toLowerCase().includes(query.toLowerCase()));
+    
+    // Simulate delay of a real API
+    return of(filteredCategories).pipe(delay(800));
   }
 } 
