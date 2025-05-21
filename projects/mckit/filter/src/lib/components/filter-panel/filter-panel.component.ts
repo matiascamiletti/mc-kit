@@ -47,7 +47,7 @@ export class MCFilterPanelComponent implements OnInit {
       } else {
         this.showPanel.set(MCShowPanel.ADVANCED);
       }
-    });
+    }, { allowSignalWrites: true });
   }
 
   ngOnInit() {

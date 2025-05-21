@@ -25,7 +25,7 @@
     </div>
 
     @if (result().filter?.isShowConditions ?? true) {
-      @if (result().filter?.type != typeMultiselect) {
+      @if (result().filter?.type != typeMultiselect && result().filter?.type != typeMultiselectAutocomplete) {
         <div class="condition w-36">
           <p-dropdown [options]="conditions" [(ngModel)]="result().condition" optionLabel="label" optionValue="value" />
         </div>
@@ -46,6 +46,9 @@
         }
         @case (typeMultiselect) {
           <p-multiSelect [(ngModel)]="result().value" [options]="result().filter?.options" optionLabel="label" optionValue="value" [placeholder]="result().filter?.data?.placeholder" [appendTo]="'body'" styleClass="w-full" [showToggleAll]="false" />
+        }
+        @case (typeMultiselectAutocomplete) {
+          <p-multiSelect [(ngModel)]="result().value" [options]="filteredOptions" optionLabel="label" optionValue="value" [placeholder]="result().filter?.data?.placeholder" [appendTo]="'body'" styleClass="w-full" [showToggleAll]="false" [filter]="true" (onFilter)="onFilterAutocomplete($event)" />
         }
         @default {
           <input type="text" pInputText [(ngModel)]="result().value" class="w-full" placeholder="Value" />
