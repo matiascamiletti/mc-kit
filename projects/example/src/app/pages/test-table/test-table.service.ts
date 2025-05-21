@@ -54,7 +54,6 @@ export class TestTableService implements MCApiRestHttpService<Product> {
   }
 
   private applyFilter(data: Product[], filter: string): Product[] {
-    console.log('filter', filter);
     // Simple filter implementation for common operators
     return data.filter(item => {
       // Handle basic equality filters (e.g., category eq 'Electronics')
