@@ -1,36 +1,90 @@
 <div class="card">
   <div class="card-header">
     <div class="card-info">
-      <h2 class="card-title">Test Table</h2>
-      <p>Select a client to configure their permissions.</p>
+      <h2 class="card-title">Products</h2>
+      <p>Manage your product inventory</p>
     </div>
     <div class="card-actions">
       <p-iconField iconPosition="left">
         <p-inputIcon styleClass="pi pi-search" />
-        <input type="text" pInputText placeholder="Search" />
+        <input type="text" pInputText placeholder="Search by name, category or description" #searchInput />
       </p-iconField>
 
-      <p-button label="Filters" [outlined]="true" icon="pi pi-check" severity="info" iconPos="right" size="large" styleClass="ml-2" />
+      <mc-filter-button 
+        #McFilterButton 
+        storageKey="test-table-filter" 
+        [config]="filterConfig" 
+        (change)="onFilter($event)" 
+        class="ml-2">
+      </mc-filter-button>
+
+      <p-button label="Refresh" icon="pi pi-refresh" (onClick)="loadItems()" styleClass="ml-2" />
     </div>
   </div>
   <div class="card-body">
-    <p-table [value]="data" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5,10,20]">
+    <p-table 
+      #dt
+      [value]="items?.data ?? []" 
+      [paginator]="true" 
+      [rows]="10" 
+      [first]="data.skip"
+      [totalRecords]="items?.total ?? 0"
+      [lazy]="true"
+      [loading]="isLoading"
+      (onPage)="pageChange($event)"
+      [rowsPerPageOptions]="[5, 10, 20]"
+      [showCurrentPageReport]="true"
+      (onFilter)="filter($event)"
+      currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
       <ng-template pTemplate="header">
         <tr>
-          <th>Id</th>
-          <th>Name</th>
-          <th>Price</th>
-          <th>Category</th>
+          <th pSortableColumn="id">ID <p-sortIcon field="id" /></th>
+          <th pSortableColumn="name">Name <p-sortIcon field="name" /></th>
+          <th pSortableColumn="price">Price <p-sortIcon field="price" /></th>
+          <th pSortableColumn="category">Category <p-sortIcon field="category" /></th>
+          <th pSortableColumn="stock">Stock <p-sortIcon field="stock" /></th>
+          <th pSortableColumn="rating">Rating <p-sortIcon field="rating" /></th>
+          <th pSortableColumn="createdAt">Created <p-sortIcon field="createdAt" /></th>
+          <th style="width: 8rem"></th>
         </tr>
       </ng-template>
       <ng-template pTemplate="body" let-product>
         <tr>
           <td>{{product.id}}</td>
-          <td>{{product.name}}</td>
+          <td>
+            <div class="font-bold">{{product.name}}</div>
+            <div class="text-sm text-gray-500">{{product.description}}</div>
+          </td>
           <td>{{product.price | currency}}</td>
-          <td>{{product.category}}</td>
+          <td>
+            <p-tag [value]="product.category" [severity]="getCategorySeverity(product.category)"></p-tag>
+          </td>
+          <td>
+            <p-tag [value]="product.stock" [severity]="getStockSeverity(product.stock)"></p-tag>
+          </td>
+          <td>
+            <div class="flex align-items-center">
+              <i class="pi pi-star-fill text-yellow-500 mr-1"></i>
+              <span>{{product.rating}}</span>
+            </div>
+          </td>
+          <td>{{product.createdAt | date:'mediumDate'}}</td>
+          <td>
+            <div class="flex gap-1">
+              <p-button icon="pi pi-pencil" styleClass="p-button-rounded p-button-text" pTooltip="Edit" tooltipPosition="top"></p-button>
+              <p-button icon="pi pi-trash" styleClass="p-button-rounded p-button-text p-button-danger" pTooltip="Delete" tooltipPosition="top"></p-button>
+            </div>
+          </td>
+        </tr>
+      </ng-template>
+      <ng-template pTemplate="emptymessage">
+        <tr>
+          <td colspan="8" class="text-center">No products found</td>
         </tr>
       </ng-template>
     </p-table>
   </div>
 </div>
+
+<p-toast></p-toast>
+<p-confirmDialog></p-confirmDialog>

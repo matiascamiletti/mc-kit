@@ -60,12 +60,13 @@ export abstract class MCOdataTableComponent<T extends { id?: any }> implements O
     } else {
       this.data.orderBy = event.field + ' asc';
     }
+    this.resetPagination();
     this.loadItems();
   }
 
   filter(event: TableFilterEvent) {
     this.data.filters.setTableFilters(event);
-    this.data.setPage(1, this.data.top || 50);
+    this.resetPagination();
     this.loadItems();
   }
 
@@ -75,6 +76,7 @@ export abstract class MCOdataTableComponent<T extends { id?: any }> implements O
     this.data.filters.cleanPostpend();
 
     if(query == '' || this.searchFieldsKey.length == 0){
+      this.resetPagination();
       this.loadItems();
       return;
     }
@@ -87,8 +89,13 @@ export abstract class MCOdataTableComponent<T extends { id?: any }> implements O
     });
 
     this.data.filters.setPostpend(filters.join(' or '));
-
+    this.resetPagination();
     this.loadItems();
+  }
+
+  protected resetPagination(): void {
+    this.data.skip = 0;
+    this.data.setPage(1, this.data.top || 10);
   }
 
   requestList(): Observable<MCListResponse<T>> {
@@ -152,5 +159,4 @@ export abstract class MCOdataTableComponent<T extends { id?: any }> implements O
       }
     });
   }
-
 }

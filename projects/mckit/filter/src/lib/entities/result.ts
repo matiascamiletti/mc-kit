@@ -1,4 +1,5 @@
 import { MCFilter } from "./filter";
+import { MCItemFilter } from "./item-filter";
 
 export enum MCConditionResult {
   EQUALS = 'EQUALS',
@@ -24,6 +25,9 @@ export class MCResultFilter {
   filter?: MCFilter;
   condition?: MCConditionResult = MCConditionResult.EQUALS;
   value?: any;
+  
+  // For MultiselectAutocomplete - stores the complete options with labels and values
+  selectedOptions?: Array<MCItemFilter>;
 
   childrens?: Array<MCResultFilter>;
 

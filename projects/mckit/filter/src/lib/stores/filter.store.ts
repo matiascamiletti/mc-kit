@@ -2,6 +2,7 @@ import { computed, Injectable, PLATFORM_ID, Inject, Signal, signal } from '@angu
 import { isPlatformBrowser } from '@angular/common';
 import { MCResultFilter, MCConditionResult } from '../entities/result';
 import { MCFilter, MCTypeFilter } from '../entities/filter';
+import { MCItemFilter } from '../entities/item-filter';
 
 export interface FilterState {
   filters: MCResultFilter[];
@@ -55,6 +56,7 @@ export class FilterStore {
   }
 
   saveFilters(newFilters: MCResultFilter[]) {
+    console.log('newFilters', newFilters);
     if (this.isBrowser && this.storageKey()) {
       try {
         localStorage.setItem(this.storageKey()!, JSON.stringify(newFilters));
@@ -120,6 +122,21 @@ export class FilterStore {
               resultFilter.condition = MCConditionResult.IN;
               resultFilter.value = Array.isArray(filter.value) ? filter.value : (filter.value ? [filter.value] : []);
               break;
+            case MCTypeFilter.MULTISELECT_AUTOCOMPLETE:
+              resultFilter.condition = MCConditionResult.IN;
+              resultFilter.value = Array.isArray(filter.value) ? filter.value : (filter.value ? [filter.value] : []);
+              
+              // Handle the selectedOptions for MultiselectAutocomplete
+              if (filter.selectedOptions && Array.isArray(filter.selectedOptions)) {
+                // Use stored selectedOptions if available
+                resultFilter.selectedOptions = filter.selectedOptions;
+              } else {
+                // Create selectedOptions from values if not available
+                resultFilter.selectedOptions = resultFilter.value.map((value: any) => {
+                  return { label: String(value), value: value } as MCItemFilter;
+                });
+              }
+              break;
             case MCTypeFilter.TEXT:
             case MCTypeFilter.SELECT:
               // For text and select, keep the original operator and condition to allow OR/AND
@@ -141,11 +158,13 @@ export class FilterStore {
           resultFilter.filter = filterConfig;
           resultFilter.condition = filter.condition;
           resultFilter.value = filter.value;
+          resultFilter.selectedOptions = filter.selectedOptions;
         }
       } else {
         // If there is no configured filter, keep the original values
         resultFilter.condition = filter.condition;
         resultFilter.value = filter.value;
+        resultFilter.selectedOptions = filter.selectedOptions;
       }
 
       // Reconstruct child filters recursively
