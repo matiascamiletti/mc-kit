@@ -20,25 +20,35 @@ export const routes: Routes = [
       {
         path: '',
         component: TestPageComponent,
-        title: 'Test page'
+        title: 'Test page',
       },
-    ]
+    ],
   },
   {
     path: 'sakai',
     component: MCSakaiLayoutComponent,
+    data: {
+      styles: {
+        layoutBg: '#ffffff',
+        topbarBg: '#000000',
+        sidebarBg: '#ffffff',
+        borderColor: '#e9ecef',
+        topbarHeight: '64px',
+        shadow: '0 2px 4px rgba(0,0,0,.08)',
+      },
+    },
     children: [
       {
         path: '',
         component: TestPageComponent,
-        title: 'Test page'
+        title: 'Test page',
       },
       {
         path: 'table',
         component: TestTableComponent,
-        title: 'Test Table'
+        title: 'Test Table',
       },
-    ]
+    ],
   },
   {
     path: 'fuse',
@@ -47,24 +57,24 @@ export const routes: Routes = [
       {
         path: '',
         component: TestPageComponent,
-        title: 'Test page'
+        title: 'Test page',
       },
       {
         path: 'table',
         component: TestTableComponent,
-        title: 'Test Table'
+        title: 'Test Table',
       },
       {
         path: 'odata',
         component: OdataPageComponent,
-        title: 'Odata Table'
+        title: 'Odata Table',
       },
       {
         path: 'form',
         component: FormPageComponent,
-        title: 'Form Table'
+        title: 'Form Table',
       },
-    ]
+    ],
   },
   { path: 'login', component: AuthBasicComponent },
   { path: 'login-half', component: AuthHalfComponent },
