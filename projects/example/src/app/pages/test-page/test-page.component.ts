@@ -28,7 +28,7 @@ export class TestPageComponent implements OnInit {
 
   readonly STORAGE_KEY = 'test-page-filters';
   readonly STORAGE_KEY_2 = 'test-page-filters-2';
-  
+
   odataConverter = inject(MCFilterOdataConverterService);
   messageService = inject(MessageService);
 

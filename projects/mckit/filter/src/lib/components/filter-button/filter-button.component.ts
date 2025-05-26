@@ -22,7 +22,7 @@ export class MCFilterButton implements OnInit {
 
   total = signal<string>('');
   severity = computed(() => this.total() == '' ? 'secondary' : 'primary');
-  
+
   private filterStore = inject(FilterStore);
 
   ngOnInit() {
@@ -47,7 +47,7 @@ export class MCFilterButton implements OnInit {
     if (this.storageKey()) {
       this.filterStore.saveFilters(data);
     }
-    
+
     this.change.emit(data);
   }
 

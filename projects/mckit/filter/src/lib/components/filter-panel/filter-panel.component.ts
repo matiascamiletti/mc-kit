@@ -40,6 +40,8 @@ export class MCFilterPanelComponent implements OnInit {
   
   private filterStore = inject(FilterStore, { optional: true });
 
+  private filterStore = inject(FilterStore, { optional: true });
+
   constructor() {
     effect(() => {
       if(this.quickFilters().length > 0){
@@ -61,7 +63,7 @@ export class MCFilterPanelComponent implements OnInit {
         return;
       }
     }
-    
+
     // If there are no filters in the FilterStore, use the initial filters from the configuration
     const currentConfig = this.config();
     const initialFilters = currentConfig?.initialFilters;

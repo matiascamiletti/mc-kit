@@ -10,6 +10,7 @@ import { provideClientHydration } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHttpClient } from '@angular/common/http';
 import { withFetch } from '@angular/common/http';
+
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
 
@@ -20,6 +21,7 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     importProvidersFrom(BrowserAnimationsModule),
     provideHttpClient(withFetch()),
+
     providePrimeNG({
       theme: {
         preset: Aura,
@@ -28,5 +30,6 @@ export const appConfig: ApplicationConfig = {
         },
       },
     }),
+
   ],
 };
