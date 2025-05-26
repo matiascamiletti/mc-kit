@@ -1,0 +1,52 @@
+<div class="odata-page">
+
+  <mc-page-heading [breadcrumb]="breadcrumb()" [title]="title()" [subtitle]="subtitle()">
+
+    <div class="flex flex-col md:flex-row">
+      @if(leftHeaderTemplate()){
+        <ng-container [ngTemplateOutlet]="leftHeaderTemplate()!.template"></ng-container>
+      }
+
+      @if (hasSearch()) {
+        <mc-search-field #searchField [key]="key()" [placeholder]="'Search...'" (onSearch)="onSearch($event)" />
+      }
+      <div class="mt-3 w-full md:mt-0 md:w-auto">
+        @if(filters()){
+          <mc-filter-button [config]="filters()!" (change)="onFilter($event)" class="md:ml-3" />
+        }
+        @if (hasEditColumns()) {
+          <mc-show-columns-button [initialColumns]="columns()" [key]="key()" (onSelected)="onChangeColumns($event)" class="ml-3" />
+        }
+      </div>
+      @if(rightHeaderTemplate()){
+        <ng-container [ngTemplateOutlet]="rightHeaderTemplate()!.template"></ng-container>
+      }
+
+    </div>
+
+  </mc-page-heading>
+
+  <div class="odata-content pl-4 pr-4">
+    <mc-table [columns]="selectedColumns()" [response]="items()" [paginator]="hasPagination()" (onPage)="onPage($event)" (onSort)="onSort($event)" [sortField]="sortField()" [sortOrder]="sortOrder()">
+
+      <ng-container *ngFor="let template of thTemplates()">
+        <ng-template mcThTemplate="{{template.getFieldName()}}" let-row let-rowIndex>
+          <ng-container [ngTemplateOutlet]="template.template" [ngTemplateOutletContext]="{ $implicit: row, row: row, rowIndex: rowIndex }"></ng-container>
+        </ng-template>
+      </ng-container>
+
+      <ng-container *ngFor="let template of tdTemplates()">
+        <ng-template mcTdTemplate="{{template.getFieldName()}}" let-row let-rowIndex>
+          <ng-container [ngTemplateOutlet]="template.template" [ngTemplateOutletContext]="{ $implicit: row, row: row, rowIndex: rowIndex }"></ng-container>
+        </ng-template>
+      </ng-container>
+
+    </mc-table>
+  </div>
+
+  <div class="odata-toast">
+    <p-toast />
+    <p-confirmdialog />
+  </div>
+
+</div>

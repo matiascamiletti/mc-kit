@@ -59,13 +59,13 @@
             "tsConfig": "projects/example/tsconfig.app.json",
             "inlineStyleLanguage": "scss",
             "assets": [
+              { "glob": "**/*", "input": "node_modules/monaco-editor", "output": "/assets/monaco/" },
               {
                 "glob": "**/*",
                 "input": "projects/example/public"
               }
             ],
             "styles": [
-              "./node_modules/primeflex/primeflex.css",
               "projects/example/src/styles.scss"
             ],
             "scripts": [],
@@ -393,6 +393,138 @@
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
             "tsConfig": "projects/mckit/cron/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "@mckit/layout-fuse": {
+      "projectType": "library",
+      "root": "projects/mckit/layout-fuse",
+      "sourceRoot": "projects/mckit/layout-fuse/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/mckit/layout-fuse/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/mckit/layout-fuse/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/mckit/layout-fuse/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/mckit/layout-fuse/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "@mckit/table": {
+      "projectType": "library",
+      "root": "projects/mckit/table",
+      "sourceRoot": "projects/mckit/table/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "options": {
+            "project": "projects/mckit/table/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/mckit/table/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/mckit/table/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/mckit/table/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "@mckit/form": {
+      "projectType": "library",
+      "root": "projects/mckit/form",
+      "sourceRoot": "projects/mckit/form/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/mckit/form/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/mckit/form/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/mckit/form/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/mckit/form/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
+    },
+    "@mckit/monaco-field": {
+      "projectType": "library",
+      "root": "projects/mckit/monaco-field",
+      "sourceRoot": "projects/mckit/monaco-field/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:ng-packagr",
+          "options": {
+            "project": "projects/mckit/monaco-field/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/mckit/monaco-field/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/mckit/monaco-field/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "tsConfig": "projects/mckit/monaco-field/tsconfig.spec.json",
             "polyfills": [
               "zone.js",
               "zone.js/testing"

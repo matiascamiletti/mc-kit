@@ -8,7 +8,6 @@ import { FilterStore } from '../../stores/filter.store';
 
 @Component({
     selector: 'mc-filter-button',
-    standalone: true,
     imports: [ButtonModule, MCFilterPanelComponent, BadgeModule],
     templateUrl: './filter-button.component.html',
     styleUrl: './filter-button.component.css',

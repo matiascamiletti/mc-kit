@@ -16,7 +16,11 @@
 
         <form class="" [formGroup]="group" (ngSubmit)="onClickSubmit()">
           <div>
-            <p-messages/>
+
+            @for (message of messages(); track message; let first = $first) {
+              <p-message [severity]="message.severity" [text]="message.text" [ngClass]="{ 'mt-4': !first }" />
+            }
+
             <ng-content></ng-content>
           </div>
         </form>

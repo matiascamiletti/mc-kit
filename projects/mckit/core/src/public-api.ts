@@ -8,6 +8,7 @@
 export * from './lib/entities/mc-component';
 export * from './lib/entities/mc-list-response';
 export * from './lib/entities/mc-column';
+export * from './lib/entities/mc-message';
 
 /**
  * Services
@@ -26,6 +27,7 @@ export * from './lib/components/menu/menu.component';
 export * from './lib/components/mc-base-form';
 export * from './lib/components/mc-base-model-form';
 export * from './lib/components/avatar/avatar.component';
+export * from './lib/components/loaded-object/loaded-object.component';
 
 /**
  * Modals

@@ -4,25 +4,7 @@
   list-style-type: none;
   width: 100%;
 
-  a {
-    display: flex;
-    width: 100%;
-    padding: .75rem 2rem;
-    margin: 0;
-    align-items: center;
-    cursor: pointer;
-    text-decoration: none;
-  }
-
-  a:hover {
-    background-color: #f0f0f0;
-  }
-
   .active-route {
     font-weight: 700;
-  }
-
-  .layout-menuitem-icon {
-    margin-right: .5rem;
   }
 }

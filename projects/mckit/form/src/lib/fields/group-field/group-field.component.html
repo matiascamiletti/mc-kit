@@ -1,0 +1,9 @@
+@if(newGroup()) {
+  <div [formGroup]="newGroup()!" class="mc-group-form">
+    @for (field of field().config.fields; track $index) {
+      <div class="{{(field.config.containerFieldClass || 'mb-3 w-full')}}">
+        <mc-print-field [field]="field" [control]="newGroup()!.get(field.key ?? '')" [group]="newGroup()!" [eventObs]="eventObs()" />
+      </div>
+    }
+  </div>
+}

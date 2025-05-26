@@ -1,0 +1,31 @@
+<mc-odata-page
+  #odataPage
+[breadcrumb]="breadcrumb"
+[title]="'Users'"
+[subtitle]="'Listado de usuarios para administrarlos, usted puede editar, borrar y actualizar.'"
+[key]="'users'"
+[httpService]="testService"
+[filters]="filters"
+[columns]="columns"
+[searchFieldsKey]="searchFieldsKey"
+>
+
+<ng-template mcRightHeaderTemplate>
+  <p-button label="New" styleClass="ml-3" />
+</ng-template>
+
+<ng-template mcThTemplate="game_number">
+  <h2>Game Test Head # <p-button label="send" /></h2>
+</ng-template>
+
+<ng-template mcTdTemplate="status" let-row>
+  <p-button label="Change status" /> {{ row.status }}
+</ng-template>
+
+<ng-template mcTdTemplate="actions" let-row>
+  <mc-actions-column [item]="row" (onEdit)="onClickEdit($event)" (onRemove)="onClickRemove($event)"></mc-actions-column>
+</ng-template>
+
+
+
+</mc-odata-page>

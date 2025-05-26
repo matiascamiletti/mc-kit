@@ -41,6 +41,11 @@ export * from './lib/resolvers/user.resolver';
 export * from './lib/pipes/initial-name.pipe';
 
 /**
+ * Components
+ */
+export * from './lib/components/avatar-with-menu/avatar-with-menu.component';
+
+/**
  * Pages
  */
 export * from './lib/pages/base-auth-page.component';

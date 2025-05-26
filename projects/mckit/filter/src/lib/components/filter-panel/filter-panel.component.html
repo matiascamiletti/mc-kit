@@ -1,4 +1,4 @@
-<p-overlayPanel #overlayPanel>
+<p-popover #overlayPanel>
   <mc-advanced-filters-panel *ngIf="showPanel() == showPanelAdvanced" [hasQuickFilters]="quickFilters().length > 0" (switchToQuick)="clickShowBasicPanel()" [filters]="config().filters" [results]="results()" (addNewFilter)="addResult($event)" (removeFilterByIndex)="removeResultByIndex($event)" (clearAll)="clickClearAll()" (refresh)="emit()"></mc-advanced-filters-panel>
   <mc-quick-filter-panel *ngIf="showPanel() == showPanelBasic" [quickFilters]="quickFilters()" [results]="results()" (switchToAdvanced)="clickShowAdvancedPanel()" (addNewFilter)="addResult($event)" (removeFilterAndItem)="removeResultByFilterAndItem($event)" (removeFilter)="removeResultByFilter($event)" (clearAll)="clickClearAll()"></mc-quick-filter-panel>
-</p-overlayPanel>
+</p-popover>

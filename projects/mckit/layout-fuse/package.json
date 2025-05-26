@@ -1,0 +1,15 @@
+{
+  "name": "@mckit/layout-fuse",
+  "version": "19.0.5",
+  "peerDependencies": {
+    "@angular/common": "^19.0.0",
+    "@angular/core": "^19.0.0",
+    "@mckit/core": "^19.0.0",
+    "@mckit/layout-core": "^19.0.0",
+    "primeng": "^19.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}

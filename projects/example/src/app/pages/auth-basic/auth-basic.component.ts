@@ -2,11 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { MCAuthBasicComponent, MCAuthBasicConfig, MCAuthModel } from '../../../../../mckit/auth/src/public-api';
 
 @Component({
-  selector: 'app-auth-basic',
-  standalone: true,
-  imports: [MCAuthBasicComponent],
-  templateUrl: './auth-basic.component.html',
-  styleUrl: './auth-basic.component.scss'
+    selector: 'app-auth-basic',
+    imports: [MCAuthBasicComponent],
+    templateUrl: './auth-basic.component.html',
+    styleUrl: './auth-basic.component.scss'
 })
 export class AuthBasicComponent implements OnInit {
   config!: MCAuthBasicConfig;

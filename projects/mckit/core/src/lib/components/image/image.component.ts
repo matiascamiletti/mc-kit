@@ -3,11 +3,10 @@ import { MCCoreComponent } from '../mc-core-component';
 import { MCComponent } from '../../entities/mc-component';
 
 @Component({
-  selector: 'mc-image',
-  standalone: true,
-  imports: [],
-  templateUrl: './image.component.html',
-  styleUrl: './image.component.scss'
+    selector: 'mc-image',
+    imports: [],
+    templateUrl: './image.component.html',
+    styleUrl: './image.component.scss'
 })
 export class ImageComponent extends MCCoreComponent {
 }

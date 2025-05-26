@@ -1,1 +1,7 @@
-<p-button icon="pi pi-bars" [rounded]="true" [text]="true" size="small" (click)="onClick()" />
+@if (isMainSection()) {
+  <p-button icon="pi pi-bars" [rounded]="true" [text]="true" size="small" (click)="onClick()" />
+} @else {
+  <p-button icon="pi pi-arrow-left" [rounded]="true" [text]="true" size="small" (click)="onClickBack()" />
+}
+
+

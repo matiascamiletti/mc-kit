@@ -36,6 +36,10 @@ export class MCOdata {
     this.skip = event.first;
   }
 
+  cleanPage(): void {
+    this.skip = 0;
+  }
+
   toString(): string {
     let odata = '';
     if (this.top || this.top === 0) {
@@ -52,6 +56,16 @@ export class MCOdata {
     }
     odata += `${odata ? '&' : ''}$filter=${this.filters.toString()}`;
 
+    return odata;
+  }
+
+  clone(): MCOdata {
+    let odata = new MCOdata();
+    odata.top = this.top;
+    odata.skip = this.skip;
+    odata.orderBy = this.orderBy;
+    odata.filters = this.filters.clone();
+    odata.expands = this.expands;
     return odata;
   }
 

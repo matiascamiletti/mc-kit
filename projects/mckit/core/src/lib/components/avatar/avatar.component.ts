@@ -6,11 +6,10 @@ import { MCComponent } from '../../entities/mc-component';
 import { CommonModule } from '@angular/common';
 
 @Component({
-  selector: 'mc-avatar',
-  standalone: true,
-  imports: [CommonModule, AvatarModule, AvatarGroupModule],
-  templateUrl: './avatar.component.html',
-  styleUrl: './avatar.component.css'
+    selector: 'mc-avatar',
+    imports: [CommonModule, AvatarModule, AvatarGroupModule],
+    templateUrl: './avatar.component.html',
+    styleUrl: './avatar.component.css'
 })
 export class AvatarComponent extends MCCoreComponent {
 

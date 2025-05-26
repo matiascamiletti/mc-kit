@@ -11,6 +11,9 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { provideHttpClient } from '@angular/common/http';
 import { withFetch } from '@angular/common/http';
 
+import { providePrimeNG } from 'primeng/config';
+import Aura from '@primeng/themes/aura';
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
@@ -18,5 +21,15 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     importProvidersFrom(BrowserAnimationsModule),
     provideHttpClient(withFetch()),
+
+    providePrimeNG({
+      theme: {
+        preset: Aura,
+        options: {
+          darkModeSelector: '.dark',
+        },
+      },
+    }),
+
   ],
 };

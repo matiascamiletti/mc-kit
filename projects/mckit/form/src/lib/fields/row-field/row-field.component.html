@@ -1,0 +1,17 @@
+@if(newGroup()) {
+  <div [formGroup]="newGroup()!" class="mc-row-form flex flex-row gap-3">
+    @for (field of field().config.fields; track $index) {
+      <div class="{{(field.config.containerFieldClass || 'mb-3 w-full')}}">
+        <mc-print-field [field]="field" [control]="newGroup()!.get(field.key ?? '')" [group]="newGroup()!" [eventObs]="eventObs()" />
+      </div>
+    }
+  </div>
+} @else {
+  <div class="mc-row-form flex flex-row gap-3">
+    @for (field of field().config.fields; track $index) {
+      <div class="{{(field.config.containerFieldClass || 'mb-3 w-full')}}">
+        <mc-print-field [field]="field" [control]="group()!.get(field.key ?? '')" [group]="group()!" [eventObs]="eventObs()" />
+      </div>
+    }
+  </div>
+}

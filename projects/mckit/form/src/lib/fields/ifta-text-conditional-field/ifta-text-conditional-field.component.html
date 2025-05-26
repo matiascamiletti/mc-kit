@@ -1,0 +1,6 @@
+@if(isShow()){
+  <p-iftalabel>
+    <input pInputText id="{{field().key}}" class="w-full" [formControl]="control()!" />
+    <label for="{{field().key}}">{{field().config.label}}</label>
+  </p-iftalabel>
+}

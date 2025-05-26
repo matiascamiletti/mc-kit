@@ -6,7 +6,14 @@ import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
 import { TestTableService, Product } from './test-table.service';
 import { inject } from '@angular/core';
-import { MCFilterButton, MCFilter, MCConfigFilter, MCResultFilter } from '@mckit/filter';
+
+import {
+  MCFilterButton,
+  MCFilter,
+  MCConfigFilter,
+  MCResultFilter,
+} from '@mckit/filter';
+
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 import { MCOdataTableComponent } from '@mckit/odata';
@@ -22,10 +29,10 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
   selector: 'app-test-table',
   standalone: true,
   imports: [
-    CommonModule, 
-    TableModule, 
-    IconFieldModule, 
-    InputTextModule, 
+    CommonModule,
+    TableModule,
+    IconFieldModule,
+    InputTextModule,
     ButtonModule,
     MCFilterButton,
     ToastModule,
@@ -37,12 +44,15 @@ import { ProgressSpinnerModule } from 'primeng/progressspinner';
   ],
   providers: [MessageService, ConfirmationService],
   templateUrl: './test-table.component.html',
-  styleUrl: './test-table.component.scss'
+  styleUrl: './test-table.component.scss',
 })
-export class TestTableComponent extends MCOdataTableComponent<Product> implements OnInit {
+export class TestTableComponent
+  extends MCOdataTableComponent<Product>
+  implements OnInit
+{
   override httpService = inject(TestTableService);
   private odataConverter = inject(MCFilterOdataConverterService);
-  
+
   override tableKey = 'test-table-list';
   filterButton = viewChild<MCFilterButton>('McFilterButton');
   filterConfig = new MCConfigFilter();
@@ -54,14 +64,10 @@ export class TestTableComponent extends MCOdataTableComponent<Product> implement
     { field: 'category', title: 'Category', isShow: true },
     { field: 'stock', title: 'Stock', isShow: true },
     { field: 'rating', title: 'Rating', isShow: true },
-    { field: 'createdAt', title: 'Created', isShow: true }
+    { field: 'createdAt', title: 'Created', isShow: true },
   ];
 
-  override searchFieldsKey: string[] = [
-    'name',
-    'category',
-    'description'
-  ];
+  override searchFieldsKey: string[] = ['name', 'category', 'description'];
 
   override ngOnInit() {
     this.data.top = 10;
@@ -82,7 +88,7 @@ export class TestTableComponent extends MCOdataTableComponent<Product> implement
         options: [
           { label: 'Electronics', value: 'Electronics' },
           { label: 'Clothing', value: 'Clothing' },
-          { label: 'Food', value: 'Food' }
+          { label: 'Food', value: 'Food' },
         ],
       }),
       MCFilter.multiselect({
@@ -91,7 +97,7 @@ export class TestTableComponent extends MCOdataTableComponent<Product> implement
         options: [
           { label: '4.5+ Stars', value: '4.5' },
           { label: '4.0+ Stars', value: '4.0' },
-          { label: '3.5+ Stars', value: '3.5' }
+          { label: '3.5+ Stars', value: '3.5' },
         ],
       }),
       MCFilter.multiselectAutocomplete({
@@ -115,22 +121,26 @@ export class TestTableComponent extends MCOdataTableComponent<Product> implement
     return this.columns.filter((column) => column.isShow).length + 2;
   }
 
-  getCategorySeverity(category: string): "success" | "secondary" | "info" | "warning" | "danger" | "contrast" {
+  getCategorySeverity(
+    category: string
+  ): 'success' | 'secondary' | 'info' | 'warn' | 'danger' | 'contrast' {
     switch (category) {
       case 'Electronics':
         return 'info';
       case 'Clothing':
         return 'success';
       case 'Food':
-        return 'warning';
+        return 'warn';
       default:
         return 'info';
     }
   }
 
-  getStockSeverity(stock: number): "success" | "secondary" | "info" | "warning" | "danger" | "contrast" {
+  getStockSeverity(
+    stock: number
+  ): 'success' | 'secondary' | 'info' | 'warn' | 'danger' | 'contrast' {
     if (stock > 100) return 'success';
-    if (stock > 50) return 'warning';
+    if (stock > 50) return 'warn';
     return 'danger';
   }
 }

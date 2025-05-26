@@ -45,8 +45,8 @@ export class MCFilterOdataConverterService {
       case MCConditionResult.CONTAINS:
         return `substringof(${filter.filter!.key}, '${filter.value}')`;
       case MCConditionResult.IN:
-        const values = Array.isArray(filter.value) 
-          ? filter.value.map(v => this.isNumeric(v) ? v : `'${v}'`).join(',') 
+        const values = Array.isArray(filter.value)
+          ? filter.value.map(v => this.isNumeric(v) ? v : `'${v}'`).join(',')
           : filter.value;
         return `${filter.filter!.key} in (${values})`;
     }

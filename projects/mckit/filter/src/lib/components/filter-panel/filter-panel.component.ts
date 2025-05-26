@@ -6,8 +6,8 @@ import { MCFilter, MCTypeFilter } from '../../entities/filter';
 import { MCResultFilter } from '../../entities/result';
 import { MCConfigFilter } from '../../entities/config';
 import { MCItemFilter } from '../../entities/item-filter';
+import { Popover, PopoverModule } from 'primeng/popover';
 import { FilterStore } from '../../stores/filter.store';
-import { OverlayPanel, OverlayPanelModule } from 'primeng/overlaypanel';
 
 export enum MCShowPanel {
   BASIC,
@@ -16,13 +16,12 @@ export enum MCShowPanel {
 
 @Component({
     selector: 'mc-filter-panel',
-    standalone: true,
-    imports: [CommonModule, OverlayPanelModule, AdvancedFiltersPanelComponent, QuickFilterPanelComponent],
+    imports: [CommonModule, PopoverModule, AdvancedFiltersPanelComponent, QuickFilterPanelComponent],
     templateUrl: './filter-panel.component.html',
     styleUrl: './filter-panel.component.css'
 })
 export class MCFilterPanelComponent implements OnInit {
-  overlayPanel: Signal<OverlayPanel> = viewChild.required('overlayPanel');
+  overlayPanel: Signal<Popover> = viewChild.required('overlayPanel');
 
   config = input.required<MCConfigFilter>();
   updateTotal = output<number>();
@@ -38,6 +37,8 @@ export class MCFilterPanelComponent implements OnInit {
   change = output<Array<MCResultFilter>>();
 
   resultsBeforeLenght = 0;
+  
+  private filterStore = inject(FilterStore, { optional: true });
 
   private filterStore = inject(FilterStore, { optional: true });
 

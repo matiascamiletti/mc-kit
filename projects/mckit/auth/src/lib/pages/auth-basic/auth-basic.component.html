@@ -5,16 +5,14 @@
   <p-card [header]="config().title ?? 'Log in'" [subheader]="config().subtitle ?? 'Please enter your details'">
 
     <form class="" [formGroup]="group" (ngSubmit)="onClickSubmit()">
-      <p-iconField iconPosition="left">
+      <p-iconField iconPosition="left" class="mb-3 w-full">
         <p-inputIcon styleClass="pi pi-envelope" />
-        <input type="text" pInputText [placeholder]="config().emailPlaceholder ?? 'Email'" formControlName="email" name="email" (keyup.enter)="onClickSubmit()" />
+        <input type="text" pInputText [placeholder]="config().emailPlaceholder ?? 'Email'" formControlName="email" name="email" (keyup.enter)="onClickSubmit()" class="w-full" />
       </p-iconField>
 
-      <br/><br/>
-
-      <p-iconField iconPosition="left">
+      <p-iconField iconPosition="left" class="w-full">
         <p-inputIcon styleClass="pi pi-lock" />
-        <input type="password" pPassword [placeholder]="config().passwordPlaceholder ?? 'Password'" [feedback]="false" toggleMask="true" formControlName="password" name="password" (keyup.enter)="onClickSubmit()" />
+        <p-password [placeholder]="config().passwordPlaceholder ?? 'Password'" [feedback]="false" [toggleMask]="true" formControlName="password" name="password" (keyup.enter)="onClickSubmit()" inputStyleClass="w-full" styleClass="w-full" />
       </p-iconField>
 
       @if (config().resetPasswordLink != undefined) {
@@ -23,16 +21,18 @@
         </div>
       }
 
-      <p-messages />
+      @for (message of messages(); track message; let first = $first) {
+        <p-message [severity]="message.severity" [text]="message.text" [ngClass]="{ 'mt-4': !first }" />
+      }
     </form>
 
     <ng-template pTemplate="footer">
-      <div class="flex gap-3 mt-1">
-        <p-button [label]="config().submitButton ?? 'Log in'" [loading]="isSending" [style]="{ width: '100%' }" (click)="onClickSubmit()" [disabled]="group.invalid || isSending" />
+      <div class="mt-1 w-full">
+        <p-button [label]="config().submitButton ?? 'Log in'" [loading]="isSending()" (click)="onClickSubmit()" [disabled]="group.invalid || isSending()" styleClass="w-full" />
       </div>
 
       @if (config().registerLink != undefined) {
-        <div class="more-actions-footer">
+        <div class="more-actions-footer mt-3">
           <p-button [routerLink]="config().registerLink" [label]="config().register ?? 'Don’t have an account? Register'" [link]="true" />
         </div>
       }

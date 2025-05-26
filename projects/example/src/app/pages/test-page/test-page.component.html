@@ -1,3 +1,7 @@
+<mc-page-heading [breadcrumb]="breadcrumb" title="Simple test page" subtitle="This page is for a example of the new MC KIT.">
+  <button>Testing</button>
+</mc-page-heading>
+
 <mc-simple-page [breadcrumb]="breadcrumb" title="Simple test page" subtitle="This page is for a example of the new MC KIT.">
   <div>
     Aqui todo el contenido de la pagina de prueba...
@@ -22,5 +26,16 @@
   <mc-two-column-item [title]="'Item 3'" [subtitle]="'25/08/1989'" [value]="5000|currency"></mc-two-column-item>
   <mc-two-column-item [title]="'Item 4'" [subtitle]="'25/08/1989'" [value]="5000|currency"></mc-two-column-item>
 </div>
+
+<h2 class="text-2xl">Table</h2>
+<mc-table [columns]="tableColumns" [response]="tableResponse" [paginator]="true">
+  <ng-template mcThTemplate="game_number">
+    <h2>Game Test Head # <p-button label="send" /></h2>
+  </ng-template>
+
+  <ng-template mcTdTemplate="status" let-row>
+    <p-button label="Change status" /> {{ row.status }}
+  </ng-template>
+</mc-table>
 
 <p-toast></p-toast>

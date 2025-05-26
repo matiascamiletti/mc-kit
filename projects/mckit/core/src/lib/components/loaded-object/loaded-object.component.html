@@ -1,0 +1,7 @@
+@if (isLoading()) {
+  <div class="card flex justify-center">
+    <p-progress-spinner ariaLabel="loading"/>
+  </div>
+} @else {
+  <ng-content></ng-content>
+}

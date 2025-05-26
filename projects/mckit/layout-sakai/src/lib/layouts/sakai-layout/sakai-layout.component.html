@@ -1,30 +1,76 @@
-<div class="layout-wrapper layout-static" [ngClass]="{'layout-static-inactive': !isOpen(), 'layout-mobile-active': isOpen()}">
+<div
+  class="mc-layout"
+  [style.--mc-layout-bg]="layoutBg"
+  [style.--mc-layout-bg-dark]="layoutBgDark"
+>
   <!-- Topbar -->
-  <div class="layout-topbar">
-      <div class="p-toolbar-group-start"><mc-print-service [id]="topbarLeftId" [isFlexRow]="true"></mc-print-service></div>
-      <div class="p-toolbar-group-end layout-topbar-menu"><mc-print-service [id]="topbarRightId" [isFlexRow]="true"></mc-print-service></div>
-  </div>
-  <!-- END Topbar -->
-
-  <!-- Sidebar -->
-  <div class="layout-sidebar">
-    <ul class="layout-menu">
-      <mc-print-service [id]="sidebarId"></mc-print-service>
-    </ul>
-  </div>
-  <!-- END Sidebar -->
-
-  <div class="layout-main-container">
-      <div class="layout-main">
-          <router-outlet></router-outlet>
+  <div
+    class="mc-topbar"
+    [style.--mc-topbar-bg]="topbarBg"
+    [style.--mc-topbar-bg-dark]="topbarBgDark"
+    [style.--mc-topbar-height]="topbarHeight"
+    [style.--mc-shadow]="shadow"
+  >
+    <div class="flex-1 flex items-center">
+      <div class="p-toolbar-group-start">
+        <mc-print-service
+          [id]="topbarLeftId"
+          [isFlexRow]="true"
+        ></mc-print-service>
       </div>
+    </div>
+    <div class="flex items-center">
+      <div class="p-toolbar-group-end layout-topbar-menu">
+        <mc-print-service
+          [id]="topbarRightId"
+          [isFlexRow]="true"
+        ></mc-print-service>
+      </div>
+    </div>
+  </div>
 
+  <div
+    class="flex-1 flex flex-col md:flex-row"
+    [style.padding-top]="topbarHeight"
+  >
+    <!-- Sidebar -->
+    <div
+      class="mc-sidebar"
+      [style.--mc-sidebar-bg]="sidebarBg"
+      [style.--mc-sidebar-bg-dark]="sidebarBgDark"
+      [style.--mc-sidebar-width]="sidebarWidth"
+      [class.open]="isOpen()"
+    >
+      <ul>
+        <mc-print-service [id]="sidebarId"></mc-print-service>
+      </ul>
+    </div>
+    <!-- Mask for mobile -->
+    <div
+      *ngIf="isOpen() && !isDesktop"
+      class="fixed inset-0 bg-black/30 z-30 md:hidden"
+      (click)="closeSidebar()"
+    ></div>
+
+    <!-- Main -->
+    <div
+      class="mc-main"
+      [ngClass]="{
+        'md:ml-[calc(var(--mc-sidebar-width,18rem)+2rem)]':
+          isOpen() && isDesktop
+      }"
+    >
+      <div class="flex-1">
+        <router-outlet></router-outlet>
+      </div>
       <!-- Footer -->
-      <div class="layout-footer">
+      <div
+        class="mc-footer"
+        [style.--mc-border-color]="borderColor"
+        [style.--mc-border-color-dark]="borderColorDark"
+      >
         <mc-print-service [id]="footerId"></mc-print-service>
       </div>
-      <!-- END Footer -->
-
+    </div>
   </div>
-  <div class="layout-mask" (click)="closeSidebar()"></div>
 </div>

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, inject, OnInit } from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import { MCSubtitle } from '../../../mckit/core/src/public-api';
 import { MCImage } from '../../../mckit/core/src/lib/components/image/image.component';
@@ -6,18 +6,20 @@ import { MCMenu } from '../../../mckit/core/src/lib/components/menu/menu.compone
 import { ItemCustomMenuComponent } from './components/item-custom-menu/item-custom-menu.component';
 import { MCSubtitleInTopbar } from '../../../mckit/layout/src/lib/components/subtitle-in-topbar/subtitle-in-topbar.component';
 import { MCLoaderService, MCSpinnerFullScreenComponent } from '../../../mckit/loader/src/public-api';
-import { MCSidebarService, MCTopbarService } from '../../../mckit/layout-core/src/public-api';
-import { MCIconToggleSidebarButton } from '../../../mckit/layout/src/public-api';
+import { MCFooterService, MCSidebarService, MCTopbarService } from '../../../mckit/layout-core/src/public-api';
 import { MCAvatar } from '../../../mckit/core/src/lib/components/avatar/avatar.component';
+import { DarkModeButton, DarkModeButtonComponent } from './components/dark-mode-button/dark-mode-button.component';
+import { MCIconToggleSidebarButton } from '@mckit/layout';
 
 @Component({
-  selector: 'app-root',
-  standalone: true,
-  imports: [RouterOutlet, MCSpinnerFullScreenComponent],
-  templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+    selector: 'app-root',
+    imports: [RouterOutlet, MCSpinnerFullScreenComponent],
+    templateUrl: './app.component.html',
+    styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
+
+  footerService = inject(MCFooterService);
 
   constructor(
     protected sidebarService: MCSidebarService,
@@ -29,12 +31,14 @@ export class AppComponent implements OnInit {
     this.configLoader();
     this.loadSidebar();
     this.loadTopbar();
+    this.loadFooter();
   }
 
   loadTopbar() {
     this.topbarService.addComponentToLeft(new MCIconToggleSidebarButton());
-    this.topbarService.addComponentToLeft(new MCImage('https://tots.agency/assets/img/logos/logo-horiz-black-color.svg', 150));
+    //this.topbarService.addComponentToLeft(new MCImage('https://tots.agency/assets/img/logos/logo-horiz-black-color.svg', 150));
 
+    this.topbarService.addComponentToRight(new DarkModeButton());
     this.topbarService.addComponentToRight(new MCAvatar({ label: 'MC', shape: 'circle' }));
   }
 
@@ -56,6 +60,7 @@ export class AppComponent implements OnInit {
       new MCSubtitle('Contacto'),
       new MCMenu([
         { label: 'Item 1', link: '/basic', icon: 'pi pi-times' },
+        { label: 'Item 1', link: '/basic', icon: 'pi pi-times' },
         { label: 'Item 2', children: [
           { label: 'Sub Item 1', link: '/basic' },
           { label: 'Sub Item 2', link: '/basic' },
@@ -63,6 +68,10 @@ export class AppComponent implements OnInit {
         ] }
       ])
     ]);
+  }
+
+  loadFooter() {
+    this.footerService.addComponent(new MCSubtitle('© 2025 - Todos los derechos reservados'));
   }
 
   configLoader() {

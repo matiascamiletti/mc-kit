@@ -6,22 +6,20 @@ import { InputIconModule } from 'primeng/inputicon';
 import { InputTextModule } from 'primeng/inputtext';
 import { PasswordModule } from 'primeng/password';
 import { FormGroup, FormsModule, ReactiveFormsModule, FormControl, Validators } from '@angular/forms';
-import { MessagesModule } from 'primeng/messages';
-import { MessageService } from 'primeng/api';
+import { MessageModule } from 'primeng/message';
 import { MCAuthModel } from '../../entities/mc-auth-model';
 import { MCBaseAuthPageConfig } from '../../entities/mc-base-auth-page-config';
 import { RouterModule } from '@angular/router';
 import { MCBaseAuthPage } from '../base-auth-page.component';
+import { CommonModule } from '@angular/common';
 
 
 
 @Component({
-  selector: 'mc-auth-basic',
-  standalone: true,
-  imports: [FormsModule, ReactiveFormsModule, ButtonModule, CardModule, IconFieldModule, InputIconModule, InputTextModule, PasswordModule, MessagesModule, RouterModule],
-  providers: [MessageService],
-  templateUrl: './auth-basic.component.html',
-  styleUrl: './auth-basic.component.scss'
+    selector: 'mc-auth-basic',
+    imports: [CommonModule, FormsModule, ReactiveFormsModule, ButtonModule, CardModule, IconFieldModule, InputIconModule, InputTextModule, PasswordModule, MessageModule, RouterModule],
+    templateUrl: './auth-basic.component.html',
+    styleUrl: './auth-basic.component.scss'
 })
 export class MCAuthBasicComponent extends MCBaseAuthPage {
   config = input.required<MCAuthBasicConfig>();

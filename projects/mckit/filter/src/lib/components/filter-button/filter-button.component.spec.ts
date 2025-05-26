@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MCFilterButtonComponent } from './filter-button.component';
+import { MCFilterButton } from './filter-button.component';
 
 describe('FilterButtonComponent', () => {
-  let component: MCFilterButtonComponent;
-  let fixture: ComponentFixture<MCFilterButtonComponent>;
+  let component: MCFilterButton;
+  let fixture: ComponentFixture<MCFilterButton>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [MCFilterButtonComponent]
+      imports: [MCFilterButton]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(MCFilterButtonComponent);
+    fixture = TestBed.createComponent(MCFilterButton);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

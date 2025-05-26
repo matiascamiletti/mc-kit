@@ -7,11 +7,10 @@ import { ID_SIDEBAR_MC_COMPONENT, ID_TOPBAR_MC_COMPONENT, MCSidebarService } fro
 declare const window: any;
 
 @Component({
-  selector: 'mc-basic-layout',
-  standalone: true,
-  imports: [RouterModule, PrintServiceComponent, ToolbarModule],
-  templateUrl: './basic-layout.component.html',
-  styleUrl: './basic-layout.component.scss',
+    selector: 'mc-basic-layout',
+    imports: [RouterModule, PrintServiceComponent, ToolbarModule],
+    templateUrl: './basic-layout.component.html',
+    styleUrl: './basic-layout.component.scss'
 })
 export class BasicLayout implements OnInit {
   sidebarId = ID_SIDEBAR_MC_COMPONENT;
