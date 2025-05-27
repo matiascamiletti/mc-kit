@@ -105,6 +105,7 @@ export class TestTableComponent
         key: 'category',
         placeholder: 'Search and select categories',
         filter: (query: string) => this.httpService.getCategories(query),
+        maxSelectedLabels: 1,
       }),
     ];
   }

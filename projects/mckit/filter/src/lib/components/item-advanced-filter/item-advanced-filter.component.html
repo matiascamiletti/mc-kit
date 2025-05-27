@@ -1,107 +1,185 @@
-<div class="advanced-filter-item flex gap-2">
-  <div class="where w-28">
+<div class="advanced-filter-item flex flex-col lg:flex-row gap-2 py-1">
+  <div class="w-full lg:w-[112px]">
     @if (isFirst()) {
-      <p-dropdown [options]="operatorWhere" optionLabel="label" optionValue="value" [disabled]="true" styleClass="w-full" />
+    <p-dropdown
+      [options]="operatorWhere"
+      optionLabel="label"
+      optionValue="value"
+      [disabled]="true"
+      styleClass="w-full"
+    />
     } @else {
-      <p-dropdown [options]="operators" [(ngModel)]="result().operator" optionLabel="label" optionValue="value" styleClass="w-full" />
+    <p-dropdown
+      [options]="operators"
+      [(ngModel)]="result().operator"
+      optionLabel="label"
+      optionValue="value"
+      styleClass="w-full"
+    />
     }
   </div>
 
   @if (result().childrens != undefined) {
 
-    <div class="mc-filter-group flex flex-col gap-2 p-2 w-full">
-
-      @for (children of result().childrens; track $index) {
-        <mc-item-advanced-filter [filters]="filters()" [result]="children" [isFirst]="$index == 0" (clickRemove)="clickRemoveFilter()"></mc-item-advanced-filter>
-      }
-
-      <p-button label="+ New Filter" [text]="true" [severity]="'info'" (onClick)="clickAddFilter()"/>
-
-    </div>
-
-  } @else {
-    <div class="filter w-full">
-      <p-dropdown [options]="filters()" [(ngModel)]="result().filter" optionLabel="title" styleClass="w-full" placeholder="Select a column" (onChange)="onRefreshColumn()" [appendTo]="'body'" />
-    </div>
-
-    @if (result().filter?.isShowConditions ?? true) {
-      @if (result().filter?.type != typeMultiselect && result().filter?.type != typeMultiselectAutocomplete) {
-        <div class="condition w-36">
-          <p-dropdown [options]="conditions" [(ngModel)]="result().condition" optionLabel="label" optionValue="value" />
-        </div>
-      } @else {
-        <div class="condition w-36">
-          <p-dropdown [options]="[{label: 'In', value: MCConditionResult.IN}]"  [disabled]="true" optionLabel="label" optionValue="value" />
-        </div>
-      }
+  <div class="mc-filter-group flex flex-col gap-2 p-2 w-full">
+    @for (children of result().childrens; track $index) {
+    <mc-item-advanced-filter
+      [filters]="filters()"
+      [result]="children"
+      [isFirst]="$index == 0"
+      (clickRemove)="clickRemoveFilter()"
+    ></mc-item-advanced-filter>
     }
 
-    <div class="value w-full">
-      @switch (result().filter?.type) {
-        @case (typeSelect) {
-          <p-dropdown [options]="result().filter?.options" [(ngModel)]="result().value" optionLabel="label" optionValue="value" [placeholder]="result().filter?.data?.placeholder" styleClass="w-full" [appendTo]="'body'" />
-        }
-        @case (typeAutocomplete) {
-          <p-autoComplete [(ngModel)]="result().value" [suggestions]="filteredOptions" (completeMethod)="onFilterAutocomplete($event)" [placeholder]="result().filter?.data?.placeholder" optionLabel="label" optionValue="value" [showClear]="true" [appendTo]="'body'" styleClass="w-full" inputStyleClass="w-full" />
-        }
-        @case (typeMultiselect) {
-          <p-multiSelect [(ngModel)]="result().value" 
-            [options]="getGroupedOptions(result().filter?.options, result().value)"
-            optionLabel="label" 
-            optionValue="value" 
-            [placeholder]="result().filter?.data?.placeholder" 
-            [appendTo]="'body'" 
-            styleClass="w-full" 
-            [showToggleAll]="false"
-            [filter]="true"
-            [resetFilterOnHide]="true"
-            [group]="true"
-            optionGroupLabel="label"
-            optionGroupChildren="items"
-            emptyFilterMessage="No results found">
-            <ng-template pTemplate="emptyfilter">
-              <div class="p-multiselect-empty-message">No results found</div>
-            </ng-template>
-          </p-multiSelect>
-        }
-        @case (typeMultiselectAutocomplete) {
-          <p-multiSelect [(ngModel)]="result().value" 
-            [options]="getGroupedOptions(filteredOptions, result().value)" 
-            optionLabel="label" 
-            optionValue="value" 
-            [placeholder]="result().filter?.data?.placeholder" 
-            [appendTo]="'body'" 
-            styleClass="w-full" 
-            [showToggleAll]="false" 
-            [filter]="true" 
-            [resetFilterOnHide]="true"
-            [group]="true"
-            optionGroupLabel="label"
-            optionGroupChildren="items"
-            emptyFilterMessage="No results found"
-            (onFilter)="onFilterAutocomplete($event)" 
-            (onChange)="onMultiselectChange($event)" 
-            (onShow)="onShowDropdown()">
-            <ng-template pTemplate="emptyfilter">
-              @if (isLoading) {
-                <div class="p-multiselect-loading-message">
-                  <i class="pi pi-spin pi-spinner mr-2"></i>
-                  <span>Loading results...</span>
-                </div>
-              } @else {
-                <div class="p-multiselect-empty-message">No results found</div>
-              }
-            </ng-template>
-          </p-multiSelect>
-        }
-        @default {
-          <input type="text" pInputText [(ngModel)]="result().value" class="w-full" placeholder="Value" />
-        }
-      }
-    </div>
+    <p-button
+      label="+ New Filter"
+      [text]="true"
+      [severity]="'info'"
+      (onClick)="clickAddFilter()"
+    />
+  </div>
 
-    <p-button [text]="true" icon="pi pi-times" (onClick)="clickRemoveFilter()"></p-button>
+  } @else {
+  <div class="filter w-full">
+    <p-dropdown
+      [options]="filters()"
+      [(ngModel)]="result().filter"
+      optionLabel="title"
+      styleClass="w-full truncate"
+      placeholder="Select a column"
+      (onChange)="onRefreshColumn()"
+      [appendTo]="'body'"
+    />
+  </div>
+
+  @if (result().filter?.isShowConditions ?? true) { @if (result().filter?.type
+  != typeMultiselect && result().filter?.type != typeMultiselectAutocomplete) {
+  <div class="condition w-full lg:w-36">
+    <p-dropdown
+      [options]="conditions"
+      [(ngModel)]="result().condition"
+      optionLabel="label"
+      optionValue="value"
+      styleClass="w-full truncate"
+    />
+  </div>
+  } @else {
+  <div class="condition w-full lg:w-36">
+    <p-dropdown
+      [options]="[{ label: 'In', value: MCConditionResult.IN }]"
+      [disabled]="true"
+      optionLabel="label"
+      optionValue="value"
+      styleClass="w-full truncate"
+    />
+  </div>
+  } }
+
+  <div class="value w-full">
+    @switch (result().filter?.type) { @case (typeSelect) {
+    <p-dropdown
+      [options]="result().filter?.options"
+      [(ngModel)]="result().value"
+      optionLabel="label"
+      optionValue="value"
+      [placeholder]="truncatePlaceholder(result().filter?.data?.placeholder)"
+      styleClass="w-full truncate"
+      [appendTo]="'body'"
+    />
+    } @case (typeAutocomplete) {
+    <p-autoComplete
+      [(ngModel)]="result().value"
+      [suggestions]="filteredOptions"
+      (completeMethod)="onFilterAutocomplete($event)"
+      [placeholder]="truncatePlaceholder(result().filter?.data?.placeholder)"
+      optionLabel="label"
+      optionValue="value"
+      [showClear]="true"
+      [appendTo]="'body'"
+      styleClass="w-full truncate"
+      inputStyleClass="w-full truncate"
+    />
+    } @case (typeMultiselect) {
+    <p-multiSelect
+      [(ngModel)]="result().value"
+      [options]="getGroupedOptions(result().filter?.options, result().value)"
+      optionLabel="label"
+      optionValue="value"
+      [placeholder]="truncatePlaceholder(result().filter?.data?.placeholder)"
+      [appendTo]="'body'"
+      styleClass="w-full truncate"
+      [maxSelectedLabels]="result().filter?.maxSelectedLabels ?? 1"
+      [showToggleAll]="false"
+      [filter]="true"
+      [resetFilterOnHide]="true"
+      [group]="true"
+      optionGroupLabel="label"
+      optionGroupChildren="items"
+      panelStyleClass="w-full max-w-xs truncate"
+      emptyFilterMessage="No results found"
+    >
+      <ng-template pTemplate="emptyfilter">
+        <div class="p-multiselect-empty-message">No results found</div>
+      </ng-template>
+    </p-multiSelect>
+    } @case (typeMultiselectAutocomplete) {
+    <p-multiSelect
+      [(ngModel)]="result().value"
+      [options]="getGroupedOptions(filteredOptions, result().value)"
+      optionLabel="label"
+      optionValue="value"
+      [placeholder]="truncatePlaceholder(result().filter?.data?.placeholder)"
+      [appendTo]="'body'"
+      styleClass="w-full truncate"
+      panelStyleClass="w-full max-w-xs truncate"
+      [showToggleAll]="false"
+      [filter]="true"
+      [resetFilterOnHide]="true"
+      [maxSelectedLabels]="result().filter?.maxSelectedLabels ?? 1"
+      [group]="true"
+      optionGroupLabel="label"
+      optionGroupChildren="items"
+      emptyFilterMessage="No results found"
+      (onFilter)="onFilterAutocomplete($event)"
+      (onChange)="onMultiselectChange($event)"
+      (onShow)="onShowDropdown()"
+    >
+      <ng-template pTemplate="emptyfilter">
+        @if (isLoading) {
+        <div class="p-multiselect-loading-message">
+          <i class="pi pi-spin pi-spinner mr-2"></i>
+          <span>Loading results...</span>
+        </div>
+        } @else {
+        <div class="p-multiselect-empty-message">No results found</div>
+        }
+      </ng-template>
+    </p-multiSelect>
+    } @default {
+    <input
+      type="text"
+      pInputText
+      [(ngModel)]="result().value"
+      class="w-full truncate"
+      placeholder="Value"
+    />
+    } }
+  </div>
+
+  <p-button
+    [text]="true"
+    icon="pi pi-times"
+    (onClick)="clickRemoveFilter()"
+    class="self-start mt-2 lg:mt-0 hidden lg:block"
+  ></p-button>
+
+  <p-button
+    variant="outlined"
+    icon="pi pi-times"
+    label="Remove filter"
+    (onClick)="clickRemoveFilter()"
+    class="self-start mt-2 lg:mt-0 block lg:hidden w-full"
+    styleClass="w-full"
+  ></p-button>
   }
-
-
 </div>

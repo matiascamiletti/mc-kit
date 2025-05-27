@@ -10,7 +10,7 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 50,
     rating: 4.8,
     createdAt: new Date('2023-09-15'),
-    updatedAt: new Date('2023-09-15')
+    updatedAt: new Date('2023-09-15'),
   },
   {
     id: 2,
@@ -21,7 +21,7 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 30,
     rating: 4.9,
     createdAt: new Date('2023-10-30'),
-    updatedAt: new Date('2023-10-30')
+    updatedAt: new Date('2023-10-30'),
   },
   {
     id: 3,
@@ -32,7 +32,7 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 100,
     rating: 4.7,
     createdAt: new Date('2023-08-20'),
-    updatedAt: new Date('2023-08-20')
+    updatedAt: new Date('2023-08-20'),
   },
   {
     id: 4,
@@ -43,7 +43,7 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 200,
     rating: 4.6,
     createdAt: new Date('2023-11-10'),
-    updatedAt: new Date('2023-11-10')
+    updatedAt: new Date('2023-11-10'),
   },
   {
     id: 5,
@@ -54,18 +54,18 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 45,
     rating: 4.7,
     createdAt: new Date('2024-01-15'),
-    updatedAt: new Date('2024-01-15')
+    updatedAt: new Date('2024-01-15'),
   },
   {
     id: 6,
-    name: 'Levi\'s 501 Jeans',
+    name: "Levi's 501 Jeans",
     price: 79.99,
     category: 'Clothing',
     description: 'Classic straight fit jeans',
     stock: 75,
     rating: 4.5,
     createdAt: new Date('2023-07-05'),
-    updatedAt: new Date('2023-07-05')
+    updatedAt: new Date('2023-07-05'),
   },
   {
     id: 7,
@@ -76,7 +76,7 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 150,
     rating: 4.8,
     createdAt: new Date('2023-12-01'),
-    updatedAt: new Date('2023-12-01')
+    updatedAt: new Date('2023-12-01'),
   },
   {
     id: 8,
@@ -87,7 +87,7 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 25,
     rating: 4.9,
     createdAt: new Date('2023-06-15'),
-    updatedAt: new Date('2023-06-15')
+    updatedAt: new Date('2023-06-15'),
   },
   {
     id: 9,
@@ -98,7 +98,7 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 120,
     rating: 4.4,
     createdAt: new Date('2023-09-01'),
-    updatedAt: new Date('2023-09-01')
+    updatedAt: new Date('2023-09-01'),
   },
   {
     id: 10,
@@ -109,7 +109,7 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 180,
     rating: 4.7,
     createdAt: new Date('2023-10-15'),
-    updatedAt: new Date('2023-10-15')
+    updatedAt: new Date('2023-10-15'),
   },
   {
     id: 11,
@@ -120,7 +120,7 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 35,
     rating: 4.8,
     createdAt: new Date('2023-09-22'),
-    updatedAt: new Date('2023-09-22')
+    updatedAt: new Date('2023-09-22'),
   },
   {
     id: 12,
@@ -131,7 +131,7 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 60,
     rating: 4.6,
     createdAt: new Date('2023-08-10'),
-    updatedAt: new Date('2023-08-10')
+    updatedAt: new Date('2023-08-10'),
   },
   {
     id: 13,
@@ -142,7 +142,7 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 250,
     rating: 4.9,
     createdAt: new Date('2023-11-25'),
-    updatedAt: new Date('2023-11-25')
+    updatedAt: new Date('2023-11-25'),
   },
   {
     id: 14,
@@ -153,7 +153,7 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 20,
     rating: 4.7,
     createdAt: new Date('2023-07-18'),
-    updatedAt: new Date('2023-07-18')
+    updatedAt: new Date('2023-07-18'),
   },
   {
     id: 15,
@@ -164,7 +164,7 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 85,
     rating: 4.5,
     createdAt: new Date('2023-10-05'),
-    updatedAt: new Date('2023-10-05')
+    updatedAt: new Date('2023-10-05'),
   },
   {
     id: 16,
@@ -175,7 +175,7 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 300,
     rating: 4.8,
     createdAt: new Date('2023-12-15'),
-    updatedAt: new Date('2023-12-15')
+    updatedAt: new Date('2023-12-15'),
   },
   {
     id: 17,
@@ -186,7 +186,7 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 15,
     rating: 4.9,
     createdAt: new Date('2023-11-01'),
-    updatedAt: new Date('2023-11-01')
+    updatedAt: new Date('2023-11-01'),
   },
   {
     id: 18,
@@ -197,7 +197,7 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 70,
     rating: 4.6,
     createdAt: new Date('2023-09-10'),
-    updatedAt: new Date('2023-09-10')
+    updatedAt: new Date('2023-09-10'),
   },
   {
     id: 19,
@@ -208,7 +208,7 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 200,
     rating: 4.7,
     createdAt: new Date('2023-10-20'),
-    updatedAt: new Date('2023-10-20')
+    updatedAt: new Date('2023-10-20'),
   },
   {
     id: 20,
@@ -219,7 +219,7 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 10,
     rating: 4.8,
     createdAt: new Date('2023-12-05'),
-    updatedAt: new Date('2023-12-05')
+    updatedAt: new Date('2023-12-05'),
   },
   {
     id: 21,
@@ -230,7 +230,7 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 25,
     rating: 4.9,
     createdAt: new Date('2023-10-10'),
-    updatedAt: new Date('2023-10-10')
+    updatedAt: new Date('2023-10-10'),
   },
   {
     id: 22,
@@ -241,7 +241,7 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 45,
     rating: 4.7,
     createdAt: new Date('2023-11-15'),
-    updatedAt: new Date('2023-11-15')
+    updatedAt: new Date('2023-11-15'),
   },
   {
     id: 23,
@@ -252,7 +252,7 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 180,
     rating: 4.8,
     createdAt: new Date('2023-09-05'),
-    updatedAt: new Date('2023-09-05')
+    updatedAt: new Date('2023-09-05'),
   },
   {
     id: 24,
@@ -263,7 +263,7 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 8,
     rating: 4.9,
     createdAt: new Date('2023-08-25'),
-    updatedAt: new Date('2023-08-25')
+    updatedAt: new Date('2023-08-25'),
   },
   {
     id: 25,
@@ -274,7 +274,7 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 30,
     rating: 4.8,
     createdAt: new Date('2023-10-01'),
-    updatedAt: new Date('2023-10-01')
+    updatedAt: new Date('2023-10-01'),
   },
   {
     id: 26,
@@ -285,7 +285,7 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 220,
     rating: 4.7,
     createdAt: new Date('2023-11-20'),
-    updatedAt: new Date('2023-11-20')
+    updatedAt: new Date('2023-11-20'),
   },
   {
     id: 27,
@@ -296,7 +296,7 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 12,
     rating: 4.8,
     createdAt: new Date('2023-09-30'),
-    updatedAt: new Date('2023-09-30')
+    updatedAt: new Date('2023-09-30'),
   },
   {
     id: 28,
@@ -307,7 +307,7 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 55,
     rating: 4.6,
     createdAt: new Date('2023-10-25'),
-    updatedAt: new Date('2023-10-25')
+    updatedAt: new Date('2023-10-25'),
   },
   {
     id: 29,
@@ -318,7 +318,7 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 90,
     rating: 4.9,
     createdAt: new Date('2023-12-10'),
-    updatedAt: new Date('2023-12-10')
+    updatedAt: new Date('2023-12-10'),
   },
   {
     id: 30,
@@ -329,11 +329,59 @@ export const MOCK_PRODUCTS: Product[] = [
     stock: 18,
     rating: 4.7,
     createdAt: new Date('2023-08-15'),
-    updatedAt: new Date('2023-08-15')
-  }
+    updatedAt: new Date('2023-08-15'),
+  },
 ];
 
 export const MOCK_CATEGORIES = [
+  {
+    label: 'Electronics and Home Appliances with Extended Warranty and Support',
+    value: 'Electronics',
+  },
+  {
+    label:
+      'Clothing for All Seasons Including Winter, Summer, and Rainy Collections',
+    value: 'Clothing',
+  },
+  {
+    label:
+      'Fresh and Organic Food Products from Local and International Markets',
+    value: 'Food',
+  },
+  {
+    label:
+      'Latest Generation Smartphones with High-Resolution Cameras and Long Battery Life',
+    value: 'Smartphones',
+  },
+  {
+    label:
+      'High-Performance Laptops for Gaming, Work, and Entertainment Purposes',
+    value: 'Laptops',
+  },
+  {
+    label:
+      'Noise-Cancelling Headphones with Superior Sound Quality and Comfort',
+    value: 'Headphones',
+  },
+  {
+    label:
+      'Smartwatches with Fitness Tracking, Notifications, and Customizable Faces',
+    value: 'Smartwatches',
+  },
+  {
+    label:
+      'Tablets for Education, Business, and Personal Use with Large Displays',
+    value: 'Tablets',
+  },
+  {
+    label: 'Professional Cameras for Photography and Videography Enthusiasts',
+    value: 'Cameras',
+  },
+  {
+    label:
+      'Wireless Speakers with Bluetooth Connectivity and Long Battery Life',
+    value: 'Speakers',
+  },
   { label: 'Electronics', value: 'Electronics' },
   { label: 'Clothing', value: 'Clothing' },
   { label: 'Food', value: 'Food' },
@@ -377,5 +425,5 @@ export const MOCK_CATEGORIES = [
   { label: 'Baby Products', value: 'Baby Products' },
   { label: 'Jewelry', value: 'Jewelry' },
   { label: 'Art Supplies', value: 'Art Supplies' },
-  { label: 'Musical Instruments', value: 'Musical Instruments' }
-]; 
+  { label: 'Musical Instruments', value: 'Musical Instruments' },
+];
