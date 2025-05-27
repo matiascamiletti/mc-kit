@@ -40,8 +40,6 @@ export class MCFilterPanelComponent implements OnInit {
   
   private filterStore = inject(FilterStore, { optional: true });
 
-  private filterStore = inject(FilterStore, { optional: true });
-
   constructor() {
     effect(() => {
       if(this.quickFilters().length > 0){
