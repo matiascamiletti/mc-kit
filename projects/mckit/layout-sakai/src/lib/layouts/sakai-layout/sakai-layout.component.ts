@@ -47,7 +47,6 @@ const DEFAULT_STYLES: MCSakaiLayoutStyles = {
 
 @Component({
   selector: 'mc-sakai-layout',
-  standalone: true,
   imports: [CommonModule, RouterModule, PrintServiceComponent],
   templateUrl: './sakai-layout.component.html',
   styleUrl: './sakai-layout.component.scss',
