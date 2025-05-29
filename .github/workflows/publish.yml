@@ -31,7 +31,7 @@ jobs:
       layout-sakai: ${{ steps.filter.outputs['layout-sakai'] }}
       layout-fuse: ${{ steps.filter.outputs['layout-fuse'] }}
       loader: ${{ steps.filter.outputs.loader }}
-      odata: ${{ steps.filter.outputs.table }}
+      table: ${{ steps.filter.outputs.table }}
       odata: ${{ steps.filter.outputs.odata }}
       form: ${{ steps.filter.outputs.form }}
     steps:
