@@ -1,4 +1,40 @@
 <p-popover #overlayPanel>
-  <mc-advanced-filters-panel *ngIf="showPanel() == showPanelAdvanced" [hasQuickFilters]="quickFilters().length > 0" (switchToQuick)="clickShowBasicPanel()" [filters]="config().filters" [results]="results()" (addNewFilter)="addResult($event)" (removeFilterByIndex)="removeResultByIndex($event)" (clearAll)="clickClearAll()" (refresh)="emit()"></mc-advanced-filters-panel>
-  <mc-quick-filter-panel *ngIf="showPanel() == showPanelBasic" [quickFilters]="quickFilters()" [results]="results()" (switchToAdvanced)="clickShowAdvancedPanel()" (addNewFilter)="addResult($event)" (removeFilterAndItem)="removeResultByFilterAndItem($event)" (removeFilter)="removeResultByFilter($event)" (clearAll)="clickClearAll()"></mc-quick-filter-panel>
+  <ng-container *ngTemplateOutlet="filterContent"></ng-container>
 </p-popover>
+
+<p-dialog #dialog 
+  [visible]="dialogVisible()" 
+  (visibleChange)="dialogVisible.set($event)"
+  [modal]="true" 
+  [style]="{width: '90vw'}" 
+  [draggable]="false" 
+  [resizable]="false"
+  [closeOnEscape]="true"
+  [closable]="true">
+  <ng-container *ngTemplateOutlet="filterContent"></ng-container>
+</p-dialog>
+
+<ng-template #filterContent>
+  @if (showPanel() === showPanelAdvanced) {
+    <mc-advanced-filters-panel 
+      [hasQuickFilters]="quickFilters().length > 0" 
+      (switchToQuick)="clickShowBasicPanel()" 
+      [filters]="config().filters" 
+      [results]="results()" 
+      (addNewFilter)="addResult($event)" 
+      (removeFilterByIndex)="removeResultByIndex($event)" 
+      (clearAll)="clickClearAll()" 
+      (refresh)="emit()">
+    </mc-advanced-filters-panel>
+  } @else {
+    <mc-quick-filter-panel 
+      [quickFilters]="quickFilters()" 
+      [results]="results()" 
+      (switchToAdvanced)="clickShowAdvancedPanel()" 
+      (addNewFilter)="addResult($event)" 
+      (removeFilterAndItem)="removeResultByFilterAndItem($event)" 
+      (removeFilter)="removeResultByFilter($event)" 
+      (clearAll)="clickClearAll()">
+    </mc-quick-filter-panel>
+  }
+</ng-template>
