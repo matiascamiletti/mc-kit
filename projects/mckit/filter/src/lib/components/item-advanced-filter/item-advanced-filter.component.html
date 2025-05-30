@@ -1,7 +1,7 @@
 <div class="advanced-filter-item flex flex-col lg:flex-row gap-2 py-1">
   <div class="w-full lg:w-[112px]">
     @if (isFirst()) {
-    <p-dropdown
+    <p-select
       [options]="operatorWhere"
       optionLabel="label"
       optionValue="value"
@@ -9,7 +9,7 @@
       styleClass="w-full"
     />
     } @else {
-    <p-dropdown
+    <p-select
       [options]="operators"
       [(ngModel)]="result().operator"
       optionLabel="label"
@@ -41,7 +41,7 @@
 
   } @else {
   <div class="filter w-full">
-    <p-dropdown
+    <p-select
       [options]="filters()"
       [(ngModel)]="result().filter"
       optionLabel="title"
@@ -55,17 +55,17 @@
   @if (result().filter?.isShowConditions ?? true) { @if (result().filter?.type
   != typeMultiselect && result().filter?.type != typeMultiselectAutocomplete) {
   <div class="condition w-full lg:w-36">
-    <p-dropdown
+    <p-select
       [options]="conditions"
       [(ngModel)]="result().condition"
       optionLabel="label"
       optionValue="value"
-      styleClass="w-full truncate"
+      styleClass="w-full"
     />
   </div>
   } @else {
   <div class="condition w-full lg:w-36">
-    <p-dropdown
+    <p-select
       [options]="[{ label: 'In', value: MCConditionResult.IN }]"
       [disabled]="true"
       optionLabel="label"
@@ -77,7 +77,7 @@
 
   <div class="value w-full">
     @switch (result().filter?.type) { @case (typeSelect) {
-    <p-dropdown
+    <p-select
       [options]="result().filter?.options"
       [(ngModel)]="result().value"
       optionLabel="label"

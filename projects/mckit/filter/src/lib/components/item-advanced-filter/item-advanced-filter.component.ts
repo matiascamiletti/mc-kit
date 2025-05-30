@@ -15,6 +15,7 @@ import { MultiSelectModule, MultiSelectFilterEvent } from 'primeng/multiselect';
 import { Subscription } from 'rxjs';
 import { switchMap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { SelectModule } from 'primeng/select';
 
 // Define interface for grouped options
 interface OptionGroup {
@@ -28,12 +29,11 @@ interface OptionGroup {
   imports: [
     CommonModule,
     FormsModule,
-    DropdownModule,
     InputTextModule,
     ButtonModule,
-    DropdownModule,
     AutoCompleteModule,
     MultiSelectModule,
+    SelectModule,
   ],
   templateUrl: './item-advanced-filter.component.html',
   styleUrl: './item-advanced-filter.component.scss',
