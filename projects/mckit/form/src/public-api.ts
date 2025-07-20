@@ -13,6 +13,11 @@ export * from './lib/entities/mc-config-modal-form';
 export * from './lib/entities/mc-config-http-modal-form';
 
 /**
+ * RxJS
+ */
+export * from './lib/rxjs/mc-event-form-modal-operator';
+
+/**
  * Services
  */
 export * from './lib/services/mc-form.service';
