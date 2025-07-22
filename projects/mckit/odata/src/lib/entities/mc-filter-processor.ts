@@ -92,6 +92,30 @@ export class MCFilterProcessor {
     return `${key} ${odataOperator} '${filter.value}'`;
   }
 
+  addEqualFilter(key: string, value: any): void {
+    this.addODataFilter(`${key} eq '${value}'`);
+  }
+
+  addNotEqualFilter(key: string, value: any): void {
+    this.addODataFilter(`${key} ne '${value}'`);
+  }
+
+  addStartsWithFilter(key: string, value: string): void {
+    this.addODataFilter(`startswith(${key}, '${value}')`);
+  }
+
+  addContainsFilter(key: string, value: string): void {
+    this.addODataFilter(`substringof(${key}, '${value}')`);
+  }
+
+  addEndsWithFilter(key: string, value: string): void {
+    this.addODataFilter(`endswith(${key}, '${value}')`);
+  }
+
+  addInFilter(key: string, values: any[]): void {
+    this.addODataFilter(`${key} in (${values.map(v => `'${v}'`).join(',')})`);
+  }
+
   addODataFilter(filter: string): void {
     if (this.odata) {
       this.odata += ` and ${filter}`;
