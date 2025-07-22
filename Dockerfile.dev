@@ -1,0 +1,25 @@
+# Usa una imagen oficial de Node.js como base
+FROM node:20-alpine
+
+# Establece el directorio de trabajo
+WORKDIR /app
+
+# Copia los archivos de dependencias primero para aprovechar el cache de Docker
+COPY package*.json ./
+
+# Instala las dependencias de npm
+RUN npm install --force
+
+# Instala Angular CLI globalmente
+RUN npm install -g @angular/cli
+
+# Copia el resto del código fuente
+COPY . .
+
+RUN npm run build-all
+
+# Expone el puerto por defecto de Angular
+EXPOSE 4203
+
+# Comando para iniciar el servidor de desarrollo de Angular
+CMD ["ng", "serve", "--port=4203", "--host", "0.0.0.0", "--disable-host-check"]

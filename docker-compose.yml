@@ -1,0 +1,17 @@
+name: mc-kit-dev
+
+services:
+  frontend:
+    restart: no
+    build:
+      context: ./
+      dockerfile: Dockerfile.dev
+    ports:
+      - "4203:4203"
+    command: sh -c "ng serve --host 0.0.0.0 --port=4203 --disable-host-check"
+    networks:
+      - mc-kit-dev-network
+
+networks:
+  mc-kit-dev-network:
+    driver: bridge
