@@ -41,6 +41,7 @@ export * from './lib/fields/array-field/array-field.component';
 export * from './lib/fields/ifta-textarea-field/ifta-textarea-field.component';
 export * from './lib/fields/conditional-field/conditional-field.component';
 export * from './lib/fields/array-ifta-text-field/array-ifta-text-field.component';
+export * from './lib/fields/column-field/column-field.component';
 
 /**
  * Components
