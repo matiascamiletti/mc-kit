@@ -20,12 +20,14 @@ export class MCField {
     validators?: ValidatorFn[],
     default_value?: any,
     disabled?: boolean,
-    no_control?: boolean
+    no_control?: boolean,
+    extra?: any
   }): MCField {
     let field = new MCField();
     field.key = data.key;
     field.component = data.component;
     field.config = {
+      ...data.extra,
       validators: data.validators,
       default_value: data.default_value,
       disabled: data.disabled,
