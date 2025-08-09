@@ -48,7 +48,7 @@ export class PostEditPage {
 
         RowField.init([
 
-          IftaTextField.init('firstname', 'Firstname', { validators: [Validators.required] }),
+          IftaTextField.init('title', 'Title', { validators: [Validators.required] }),
 
         ], { containerFieldClass: 'w-2/3' }),
 

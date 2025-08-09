@@ -31,11 +31,13 @@ export class RowField {
     return field;
   }
 
-  static init(fields: MCField[]): MCField {
+  static init(fields: MCField[], extra?: any): MCField {
     let field = MCField.init({
       component: RowFieldComponent,
     });
+
     field.config = {
+      ...extra,
       has_children: true,
       fields: fields,
       is_new_group: false
