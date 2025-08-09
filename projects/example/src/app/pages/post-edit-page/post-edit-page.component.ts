@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, signal, viewChild } from '@angular/core';
-import { GroupField, IftaTextField, MCConfigForm, MCEventForm, MCForm, RowField, SubmitButtonField, ColumnField } from '../../../../../mckit/form/src/public-api';
+import { GroupField, IftaTextField, MCConfigForm, MCEventForm, MCForm, RowField, SubmitButtonField, ColumnField, FieldsetField, IftaTextareaField } from '../../../../../mckit/form/src/public-api';
 import { Validators } from '@angular/forms';
 import { QuillField } from '../../../../../mckit/quill-field/src/public-api';
 
@@ -49,14 +49,27 @@ export class PostEditPage {
 
         ColumnField.init([
 
-          IftaTextField.init('title', 'Title', { validators: [Validators.required] }),
+          IftaTextField.init('title', 'Title', { validators: [Validators.required], extra: { containerFieldClass: 'mt-5 mb-3 w-full' } }),
           QuillField.init('content')
 
         ], { containerFieldClass: 'w-2/3' }),
 
-        RowField.init([
+        ColumnField.init([
 
-          IftaTextField.init('lastname', 'Lastname'),
+          FieldsetField.init('Publish', [
+            IftaTextField.init('lastname', 'Lastname'),
+            IftaTextField.init('lastname', 'Lastname'),
+          ]),
+
+          FieldsetField.init('Tags', [
+            IftaTextField.init('lastname', 'Lastname'),
+          ]),
+
+          FieldsetField.init('Meta', [
+            IftaTextField.init('meta_title', 'Title'),
+            IftaTextareaField.init('meta_description', 'Description'),
+
+          ]),
 
         ], { containerFieldClass: 'w-1/3' }),
 

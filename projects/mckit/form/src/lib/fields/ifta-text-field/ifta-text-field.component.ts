@@ -22,7 +22,8 @@ export class IftaTextField {
   static init(key: string|undefined, label: string, config?: {
       validators?: ValidatorFn[],
       default_value?: any,
-      disabled?: boolean
+      disabled?: boolean,
+      extra?: any
   }): MCField {
     return MCIftaField.init({
       key: key,
@@ -30,7 +31,8 @@ export class IftaTextField {
       label: label,
       validators: config?.validators,
       default_value: config?.default_value,
-      disabled: config?.disabled
+      disabled: config?.disabled,
+      extra: config?.extra
     });
   }
 

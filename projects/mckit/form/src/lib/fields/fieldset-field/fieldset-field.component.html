@@ -1,0 +1,9 @@
+<p-fieldset legend="{{field().config?.label}}">
+    <div class="mc-fieldset-form">
+        @for (field of field().config.fields; track $index) {
+            <div class="{{(field.config.containerFieldClass || 'mb-3 w-full')}}">
+                <mc-print-field [field]="field" [control]="group()!.get(field.key ?? '')" [group]="group()!" [eventObs]="eventObs()" />
+            </div>
+        }
+    </div>
+</p-fieldset>
