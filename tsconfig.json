@@ -40,6 +40,9 @@
       "@mckit/odata": [
         "./dist/mckit/odata"
       ],
+      "@mckit/quill-field": [
+        "./dist/mckit/quill-field"
+      ],
       "@mckit/table": [
         "./dist/mckit/table"
       ]

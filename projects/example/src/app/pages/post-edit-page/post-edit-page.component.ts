@@ -1,7 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, signal, viewChild } from '@angular/core';
-import { IftaTextField, MCConfigForm, MCEventForm, MCForm, RowField, SubmitButtonField } from '../../../../../mckit/form/src/public-api';
+import { GroupField, IftaTextField, MCConfigForm, MCEventForm, MCForm, RowField, SubmitButtonField, ColumnField } from '../../../../../mckit/form/src/public-api';
 import { Validators } from '@angular/forms';
+import { QuillField } from '../../../../../mckit/quill-field/src/public-api';
 
 @Component({
   selector: 'app-post-edit-page',
@@ -46,9 +47,10 @@ export class PostEditPage {
       
       RowField.init([
 
-        RowField.init([
+        ColumnField.init([
 
           IftaTextField.init('title', 'Title', { validators: [Validators.required] }),
+          QuillField.init('content')
 
         ], { containerFieldClass: 'w-2/3' }),
 
