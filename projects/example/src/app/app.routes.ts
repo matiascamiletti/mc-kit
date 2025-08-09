@@ -10,6 +10,7 @@ import { MCFuseLayoutComponent } from '../../../mckit/layout-fuse/src/public-api
 import { RegisterSplitPageComponent } from './pages/register-split-page/register-split-page.component';
 import { OdataPageComponent } from './pages/odata-page/odata-page.component';
 import { FormPageComponent } from './pages/form-page/form-page.component';
+import { PostEditPage } from './pages/post-edit-page/post-edit-page.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'basic', pathMatch: 'full' },
@@ -73,6 +74,11 @@ export const routes: Routes = [
         path: 'form',
         component: FormPageComponent,
         title: 'Form Table',
+      },
+      {
+        path: 'post',
+        component: PostEditPage,
+        title: 'Post Edit',
       },
     ],
   },
