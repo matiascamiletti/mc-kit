@@ -23,7 +23,8 @@
     "publish-layout-fuse": "ng build --project=@mckit/layout-fuse --configuration production && npm publish dist/mckit/layout-fuse --access public",
     "publish-form": "ng build --project=@mckit/form --configuration production && npm publish dist/mckit/form --access public",
     "publish-table": "ng build --project=@mckit/table --configuration production && npm publish dist/mckit/table --access public",
-    "publish-monaco-field": "ng build --project=@mckit/monaco-field --configuration production && npm publish dist/mckit/monaco-field --access public"
+    "publish-monaco-field": "ng build --project=@mckit/monaco-field --configuration production && npm publish dist/mckit/monaco-field --access public",
+    "publish-quill-field": "ng build --project=@mckit/quill-field --configuration production && npm publish dist/mckit/quill-field --access public"
   },
   "private": true,
   "dependencies": {
