@@ -100,6 +100,22 @@ export class MCFilterProcessor {
     this.addODataFilter(`${key} ne '${value}'`);
   }
 
+  addGreaterThanFilter(key: string, value: any): void {
+    this.addODataFilter(`${key} gt '${value}'`);
+  }
+
+  addLessThanFilter(key: string, value: any): void {
+    this.addODataFilter(`${key} lt '${value}'`);
+  }
+
+  addGreaterThanOrEqualFilter(key: string, value: any): void {
+    this.addODataFilter(`${key} ge '${value}'`);
+  }
+
+  addLessThanOrEqualFilter(key: string, value: any): void {
+    this.addODataFilter(`${key} le '${value}'`);
+  }
+
   addStartsWithFilter(key: string, value: string): void {
     this.addODataFilter(`startswith(${key}, '${value}')`);
   }
@@ -114,6 +130,10 @@ export class MCFilterProcessor {
 
   addInFilter(key: string, values: any[]): void {
     this.addODataFilter(`${key} in (${values.map(v => `'${v}'`).join(',')})`);
+  }
+
+  addBetweenFilter(key: string, from: any, to: any): void {
+    this.addODataFilter(`${key} ge '${from}' and ${key} le '${to}'`);
   }
 
   addODataFilter(filter: string): void {
@@ -156,6 +176,22 @@ export class MCFilterProcessor {
     this.prepend = `${key} ne '${value}'`;
   }
 
+  setPrependGreaterThan(key: string, value: any) {
+    this.prepend = `${key} gt '${value}'`;
+  }
+
+  setPrependLessThan(key: string, value: any) {
+    this.prepend = `${key} lt '${value}'`;
+  }
+
+  setPrependGreaterThanOrEqual(key: string, value: any) {
+    this.prepend = `${key} ge '${value}'`;
+  }
+
+  setPrependLessThanOrEqual(key: string, value: any) {
+    this.prepend = `${key} le '${value}'`;
+  }
+
   setPrependStartsWith(key: string, value: any) {
     this.prepend = `startswith(${key}, '${value}')`;
   }
@@ -182,6 +218,22 @@ export class MCFilterProcessor {
 
   setPostpendNotEquals(key: string, value: any) {
     this.postpend = `${key} ne '${value}'`;
+  }
+
+  setPostpendGreaterThan(key: string, value: any) {
+    this.postpend = `${key} gt '${value}'`;
+  }
+
+  setPostpendLessThan(key: string, value: any) {
+    this.postpend = `${key} lt '${value}'`;
+  }
+
+  setPostpendGreaterThanOrEqual(key: string, value: any) {
+    this.postpend = `${key} ge '${value}'`;
+  }
+
+  setPostpendLessThanOrEqual(key: string, value: any) {
+    this.postpend = `${key} le '${value}'`;
   }
 
   setPostpendStartsWith(key: string, value: any) {
