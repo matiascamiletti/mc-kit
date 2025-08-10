@@ -2,11 +2,11 @@ import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MCField, MCFieldComponent } from '@mckit/form';
-import { QuillModule } from 'ngx-quill'
+import { EditorModule } from 'primeng/editor';
 
 @Component({
   selector: 'mc-quill-field',
-  imports: [CommonModule, ReactiveFormsModule, QuillModule],
+  imports: [CommonModule, ReactiveFormsModule, EditorModule],
   templateUrl: './quill-field.component.html',
   styleUrl: './quill-field.component.css'
 })
