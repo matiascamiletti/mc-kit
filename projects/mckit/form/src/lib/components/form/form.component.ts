@@ -46,6 +46,13 @@ export class MCForm implements OnInit {
     this.formGroup.set(group);
   }
 
+  updateItem(item: any) {
+    let group = new UntypedFormGroup({});
+    let fields = this.config().fields ?? [];
+    this.formService.loadFields(group, fields, item);
+    this.formGroup.set(group);
+  }
+
   getEventObs(): Subject<MCEventForm> {
     return this.eventObs;
   }
