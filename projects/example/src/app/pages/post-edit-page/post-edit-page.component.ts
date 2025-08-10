@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, signal, viewChild } from '@angular/core';
-import { GroupField, IftaTextField, MCConfigForm, MCEventForm, MCForm, RowField, SubmitButtonField, ColumnField, FieldsetField, IftaTextareaField } from '../../../../../mckit/form/src/public-api';
+import { GroupField, IftaTextField, MCConfigForm, MCEventForm, MCForm, RowField, SubmitButtonField, ColumnField, FieldsetField, IftaTextareaField, TagsField } from '../../../../../mckit/form/src/public-api';
 import { Validators } from '@angular/forms';
 import { QuillField } from '../../../../../mckit/quill-field/src/public-api';
 
@@ -62,7 +62,7 @@ export class PostEditPage {
           ]),
 
           FieldsetField.init('Tags', [
-            IftaTextField.init('lastname', 'Lastname'),
+            TagsField.init('tags'),
           ]),
 
           FieldsetField.init('Meta', [

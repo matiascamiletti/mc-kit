@@ -43,6 +43,7 @@ export * from './lib/fields/conditional-field/conditional-field.component';
 export * from './lib/fields/array-ifta-text-field/array-ifta-text-field.component';
 export * from './lib/fields/column-field/column-field.component';
 export * from './lib/fields/fieldset-field/fieldset-field.component';
+export * from './lib/fields/tags-field/tags-field.component';
 
 /**
  * Components
