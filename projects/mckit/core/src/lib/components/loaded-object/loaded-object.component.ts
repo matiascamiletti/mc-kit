@@ -16,6 +16,7 @@ export class MCLoadedObject implements OnInit, OnDestroy {
   key = input<string>('id');
 
   onLoaded = output<any>();
+  onNoData = output<void>();
 
   httpService = input.required<MCApiRestHttpService<any>>();
 
@@ -37,7 +38,13 @@ export class MCLoadedObject implements OnInit, OnDestroy {
     this.subscription = this.route.params
     .pipe(
       take(1),
-      takeWhile((params) => params[this.key()] != undefined),
+      takeWhile((params) => {
+        if(params[this.key()] == undefined){
+          this.onNoData.emit();
+        }
+
+        return params[this.key()] != undefined;
+      }),
       map(params => params[this.key()]),
       tap(() => this.isLoading.set(true)),
       switchMap(objId => this.httpService().get(objId).pipe(take(1))),
