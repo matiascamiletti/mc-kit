@@ -1,0 +1,12 @@
+<p-inputgroup>
+    @if (field().config.extra?.prepended) {
+        <p-inputgroup-addon>{{ field().config.extra.prepended }}</p-inputgroup-addon>
+    }
+    <p-iftalabel>
+        <p-inputnumber id="{{field().key}}" class="w-full" [formControl]="control()!" [maxFractionDigits]="2" placeholder="0.00" mode="currency" currency="USD" locale="en-US" />
+        <label for="{{field().key}}">{{field().config.label}}</label>
+    </p-iftalabel>
+    @if (field().config.extra?.appended) {
+        <p-inputgroup-addon>{{ field().config.extra.appended }}</p-inputgroup-addon>
+    }
+</p-inputgroup>

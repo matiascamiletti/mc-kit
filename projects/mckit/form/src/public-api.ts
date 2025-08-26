@@ -44,6 +44,7 @@ export * from './lib/fields/array-ifta-text-field/array-ifta-text-field.componen
 export * from './lib/fields/column-field/column-field.component';
 export * from './lib/fields/fieldset-field/fieldset-field.component';
 export * from './lib/fields/tags-field/tags-field.component';
+export * from './lib/fields/ifta-currency-field/ifta-currency-field.component';
 
 /**
  * Components
