@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { MCFooterModalForm } from '../footer-modal-form/footer-modal-form.component';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
-import { MCEventModalForm } from '../form-modal/form-modal.component';
+import { MCEventModalForm } from '../../entities/mc-event-modal-form';
 
 @Component({
   selector: 'mc-footer-with-delete-modal-form',

@@ -11,6 +11,7 @@ export * from './lib/entities/mc-config-form';
 export * from './lib/entities/mc-event-form';
 export * from './lib/entities/mc-config-modal-form';
 export * from './lib/entities/mc-config-http-modal-form';
+export * from './lib/entities/mc-event-modal-form';
 
 /**
  * RxJS
@@ -23,6 +24,7 @@ export * from './lib/rxjs/mc-event-form-modal-operator';
 export * from './lib/services/mc-form.service';
 export * from './lib/services/form-modal.service';
 export * from './lib/services/http-form-modal.service';
+export * from './lib/services/base-http-form-modal-service';
 
 /**
  * Fields

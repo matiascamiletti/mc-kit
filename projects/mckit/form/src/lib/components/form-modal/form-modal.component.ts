@@ -3,13 +3,9 @@ import { Component, inject, OnInit, signal, viewChild } from '@angular/core';
 import { MCForm } from '../form/form.component';
 import { DialogService, DynamicDialogComponent, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { MCConfigForm } from '../../entities/mc-config-form';
-import { MCEventForm } from '../../entities/mc-event-form';
 import { Subject } from 'rxjs';
 import { UntypedFormGroup } from '@angular/forms';
-
-export class MCEventModalForm extends MCEventForm {
-  dialog?: DynamicDialogRef;
-}
+import { MCEventModalForm } from '../../entities/mc-event-modal-form';
 
 @Component({
   selector: 'mc-form-modal',

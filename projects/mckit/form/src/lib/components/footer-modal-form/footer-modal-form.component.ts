@@ -1,10 +1,11 @@
 import { Component, inject, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
 import { DialogService, DynamicDialogComponent, DynamicDialogRef } from 'primeng/dynamicdialog';
-import { MCEventModalForm, MCFormModal } from '../form-modal/form-modal.component';
+import { MCFormModal } from '../form-modal/form-modal.component';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { UntypedFormGroup } from '@angular/forms';
 import { Subject, Subscription, take } from 'rxjs';
+import { MCEventModalForm } from '../../entities/mc-event-modal-form';
 
 @Component({
   selector: 'mc-footer-modal-form',

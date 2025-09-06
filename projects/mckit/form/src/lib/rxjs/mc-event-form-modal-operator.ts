@@ -1,5 +1,5 @@
 import { MonoTypeOperatorFunction, tap } from 'rxjs';
-import { MCEventModalForm } from '../components/form-modal/form-modal.component';
+import { MCEventModalForm } from '../entities/mc-event-modal-form';
 
 export function mcEventFormOperator(
   eventKey: string,
