@@ -45,6 +45,9 @@
       ],
       "@mckit/table": [
         "./dist/mckit/table"
+      ],
+      "@mckit/tenant": [
+        "./dist/mckit/tenant"
       ]
     },
     "outDir": "./dist/out-tsc",
