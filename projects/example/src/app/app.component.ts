@@ -10,6 +10,7 @@ import { MCFooterService, MCSidebarService, MCTopbarService } from '../../../mck
 import { MCAvatar } from '../../../mckit/core/src/lib/components/avatar/avatar.component';
 import { DarkModeButton, DarkModeButtonComponent } from './components/dark-mode-button/dark-mode-button.component';
 import { MCIconToggleSidebarButton } from '@mckit/layout';
+import { MCTenantMenu } from '../../../mckit/tenant/src/lib/components/tenant-menu/tenant-menu.component';
 
 @Component({
     selector: 'app-root',
@@ -53,6 +54,7 @@ export class AppComponent implements OnInit {
      */
     this.sidebarService.setComponents([
       new MCImage('https://tots.agency/assets/img/logos/logo-horiz-black-color.svg', 150),
+      new MCTenantMenu(),
       new MCSubtitle('MENU'),
       { component: ItemCustomMenuComponent, config: { }},
       new MCSubtitle('Inicio'),

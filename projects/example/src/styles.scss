@@ -4,6 +4,8 @@
 
 @source "../../node_modules/@mckit/auth";
 @source "../../mckit/auth/src/lib";
+@source "../../node_modules/@mckit/tenant";
+@source "../../mckit/tenant/src/lib";
 
 @custom-variant dark (&:where(.dark, .dark *));
 

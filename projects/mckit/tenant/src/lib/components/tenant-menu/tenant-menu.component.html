@@ -1,0 +1,10 @@
+<!--<p-menu #menu [model]="items" [popup]="true" />-->
+
+<p-splitbutton label="Save" severity="contrast" [model]="items" [text]="true" [appendTo]="'body'" styleClass="w-full">
+    <ng-template #content class="w-full">
+        <p class="flex items-center font-bold w-full">
+            <p-image src="https://primefaces.org/cdn/primeng/images/galleria/galleria10.jpg" alt="Image" width="40" height="40" [sizes]="" loading="lazy" imageClass="object-cover size-40px aspect-square rounded-sm" />
+            <span class="ml-2">PrimeNG</span>
+        </p>
+    </ng-template>
+</p-splitbutton>
