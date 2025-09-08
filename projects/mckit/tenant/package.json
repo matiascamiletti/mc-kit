@@ -4,7 +4,8 @@
   "peerDependencies": {
     "@angular/common": "^19.2.0",
     "@angular/core": "^19.2.0",
-    "@mckit/core": "^19.0.8"
+    "@mckit/core": "^19.0.8",
+    "@mckit/auth": "^19.0.3"
   },
   "dependencies": {
     "tslib": "^2.3.0"
