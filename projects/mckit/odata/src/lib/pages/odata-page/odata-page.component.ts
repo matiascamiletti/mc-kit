@@ -12,11 +12,12 @@ import { TablePageEvent } from 'primeng/table';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { MCLeftHeaderTemplateDirective } from '../../directives/left-header-template.directive';
 import { MCRightHeaderTemplateDirective } from '../../directives/right-header-template.directive';
+import { ButtonModule } from 'primeng/button';
 
 
 @Component({
   selector: 'mc-odata-page',
-  imports: [CommonModule, MCPageHeadingComponent, MCSearchField, MCFilterButton, ShowColumnsButton, MCTable, MCThTemplateDirective, MCTdTemplateDirective, ToastModule, ConfirmDialogModule],
+  imports: [CommonModule, MCPageHeadingComponent, MCSearchField, MCFilterButton, ShowColumnsButton, MCTable, MCThTemplateDirective, MCTdTemplateDirective, ToastModule, ConfirmDialogModule, ButtonModule],
   templateUrl: './odata-page.component.html',
   styleUrl: './odata-page.component.css',
   providers: [MessageService, ConfirmationService]
@@ -65,6 +66,8 @@ export class MCOdataPage implements OnInit, OnDestroy {
 
   leftHeaderTemplate = contentChild(MCLeftHeaderTemplateDirective);
   rightHeaderTemplate = contentChild(MCRightHeaderTemplateDirective);
+
+  isShowMoreOptions = signal<boolean>(false);
 
   ngOnInit(): void {
     this.initialSort();
@@ -180,5 +183,9 @@ export class MCOdataPage implements OnInit, OnDestroy {
       rejectButtonStyleClass:"p-button-text",
       accept: () => { this.onDelete(id); },
     });
+  }
+
+  toggleMoreOptions() {
+    this.isShowMoreOptions.set(!this.isShowMoreOptions());
   }
 }
