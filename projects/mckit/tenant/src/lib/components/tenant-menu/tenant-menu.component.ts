@@ -59,6 +59,10 @@ export class TenantMenuComponent extends MCCoreComponent implements OnDestroy {
     )
     .subscribe();
   }
+
+  onClickCurrent() {
+    this.tenantService.clickCurrent(this.current());
+  }
 }
 
 export class MCTenantMenu extends MCComponent {

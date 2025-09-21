@@ -1,6 +1,6 @@
 <!--<p-menu #menu [model]="items" [popup]="true" />-->
 @if (current() != undefined) {
-    <p-splitbutton label="Save" severity="contrast" [model]="items()" [text]="true" [appendTo]="'body'" styleClass="w-full" [dropdownIcon]="''">
+    <p-splitbutton label="Save" severity="contrast" [model]="items()" [text]="true" [appendTo]="'body'" styleClass="w-full" (onClick)="onClickCurrent()">
         <ng-template #content class="w-full">
             <p class="flex items-center font-bold w-full">
                 @if (current()?.image_url) {

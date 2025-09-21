@@ -72,4 +72,8 @@ export class MCTenantService extends MCApiRestHttpService<MCTenant> {
   clickTenant(tenant: MCTenant) {
     this.onEvent.next({ type: 'click', tenant });
   }
+
+  clickCurrent(tenant: MCTenant|undefined) {
+    this.onEvent.next({ type: 'click-current', tenant });
+  }
 }
