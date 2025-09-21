@@ -89,6 +89,12 @@ export class AppComponent implements OnInit {
     tenant.name = 'First Tenant';
     tenant.image_url = 'https://primefaces.org/cdn/primeng/images/galleria/galleria10.jpg';
     this.tenantService.setCurrent(tenant);
+
+    this.tenantService.onEvent.subscribe(event => {
+      if(event.type == 'click'){
+        this.tenantService.setCurrent(event.tenant);
+      }
+    });
   }
 
   configLoader() {

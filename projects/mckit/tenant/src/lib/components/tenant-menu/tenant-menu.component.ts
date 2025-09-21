@@ -42,7 +42,8 @@ export class TenantMenuComponent extends MCCoreComponent implements OnDestroy {
       tap(response => {
         const items: MenuItem[] = response.data.map(tenant => ({
           label: tenant.name,
-          icon: tenant.image_url ? undefined : 'pi pi-building',
+          icon: 'pi pi-building',
+          command: () => this.tenantService.clickTenant(tenant)
         }));
         this.items.set(items);
       })

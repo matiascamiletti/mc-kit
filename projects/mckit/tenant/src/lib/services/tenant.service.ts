@@ -2,7 +2,7 @@ import { inject, Injectable } from '@angular/core';
 import { MCApiRestHttpService } from '@mckit/core';
 import { MCTenant } from '../entities/mc_tenant';
 import { MC_AUTH_CONFIG } from '@mckit/auth';
-import { BehaviorSubject, map, Observable, skipWhile, tap } from 'rxjs';
+import { BehaviorSubject, map, Observable, skipWhile, Subject, tap } from 'rxjs';
 import { StorageMap } from '@ngx-pwa/local-storage';
 
 export const MC_TENANT_KEY_STORAGE = 'mc.tenant.storage';
@@ -19,6 +19,8 @@ export class MCTenantService extends MCApiRestHttpService<MCTenant> {
 
   current = new BehaviorSubject<MCTenant|undefined>(undefined);
   isInitialized = false;
+
+  onEvent = new Subject<{ type: string, tenant: MCTenant|undefined }>();
 
   constructor() {
     super();
@@ -65,5 +67,9 @@ export class MCTenantService extends MCApiRestHttpService<MCTenant> {
       tap(tenant => this.setCurrent(tenant))
     )
     .subscribe();
+  }
+
+  clickTenant(tenant: MCTenant) {
+    this.onEvent.next({ type: 'click', tenant });
   }
 }
