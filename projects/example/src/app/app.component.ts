@@ -12,10 +12,14 @@ import { DarkModeButton, DarkModeButtonComponent } from './components/dark-mode-
 import { MCIconToggleSidebarButton } from '@mckit/layout';
 import { MCTenantMenu } from '../../../mckit/tenant/src/lib/components/tenant-menu/tenant-menu.component';
 import { MCTenant, MCTenantService } from '../../../mckit/tenant/src/public-api';
+import { MockTenantService } from './services/mock_tenant.service';
 
 @Component({
     selector: 'app-root',
     imports: [RouterOutlet, MCSpinnerFullScreenComponent],
+    providers: [
+      { provide: MCTenantService, useClass: MockTenantService }
+    ],
     templateUrl: './app.component.html',
     styleUrl: './app.component.scss'
 })
