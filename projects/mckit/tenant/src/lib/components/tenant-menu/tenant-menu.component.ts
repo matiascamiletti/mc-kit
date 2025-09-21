@@ -25,26 +25,11 @@ export class TenantMenuComponent extends MCCoreComponent implements OnDestroy {
 
   isLoading = signal(true);
 
-  items: MenuItem[] | undefined;
+  items = signal<MenuItem[]>([]);
 
   ngOnInit() {
     this.loadCurrent();
     this.loadAllTenants();
-
-      this.items = [
-          {
-              label: 'Tenant 1',
-              icon: 'pi pi-refresh'
-          },
-          {
-              label: 'Tenant 2',
-              icon: 'pi pi-times'
-          },
-          {
-              label: 'Tenant 3',
-              icon: 'pi pi-external-link'
-          }
-      ];
   }
 
   ngOnDestroy() {
@@ -53,6 +38,16 @@ export class TenantMenuComponent extends MCCoreComponent implements OnDestroy {
 
   loadAllTenants() {
     this.tenantService.list('')
+    .pipe(
+      tap(response => {
+        const items: MenuItem[] = response.data.map(tenant => ({
+          label: tenant.name,
+          icon: tenant.image_url ? undefined : 'pi pi-building',
+        }));
+        this.items.set(items);
+      })
+    )
+    .subscribe();
   }
 
   loadCurrent() {
