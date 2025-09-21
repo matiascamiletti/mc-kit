@@ -8,11 +8,12 @@ import { provideRouter } from '@angular/router';
 import { routes } from './app.routes';
 import { provideClientHydration } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { provideHttpClient } from '@angular/common/http';
+import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { withFetch } from '@angular/common/http';
 
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
+import { authInterceptor, MC_AUTH_CONFIG } from '@mckit/auth';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -21,6 +22,13 @@ export const appConfig: ApplicationConfig = {
     provideClientHydration(),
     importProvidersFrom(BrowserAnimationsModule),
     provideHttpClient(withFetch()),
+
+    { provide: MC_AUTH_CONFIG, useValue: { baseUrl: 'http://localhost:3000/api' } },
+    provideHttpClient(
+      withFetch(),
+      withInterceptors([authInterceptor])
+    ),
+    
 
     providePrimeNG({
       theme: {

@@ -11,6 +11,7 @@ import { MCAvatar } from '../../../mckit/core/src/lib/components/avatar/avatar.c
 import { DarkModeButton, DarkModeButtonComponent } from './components/dark-mode-button/dark-mode-button.component';
 import { MCIconToggleSidebarButton } from '@mckit/layout';
 import { MCTenantMenu } from '../../../mckit/tenant/src/lib/components/tenant-menu/tenant-menu.component';
+import { MCTenant, MCTenantService } from '../../../mckit/tenant/src/public-api';
 
 @Component({
     selector: 'app-root',
@@ -21,6 +22,7 @@ import { MCTenantMenu } from '../../../mckit/tenant/src/lib/components/tenant-me
 export class AppComponent implements OnInit {
 
   footerService = inject(MCFooterService);
+  tenantService = inject(MCTenantService);
 
   constructor(
     protected sidebarService: MCSidebarService,
@@ -30,6 +32,7 @@ export class AppComponent implements OnInit {
 
   ngOnInit(): void {
     this.configLoader();
+    this.loadTenants();
     this.loadSidebar();
     this.loadTopbar();
     this.loadFooter();
@@ -74,6 +77,14 @@ export class AppComponent implements OnInit {
 
   loadFooter() {
     this.footerService.addComponent(new MCSubtitle('© 2025 - Todos los derechos reservados'));
+  }
+
+  loadTenants() {
+    let tenant = new MCTenant();
+    tenant.id = '1';
+    tenant.name = 'First Tenant';
+    tenant.image_url = 'https://primefaces.org/cdn/primeng/images/galleria/galleria10.jpg';
+    this.tenantService.setCurrent(tenant);
   }
 
   configLoader() {
