@@ -13,3 +13,7 @@ export * from './lib/entities/mc_access_tenant';
  */
 export * from './lib/services/tenant.service';
 
+/**
+ * Interceptors
+ */
+export * from './lib/interceptors/tenant.interceptor';
