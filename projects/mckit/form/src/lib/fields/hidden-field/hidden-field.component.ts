@@ -15,10 +15,11 @@ export class HiddenFieldComponent extends MCFieldComponent {
 
 export class HiddenField {
 
-  static init(key: string|undefined): MCField {
+  static init(key: string|undefined, default_value?: any): MCField {
     return MCField.init({
       key: key,
-      component: HiddenFieldComponent
+      component: HiddenFieldComponent,
+      default_value: default_value
     });
   }
 
