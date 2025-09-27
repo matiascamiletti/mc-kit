@@ -1,7 +1,9 @@
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { StorageMap } from '@ngx-pwa/local-storage';
 import { MCUser } from '../entities/mc-user';
-import { map, Observable, tap } from 'rxjs';
+import { map, Observable, switchMap, tap } from 'rxjs';
+import { HttpClient } from '@angular/common/http';
+import { MC_AUTH_CONFIG } from '../entities/mc-auth-config';
 
 export const MC_AUTH_KEY_STORAGE_TOKEN = 'mc.auth.storage';
 
@@ -9,6 +11,10 @@ export const MC_AUTH_KEY_STORAGE_TOKEN = 'mc.auth.storage';
   providedIn: 'root'
 })
 export class MCAuthenticationService {
+
+  http = inject(HttpClient);
+
+  config = inject(MC_AUTH_CONFIG);
 
   isLogged = signal<boolean>(false);
 
@@ -46,5 +52,20 @@ export class MCAuthenticationService {
 
       this.isLogged.update(res => true);
     });
+  }
+
+  signIn(data: any): Observable<MCUser> {
+    return this.http.post<MCUser>(`${this.config.baseUrl}oauth/token`, data)
+    .pipe(
+      switchMap(user => this.saveUser(user).pipe(map(res => user)))
+    );
+  }
+
+  register(data: any): Observable<MCUser> {
+    return this.http.post<MCUser>(`${this.config.baseUrl}users`, data)
+    .pipe(
+      switchMap(() => this.signIn(data)),
+      switchMap(user => this.saveUser(user).pipe(map(res => user)))
+    );
   }
 }
