@@ -24,7 +24,8 @@ export abstract class MCApiRestHttpService<T extends { id?: any }> {
   }
 
   list(queryParams?: string): Observable<MCListResponse<T>> {
-    return this.http.get<MCListResponse<T>>(`${this.baseUrl}${this.pathModel}?${queryParams}`);
+    const queries = queryParams ? `?${queryParams}` : '';
+    return this.http.get<MCListResponse<T>>(`${this.baseUrl}${this.pathModel}${queries}`);
   }
 
   get(id: any): Observable<T> {
