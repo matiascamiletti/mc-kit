@@ -15,7 +15,7 @@ export class MCTenantService extends MCApiRestHttpService<MCTenant> {
   config = inject(MC_AUTH_CONFIG);
   storage = inject(StorageMap);
 
-  override pathModel = '/tenants';
+  override pathModel = 'tenants';
 
   current = new BehaviorSubject<MCTenant|undefined>(undefined);
   isInitialized = false;
