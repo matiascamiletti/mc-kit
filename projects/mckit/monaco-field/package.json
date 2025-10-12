@@ -2,11 +2,11 @@
   "name": "@mckit/monaco-field",
   "version": "19.0.4",
   "peerDependencies": {
-    "@angular/common": "^19.0.0",
-    "@angular/core": "^19.0.0",
-    "@mckit/form": "^19.0.0",
-    "monaco-editor": "^0.50.0",
-    "ngx-monaco-editor-v2": "^19.0.2"
+    "@angular/common": "^20.0.0",
+    "@angular/core": "^20.0.0",
+    "@mckit/form": "^20.0.0",
+    "monaco-editor": "^0.54.0",
+    "ngx-monaco-editor-v2": "^20.3.0"
   },
   "dependencies": {
     "tslib": "^2.6.2"

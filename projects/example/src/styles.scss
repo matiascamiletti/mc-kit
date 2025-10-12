@@ -1,7 +1,8 @@
 @use "tailwindcss";
-@plugin "tailwindcss-primeui";
 @use "primeicons/primeicons.css";
 @use 'quill/dist/quill.snow.css';
+
+@plugin "tailwindcss-primeui";
 
 @source "../../node_modules/@mckit/auth";
 @source "../../mckit/auth/src/lib";
