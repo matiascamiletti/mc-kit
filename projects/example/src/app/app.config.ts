@@ -12,7 +12,7 @@ import { provideHttpClient, withInterceptors } from '@angular/common/http';
 import { withFetch } from '@angular/common/http';
 
 import { providePrimeNG } from 'primeng/config';
-import Aura from '@primeng/themes/aura';
+import Aura from '@primeuix/themes/aura';
 import { authInterceptor, MC_AUTH_CONFIG } from '@mckit/auth';
 
 export const appConfig: ApplicationConfig = {

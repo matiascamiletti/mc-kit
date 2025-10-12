@@ -23,7 +23,7 @@ Esto se encarga de ejecutar todos los pasos, si no hubo error, ya ha dejado todo
 ### 1. Install libraries
 
 ```bash
-npm install --save @mckit/core primeng @primeng/themes primeicons @ngx-pwa/local-storage@19
+npm install --save @mckit/core primeng @primeuix/themes primeicons @ngx-pwa/local-storage@20
 npm install tailwindcss @tailwindcss/postcss postcss --force
 npm i tailwindcss-primeui --save
 ```
@@ -71,7 +71,7 @@ Open the "app.config.ts" and add lines:
 
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
-import Aura from '@primeng/themes/aura';
+import Aura from '@primeuix/themes/aura';
 
 export const appConfig: ApplicationConfig = {
   providers: [
