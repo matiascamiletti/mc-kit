@@ -2,7 +2,7 @@ import { Component, computed, input, output, OnInit } from '@angular/core';
 import { MCFilter, MCTypeFilter } from '../../entities/filter';
 import { MCConditionResult, MCResultFilter } from '../../entities/result';
 import { CommonModule } from '@angular/common';
-import { DropdownModule } from 'primeng/dropdown';
+import { SelectModule } from 'primeng/select';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
 import { ButtonModule } from 'primeng/button';
@@ -15,7 +15,6 @@ import { MultiSelectModule, MultiSelectFilterEvent } from 'primeng/multiselect';
 import { Subscription } from 'rxjs';
 import { switchMap, catchError } from 'rxjs/operators';
 import { of } from 'rxjs';
-import { SelectModule } from 'primeng/select';
 
 // Define interface for grouped options
 interface OptionGroup {
