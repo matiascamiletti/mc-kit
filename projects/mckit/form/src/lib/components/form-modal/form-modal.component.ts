@@ -31,8 +31,8 @@ export class MCFormModal implements OnInit {
   }
 
   initForm() {
-    let instance: DynamicDialogComponent = this.dialogService.getInstance(this.dialogRef);
-    if(instance.data == undefined){
+    let instance: DynamicDialogComponent|undefined = this.dialogService.getInstance(this.dialogRef);
+    if(instance?.data == undefined){
       this.dialogRef.close();
       return;
     }

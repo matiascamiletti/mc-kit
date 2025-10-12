@@ -53,8 +53,8 @@ export class MCFooterModalForm implements OnInit, OnDestroy {
   }
 
   initConfig() {
-    let instance: DynamicDialogComponent = this.dialogService.getInstance(this.dialogRef);
-    if(instance.data == undefined){
+    let instance: DynamicDialogComponent|undefined = this.dialogService.getInstance(this.dialogRef);
+    if(instance?.data == undefined){
       this.dialogRef.close();
       return;
     }

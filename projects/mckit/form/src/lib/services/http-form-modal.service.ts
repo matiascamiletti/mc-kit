@@ -26,7 +26,7 @@ export class MCHttpFormModalService extends MCFormModalService {
         footer: MCFooterModalForm
       },
       data: config
-    });
+    })!;
 
     return dialog.onChildComponentLoaded;
   }
