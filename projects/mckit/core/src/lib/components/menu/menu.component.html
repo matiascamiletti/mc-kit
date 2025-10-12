@@ -3,22 +3,35 @@
       <li>
         <ng-container [ngTemplateOutlet]="itemTemplate" [ngTemplateOutletContext]="{item}"></ng-container>
       </li>
-      <!--<li app-menuitem *ngIf="!item.separator" [item]="item" [index]="i" [root]="true"></li>-->
-      <li *ngIf="item.separator" class="menu-separator"></li>
+      @if(item.separator) {
+        <li class="menu-separator"></li>
+      }
   </ng-container>
 </ul>
 
 <ng-template #itemTemplate let-item="item">
-  <a *ngIf="item.externalLink != undefined" [attr.href]="item.externalLink" (click)="onClickItem(item)" pRipple class="block p-3 dark:text-white text-gray-950 hover:bg-gray-100 dark:hover:bg-white/5 w-full items-center text-md">
-    <i [ngClass]="item.icon" class="pr-3 layout-menuitem-icon"></i>
-    <span class="layout-menuitem-text">{{item.label}}</span>
-    <i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.children"></i>
-  </a>
+  @if(item.externalLink != undefined) {
+    <a [attr.href]="item.externalLink" (click)="onClickItem(item)" pRipple class="block p-3 dark:text-white text-gray-950 hover:bg-gray-100 dark:hover:bg-white/5 w-full items-center text-md">
+      <i [ngClass]="item.icon" class="pr-3 layout-menuitem-icon"></i>
+      <span class="layout-menuitem-text">{{item.label}}</span>
 
-  <a *ngIf="item.link" (click)="onClickItem(item)" [routerLink]="item.link" routerLinkActive="active-route" pRipple  class="block p-3 dark:text-white text-gray-950 hover:bg-gray-100 dark:hover:bg-white/5 w-full items-center text-md">
-    <i [ngClass]="item.icon" class="pr-3 layout-menuitem-icon"></i>
-    <span class="layout-menuitem-text">{{item.label}}</span>
-    <i class="pi pi-fw pi-angle-down layout-submenu-toggler" *ngIf="item.children"></i>
-  </a>
+      @if(item.children) {
+        <i class="pi pi-fw pi-angle-down layout-submenu-toggler"></i>
+      }
+      
+    </a>
+  }
+
+  @if(item.link) {
+    <a (click)="onClickItem(item)" [routerLink]="item.link" routerLinkActive="active-route" pRipple  class="block p-3 dark:text-white text-gray-950 hover:bg-gray-100 dark:hover:bg-white/5 w-full items-center text-md">
+      <i [ngClass]="item.icon" class="pr-3 layout-menuitem-icon"></i>
+      <span class="layout-menuitem-text">{{item.label}}</span>
+
+      @if(item.children) {
+        <i class="pi pi-fw pi-angle-down layout-submenu-toggler"></i>
+      }
+      
+    </a>
+  }
 
 </ng-template>

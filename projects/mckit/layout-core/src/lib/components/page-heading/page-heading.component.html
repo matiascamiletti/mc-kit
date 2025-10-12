@@ -8,7 +8,9 @@
   <div class="mc-page-heading-content flex flex-col md:flex-row md:justify-between md:items-center pt-4 pb-4">
     <div class="mc-page-heading-title pl-4">
       <h1 class="text-2xl">{{ title() }}</h1>
-      <p *ngIf="subtitle()" class="mc-page-heading-subtitle">{{ subtitle() }}</p>
+      @if(subtitle()) {
+        <p class="mc-page-heading-subtitle">{{ subtitle() }}</p>
+      }
     </div>
 
     <div class="mc-page-heading-actions pl-4 pt-4 md:pl-0 md:pt-0 pr-4">
