@@ -1,11 +1,11 @@
 {
   "name": "@mckit/tenant",
-  "version": "19.0.5",
+  "version": "20.0.0",
   "peerDependencies": {
-    "@angular/common": "^19.2.0",
-    "@angular/core": "^19.2.0",
-    "@mckit/core": "^19.0.8",
-    "@mckit/auth": "^19.0.3"
+    "@angular/common": "^20.0.0",
+    "@angular/core": "^20.0.0",
+    "@mckit/core": "^20.0.0",
+    "@mckit/auth": "^20.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"
