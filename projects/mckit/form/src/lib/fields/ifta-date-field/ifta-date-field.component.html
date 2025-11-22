@@ -1,0 +1,5 @@
+<p-iftalabel>
+    <p-datepicker id="{{field().key}}" [formControl]="control()!" dateFormat="{{ field().config?.date_format }}"
+        appendTo="body" styleClass="w-full" showIcon iconDisplay="input" dataType="string" />
+    <label for="{{field().key}}">{{field().config.label}}</label>
+</p-iftalabel>
