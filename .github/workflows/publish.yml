@@ -5,8 +5,8 @@ on:
     branches:
       - main
     paths:
-      - 'projects/mckit/auth/package.json'
       - 'projects/mckit/core/package.json'
+      - 'projects/mckit/auth/package.json'
       - 'projects/mckit/cron/package.json'
       - 'projects/mckit/filter/package.json'
       - 'projects/mckit/layout/package.json'
@@ -22,8 +22,8 @@ jobs:
   filter:
     runs-on: ubuntu-latest
     outputs:
-      auth: ${{ steps.filter.outputs.auth }}
       core: ${{ steps.filter.outputs.core }}
+      auth: ${{ steps.filter.outputs.auth }}
       cron: ${{ steps.filter.outputs.cron }}
       filter: ${{ steps.filter.outputs.filter }}
       layout: ${{ steps.filter.outputs.layout }}
@@ -44,10 +44,10 @@ jobs:
         with:
           base: 'main'
           filters: |
-            auth:
-              - 'projects/mckit/auth/package.json'
             core:
               - 'projects/mckit/core/package.json'
+            auth:
+              - 'projects/mckit/auth/package.json'
             cron:
               - 'projects/mckit/cron/package.json'
             filter:
@@ -74,7 +74,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        project: [auth, core, cron, filter, layout, layout-core, layout-sakai, layout-fuse, loader, table, odata, form]
+        project: [core, auth, cron, filter, layout, layout-core, layout-sakai, layout-fuse, loader, table, odata, form]
     steps:
       - name: Checkout repository
         if: ${{ needs.filter.outputs[matrix.project] == 'true' }}
