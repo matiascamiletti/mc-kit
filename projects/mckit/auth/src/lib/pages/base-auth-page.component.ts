@@ -16,11 +16,11 @@ export abstract class MCBaseAuthPage {
   abstract onSubmit(obj: MCAuthModel): void;
 
   onClickSubmit() {
-    if(this.group.invalid){
+    if (this.group.invalid) {
       return;
     }
 
-    if(this.isSending()){
+    if (this.isSending()) {
       return;
     }
 
@@ -35,11 +35,11 @@ export abstract class MCBaseAuthPage {
   }
 
   showSuccessMessage(message: string) {
-    this.messages.set([{ severity: 'success', text: message}]);
+    this.messages.set([{ severity: 'success', text: message }]);
   }
 
   showErrorMessage(message: string) {
-    this.messages.set([{ severity: 'error', text: message}]);
+    this.messages.set([{ severity: 'error', text: message }]);
   }
 
   clearMessages() {
@@ -52,5 +52,9 @@ export abstract class MCBaseAuthPage {
 
   hideLoading() {
     this.isSending.set(false);
+  }
+
+  setEmailValue(value: string) {
+    this.group.get('email')?.setValue(value);
   }
 }
