@@ -2,7 +2,7 @@ import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
 import { MCTenantService } from '../services/tenant.service';
 import { map, of, switchMap, take } from 'rxjs';
-import { MCTenant } from '@mckit/tenant';
+import { MCTenant } from '../entities/mc_tenant';
 
 export const tenantListGuard: CanActivateFn = (route, state) => {
     const tenantService = inject(MCTenantService);
