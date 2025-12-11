@@ -33,7 +33,7 @@ export class MCAuthenticationService {
     return this.storage.get(MC_AUTH_KEY_STORAGE_TOKEN, { type: 'string' })
       .pipe(map(data => {
         if (data == undefined || data == '') {
-          return;
+          return undefined;
         }
         return JSON.parse(data);
       }));
