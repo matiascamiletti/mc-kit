@@ -17,10 +17,10 @@ export class MCTenantService extends MCApiRestHttpService<MCTenant> {
 
   override pathModel = 'tenants';
 
-  current = new BehaviorSubject<MCTenant|undefined>(undefined);
+  current = new BehaviorSubject<MCTenant | undefined>(undefined);
   isInitialized = false;
 
-  onEvent = new Subject<{ type: string, tenant: MCTenant|undefined }>();
+  onEvent = new Subject<{ type: string, tenant: MCTenant | undefined }>();
 
   constructor() {
     super();
@@ -28,14 +28,14 @@ export class MCTenantService extends MCApiRestHttpService<MCTenant> {
     this.initialize();
   }
 
-  getCurrent(): Observable<MCTenant|undefined> {
+  getCurrent(): Observable<MCTenant | undefined> {
     return this.current.asObservable();
   }
 
-  setCurrent(tenant: MCTenant|undefined) {
+  setCurrent(tenant: MCTenant | undefined) {
     this.isInitialized = true;
     this.current.next(tenant);
-    if(tenant == undefined){
+    if (tenant == undefined) {
       this.removeCurrentFromStorage().subscribe();
     } else {
       this.saveCurrentInStorage(tenant).subscribe();
@@ -46,14 +46,14 @@ export class MCTenantService extends MCApiRestHttpService<MCTenant> {
     return this.storage.set(MC_TENANT_KEY_STORAGE, JSON.stringify(tenant), { type: 'string' });
   }
 
-  getCurrentFromStorage(): Observable<MCTenant|undefined> {
+  getCurrentFromStorage(): Observable<MCTenant | undefined> {
     return this.storage.get(MC_TENANT_KEY_STORAGE, { type: 'string' })
-    .pipe(map(data => {
-      if(data == undefined||data == ''){
-        return undefined;
-      }
-      return JSON.parse(data);
-    }));
+      .pipe(map(data => {
+        if (data == undefined || data == '') {
+          return undefined;
+        }
+        return JSON.parse(data);
+      }));
   }
 
   removeCurrentFromStorage(): Observable<undefined> {
@@ -62,18 +62,22 @@ export class MCTenantService extends MCApiRestHttpService<MCTenant> {
 
   initialize() {
     this.getCurrentFromStorage()
-    .pipe(
-      skipWhile(() => this.isInitialized),
-      tap(tenant => this.setCurrent(tenant))
-    )
-    .subscribe();
+      .pipe(
+        skipWhile(() => this.isInitialized),
+        tap(tenant => this.setCurrent(tenant))
+      )
+      .subscribe();
   }
 
   clickTenant(tenant: MCTenant) {
     this.onEvent.next({ type: 'click', tenant });
   }
 
-  clickCurrent(tenant: MCTenant|undefined) {
+  clickCurrent(tenant: MCTenant | undefined) {
     this.onEvent.next({ type: 'click-current', tenant });
+  }
+
+  clickNew() {
+    this.onEvent.next({ type: 'click-new', tenant: undefined });
   }
 }
