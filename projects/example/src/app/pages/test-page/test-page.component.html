@@ -1,41 +1,42 @@
-<mc-page-heading [breadcrumb]="breadcrumb" title="Simple test page" subtitle="This page is for a example of the new MC KIT.">
-  <button>Testing</button>
-</mc-page-heading>
+<mc-container-page [title]="'Simple test page'" [subtitle]="'This page is for a example of the new MC KIT.'"
+  [breadcrumb]="breadcrumb">
+  <ng-template mcRightHeaderPageTemplate>
+    <button>Testing</button>
+  </ng-template>
 
-<mc-simple-page [breadcrumb]="breadcrumb" title="Simple test page" subtitle="This page is for a example of the new MC KIT.">
   <div>
-    Aqui todo el contenido de la pagina de prueba...
+    <mc-mini-resume-card [title]="'USD'" [subtitle]="'Billetera'" [value]="350000|currency"></mc-mini-resume-card>
+
+    <h2>Filter Button</h2>
+    <div class="flex gap-2 items-center mb-4">
+      <mc-filter-button #filterButton1 [config]="filterConfig" [storageKey]="STORAGE_KEY"
+        (change)="onFilter($event)"></mc-filter-button>
+    </div>
+
+    <div class="flex gap-2 items-center mb-4">
+      <mc-filter-button #filterButton2 [config]="filterConfig" [storageKey]="STORAGE_KEY_2"
+        (change)="onFilter($event)"></mc-filter-button>
+    </div>
+
+    <h2>List</h2>
+    <div class="">
+      <mc-two-column-item [title]="'Item 1'" [subtitle]="'25/08/1989'" [value]="5000|currency"></mc-two-column-item>
+      <mc-two-column-item [title]="'Item 2'" [subtitle]="'25/08/1989'" [value]="5000|currency"></mc-two-column-item>
+      <mc-two-column-item [title]="'Item 3'" [subtitle]="'25/08/1989'" [value]="5000|currency"></mc-two-column-item>
+      <mc-two-column-item [title]="'Item 4'" [subtitle]="'25/08/1989'" [value]="5000|currency"></mc-two-column-item>
+    </div>
+
+    <h2 class="text-2xl">Table</h2>
+    <mc-table [columns]="tableColumns" [response]="tableResponse" [paginator]="true">
+      <ng-template mcThTemplate="game_number">
+        <h2>Game Test Head # <p-button label="send" /></h2>
+      </ng-template>
+
+      <ng-template mcTdTemplate="status" let-row>
+        <p-button label="Change status" /> {{ row.status }}
+      </ng-template>
+    </mc-table>
   </div>
-</mc-simple-page>
-
-<mc-mini-resume-card [title]="'USD'" [subtitle]="'Billetera'" [value]="350000|currency"></mc-mini-resume-card>
-
-<h2>Filter Button</h2>
-<div class="flex gap-2 items-center mb-4">
-  <mc-filter-button #filterButton1 [config]="filterConfig" [storageKey]="STORAGE_KEY" (change)="onFilter($event)"></mc-filter-button>
-</div>
-
-<div class="flex gap-2 items-center mb-4">
-  <mc-filter-button #filterButton2 [config]="filterConfig" [storageKey]="STORAGE_KEY_2" (change)="onFilter($event)"></mc-filter-button>
-</div>
-
-<h2>List</h2>
-<div class="">
-  <mc-two-column-item [title]="'Item 1'" [subtitle]="'25/08/1989'" [value]="5000|currency"></mc-two-column-item>
-  <mc-two-column-item [title]="'Item 2'" [subtitle]="'25/08/1989'" [value]="5000|currency"></mc-two-column-item>
-  <mc-two-column-item [title]="'Item 3'" [subtitle]="'25/08/1989'" [value]="5000|currency"></mc-two-column-item>
-  <mc-two-column-item [title]="'Item 4'" [subtitle]="'25/08/1989'" [value]="5000|currency"></mc-two-column-item>
-</div>
-
-<h2 class="text-2xl">Table</h2>
-<mc-table [columns]="tableColumns" [response]="tableResponse" [paginator]="true">
-  <ng-template mcThTemplate="game_number">
-    <h2>Game Test Head # <p-button label="send" /></h2>
-  </ng-template>
-
-  <ng-template mcTdTemplate="status" let-row>
-    <p-button label="Change status" /> {{ row.status }}
-  </ng-template>
-</mc-table>
+</mc-container-page>
 
 <p-toast></p-toast>
