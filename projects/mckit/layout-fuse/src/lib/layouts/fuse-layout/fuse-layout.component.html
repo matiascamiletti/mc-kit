@@ -1,6 +1,7 @@
 <div id="mc-fuse-layout" class="layout-wrapper md:flex md:justify-between">
   <!-- Sidebar -->
-  <div class="layout-sidebar fixed w-full md:relative md:border-r-1 border-gray-800 min-h-screen" [ngClass]="{'open': isOpen()}">
+  <div class="layout-sidebar fixed w-full md:relative md:border-r-1 border-gray-800 min-h-screen"
+    [ngClass]="{'open': isOpen()}">
     <div class="layout-sidebar-close-button absolute right-1 top-1 md:hidden">
       <p-button icon="pi pi-times" [rounded]="true" [text]="true" (onClick)="closeSidebar()" />
     </div>
@@ -11,13 +12,21 @@
   <div class="layout-main-container w-full min-h-screen" [ngClass]="{'without-sidebar': !isOpen()}">
     <!-- Topbar -->
     <div class="layout-topbar h-16 w-full flex justify-between items-center border-b-1 border-gray-800 px-4">
-      <div class="p-toolbar-group-start h-16 flex items-center"><mc-print-service [id]="topbarLeftId" [isFlexRow]="true"></mc-print-service></div>
-      <div class="p-toolbar-group-end h-16 flex items-center layout-topbar-menu "><mc-print-service [id]="topbarRightId" [isFlexRow]="true" [classes]="'items-center'"></mc-print-service></div>
+      <div class="p-toolbar-group-start h-16 flex items-center"><mc-print-service [id]="topbarLeftId"
+          [isFlexRow]="true"></mc-print-service></div>
+      <div class="p-toolbar-group-end h-16 flex items-center layout-topbar-menu "><mc-print-service [id]="topbarRightId"
+          [isFlexRow]="true" [classes]="'items-center'"></mc-print-service></div>
     </div>
     <!-- END Topbar -->
 
-    <div class="layout-main w-full min-h-20" [ngClass]="{'open': isOpen()}">
-        <router-outlet></router-outlet>
+    <div class="layout-main w-full min-h-20 relative" [ngClass]="{'open': isOpen()}">
+      @if(isRouteLoading()) {
+      <div
+        class="route-loading-overlay absolute inset-0 z-50 flex items-center justify-center bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm">
+        <p-progressSpinner ariaLabel="loading" strokeWidth="4" />
+      </div>
+      }
+      <router-outlet></router-outlet>
     </div>
 
     <!-- Footer -->
