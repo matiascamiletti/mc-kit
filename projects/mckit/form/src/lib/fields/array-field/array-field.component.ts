@@ -42,6 +42,17 @@ export class ArrayFieldComponent extends MCFieldComponent {
     let formArray: FormArray<UntypedFormGroup> = (this.group().get(this.field().key!)) as FormArray<UntypedFormGroup>;
     formArray.removeAt(index);
   }
+
+  moveItem(index: number, direction: number) {
+    const formArray = this.formArray();
+    const newIndex = index + direction;
+
+    if (newIndex >= 0 && newIndex < formArray.length) {
+      const currentControl = formArray.at(index);
+      formArray.removeAt(index);
+      formArray.insert(newIndex, currentControl);
+    }
+  }
 }
 
 
@@ -50,6 +61,7 @@ export class ArrayField {
   static init(key: string, fields: MCField[], data?: {
     labelAddButton?: string,
     labelTitlePanel?: string,
+    allow_order?: boolean,
   }): MCField {
     let field = MCField.init({
       key: key,
@@ -60,6 +72,7 @@ export class ArrayField {
       fields: fields,
       labelAddButton: data?.labelAddButton,
       labelTitlePanel: data?.labelTitlePanel,
+      allow_order: data?.allow_order,
     }
 
     return field;

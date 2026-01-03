@@ -52,7 +52,7 @@ export class FormPageComponent implements OnInit {
     config.fields = [
       IftaTextField.init('firstname', 'Firstname', { validators: [Validators.required] }),
       IftaTextField.init('lastname', 'Lastname'),
-      MCField.initCustom('open-modal', OpenModalFieldComponent, { }),
+      MCField.initCustom('open-modal', OpenModalFieldComponent, {}),
       RowField.init([
         IftaTextField.init('email', 'Email'),
         IftaTextField.init('phone', 'Phone'),
@@ -86,7 +86,7 @@ export class FormPageComponent implements OnInit {
           IftaTextField.init('quantity', 'Quantity'),
           IftaTextField.init('price', 'Price'),
         ],
-        { labelAddButton: 'Add Item', labelTitlePanel: 'Producto' }
+        { labelAddButton: 'Add Item', labelTitlePanel: 'Producto', allow_order: true }
       ),
       DividerField.init('Monaco Editor'),
       MonacoField.initOneLine({
