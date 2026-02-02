@@ -4,7 +4,7 @@ export class MCMessage {
    * @defaultValue 'info'
    * @group Props
    */
-  severity: string | 'success' | 'info' | 'warn' | 'error' | 'secondary' | 'contrast' | undefined | null;
+  severity: 'success' | 'info' | 'warn' | 'error' | 'secondary' | 'contrast' | undefined | null;
   /**
    * Text content.
    * @group Props

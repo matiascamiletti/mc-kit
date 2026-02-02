@@ -10,7 +10,7 @@ services:
       - "4203:4203"
     volumes:
       - ./:/app
-    command: sh -c "npm install --force && npm run build-all && ng serve --host 0.0.0.0 --port=4203 --disable-host-check"
+    command: sh -c "npm install --force && npm run build-all && ng serve --host 0.0.0.0 --port=4203"
     networks:
       - mc-kit-dev-network
 

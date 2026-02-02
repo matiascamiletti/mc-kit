@@ -22,4 +22,4 @@ RUN npm run build-all
 EXPOSE 4203
 
 # Comando para iniciar el servidor de desarrollo de Angular
-CMD ["ng", "serve", "--port=4203", "--host", "0.0.0.0", "--disable-host-check"]
+CMD ["ng", "serve", "--port=4203", "--host", "0.0.0.0"]

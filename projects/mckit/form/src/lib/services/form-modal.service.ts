@@ -29,7 +29,7 @@ export class MCFormModalService {
         footer: withDelete ? MCFooterWithDeleteModalForm : MCFooterModalForm
       },
       data: config
-    });
+    })!;
 
     return dialog.onChildComponentLoaded;
   }

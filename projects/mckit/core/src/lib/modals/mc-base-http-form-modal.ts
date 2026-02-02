@@ -58,7 +58,7 @@ export abstract class MCBaseHttpFormModal<T extends { id?: any }> extends MCBase
 
   initData() {
     let instance = this.dialogService.getInstance(this.dialogRef);
-    if(instance.data != undefined){
+    if(instance?.data != undefined){
       this.setItem(instance.data);
     }
   }

@@ -1,12 +1,12 @@
 {
   "name": "@mckit/layout-fuse",
-  "version": "19.0.7",
+  "version": "20.0.0",
   "peerDependencies": {
-    "@angular/common": "^19.0.0",
-    "@angular/core": "^19.0.0",
-    "@mckit/core": "^19.0.0",
-    "@mckit/layout-core": "^19.0.0",
-    "primeng": "^19.0.0"
+    "@angular/common": "^20.0.0",
+    "@angular/core": "^20.0.0",
+    "@mckit/core": "^20.0.0",
+    "@mckit/layout-core": "^20.0.0",
+    "primeng": "^20.0.0"
   },
   "dependencies": {
     "tslib": "^2.6.2"
