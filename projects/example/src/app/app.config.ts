@@ -14,6 +14,7 @@ import { withFetch } from '@angular/common/http';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeuix/themes/aura';
 import { authInterceptor, MC_AUTH_CONFIG } from '@mckit/auth';
+import { provideMonacoEditor } from 'ngx-monaco-editor-v2';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -28,7 +29,7 @@ export const appConfig: ApplicationConfig = {
       withFetch(),
       withInterceptors([authInterceptor])
     ),
-    
+
 
     providePrimeNG({
       theme: {
@@ -39,5 +40,6 @@ export const appConfig: ApplicationConfig = {
       },
     }),
 
+    provideMonacoEditor()
   ],
 };

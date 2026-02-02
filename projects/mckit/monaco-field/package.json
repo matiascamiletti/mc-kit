@@ -5,7 +5,7 @@
     "@angular/common": "^20.0.0",
     "@angular/core": "^20.0.0",
     "@mckit/form": "^20.0.0",
-    "monaco-editor": "^0.52.2",
+    "monaco-editor": "^0.55.1",
     "ngx-monaco-editor-v2": "^20.3.0"
   },
   "dependencies": {
