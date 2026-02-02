@@ -1,10 +1,10 @@
 {
   "name": "@mckit/monaco-field",
-  "version": "20.0.0",
+  "version": "20.0.1",
   "peerDependencies": {
     "@angular/common": "^20.0.0",
     "@angular/core": "^20.0.0",
-    "@mckit/form": "^20.0.0",
+    "@mckit/form": "^20.0.1",
     "monaco-editor": "^0.55.1",
     "ngx-monaco-editor-v2": "^20.3.0"
   },
