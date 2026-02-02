@@ -13,6 +13,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { MCLeftHeaderTemplateDirective } from '../../directives/left-header-template.directive';
 import { MCRightHeaderTemplateDirective } from '../../directives/right-header-template.directive';
 import { ButtonModule } from 'primeng/button';
+import { MCTopContentTemplateDirective } from '../../directives/top-content-template.directive';
 
 
 @Component({
@@ -61,11 +62,12 @@ export class MCOdataPage implements OnInit, OnDestroy {
   messageService = inject(MessageService);
   confirmationService = inject(ConfirmationService);
 
-  sortField = signal<string|undefined>(undefined);
+  sortField = signal<string | undefined>(undefined);
   sortOrder = signal<number>(-1);
 
   leftHeaderTemplate = contentChild(MCLeftHeaderTemplateDirective);
   rightHeaderTemplate = contentChild(MCRightHeaderTemplateDirective);
+  topContentTemplate = contentChild(MCTopContentTemplateDirective);
 
   isShowMoreOptions = signal<boolean>(false);
 
@@ -84,7 +86,7 @@ export class MCOdataPage implements OnInit, OnDestroy {
 
   initialSort() {
     let column = this.columns().find((column: MCColumn) => column.isSortDefault);
-    if(column == undefined){
+    if (column == undefined) {
       return;
     }
 
@@ -96,7 +98,7 @@ export class MCOdataPage implements OnInit, OnDestroy {
     this.data.cleanPage();
 
     this.sortField.set(event.field);
-    if(event.order == -1){
+    if (event.order == -1) {
       this.sortOrder.set(-1);
       this.data.orderBy = event.field + ' desc';
     } else {
@@ -110,7 +112,7 @@ export class MCOdataPage implements OnInit, OnDestroy {
     this.data.filters.cleanPostpend();
     this.data.cleanPage();
 
-    if(query == '' || this.searchFieldsKey()?.length == 0){
+    if (query == '' || this.searchFieldsKey()?.length == 0) {
       this.loadItems();
       return;
     }
@@ -122,7 +124,7 @@ export class MCOdataPage implements OnInit, OnDestroy {
       filters.push(`substringof(${key}, '${query}')`);
     });
 
-    if(filters.length == 0){
+    if (filters.length == 0) {
       return;
     }
 
@@ -160,17 +162,17 @@ export class MCOdataPage implements OnInit, OnDestroy {
     this.subscriptionList?.unsubscribe();
 
     this.subscriptionList = this.requestList()
-    .pipe(
-      catchError((data) => {
-        this.messageService.add({ severity: 'error', summary: 'An error has occurred', detail: data.error?.message?.message || data.error.message || data.message || 'Unknown error' });
-        this.searchField()?.stopLoading();
-        this.isLoading.set(false);
-        throw data;
-      }),
-      tap(response => this.items.set(response)),
-      tap(response => this.searchField()?.stopLoading())
-    )
-    .subscribe(() => this.isLoading.set(false));
+      .pipe(
+        catchError((data) => {
+          this.messageService.add({ severity: 'error', summary: 'An error has occurred', detail: data.error?.message?.message || data.error.message || data.message || 'Unknown error' });
+          this.searchField()?.stopLoading();
+          this.isLoading.set(false);
+          throw data;
+        }),
+        tap(response => this.items.set(response)),
+        tap(response => this.searchField()?.stopLoading())
+      )
+      .subscribe(() => this.isLoading.set(false));
   }
 
   onClickRemove(id: any) {
@@ -178,9 +180,9 @@ export class MCOdataPage implements OnInit, OnDestroy {
       message: 'Are you sure that you want to proceed?',
       header: 'Delete Confirmation',
       icon: 'pi pi-exclamation-triangle',
-      acceptIcon:"none",
-      rejectIcon:"none",
-      rejectButtonStyleClass:"p-button-text",
+      acceptIcon: "none",
+      rejectIcon: "none",
+      rejectButtonStyleClass: "p-button-text",
       accept: () => { this.onDelete(id); },
     });
   }

@@ -24,6 +24,7 @@ export * from './lib/services/authentication.service';
  * Interceptors
  */
 export * from './lib/interceptors/auth.interceptor';
+export * from './lib/interceptors/auth-cookie.interceptor';
 
 /**
  * Guards

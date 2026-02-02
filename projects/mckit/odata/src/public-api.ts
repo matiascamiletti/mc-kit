@@ -13,6 +13,7 @@ export * from './lib/entities/mc-filter-processor';
  */
 export * from './lib/directives/left-header-template.directive';
 export * from './lib/directives/right-header-template.directive';
+export * from './lib/directives/top-content-template.directive';
 
 /**
  * Components

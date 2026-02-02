@@ -4,7 +4,7 @@ import { MCSimplePage } from '../../../../../mckit/layout/src/lib/pages/simple-p
 import { MenuItem } from 'primeng/api';
 import { CurrencyPipe } from '@angular/common';
 import { MCTwoColumnItemComponent } from '../../../../../mckit/layout/src/lib/lists/two-column-item/two-column-item.component';
-import { MCPageHeadingComponent, MCTopbarService } from '../../../../../mckit/layout-core/src/public-api';
+import { MCContainerPageComponent, MCPageHeadingComponent, MCRightHeaderPageTemplateDirective, MCTopbarService } from '../../../../../mckit/layout-core/src/public-api';
 import { MCFilterOdataConverterService, MCFilterButton, MCItemFilter } from '../../../../../mckit/filter/src/public-api';
 import { MCConfigFilter } from '../../../../../mckit/filter/src/lib/entities/config';
 import { MCFilter } from '../../../../../mckit/filter/src/lib/entities/filter';
@@ -18,11 +18,11 @@ import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
 
 @Component({
-    selector: 'app-test-page',
-    imports: [MCSimplePage, MCMiniResumeCard, CurrencyPipe, MCTwoColumnItemComponent, MCFilterButton, MCPageHeadingComponent, MCTable, MCThTemplateDirective, MCTdTemplateDirective, ButtonModule, ToastModule],
-    providers: [MessageService],
-    templateUrl: './test-page.component.html',
-    styleUrl: './test-page.component.scss'
+  selector: 'app-test-page',
+  imports: [MCSimplePage, MCMiniResumeCard, CurrencyPipe, MCTwoColumnItemComponent, MCFilterButton, MCPageHeadingComponent, MCTable, MCThTemplateDirective, MCTdTemplateDirective, ButtonModule, ToastModule, MCContainerPageComponent, MCRightHeaderPageTemplateDirective],
+  providers: [MessageService],
+  templateUrl: './test-page.component.html',
+  styleUrl: './test-page.component.scss'
 })
 export class TestPageComponent implements OnInit {
 

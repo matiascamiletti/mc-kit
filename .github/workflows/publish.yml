@@ -5,8 +5,8 @@ on:
     branches:
       - main
     paths:
-      - 'projects/mckit/auth/package.json'
       - 'projects/mckit/core/package.json'
+      - 'projects/mckit/auth/package.json'
       - 'projects/mckit/cron/package.json'
       - 'projects/mckit/filter/package.json'
       - 'projects/mckit/layout/package.json'
@@ -17,13 +17,14 @@ on:
       - 'projects/mckit/table/package.json'
       - 'projects/mckit/odata/package.json'
       - 'projects/mckit/form/package.json'
+      - 'projects/mckit/tenant/package.json'
 
 jobs:
   filter:
     runs-on: ubuntu-latest
     outputs:
-      auth: ${{ steps.filter.outputs.auth }}
       core: ${{ steps.filter.outputs.core }}
+      auth: ${{ steps.filter.outputs.auth }}
       cron: ${{ steps.filter.outputs.cron }}
       filter: ${{ steps.filter.outputs.filter }}
       layout: ${{ steps.filter.outputs.layout }}
@@ -34,6 +35,7 @@ jobs:
       table: ${{ steps.filter.outputs.table }}
       odata: ${{ steps.filter.outputs.odata }}
       form: ${{ steps.filter.outputs.form }}
+      tenant: ${{ steps.filter.outputs.tenant }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -44,10 +46,10 @@ jobs:
         with:
           base: 'main'
           filters: |
-            auth:
-              - 'projects/mckit/auth/package.json'
             core:
               - 'projects/mckit/core/package.json'
+            auth:
+              - 'projects/mckit/auth/package.json'
             cron:
               - 'projects/mckit/cron/package.json'
             filter:
@@ -68,13 +70,15 @@ jobs:
               - 'projects/mckit/odata/package.json'
             form:
               - 'projects/mckit/form/package.json'
+            tenant:
+              - 'projects/mckit/tenant/package.json'
 
   build-and-publish:
     needs: filter
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        project: [auth, core, cron, filter, layout, layout-core, layout-sakai, layout-fuse, loader, table, odata, form]
+        project: [core, auth, cron, filter, layout, layout-core, layout-sakai, layout-fuse, loader, table, odata, form, tenant]
     steps:
       - name: Checkout repository
         if: ${{ needs.filter.outputs[matrix.project] == 'true' }}
@@ -92,7 +96,7 @@ jobs:
 
       - name: Build project
         if: ${{ needs.filter.outputs[matrix.project] == 'true' }}
-        run: npm run build -- --project=@mckit/${{ matrix.project }} --configuration production
+        run: npm run build-all && npm run build -- --project=@mckit/${{ matrix.project }} --configuration production
 
       - name: Publish to npm
         if: ${{ needs.filter.outputs[matrix.project] == 'true' }}

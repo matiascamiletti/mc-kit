@@ -1,23 +1,30 @@
-
 <div class="mc-array-form">
-    <div *ngFor="let row of formArray().controls; let i = index">
+  <div *ngFor="let row of formArray().controls; let i = index">
 
-      <p-panel [header]="field().config?.labelTitlePanel" styleClass="mb-3">
-        <ng-template #icons>
-          <p-button icon="pi pi-trash" severity="danger" rounded text (onClick)="onClickRemove(i)" />
-        </ng-template>
-
-        <div [formGroup]="row" class="mc-array-group-form">
-          @for (field of field().config.fields; track $index) {
-            <div class="{{(field.config.containerFieldClass || 'mb-3 w-full')}}">
-              <mc-print-field [field]="field" [control]="row.get(field.key ?? '')" [group]="row" [eventObs]="eventObs()" />
-            </div>
+    <p-panel [header]="field().config?.labelTitlePanel" styleClass="mb-3">
+      <ng-template #icons>
+        <div class="flex gap-2">
+          @if(field().config.allow_order) {
+          <p-button icon="pi pi-arrow-up" severity="secondary" rounded text (onClick)="moveItem(i, -1)"
+            [disabled]="i === 0" />
+          <p-button icon="pi pi-arrow-down" severity="secondary" rounded text (onClick)="moveItem(i, 1)"
+            [disabled]="i === formArray().length - 1" />
           }
+          <p-button icon="pi pi-trash" severity="danger" rounded text (onClick)="onClickRemove(i)" />
         </div>
-      </p-panel>
+      </ng-template>
 
-    </div>
+      <div [formGroup]="row" class="mc-array-group-form">
+        @for (field of field().config.fields; track $index) {
+        <div class="{{(field.config.containerFieldClass || 'mb-3 w-full')}}">
+          <mc-print-field [field]="field" [control]="row.get(field.key ?? '')" [group]="row" [eventObs]="eventObs()" />
+        </div>
+        }
+      </div>
+    </p-panel>
+
+  </div>
 </div>
 
-<p-button [label]="field().config?.labelAddButton ?? 'Add row'" [link]="true" icon="pi pi-plus-circle" (onClick)="onClickAdd()" />
-
+<p-button [label]="field().config?.labelAddButton ?? 'Add row'" [link]="true" icon="pi pi-plus-circle"
+  (onClick)="onClickAdd()" />

@@ -86,7 +86,7 @@ export class FormPageComponent implements OnInit {
           IftaTextField.init('quantity', 'Quantity'),
           IftaTextField.init('price', 'Price'),
         ],
-        { labelAddButton: 'Add Item', labelTitlePanel: 'Producto' }
+        { labelAddButton: 'Add Item', labelTitlePanel: 'Producto', allow_order: true }
       ),
       DividerField.init('Monaco Editor'),
       MonacoField.initOneLine({

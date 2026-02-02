@@ -1,0 +1,25 @@
+<div class="container-page">
+
+    <mc-page-heading [breadcrumb]="breadcrumb()" [title]="title()" [subtitle]="subtitle()">
+
+        @if (!isShowMoreOptions()) {
+        <div class="md:hidden">
+            <p-button label="More options" link styleClass="w-full" (onClick)="toggleMoreOptions()" />
+        </div>
+        }
+
+        <div class="flex md:flex flex-col md:flex-row"
+            [ngClass]="{'hidden': !isShowMoreOptions(), 'md:flex': !isShowMoreOptions()}">
+
+            @if(rightHeaderTemplate()){
+            <ng-container [ngTemplateOutlet]="rightHeaderTemplate()!.template"></ng-container>
+            }
+
+        </div>
+
+    </mc-page-heading>
+
+    <div class="content-page pl-4 pr-4">
+        <ng-content></ng-content>
+    </div>
+</div>

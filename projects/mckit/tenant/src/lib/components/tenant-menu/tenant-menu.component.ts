@@ -38,26 +38,33 @@ export class TenantMenuComponent extends MCCoreComponent implements OnDestroy {
 
   loadAllTenants() {
     this.tenantService.list('')
-    .pipe(
-      tap(response => {
-        const items: MenuItem[] = response.data.map(tenant => ({
-          label: tenant.name,
-          icon: 'pi pi-building',
-          command: () => this.tenantService.clickTenant(tenant)
-        }));
-        this.items.set(items);
-      })
-    )
-    .subscribe();
+      .pipe(
+        tap(response => {
+          const items: MenuItem[] = response.data.map(tenant => ({
+            label: tenant.name,
+            icon: 'pi pi-building',
+            command: () => this.tenantService.clickTenant(tenant)
+          }));
+          if (this.component.config?.allowNewTenant) {
+            items.push({
+              label: 'New tenant',
+              icon: 'pi pi-plus',
+              command: () => this.tenantService.clickNew()
+            });
+          }
+          this.items.set(items);
+        })
+      )
+      .subscribe();
   }
 
   loadCurrent() {
     this.currentSubscription = this.tenantService.getCurrent()
-    .pipe(
-      tap((tenant: MCTenant | undefined) => this.current.set(tenant)),
-      tap(() => this.isLoading.set(false))
-    )
-    .subscribe();
+      .pipe(
+        tap((tenant: MCTenant | undefined) => this.current.set(tenant)),
+        tap(() => this.isLoading.set(false))
+      )
+      .subscribe();
   }
 
   onClickCurrent() {
@@ -66,8 +73,10 @@ export class TenantMenuComponent extends MCCoreComponent implements OnDestroy {
 }
 
 export class MCTenantMenu extends MCComponent {
-  constructor() {
+  constructor(allowNewTenant: boolean = false) {
     super(TenantMenuComponent);
-    this.config = {};
+    this.config = {
+      allowNewTenant
+    };
   }
 }

@@ -14,7 +14,7 @@ import { PanelModule } from 'primeng/panel';
   templateUrl: './array-field.component.html',
   styleUrl: './array-field.component.css'
 })
-export class ArrayFieldComponent  extends MCFieldComponent {
+export class ArrayFieldComponent extends MCFieldComponent {
 
   formService = inject(MCFormService);
 
@@ -24,17 +24,34 @@ export class ArrayFieldComponent  extends MCFieldComponent {
   });
 
   onClickAdd() {
-   let formArray: FormArray<UntypedFormGroup> = (this.group().get(this.field().key!)) as FormArray<UntypedFormGroup>;
+    // Verify if the element is FormArray
+    if (!(this.group().get(this.field().key!) instanceof FormArray)) {
+      // Create the form Array and set it in the group
+      this.group().setControl(this.field().key!, new FormArray([]));
+    }
 
-   let newGroup = new UntypedFormGroup({});
-   this.formService.loadFields(newGroup, this.field().config.fields, {});
+    let formArray: FormArray<UntypedFormGroup> = (this.group().get(this.field().key!)) as FormArray<UntypedFormGroup>;
 
-   formArray.push(newGroup);
+    let newGroup = new UntypedFormGroup({});
+    this.formService.loadFields(newGroup, this.field().config.fields, {});
+
+    formArray.push(newGroup);
   }
 
   onClickRemove(index: number) {
     let formArray: FormArray<UntypedFormGroup> = (this.group().get(this.field().key!)) as FormArray<UntypedFormGroup>;
     formArray.removeAt(index);
+  }
+
+  moveItem(index: number, direction: number) {
+    const formArray = this.formArray();
+    const newIndex = index + direction;
+
+    if (newIndex >= 0 && newIndex < formArray.length) {
+      const currentControl = formArray.at(index);
+      formArray.removeAt(index);
+      formArray.insert(newIndex, currentControl);
+    }
   }
 }
 
@@ -44,6 +61,7 @@ export class ArrayField {
   static init(key: string, fields: MCField[], data?: {
     labelAddButton?: string,
     labelTitlePanel?: string,
+    allow_order?: boolean,
   }): MCField {
     let field = MCField.init({
       key: key,
@@ -54,6 +72,7 @@ export class ArrayField {
       fields: fields,
       labelAddButton: data?.labelAddButton,
       labelTitlePanel: data?.labelTitlePanel,
+      allow_order: data?.allow_order,
     }
 
     return field;

@@ -19,6 +19,12 @@ export * from './lib/services/tenant.service';
 export * from './lib/interceptors/tenant.interceptor';
 
 /**
+ * Guards
+ */
+export * from './lib/guards/tenant.guard';
+export * from './lib/guards/tenant-list.guard';
+
+/**
  * Resolvers
  */
 export * from './lib/resolvers/tenant.resolver';
