@@ -4,6 +4,7 @@ import { MCMessageChatType } from '../entities/message';
 import { MCMessageTextComponent } from '../messages/text/text.component';
 import { MCMessageImageComponent } from '../messages/image/image.component';
 import { MCMessageVideoComponent } from '../messages/video/video.component';
+import { MCMessageAudioComponent } from '../messages/audio/audio.component';
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +17,7 @@ export class MCChatService {
     this.register(MCMessageChatType.TEXT, MCMessageTextComponent);
     this.register(MCMessageChatType.IMAGE, MCMessageImageComponent);
     this.register(MCMessageChatType.VIDEO, MCMessageVideoComponent);
+    this.register(MCMessageChatType.AUDIO, MCMessageAudioComponent);
   }
 
   register(type: string, component: Type<MCBaseMessageComponent>) {
