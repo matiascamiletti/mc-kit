@@ -7,6 +7,9 @@
       "@mckit/auth": [
         "./dist/mckit/auth"
       ],
+      "@mckit/chat": [
+        "./dist/mckit/chat"
+      ],
       "@mckit/core": [
         "./dist/mckit/core"
       ],
@@ -75,5 +78,13 @@
     "strictInjectionParameters": true,
     "strictInputAccessModifiers": true,
     "strictTemplates": true
-  }
+  },
+  "references": [
+    {
+      "path": "./projects/mckit/chat/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/mckit/chat/tsconfig.spec.json"
+    }
+  ]
 }

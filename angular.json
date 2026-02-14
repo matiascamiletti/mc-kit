@@ -598,6 +598,36 @@
           }
         }
       }
+    },
+    "@mckit/chat": {
+      "projectType": "library",
+      "root": "projects/mckit/chat",
+      "sourceRoot": "projects/mckit/chat/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/mckit/chat/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/mckit/chat/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "projects/mckit/chat/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {
