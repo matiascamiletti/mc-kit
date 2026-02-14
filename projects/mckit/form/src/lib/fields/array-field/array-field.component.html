@@ -26,5 +26,7 @@
   </div>
 </div>
 
+@if(field().config.allow_add) {
 <p-button [label]="field().config?.labelAddButton ?? 'Add row'" [link]="true" icon="pi pi-plus-circle"
   (onClick)="onClickAdd()" />
+}
