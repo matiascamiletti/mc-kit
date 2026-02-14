@@ -63,6 +63,13 @@ export class ConversationPage implements OnInit {
           createdAt: new Date().toISOString(),
           side: MCMessageChatSide.LEFT,
         } as any,
+        {
+          id: '6',
+          type: MCMessageChatType.THINKING,
+          content: '',
+          createdAt: new Date().toISOString(),
+          side: MCMessageChatSide.LEFT,
+        } as any,
       ]
     });
   }

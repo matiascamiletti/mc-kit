@@ -4,7 +4,8 @@ export enum MCMessageChatType {
     VIDEO = 'video',
     AUDIO = 'audio',
     FILE = 'file',
-    EMPTY = 'empty'
+    EMPTY = 'empty',
+    THINKING = 'thinking'
 }
 
 export enum MCMessageChatSide {

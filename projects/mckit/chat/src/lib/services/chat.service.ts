@@ -6,9 +6,10 @@ import { MCMessageImageComponent } from '../messages/image/image.component';
 import { MCMessageVideoComponent } from '../messages/video/video.component';
 import { MCMessageAudioComponent } from '../messages/audio/audio.component';
 import { MCMessageFileComponent } from '../messages/file/file.component';
-import { MCChatEmptyComponent } from '../../public-api';
 import { Subject } from 'rxjs';
 import { MCEventChat } from '../entities/event';
+import { MCChatEmptyComponent } from '../messages/empty/empty.component';
+import { MCThinkingComponent } from '../messages/thinking/thinking.component';
 
 @Injectable({
   providedIn: 'root'
@@ -26,6 +27,7 @@ export class MCChatService {
     this.register(MCMessageChatType.AUDIO, MCMessageAudioComponent);
     this.register(MCMessageChatType.FILE, MCMessageFileComponent);
     this.register(MCMessageChatType.EMPTY, MCChatEmptyComponent);
+    this.register(MCMessageChatType.THINKING, MCThinkingComponent);
   }
 
   register(type: string, component: Type<MCBaseMessageComponent>) {
