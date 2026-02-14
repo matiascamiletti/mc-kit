@@ -7,6 +7,7 @@
  */
 export * from './lib/entities/message';
 export * from './lib/entities/conversation';
+export * from './lib/entities/event';
 
 /**
  * Messages
@@ -24,6 +25,7 @@ export * from './lib/messages/thinking/thinking.component';
  * Components
  */
 export * from './lib/components/conversation/conversation.component';
+export * from './lib/components/writing/writing.component';
 
 /**
  * Services

@@ -1,9 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, input, Type } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { AvatarModule } from 'primeng/avatar';
-import { ButtonModule } from 'primeng/button';
-import { InputTextModule } from 'primeng/inputtext';
 import { MCMessageChat, MCMessageChatSide, MCMessageChatType } from '../../entities/message';
 import { MCChatService } from '../../services/chat.service';
 import { MCBaseMessageComponent } from '../../messages/base-message.component';
@@ -12,7 +9,7 @@ import { MCWritingComponent } from '../writing/writing.component';
 
 @Component({
   selector: 'mc-conversation',
-  imports: [CommonModule, FormsModule, AvatarModule, ButtonModule, InputTextModule, MCWritingComponent],
+  imports: [CommonModule, AvatarModule, MCWritingComponent],
   templateUrl: './conversation.component.html',
   styleUrl: './conversation.component.css'
 })
