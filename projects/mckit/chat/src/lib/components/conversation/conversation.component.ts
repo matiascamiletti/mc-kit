@@ -1,15 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, input, Type } from '@angular/core';
-import { AvatarModule } from 'primeng/avatar';
 import { MCMessageChat, MCMessageChatSide, MCMessageChatType } from '../../entities/message';
 import { MCChatService } from '../../services/chat.service';
 import { MCBaseMessageComponent } from '../../messages/base-message.component';
 import { MCConversation } from '../../entities/conversation';
 import { MCWritingComponent } from '../writing/writing.component';
+import { MCUserHeaderChatComponent } from '../user-header/user-header.component';
 
 @Component({
   selector: 'mc-conversation',
-  imports: [CommonModule, AvatarModule, MCWritingComponent],
+  imports: [CommonModule, MCUserHeaderChatComponent, MCWritingComponent],
   templateUrl: './conversation.component.html',
   styleUrl: './conversation.component.css'
 })

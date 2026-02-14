@@ -8,6 +8,7 @@
 export * from './lib/entities/message';
 export * from './lib/entities/conversation';
 export * from './lib/entities/event';
+export * from './lib/entities/user';
 
 /**
  * Messages
@@ -25,6 +26,7 @@ export * from './lib/messages/thinking/thinking.component';
  * Components
  */
 export * from './lib/components/conversation/conversation.component';
+export * from './lib/components/user-header/user-header.component';
 export * from './lib/components/writing/writing.component';
 
 /**

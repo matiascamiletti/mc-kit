@@ -17,6 +17,13 @@ export class ConversationPage implements OnInit {
   ngOnInit(): void {
     this.conversation.set({
       id: '1',
+      user: {
+        id: '1',
+        firstname: 'Matias',
+        lastname: 'Camiletti',
+        photo: 'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png',
+        online: true
+      },
       messages: [
         {
           id: 0,
