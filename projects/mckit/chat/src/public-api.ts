@@ -14,6 +14,7 @@ export * from './lib/entities/conversation';
 export * from './lib/messages/base-message.component';
 export * from './lib/messages/text/text.component';
 export * from './lib/messages/image/image.component';
+export * from './lib/messages/video/video.component';
 
 /**
  * Components
