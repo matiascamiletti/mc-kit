@@ -2,4 +2,24 @@
  * Public API Surface of chat
  */
 
-export * from './lib/chat';
+/**
+ * Entities
+ */
+export * from './lib/entities/message';
+export * from './lib/entities/conversation';
+
+/**
+ * Messages
+ */
+export * from './lib/messages/base-message.component';
+export * from './lib/messages/text/text.component';
+
+/**
+ * Components
+ */
+export * from './lib/components/conversation/conversation.component';
+
+/**
+ * Services
+ */
+export * from './lib/services/chat.service';

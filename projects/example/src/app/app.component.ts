@@ -13,15 +13,16 @@ import { MCIconToggleSidebarButton } from '@mckit/layout';
 import { MCTenantMenu } from '../../../mckit/tenant/src/lib/components/tenant-menu/tenant-menu.component';
 import { MCTenant, MCTenantService } from '../../../mckit/tenant/src/public-api';
 import { MockTenantService } from './services/mock_tenant.service';
+import { MCConversationComponent } from '../../../mckit/chat/src/public-api';
 
 @Component({
-    selector: 'app-root',
-    imports: [RouterOutlet, MCSpinnerFullScreenComponent],
-    providers: [
-      { provide: MCTenantService, useClass: MockTenantService }
-    ],
-    templateUrl: './app.component.html',
-    styleUrl: './app.component.scss'
+  selector: 'app-root',
+  imports: [RouterOutlet, MCSpinnerFullScreenComponent, MCConversationComponent],
+  providers: [
+    { provide: MCTenantService, useClass: MockTenantService }
+  ],
+  templateUrl: './app.component.html',
+  styleUrl: './app.component.scss'
 })
 export class AppComponent implements OnInit {
 
@@ -32,7 +33,7 @@ export class AppComponent implements OnInit {
     protected sidebarService: MCSidebarService,
     protected topbarService: MCTopbarService,
     protected loaderService: MCLoaderService
-  ){}
+  ) { }
 
   ngOnInit(): void {
     this.configLoader();
@@ -63,18 +64,20 @@ export class AppComponent implements OnInit {
       new MCImage('https://tots.agency/assets/img/logos/logo-horiz-black-color.svg', 150),
       new MCTenantMenu(),
       new MCSubtitle('MENU'),
-      { component: ItemCustomMenuComponent, config: { }},
+      { component: ItemCustomMenuComponent, config: {} },
       new MCSubtitle('Inicio'),
       new MCSubtitle('Acerca de '),
       new MCSubtitle('Contacto'),
       new MCMenu([
         { label: 'Item 1', link: '/basic', icon: 'pi pi-times' },
         { label: 'Item 1', link: '/basic', icon: 'pi pi-times' },
-        { label: 'Item 2', children: [
-          { label: 'Sub Item 1', link: '/basic' },
-          { label: 'Sub Item 2', link: '/basic' },
-          { label: 'Sub Item 3', link: '/basic' },
-        ] }
+        {
+          label: 'Item 2', children: [
+            { label: 'Sub Item 1', link: '/basic' },
+            { label: 'Sub Item 2', link: '/basic' },
+            { label: 'Sub Item 3', link: '/basic' },
+          ]
+        }
       ])
     ]);
   }
@@ -91,7 +94,7 @@ export class AppComponent implements OnInit {
     this.tenantService.setCurrent(tenant);
 
     this.tenantService.onEvent.subscribe(event => {
-      if(event.type == 'click'){
+      if (event.type == 'click') {
         this.tenantService.setCurrent(event.tenant);
       }
     });
