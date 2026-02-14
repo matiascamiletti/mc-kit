@@ -16,6 +16,13 @@ export class ConversationPage implements OnInit {
       id: '1',
       messages: [
         {
+          id: 0,
+          type: MCMessageChatType.EMPTY,
+          content: '',
+          createdAt: new Date().toISOString(),
+          side: MCMessageChatSide.LEFT,
+        },
+        {
           id: '1',
           type: MCMessageChatType.TEXT,
           content: 'Hello! How can I help you?',

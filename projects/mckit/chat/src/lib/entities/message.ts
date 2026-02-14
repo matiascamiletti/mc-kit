@@ -3,7 +3,8 @@ export enum MCMessageChatType {
     IMAGE = 'image',
     VIDEO = 'video',
     AUDIO = 'audio',
-    FILE = 'file'
+    FILE = 'file',
+    EMPTY = 'empty'
 }
 
 export enum MCMessageChatSide {
