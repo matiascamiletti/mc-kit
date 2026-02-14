@@ -16,6 +16,7 @@ export * from './lib/messages/text/text.component';
 export * from './lib/messages/image/image.component';
 export * from './lib/messages/video/video.component';
 export * from './lib/messages/audio/audio.component';
+export * from './lib/messages/file/file.component';
 
 /**
  * Components

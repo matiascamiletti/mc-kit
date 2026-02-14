@@ -58,6 +58,13 @@ export class MCConversationComponent implements OnInit {
         createdAt: new Date().toISOString(),
         side: MCMessageChatSide.LEFT,
       } as any,
+      {
+        id: '5',
+        type: MCMessageChatType.FILE,
+        content: 'https://www.w3schools.com/html/mov_bbb.mp4',
+        createdAt: new Date().toISOString(),
+        side: MCMessageChatSide.LEFT,
+      } as any,
     ];
 
     // Better yet, let's update the entity to have a sender or owner since checking the file `message.ts` it was very basic. 
