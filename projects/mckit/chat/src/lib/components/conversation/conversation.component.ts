@@ -8,10 +8,11 @@ import { MCMessageChat, MCMessageChatSide, MCMessageChatType } from '../../entit
 import { MCChatService } from '../../services/chat.service';
 import { MCBaseMessageComponent } from '../../messages/base-message.component';
 import { MCConversation } from '../../entities/conversation';
+import { MCWritingComponent } from '../writing/writing.component';
 
 @Component({
   selector: 'mc-conversation',
-  imports: [CommonModule, FormsModule, AvatarModule, ButtonModule, InputTextModule],
+  imports: [CommonModule, FormsModule, AvatarModule, ButtonModule, InputTextModule, MCWritingComponent],
   templateUrl: './conversation.component.html',
   styleUrl: './conversation.component.css'
 })

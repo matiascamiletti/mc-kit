@@ -1,5 +1,6 @@
-import { Component, OnInit, signal } from '@angular/core';
-import { MCConversation, MCConversationComponent, MCMessageChatSide, MCMessageChatType } from '../../../../../mckit/chat/src/public-api';
+import { Component, inject, OnInit, signal } from '@angular/core';
+import { MCChatService, MCConversation, MCConversationComponent, MCMessageChatSide, MCMessageChatType } from '../../../../../mckit/chat/src/public-api';
+import { MCEventChat, MCEventChatType } from '../../../../../mckit/chat/src/lib/entities/event';
 
 @Component({
   selector: 'app-conversation-page',
@@ -8,6 +9,8 @@ import { MCConversation, MCConversationComponent, MCMessageChatSide, MCMessageCh
   styleUrl: './conversation-page.component.scss'
 })
 export class ConversationPage implements OnInit {
+
+  chatService = inject(MCChatService);
 
   conversation = signal<MCConversation | undefined>(undefined);
 
@@ -72,5 +75,28 @@ export class ConversationPage implements OnInit {
         } as any,
       ]
     });
+    this.loadChat();
+  }
+
+  loadChat() {
+    this.chatService.onEvent()
+      .subscribe(this.onChatEvent.bind(this));
+  }
+
+  onChatEvent(event: MCEventChat) {
+    if (event.type === MCEventChatType.SEND_MESSAGE) {
+
+      let conversation = this.conversation()!;
+
+      conversation.messages.push({
+        id: Date.now().toString(),
+        type: MCMessageChatType.TEXT,
+        content: event.data,
+        createdAt: new Date().toISOString(),
+        side: MCMessageChatSide.RIGHT,
+      });
+
+      this.conversation.set(conversation);
+    }
   }
 }

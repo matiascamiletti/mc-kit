@@ -25,13 +25,6 @@
     </div>
 
     <!-- Footer / Input Area -->
-    <div class="p-4 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
-        <div class="flex gap-2">
-            <input pInputText type="text" class="flex-1 w-full" placeholder="Type a message..." [(ngModel)]="newMessage"
-                (keydown.enter)="sendMessage()" />
+    <mc-writing-conversation />
 
-            <p-button icon="pi pi-send" (onClick)="sendMessage()" styleClass="p-button-rounded p-button-primary">
-            </p-button>
-        </div>
-    </div>
 </div>
