@@ -4,20 +4,18 @@ import { MCSubtitle } from '../../../mckit/core/src/public-api';
 import { MCImage } from '../../../mckit/core/src/lib/components/image/image.component';
 import { MCMenu } from '../../../mckit/core/src/lib/components/menu/menu.component';
 import { ItemCustomMenuComponent } from './components/item-custom-menu/item-custom-menu.component';
-import { MCSubtitleInTopbar } from '../../../mckit/layout/src/lib/components/subtitle-in-topbar/subtitle-in-topbar.component';
 import { MCLoaderService, MCSpinnerFullScreenComponent } from '../../../mckit/loader/src/public-api';
 import { MCFooterService, MCSidebarService, MCTopbarService } from '../../../mckit/layout-core/src/public-api';
 import { MCAvatar } from '../../../mckit/core/src/lib/components/avatar/avatar.component';
-import { DarkModeButton, DarkModeButtonComponent } from './components/dark-mode-button/dark-mode-button.component';
+import { DarkModeButton } from './components/dark-mode-button/dark-mode-button.component';
 import { MCIconToggleSidebarButton } from '@mckit/layout';
 import { MCTenantMenu } from '../../../mckit/tenant/src/lib/components/tenant-menu/tenant-menu.component';
 import { MCTenant, MCTenantService } from '../../../mckit/tenant/src/public-api';
 import { MockTenantService } from './services/mock_tenant.service';
-import { MCConversationComponent } from '../../../mckit/chat/src/public-api';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, MCSpinnerFullScreenComponent, MCConversationComponent],
+  imports: [RouterOutlet, MCSpinnerFullScreenComponent],
   providers: [
     { provide: MCTenantService, useClass: MockTenantService }
   ],

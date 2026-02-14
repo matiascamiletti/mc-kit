@@ -17,7 +17,7 @@
     <!-- Messages Body -->
     <div class="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50 dark:bg-gray-900">
         <!-- Message Item -->
-        @for (msg of messages; track $index) {
+        @for (msg of conversation().messages; track $index) {
         <div class="mb-3">
             <ng-container *ngComponentOutlet="getComponent(msg.type); inputs: { message: msg }"></ng-container>
         </div>

@@ -11,6 +11,7 @@ import { RegisterSplitPageComponent } from './pages/register-split-page/register
 import { OdataPageComponent } from './pages/odata-page/odata-page.component';
 import { FormPageComponent } from './pages/form-page/form-page.component';
 import { PostEditPage } from './pages/post-edit-page/post-edit-page.component';
+import { ConversationPage } from './pages/conversation-page/conversation-page.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'basic', pathMatch: 'full' },
@@ -79,6 +80,11 @@ export const routes: Routes = [
         path: 'post',
         component: PostEditPage,
         title: 'Post Edit',
+      },
+      {
+        path: 'conversation',
+        component: ConversationPage,
+        title: 'Conversation',
       },
     ],
   },
