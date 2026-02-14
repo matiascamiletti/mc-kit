@@ -1,0 +1,18 @@
+<div class="flex w-full"
+    [ngClass]="{'justify-end': message().side !== 'left', 'justify-start': message().side === 'left'}">
+
+    <div class="max-w-[70%] flex flex-col"
+        [ngClass]="{'items-end': message().side !== 'left', 'items-start': message().side === 'left'}">
+
+        <div class="rounded-lg shadow-sm overflow-hidden" [ngClass]="{
+                        'rounded-br-none': message().side !== 'left',
+                        'rounded-bl-none': message().side === 'left'
+                     }">
+            <p-image [src]="message().content" [alt]="'Image'" [preview]="true" width="250">
+            </p-image>
+        </div>
+        <span class="text-xs text-gray-400 mt-1 px-1">
+            {{ message().createdAt | date:'shortTime' }}
+        </span>
+    </div>
+</div>
