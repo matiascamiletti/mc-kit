@@ -7,6 +7,8 @@ import { MCMessageVideoComponent } from '../messages/video/video.component';
 import { MCMessageAudioComponent } from '../messages/audio/audio.component';
 import { MCMessageFileComponent } from '../messages/file/file.component';
 import { MCChatEmptyComponent } from '../../public-api';
+import { Subject } from 'rxjs';
+import { MCEventChat } from '../entities/event';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +16,8 @@ import { MCChatEmptyComponent } from '../../public-api';
 export class MCChatService {
 
   private registry = new Map<string, Type<MCBaseMessageComponent>>();
+
+  private eventSubject = new Subject<MCEventChat>();
 
   constructor() {
     this.register(MCMessageChatType.TEXT, MCMessageTextComponent);
@@ -30,5 +34,13 @@ export class MCChatService {
 
   getComponent(type: string): Type<MCBaseMessageComponent> | undefined {
     return this.registry.get(type);
+  }
+
+  sendEvent(event: MCEventChat) {
+    this.eventSubject.next(event);
+  }
+
+  onEvent() {
+    return this.eventSubject.asObservable();
   }
 }
