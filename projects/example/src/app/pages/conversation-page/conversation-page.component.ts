@@ -1,10 +1,10 @@
 import { Component, inject, OnInit, signal } from '@angular/core';
-import { MCChatService, MCConversation, MCConversationComponent, MCMessageChatSide, MCMessageChatType } from '../../../../../mckit/chat/src/public-api';
+import { MCChatService, MCConversation, MCConversationComponent, MCHistoryConversationComponent, MCMessageChatSide, MCMessageChatType } from '../../../../../mckit/chat/src/public-api';
 import { MCEventChat, MCEventChatType } from '../../../../../mckit/chat/src/lib/entities/event';
 
 @Component({
   selector: 'app-conversation-page',
-  imports: [MCConversationComponent],
+  imports: [MCConversationComponent, MCHistoryConversationComponent],
   templateUrl: './conversation-page.component.html',
   styleUrl: './conversation-page.component.scss'
 })
@@ -14,7 +14,10 @@ export class ConversationPage implements OnInit {
 
   conversation = signal<MCConversation | undefined>(undefined);
 
+  conversations = signal<MCConversation[]>([]);
+
   ngOnInit(): void {
+    this.loadConversations();
     this.conversation.set({
       id: '1',
       user: {
@@ -105,5 +108,62 @@ export class ConversationPage implements OnInit {
 
       this.conversation.set(conversation);
     }
+  }
+
+  loadConversations() {
+    this.conversations.set([
+      {
+        id: '1',
+        title: 'Conversation 1',
+        messages: [
+          {
+            id: '1',
+            type: MCMessageChatType.TEXT,
+            content: 'Hello',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.LEFT,
+          },
+          {
+            id: '2',
+            type: MCMessageChatType.TEXT,
+            content: 'Hi',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.RIGHT,
+          },
+        ],
+        user: {
+          id: '1',
+          firstname: 'John',
+          lastname: 'Doe',
+          online: true,
+        },
+      },
+      {
+        id: '2',
+        title: 'Conversation 2',
+        messages: [
+          {
+            id: '1',
+            type: MCMessageChatType.TEXT,
+            content: 'Hello',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.LEFT,
+          },
+          {
+            id: '2',
+            type: MCMessageChatType.TEXT,
+            content: 'Hi',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.RIGHT,
+          },
+        ],
+        user: {
+          id: '2',
+          firstname: 'Jane',
+          lastname: 'Doe',
+          online: false,
+        },
+      },
+    ]);
   }
 }

@@ -28,6 +28,7 @@ export * from './lib/messages/thinking/thinking.component';
 export * from './lib/components/conversation/conversation.component';
 export * from './lib/components/user-header/user-header.component';
 export * from './lib/components/writing/writing.component';
+export * from './lib/components/history-conversation/history-conversation.component';
 
 /**
  * Services
