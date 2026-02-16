@@ -19,6 +19,7 @@ on:
       - 'projects/mckit/form/package.json'
       - 'projects/mckit/tenant/package.json'
       - 'projects/mckit/chat/package.json'
+      - 'projects/mckit/socket/package.json'
 
 jobs:
   filter:
@@ -38,6 +39,7 @@ jobs:
       form: ${{ steps.filter.outputs.form }}
       tenant: ${{ steps.filter.outputs.tenant }}
       chat: ${{ steps.filter.outputs.chat }}
+      socket: ${{ steps.filter.outputs.socket }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -76,13 +78,15 @@ jobs:
               - 'projects/mckit/tenant/package.json'
             chat:
               - 'projects/mckit/chat/package.json'
+            socket:
+              - 'projects/mckit/socket/package.json'
 
   build-and-publish:
     needs: filter
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        project: [core, auth, cron, filter, layout, layout-core, layout-sakai, layout-fuse, loader, table, odata, form, tenant, chat]
+        project: [core, auth, cron, filter, layout, layout-core, layout-sakai, layout-fuse, loader, table, odata, form, tenant, chat, socket]
     steps:
       - name: Checkout repository
         if: ${{ needs.filter.outputs[matrix.project] == 'true' }}

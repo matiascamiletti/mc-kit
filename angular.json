@@ -628,6 +628,36 @@
           }
         }
       }
+    },
+    "@mckit/socket": {
+      "projectType": "library",
+      "root": "projects/mckit/socket",
+      "sourceRoot": "projects/mckit/socket/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/mckit/socket/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/mckit/socket/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "projects/mckit/socket/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {

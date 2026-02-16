@@ -46,6 +46,9 @@
       "@mckit/quill-field": [
         "./dist/mckit/quill-field"
       ],
+      "@mckit/socket": [
+        "./dist/mckit/socket"
+      ],
       "@mckit/table": [
         "./dist/mckit/table"
       ],
@@ -85,6 +88,12 @@
     },
     {
       "path": "./projects/mckit/chat/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/mckit/socket/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/mckit/socket/tsconfig.spec.json"
     }
   ]
 }
