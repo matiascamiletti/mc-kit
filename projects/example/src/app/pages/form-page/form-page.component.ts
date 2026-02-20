@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, signal, viewChild } from '@angular/core';
-import { ArrayField, ArrayIftaTextField, ConditionalField, DividerField, IftaDateField, IftaSelectField, IftaSelectObsField, MCConfigForm, MCEventForm, MCField, MCForm, RowField } from '../../../../../mckit/form/src/public-api';
+import { ArrayField, ArrayIftaTextField, ConditionalField, DividerField, IftaDateField, IftaSelectField, IftaSelectObsField, MCConfigForm, MCEventForm, MCField, MCForm, RowField, IftaPasswordField } from '../../../../../mckit/form/src/public-api';
 import { IftaTextField } from '../../../../../mckit/form/src/lib/fields/ifta-text-field/ifta-text-field.component';
 import { SubmitButtonField } from '../../../../../mckit/form/src/lib/fields/submit-button-field/submit-button-field.component';
 import { Validators } from '@angular/forms';
@@ -52,6 +52,7 @@ export class FormPageComponent implements OnInit {
     config.fields = [
       IftaTextField.init('firstname', 'Firstname', { validators: [Validators.required] }),
       IftaTextField.init('lastname', 'Lastname'),
+      IftaPasswordField.init('password', 'Password'),
       MCField.initCustom('open-modal', OpenModalFieldComponent, {}),
       RowField.init([
         IftaTextField.init('email', 'Email'),
