@@ -16,6 +16,10 @@ import Aura from '@primeuix/themes/aura';
 import { authInterceptor, MC_AUTH_CONFIG } from '@mckit/auth';
 import { provideMonacoEditor } from 'ngx-monaco-editor-v2';
 
+import { provideSocketIo, SocketIoConfig } from 'ngx-socket-io';
+
+const socketConfig: SocketIoConfig = { url: 'http://localhost:3002', options: { autoConnect: false } };
+
 export const appConfig: ApplicationConfig = {
   providers: [
     provideZoneChangeDetection({ eventCoalescing: true }),
@@ -40,6 +44,7 @@ export const appConfig: ApplicationConfig = {
       },
     }),
 
-    provideMonacoEditor()
+    provideMonacoEditor(),
+    provideSocketIo(socketConfig)
   ],
 };

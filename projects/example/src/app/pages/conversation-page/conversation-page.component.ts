@@ -1,10 +1,13 @@
-import { Component, inject, OnInit, signal } from '@angular/core';
+import { ApplicationRef, Component, inject, Injectable, OnInit, PLATFORM_ID, signal } from '@angular/core';
 import { MCChatService, MCConversation, MCConversationComponent, MCHistoryConversationComponent, MCMessageChatSide, MCMessageChatType } from '../../../../../mckit/chat/src/public-api';
 import { MCEventChat, MCEventChatType } from '../../../../../mckit/chat/src/lib/entities/event';
+import { Socket, SocketIoModule } from 'ngx-socket-io';
+import { map } from 'rxjs';
+import { CommonModule, isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-conversation-page',
-  imports: [MCConversationComponent, MCHistoryConversationComponent],
+  imports: [CommonModule, MCConversationComponent, MCHistoryConversationComponent],
   templateUrl: './conversation-page.component.html',
   styleUrl: './conversation-page.component.scss'
 })
@@ -12,12 +15,16 @@ export class ConversationPage implements OnInit {
 
   chatService = inject(MCChatService);
 
+  platformId = inject(PLATFORM_ID);
+  socketService = inject(Socket);
+
   conversation = signal<MCConversation | undefined>(undefined);
 
   conversations = signal<MCConversation[]>([]);
 
   ngOnInit(): void {
     this.loadConversations();
+    this.loadSocket();
     this.conversation.set({
       id: '1',
       user: {
@@ -165,5 +172,26 @@ export class ConversationPage implements OnInit {
         },
       },
     ]);
+  }
+
+  loadSocket() {
+    // Verify if platform is browser
+    if (!isPlatformBrowser(this.platformId)) {
+      return;
+    }
+
+    // Set authentication token
+    const token = localStorage.getItem('access_token') ?? 'test_token'; // Or however you retrieve it
+    if (token) {
+      this.socketService.ioSocket.auth = { token };
+      // O también puedes enviarlo por query:
+      // this.socketService.ioSocket.io.opts.query = { token };
+    }
+
+    this.socketService.connect();
+
+    this.socketService.fromEvent('message').pipe(map((data: any) => data.msg)).subscribe((data) => {
+      console.log(data);
+    });
   }
 }
