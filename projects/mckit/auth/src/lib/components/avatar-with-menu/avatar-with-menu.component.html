@@ -1,9 +1,11 @@
-<p-menu #menu [model]="items()" [popup]="true" />
+<p-menu #menu [model]="items()" [popup]="true" [appendTo]="'body'" />
 @if (user() != undefined) {
-  @if (user()!.photo != undefined && user()!.photo != '') {
-    <p-avatar [image]="user()!.photo" styleClass="topbar-avatar" [shape]="'circle'" [size]="'large'" (click)="menu.toggle($event)" />
-  } @else {
-    <p-avatar label="{{ user()! | initialName }}" styleClass="topbar-avatar" [shape]="'circle'"  [size]="'large'" (click)="menu.toggle($event)" />
-  }
+@if (user()!.photo != undefined && user()!.photo != '') {
+<p-avatar [image]="user()!.photo" styleClass="topbar-avatar" [shape]="'circle'" [size]="'large'"
+  (click)="menu.toggle($event)" />
+} @else {
+<p-avatar label="{{ user()! | initialName }}" styleClass="topbar-avatar" [shape]="'circle'" [size]="'large'"
+  (click)="menu.toggle($event)" />
+}
 
 }
