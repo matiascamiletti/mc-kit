@@ -1,17 +1,27 @@
-<div id="mc-fuse-layout" class="layout-wrapper md:flex md:justify-between">
+<div id="mc-fuse-layout" class="layout-wrapper flex h-screen w-full overflow-hidden bg-white dark:bg-gray-900">
   <!-- Sidebar -->
-  <div class="layout-sidebar fixed w-full md:relative md:border-r-1 border-gray-800 min-h-screen"
+  <div
+    class="layout-sidebar fixed inset-y-0 left-0 z-30 w-full h-full md:relative md:border-r-1 border-gray-800 flex-shrink-0 bg-white dark:bg-gray-900 overflow-y-auto"
     [ngClass]="{'open': isOpen()}">
-    <div class="layout-sidebar-close-button absolute right-1 top-1 md:hidden">
+    <div class="layout-sidebar-close-button absolute right-1 top-1 md:hidden z-10">
       <p-button icon="pi pi-times" [rounded]="true" [text]="true" (onClick)="closeSidebar()" />
     </div>
-    <mc-print-service [id]="sidebarId"></mc-print-service>
+    <div class="w-full min-h-full">
+      <mc-print-service [id]="sidebarId"></mc-print-service>
+    </div>
   </div>
   <!-- END Sidebar -->
 
-  <div class="layout-main-container w-full min-h-screen" [ngClass]="{'without-sidebar': !isOpen()}">
+  @if(isOpen()) {
+  <div class="md:hidden fixed inset-0 z-20 bg-black/50 transition-opacity" (click)="closeSidebar()"></div>
+  }
+
+  <div
+    class="layout-main-container relative flex-1 flex flex-col h-full overflow-y-auto w-full transition-all duration-300"
+    [ngClass]="{'without-sidebar': !isOpen()}">
     <!-- Topbar -->
-    <div class="layout-topbar h-16 w-full flex justify-between items-center border-b-1 border-gray-800 px-4">
+    <div
+      class="layout-topbar h-16 w-full flex-shrink-0 flex justify-between items-center border-b-1 border-gray-800 px-4 sticky top-0 z-10 bg-white dark:bg-gray-900">
       <div class="p-toolbar-group-start h-16 flex items-center"><mc-print-service [id]="topbarLeftId"
           [isFlexRow]="true"></mc-print-service></div>
       <div class="p-toolbar-group-end h-16 flex items-center layout-topbar-menu "><mc-print-service [id]="topbarRightId"
@@ -19,7 +29,7 @@
     </div>
     <!-- END Topbar -->
 
-    <div class="layout-main w-full min-h-20 relative" [ngClass]="{'open': isOpen()}">
+    <div class="layout-main w-full flex-1 relative flex flex-col" [ngClass]="{'open': isOpen()}">
       @if(isRouteLoading()) {
       <div
         class="route-loading-overlay absolute inset-0 z-50 flex items-center justify-center bg-white/50 dark:bg-gray-900/50 backdrop-blur-sm">
@@ -30,7 +40,7 @@
     </div>
 
     <!-- Footer -->
-    <div class="layout-footer w-full justify-center">
+    <div class="layout-footer w-full flex flex-shrink-0 justify-center mt-auto">
       <mc-print-service [id]="footerId"></mc-print-service>
     </div>
     <!-- END Footer -->
