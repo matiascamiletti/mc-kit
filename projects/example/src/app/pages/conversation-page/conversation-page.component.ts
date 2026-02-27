@@ -114,6 +114,8 @@ export class ConversationPage implements OnInit {
       });
 
       this.conversation.set(conversation);
+
+      this.socketService.emit('bot_message', { msg: 'test message 22222' });
     }
   }
 
