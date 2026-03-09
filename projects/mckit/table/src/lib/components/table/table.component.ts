@@ -1,7 +1,7 @@
 import { CommonModule } from '@angular/common';
 import { Component, computed, contentChildren, input, output, TemplateRef } from '@angular/core';
 import { MCColumn, MCListResponse } from '@mckit/core';
-import { TableModule, TablePageEvent } from 'primeng/table';
+import { TableModule, TablePageEvent, TableRowSelectEvent, TableRowUnSelectEvent, TableSelectAllChangeEvent } from 'primeng/table';
 import { MCThTemplateDirective } from '../../directives/th-template.directive';
 import { MCTdTemplateDirective } from '../../directives/td-template.directive';
 
@@ -29,6 +29,10 @@ export class MCTable {
   sortField = input<string>();
   sortOrder = input<number>(-1);
 
+  selectionMode = input<'single' | 'multiple' | undefined | null>();
+  onRowSelect = output<TableRowSelectEvent<any>>();
+  onRowUnselect = output<TableRowUnSelectEvent<any>>();
+
   onSortChange(event: any) {
     this.onSort.emit(event);
   }
@@ -53,5 +57,13 @@ export class MCTable {
 
   getTdTemplate(field: string): TemplateRef<any> | null {
     return this.tdTemplates().find(template => template.getFieldName() === field)?.template ?? null;
+  }
+
+  onRowSelectChange(event: TableRowSelectEvent<any>) {
+    this.onRowSelect.emit(event);
+  }
+
+  onRowUnselectChange(event: TableRowUnSelectEvent<any>) {
+    this.onRowUnselect.emit(event);
   }
 }
