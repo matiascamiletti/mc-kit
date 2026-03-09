@@ -1,6 +1,6 @@
 {
   "name": "@mckit/odata",
-  "version": "20.0.2",
+  "version": "20.0.3",
   "peerDependencies": {
     "@angular/common": "^20.0.0",
     "@angular/core": "^20.0.0",
@@ -8,7 +8,7 @@
     "@mckit/core": "^20.0.1",
     "@mckit/filter": "^20.0.1",
     "@mckit/layout-core": "^20.0.1",
-    "@mckit/table": "^20.0.1",
+    "@mckit/table": "^20.0.3",
     "@mckit/loader": "^20.0.1"
   },
   "dependencies": {

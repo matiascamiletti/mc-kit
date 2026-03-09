@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { Component, contentChild, contentChildren, inject, input, OnDestroy, OnInit, signal, viewChild } from '@angular/core';
+import { Component, contentChild, contentChildren, inject, input, OnDestroy, OnInit, output, signal, viewChild } from '@angular/core';
 import { MCApiRestHttpService, MCColumn, MCListResponse } from '@mckit/core';
 import { MCConfigFilter, MCFilterButton, MCFilterOdataConverterService, MCResultFilter } from '@mckit/filter';
 import { MCPageHeadingComponent, MCSearchField } from '@mckit/layout-core';
@@ -8,7 +8,7 @@ import { ConfirmationService, MenuItem, MessageService, SortMeta } from 'primeng
 import { catchError, Observable, Subscription, tap } from 'rxjs';
 import { MCOdata } from '../../entities/mc-odata';
 import { ToastModule } from 'primeng/toast';
-import { TablePageEvent } from 'primeng/table';
+import { TablePageEvent, TableRowSelectEvent, TableRowUnSelectEvent } from 'primeng/table';
 import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { MCLeftHeaderTemplateDirective } from '../../directives/left-header-template.directive';
 import { MCRightHeaderTemplateDirective } from '../../directives/right-header-template.directive';
@@ -70,6 +70,10 @@ export class MCOdataPage implements OnInit, OnDestroy {
   topContentTemplate = contentChild(MCTopContentTemplateDirective);
 
   isShowMoreOptions = signal<boolean>(false);
+
+  selectionMode = input<'single' | 'multiple' | undefined | null>();
+  onRowSelect = output<TableRowSelectEvent<any>>();
+  onRowUnselect = output<TableRowUnSelectEvent<any>>();
 
   ngOnInit(): void {
     this.initialSort();
@@ -189,5 +193,13 @@ export class MCOdataPage implements OnInit, OnDestroy {
 
   toggleMoreOptions() {
     this.isShowMoreOptions.set(!this.isShowMoreOptions());
+  }
+
+  onRowSelectChange(event: TableRowSelectEvent<any>) {
+    this.onRowSelect.emit(event);
+  }
+
+  onRowUnselectChange(event: TableRowUnSelectEvent<any>) {
+    this.onRowUnselect.emit(event);
   }
 }

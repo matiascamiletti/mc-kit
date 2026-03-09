@@ -41,21 +41,26 @@
     }
 
     <mc-table [columns]="selectedColumns()" [response]="items()" [paginator]="hasPagination()" (onPage)="onPage($event)"
-      (onSort)="onSort($event)" [sortField]="sortField()" [sortOrder]="sortOrder()">
+      (onSort)="onSort($event)" [sortField]="sortField()" [sortOrder]="sortOrder()" [selectionMode]="selectionMode()"
+      (onRowSelect)="onRowSelectChange($event)" (onRowUnselect)="onRowUnselectChange($event)">
 
-      <ng-container *ngFor="let template of thTemplates()">
+      @for (template of thTemplates(); track template) {
+      <ng-container>
         <ng-template mcThTemplate="{{template.getFieldName()}}" let-row let-rowIndex>
           <ng-container [ngTemplateOutlet]="template.template"
             [ngTemplateOutletContext]="{ $implicit: row, row: row, rowIndex: rowIndex }"></ng-container>
         </ng-template>
       </ng-container>
+      }
 
-      <ng-container *ngFor="let template of tdTemplates()">
+      @for (template of tdTemplates(); track template) {
+      <ng-container>
         <ng-template mcTdTemplate="{{template.getFieldName()}}" let-row let-rowIndex>
           <ng-container [ngTemplateOutlet]="template.template"
             [ngTemplateOutletContext]="{ $implicit: row, row: row, rowIndex: rowIndex }"></ng-container>
         </ng-template>
       </ng-container>
+      }
 
     </mc-table>
   </div>
