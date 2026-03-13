@@ -4,7 +4,7 @@ import { ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 import { ColorPickerModule } from 'primeng/colorpicker';
 import { MCField } from '../../entities/mc-field';
 import { MCFieldComponent } from '../mc-field.component';
-import { MCIftaField } from '@mckit/form';
+import { MCIftaField } from '../../entities/mc-ifta-field';
 
 @Component({
   selector: 'mc-color-field',
