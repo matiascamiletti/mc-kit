@@ -1,0 +1,12 @@
+<div class="flex flex-col gap-1">
+    <div class="flex items-center gap-2">
+        <p-checkbox [formControl]="control()!" [binary]="true" inputId="{{field().key}}"></p-checkbox>
+        @if(field().config.label) {
+        <label for="{{field().key}}"
+            class="font-medium text-slate-700 dark:text-slate-300 cursor-pointer">{{field().config.label}}</label>
+        }
+    </div>
+    @if(field().config.description) {
+    <p class="text-xs text-slate-500 dark:text-slate-400 ml-[26px] m-0">{{field().config.description}}</p>
+    }
+</div>
