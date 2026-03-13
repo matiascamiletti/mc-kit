@@ -1,9 +1,9 @@
 <div class="field">
-    <label for="{{field().key}}">{{field().config.label}}</label>
+    <label for="{{field().key}}" class="font-medium">{{field().config.label}}</label>
     <div
         class="flex items-center gap-3 bg-slate-50 dark:bg-slate-800/50 p-2.5 rounded-lg border border-slate-200 dark:border-slate-700 w-max shadow-sm">
         <p-colorPicker id="{{field().key}}" class="w-full" [formControl]="control()!" appendTo="body"></p-colorPicker>
         <span class="text-sm font-mono text-slate-500 dark:text-slate-400 uppercase tracking-wider">{{control()?.value
-            || 'Not selected'}}</span>
+            || 'Empty'}}</span>
     </div>
 </div>
