@@ -15,6 +15,7 @@ export * from './lib/entities/mc-message';
  */
 export * from './lib/services/mc-component.service';
 export * from './lib/services/api-rest-http.service';
+export * from './lib/services/api-rest-parent-http.service';
 
 /** Components */
 export * from './lib/components/mc-core-component';

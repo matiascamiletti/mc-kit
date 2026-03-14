@@ -1,6 +1,6 @@
 import { MCApiRestHttpService } from './api-rest-http.service';
 
-export abstract class MCApiRestSubHttpService<T extends { id?: any }> extends MCApiRestHttpService<T> {
+export abstract class MCApiRestParentHttpService<T extends { id?: any }> extends MCApiRestHttpService<T> {
 
     /**
      * Assign parent model to use in the service (e.g. 'projects')
@@ -11,6 +11,10 @@ export abstract class MCApiRestSubHttpService<T extends { id?: any }> extends MC
      * Assign parent id to use in the service
      */
     parentId: string = '';
+
+    setParentId(parentId: string): void {
+        this.parentId = parentId;
+    }
 
     override get endpoint(): string {
         return `${this.baseUrl}${this.parentModel}/${this.parentId}/${this.pathModel}`;
