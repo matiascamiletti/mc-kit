@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { merge, Observable } from 'rxjs';
 import { MCListResponse } from '../entities/mc-list-response';
 
 export abstract class MCApiRestHttpService<T extends { id?: any }> {
@@ -9,30 +9,38 @@ export abstract class MCApiRestHttpService<T extends { id?: any }> {
   /**
    * Assign path model to use in the service
    */
-  pathModel: string = '';
+  abstract pathModel: string;
   /**
    * Assign base url to use in the service
    */
-  baseUrl: string = '';
+  abstract baseUrl: string;
+
+  get endpoint(): string {
+    return `${this.baseUrl}${this.pathModel}`;
+  }
 
   create(item: T): Observable<T> {
-    return this.http.post<T>(`${this.baseUrl}${this.pathModel}`, item);
+    return this.http.post<T>(this.endpoint, item);
+  }
+
+  createInBulk(items: T[]): Observable<T> {
+    return merge(...items.map(item => this.create(item)));
   }
 
   update(item: T): Observable<T> {
-    return this.http.put<T>(`${this.baseUrl}${this.pathModel}/${item.id}`, item);
+    return this.http.put<T>(`${this.endpoint}/${item.id}`, item);
   }
 
   list(queryParams?: string): Observable<MCListResponse<T>> {
     const queries = queryParams ? `?${queryParams}` : '';
-    return this.http.get<MCListResponse<T>>(`${this.baseUrl}${this.pathModel}${queries}`);
+    return this.http.get<MCListResponse<T>>(`${this.endpoint}${queries}`);
   }
 
   get(id: any): Observable<T> {
-    return this.http.get<T>(`${this.baseUrl}${this.pathModel}/${id}`);
+    return this.http.get<T>(`${this.endpoint}/${id}`);
   }
 
   delete(id: any): Observable<void> {
-    return this.http.delete<void>(`${this.baseUrl}${this.pathModel}/${id}`);
+    return this.http.delete<void>(`${this.endpoint}/${id}`);
   }
 }
