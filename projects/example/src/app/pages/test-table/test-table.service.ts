@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
 import { MCApiRestHttpService } from '@mckit/core';
-import { Observable, of, delay } from 'rxjs';
+import { Observable, of, delay, merge } from 'rxjs';
 import { MOCK_PRODUCTS, MOCK_CATEGORIES } from './mock-data';
 
 export interface Product {
@@ -19,10 +19,9 @@ export interface Product {
 @Injectable({
   providedIn: 'root'
 })
-export class TestTableService implements MCApiRestHttpService<Product> {
+export class TestTableService extends MCApiRestHttpService<Product> {
   private mockData: Product[] = MOCK_PRODUCTS;
 
-  http: HttpClient = inject(HttpClient);
   baseUrl = 'http://localhost:3000';
   pathModel = 'products';
 
@@ -103,13 +102,13 @@ export class TestTableService implements MCApiRestHttpService<Product> {
       const bValue = b[field as keyof Product];
 
       if (typeof aValue === 'string' && typeof bValue === 'string') {
-        return direction === 'desc' 
+        return direction === 'desc'
           ? bValue.localeCompare(aValue)
           : aValue.localeCompare(bValue);
       }
 
       if (typeof aValue === 'number' && typeof bValue === 'number') {
-        return direction === 'desc' 
+        return direction === 'desc'
           ? bValue - aValue
           : aValue - bValue;
       }
@@ -124,12 +123,12 @@ export class TestTableService implements MCApiRestHttpService<Product> {
     });
   }
 
-  list(odata?: string): Observable<{ data: Product[], total: number }> {
+  override list(odata?: string): Observable<{ data: Product[], total: number }> {
     const result = this.applyODataFilters(this.mockData, odata || '');
     return of(result).pipe(delay(1000));
   }
 
-  create(item: Product): Observable<Product> {
+  override create(item: Product): Observable<Product> {
     const newProduct = {
       ...item,
       id: this.mockData.length + 1,
@@ -140,7 +139,7 @@ export class TestTableService implements MCApiRestHttpService<Product> {
     return of(newProduct).pipe(delay(500));
   }
 
-  update(item: Product): Observable<Product> {
+  override update(item: Product): Observable<Product> {
     const index = this.mockData.findIndex(p => p.id === item.id);
     if (index !== -1) {
       this.mockData[index] = {
@@ -151,7 +150,7 @@ export class TestTableService implements MCApiRestHttpService<Product> {
     return of(this.mockData[index]).pipe(delay(500));
   }
 
-  get(id: any): Observable<Product> {
+  override get(id: any): Observable<Product> {
     const product = this.mockData.find(p => p.id === id);
     if (!product) {
       throw new Error('Product not found');
@@ -159,7 +158,7 @@ export class TestTableService implements MCApiRestHttpService<Product> {
     return of(product).pipe(delay(500));
   }
 
-  delete(id: any): Observable<void> {
+  override delete(id: any): Observable<void> {
     const index = this.mockData.findIndex(p => p.id === id);
     if (index !== -1) {
       this.mockData.splice(index, 1);
@@ -171,7 +170,7 @@ export class TestTableService implements MCApiRestHttpService<Product> {
     // Filter categories based on the search query
     const filteredCategories = MOCK_CATEGORIES
       .filter(category => category.label.toLowerCase().includes(query.toLowerCase()));
-    
+
     // Simulate delay of a real API
     return of(filteredCategories).pipe(delay(800));
   }

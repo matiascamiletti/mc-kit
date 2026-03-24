@@ -16,6 +16,7 @@ export class MCTenantService extends MCApiRestHttpService<MCTenant> {
   storage = inject(StorageMap);
 
   override pathModel = 'tenants';
+  override baseUrl = this.config.baseUrl;
 
   current = new BehaviorSubject<MCTenant | undefined>(undefined);
   isInitialized = false;
@@ -24,7 +25,6 @@ export class MCTenantService extends MCApiRestHttpService<MCTenant> {
 
   constructor() {
     super();
-    this.baseUrl = this.config.baseUrl;
     this.initialize();
   }
 
