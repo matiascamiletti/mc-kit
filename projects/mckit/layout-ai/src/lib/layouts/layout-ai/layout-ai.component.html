@@ -1,1 +1,99 @@
-<p>layout-ai works!</p>
+<div class="mc-ai-layout">
+  <!-- Topbar -->
+  <header class="mc-ai-topbar flex items-center justify-between sticky top-0 z-50 px-4 backdrop-blur-sm flex-shrink-0">
+    <div class="flex items-center gap-2">
+      <p-button icon="pi pi-bars" [text]="true" [rounded]="true" severity="secondary" (onClick)="toggleSidebar()" pTooltip="Toggle sidebar" tooltipPosition="bottom" />
+      <mc-print-service [id]="topbarLeftId" [isFlexRow]="true"></mc-print-service>
+    </div>
+    <div class="flex items-center gap-3">
+      <div class="mc-ai-context-badge flex items-center gap-1.5 px-3 py-1 text-xs font-medium rounded-full">
+        <i class="pi pi-map-marker text-[0.625rem]"></i>
+        <span>{{ chatContextLabel() }}</span>
+      </div>
+      <mc-print-service [id]="topbarRightId" [isFlexRow]="true"></mc-print-service>
+    </div>
+  </header>
+
+  <!-- Body -->
+  <div class="flex flex-1 min-h-0 relative">
+    <!-- Sidebar -->
+    <aside class="mc-ai-sidebar flex flex-col overflow-hidden" [class.open]="isOpen()">
+      <div class="flex justify-end p-2 md:hidden">
+        <p-button icon="pi pi-times" [text]="true" [rounded]="true" severity="secondary" (onClick)="closeSidebar()" />
+      </div>
+      <nav class="flex-1 overflow-y-auto py-2">
+        <mc-print-service [id]="sidebarId"></mc-print-service>
+      </nav>
+    </aside>
+
+    <!-- Mobile overlay -->
+    @if (isOpen() && !isDesktop()) {
+      <div class="fixed inset-0 z-35 bg-black/40 backdrop-blur-sm md:hidden" (click)="closeSidebar()"></div>
+    }
+
+    <!-- Main Content -->
+    <main class="flex-1 flex flex-col min-w-0 overflow-y-auto mc-ai-main">
+      <div class="flex-1 p-4 md:p-6 lg:px-8">
+        <router-outlet></router-outlet>
+      </div>
+      <footer class="mc-ai-footer flex items-center justify-center py-3 px-4 flex-shrink-0">
+        <mc-print-service [id]="footerId"></mc-print-service>
+      </footer>
+    </main>
+
+    <!-- Chat Panel -->
+    <aside class="mc-ai-chat flex flex-col flex-shrink-0 overflow-hidden" [class.minimized]="isChatMinimized()">
+      <!-- Chat Header -->
+      <div class="mc-ai-chat-header flex items-center justify-between px-4 py-3 cursor-pointer select-none flex-shrink-0" (click)="toggleChat()">
+        <div class="flex items-center gap-3">
+          <div class="mc-ai-chat-avatar flex items-center justify-center w-9 h-9 rounded-xl text-white text-sm flex-shrink-0">
+            <i class="pi pi-sparkles"></i>
+          </div>
+          <div class="flex flex-col">
+            <span class="text-sm font-semibold">AI Assistant</span>
+            <span class="text-[0.6875rem] text-gray-500 flex items-center gap-1.5">
+              <i class="pi pi-circle-fill text-green-500 text-[0.375rem]"></i>
+              {{ chatContextLabel() }}
+            </span>
+          </div>
+        </div>
+        <p-button [icon]="isChatMinimized() ? 'pi pi-chevron-up' : 'pi pi-chevron-down'" [text]="true" [rounded]="true" severity="secondary" size="small" (onClick)="$event.stopPropagation(); toggleChat()" />
+      </div>
+
+      <!-- Chat Body -->
+      @if (!isChatMinimized()) {
+        <div class="flex flex-col flex-1 min-h-0">
+          <!-- Messages -->
+          <div class="mc-ai-chat-messages flex-1 overflow-y-auto p-4 flex flex-col gap-3.5">
+            @for (msg of messages(); track msg.id) {
+              <div class="flex gap-2 max-w-full" [class.flex-row-reverse]="msg.role === 'user'">
+                @if (msg.role === 'assistant') {
+                  <div class="mc-ai-msg-avatar flex items-start justify-center w-7 h-7 rounded-lg text-white text-[0.625rem] flex-shrink-0 pt-1.5">
+                    <i class="pi pi-sparkles"></i>
+                  </div>
+                }
+                <div class="mc-ai-msg-bubble rounded-xl leading-relaxed" [class.user-bubble]="msg.role === 'user'" [class.assistant-bubble]="msg.role === 'assistant'">
+                  <p class="m-0 text-[0.8125rem] break-words">{{ msg.content }}</p>
+                  @if (msg.context) {
+                    <span class="inline-flex items-center gap-1 mt-1.5 text-[0.625rem] opacity-60">
+                      <i class="pi pi-map-marker text-[0.5rem]"></i>
+                      {{ msg.context }}
+                    </span>
+                  }
+                </div>
+              </div>
+            }
+          </div>
+
+          <!-- Chat Input -->
+          <div class="mc-ai-chat-input-area px-3 py-3 flex-shrink-0">
+            <div class="flex items-center gap-2">
+              <input pInputText type="text" class="flex-1 w-full" placeholder="Ask about {{ chatContextLabel() }}..." [(ngModel)]="chatInput" (keydown)="onChatKeydown($event)" />
+              <p-button icon="pi pi-send" [rounded]="true" (onClick)="sendMessage()" [disabled]="!chatInput.trim()" />
+            </div>
+          </div>
+        </div>
+      }
+    </aside>
+  </div>
+</div>

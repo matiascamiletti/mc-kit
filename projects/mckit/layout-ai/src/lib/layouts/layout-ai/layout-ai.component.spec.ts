@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { LayoutAiComponent } from './layout-ai.component';
+import { MCLayoutAI } from './layout-ai.component';
 
-describe('LayoutAiComponent', () => {
-  let component: LayoutAiComponent;
-  let fixture: ComponentFixture<LayoutAiComponent>;
+describe('MCLayoutAI', () => {
+  let component: MCLayoutAI;
+  let fixture: ComponentFixture<MCLayoutAI>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [LayoutAiComponent]
+      imports: [MCLayoutAI]
     })
-    .compileComponents();
+      .compileComponents();
 
-    fixture = TestBed.createComponent(LayoutAiComponent);
+    fixture = TestBed.createComponent(MCLayoutAI);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

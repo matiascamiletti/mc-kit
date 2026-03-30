@@ -12,6 +12,7 @@ import { OdataPageComponent } from './pages/odata-page/odata-page.component';
 import { FormPageComponent } from './pages/form-page/form-page.component';
 import { PostEditPage } from './pages/post-edit-page/post-edit-page.component';
 import { ConversationPage } from './pages/conversation-page/conversation-page.component';
+import { MCLayoutAI } from '../../../mckit/layout-ai/src/public-api';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'basic', pathMatch: 'full' },
@@ -80,6 +81,32 @@ export const routes: Routes = [
         path: 'post',
         component: PostEditPage,
         title: 'Post Edit',
+      },
+      {
+        path: 'conversation',
+        component: ConversationPage,
+        title: 'Conversation',
+      },
+    ],
+  },
+  {
+    path: 'ai',
+    component: MCLayoutAI,
+    children: [
+      {
+        path: '',
+        component: TestPageComponent,
+        title: 'Test page',
+      },
+      {
+        path: 'table',
+        component: TestTableComponent,
+        title: 'Test Table',
+      },
+      {
+        path: 'form',
+        component: FormPageComponent,
+        title: 'Form',
       },
       {
         path: 'conversation',
