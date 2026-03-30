@@ -25,6 +25,9 @@
       "@mckit/layout": [
         "./dist/mckit/layout"
       ],
+      "@mckit/layout-ai": [
+        "./dist/mckit/layout-ai"
+      ],
       "@mckit/layout-core": [
         "./dist/mckit/layout-core"
       ],
@@ -94,6 +97,12 @@
     },
     {
       "path": "./projects/mckit/socket/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/mckit/layout-ai/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/mckit/layout-ai/tsconfig.spec.json"
     }
   ]
 }

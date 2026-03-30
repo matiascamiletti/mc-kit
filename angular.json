@@ -658,6 +658,36 @@
           }
         }
       }
+    },
+    "@mckit/layout-ai": {
+      "projectType": "library",
+      "root": "projects/mckit/layout-ai",
+      "sourceRoot": "projects/mckit/layout-ai/src",
+      "prefix": "lib",
+      "architect": {
+        "build": {
+          "builder": "@angular/build:ng-packagr",
+          "configurations": {
+            "production": {
+              "tsConfig": "projects/mckit/layout-ai/tsconfig.lib.prod.json"
+            },
+            "development": {
+              "tsConfig": "projects/mckit/layout-ai/tsconfig.lib.json"
+            }
+          },
+          "defaultConfiguration": "production"
+        },
+        "test": {
+          "builder": "@angular/build:karma",
+          "options": {
+            "tsConfig": "projects/mckit/layout-ai/tsconfig.spec.json",
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ]
+          }
+        }
+      }
     }
   },
   "cli": {
