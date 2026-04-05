@@ -6,7 +6,7 @@
 
         <div class="p-3 rounded-lg shadow-sm" [ngClass]="{
                         'bg-blue-600 text-white rounded-br-none': message().side !== 'left',
-                        'bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-700 rounded-bl-none': message().id === '1'
+                        'bg-white dark:bg-gray-800 text-gray-800 dark:text-gray-200 border border-gray-200 dark:border-gray-700 rounded-bl-none': message().side === 'left'
                      }">
             <p class="text-sm">{{ message().content }}</p>
         </div>

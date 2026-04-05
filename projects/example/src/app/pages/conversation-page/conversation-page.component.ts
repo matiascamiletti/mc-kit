@@ -192,7 +192,7 @@ export class ConversationPage implements OnInit {
 
     this.socketService.connect();
 
-    this.socketService.fromEvent('message').pipe(map((data: any) => data.msg)).subscribe((data) => {
+    this.socketService.fromEvent('bot_response')/*.pipe(map((data: any) => data.msg))*/.subscribe((data) => {
       console.log(data);
     });
   }
