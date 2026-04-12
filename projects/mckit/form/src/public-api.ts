@@ -51,6 +51,7 @@ export * from './lib/fields/ifta-currency-field/ifta-currency-field.component';
 export * from './lib/fields/ifta-date-field/ifta-date-field.component';
 export * from './lib/fields/color-field/color-field.component';
 export * from './lib/fields/checkbox-field/checkbox-field.component';
+export * from './lib/fields/conditional-func-field/conditional-func-field.component';
 
 /**
  * Components
