@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
-import { MCField, PrintFieldComponent } from '@mckit/form';
 import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
+import { MCField } from '../../entities/mc-field';
+import { PrintFieldComponent } from '../../components/print-field/print-field.component';
 import { ConditionalFieldComponent } from '../conditional-field/conditional-field.component';
 
 @Component({
