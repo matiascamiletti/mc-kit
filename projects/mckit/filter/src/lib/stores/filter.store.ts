@@ -17,10 +17,10 @@ const initialState: FilterState = {
 @Injectable()
 export class FilterStore {
   private isBrowser: boolean;
-  
+
   // State signals
   private state = signal<FilterState>(initialState);
-  
+
   // Computed signals
   readonly filters = computed(() => this.state().filters);
   readonly storageKey = computed(() => this.state().storageKey);
@@ -38,49 +38,59 @@ export class FilterStore {
   }
 
   loadFilters(configFilters: MCFilter[]) {
-    if (this.isBrowser && this.storageKey()) {
-      try {
-        const savedFilters = localStorage.getItem(this.storageKey()!);
-        if (savedFilters) {
-          const parsedFilters = JSON.parse(savedFilters) as Array<MCResultFilter>;
-          const reconstructedFilters = this.reconstructFilters(parsedFilters, configFilters);
-          this.state.update(state => ({
-            ...state,
-            filters: reconstructedFilters
-          }));
-        }
-      } catch (error) {
-        console.error('Error loading filters from localStorage:', error);
-      }
+    if (!this.isBrowser || !this.storageKey()) {
+      return;
     }
-  }
 
-  saveFilters(newFilters: MCResultFilter[]) {
-    console.log('newFilters', newFilters);
-    if (this.isBrowser && this.storageKey()) {
-      try {
-        localStorage.setItem(this.storageKey()!, JSON.stringify(newFilters));
+    try {
+      const savedFilters = localStorage.getItem(this.storageKey()!);
+      if (savedFilters) {
+        const parsedFilters = JSON.parse(savedFilters) as Array<MCResultFilter>;
+        const reconstructedFilters = this.reconstructFilters(parsedFilters, configFilters);
         this.state.update(state => ({
           ...state,
-          filters: newFilters
+          filters: reconstructedFilters
         }));
-      } catch (error) {
-        console.error('Error saving filters to localStorage:', error);
-      }
-    }
-  }
-
-  clearFilters() {
-    if (this.isBrowser && this.storageKey()) {
-      try {
-        localStorage.removeItem(this.storageKey()!);
+      } else {
         this.state.update(state => ({
           ...state,
           filters: []
         }));
-      } catch (error) {
-        console.error('Error clearing filters from localStorage:', error);
       }
+    } catch (error) {
+      console.error('Error loading filters from localStorage:', error);
+    }
+  }
+
+  saveFilters(newFilters: MCResultFilter[]) {
+    if (!this.isBrowser || !this.storageKey()) {
+      return;
+    }
+
+    try {
+      localStorage.setItem(this.storageKey()!, JSON.stringify(newFilters));
+      this.state.update(state => ({
+        ...state,
+        filters: newFilters
+      }));
+    } catch (error) {
+      console.error('Error saving filters to localStorage:', error);
+    }
+  }
+
+  clearFilters() {
+    if (!this.isBrowser || !this.storageKey()) {
+      return;
+    }
+
+    try {
+      localStorage.removeItem(this.storageKey()!);
+      this.state.update(state => ({
+        ...state,
+        filters: []
+      }));
+    } catch (error) {
+      console.error('Error clearing filters from localStorage:', error);
     }
   }
 
@@ -90,16 +100,16 @@ export class FilterStore {
   ): MCResultFilter[] {
     return savedFilters.map(filter => {
       const resultFilter = new MCResultFilter();
-      
+
       // Assign operator
       resultFilter.operator = filter.operator;
-      
+
       // Reconstruct the configured filter
       const filterConfig = filter.filter;
       if (filterConfig?.key) {
         // Search all filters that match the key
         const matchingFilters = configFilters.filter(f => f.key === filterConfig.key);
-        
+
         if (matchingFilters.length > 0) {
           // If there are multiple filters with the same key, search for the one that matches the type
           const originalFilter = matchingFilters.find(f => f.type === filterConfig.type) || matchingFilters[0];
@@ -125,7 +135,7 @@ export class FilterStore {
             case MCTypeFilter.MULTISELECT_AUTOCOMPLETE:
               resultFilter.condition = MCConditionResult.IN;
               resultFilter.value = Array.isArray(filter.value) ? filter.value : (filter.value ? [filter.value] : []);
-              
+
               // Handle the selectedOptions for MultiselectAutocomplete
               if (filter.selectedOptions && Array.isArray(filter.selectedOptions)) {
                 // Use stored selectedOptions if available
@@ -172,7 +182,7 @@ export class FilterStore {
       if (childrens && childrens.length > 0) {
         resultFilter.childrens = this.reconstructFilters(childrens, configFilters);
       }
-      
+
       return resultFilter;
     });
   }

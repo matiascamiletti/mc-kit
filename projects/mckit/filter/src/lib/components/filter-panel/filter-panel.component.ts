@@ -70,7 +70,7 @@ export class MCFilterPanelComponent implements OnInit {
   private platformId = inject(PLATFORM_ID);
 
   @HostListener('window:resize', ['$event'])
-  onResize() {
+  onResize(event: any) {
     if (isPlatformBrowser(this.platformId)) {
       this.checkScreenSize();
     }
@@ -126,6 +126,12 @@ export class MCFilterPanelComponent implements OnInit {
     this.update();
   }
 
+  addResultQuick(result: MCResultFilter): void {
+    this.results.set([...this.results(), result]);
+    this.update();
+    this.emit();
+  }
+
   removeResultByIndex(index: number): void {
     this.results.set(this.results().filter((_, i) => i !== index));
     this.update();
@@ -164,7 +170,7 @@ export class MCFilterPanelComponent implements OnInit {
 
     this.resultsBeforeLenght = validFilters.length;
     this.change.emit(validFilters);
-    
+
     if (this.isMobile()) {
       this.dialogVisible.set(false);
     } else {

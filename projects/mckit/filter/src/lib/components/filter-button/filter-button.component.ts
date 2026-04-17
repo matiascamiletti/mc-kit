@@ -7,11 +7,11 @@ import { MCResultFilter } from '../../entities/result';
 import { FilterStore } from '../../stores/filter.store';
 
 @Component({
-    selector: 'mc-filter-button',
-    imports: [ButtonModule, MCFilterPanelComponent, BadgeModule],
-    templateUrl: './filter-button.component.html',
-    styleUrl: './filter-button.component.css',
-    providers: [FilterStore]
+  selector: 'mc-filter-button',
+  imports: [ButtonModule, MCFilterPanelComponent, BadgeModule],
+  templateUrl: './filter-button.component.html',
+  styleUrl: './filter-button.component.css',
+  providers: [FilterStore]
 })
 export class MCFilterButton implements OnInit {
   @ViewChild('panel') panel?: MCFilterPanelComponent;
@@ -30,11 +30,13 @@ export class MCFilterButton implements OnInit {
     if (this.storageKey()) {
       this.filterStore.setStorageKey(this.storageKey()!);
       this.filterStore.loadFilters(this.config().filters);
+    } else {
+      this.onChange([]);
     }
   }
 
   updateTotal(total: number) {
-    if(total == 0){
+    if (total == 0) {
       this.total.set('');
       return
     }
