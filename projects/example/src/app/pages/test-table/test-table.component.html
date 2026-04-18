@@ -10,31 +10,19 @@
         <input type="text" pInputText placeholder="Search by name, category or description" #searchInput />
       </p-iconField>
 
-      <mc-filter-button 
-        #McFilterButton 
-        storageKey="test-table-filter" 
-        [config]="filterConfig" 
-        (change)="onFilter($event)" 
-        class="ml-2">
+      @if (filterConfig()) {
+      <mc-filter-button #McFilterButton storageKey="test-table-filter" [config]="filterConfig()"
+        (change)="onFilter($event)" class="ml-2">
       </mc-filter-button>
+      }
 
       <p-button label="Refresh" icon="pi pi-refresh" (onClick)="loadItems()" styleClass="ml-2" />
     </div>
   </div>
   <div class="card-body">
-    <p-table 
-      #dt
-      [value]="items?.data ?? []" 
-      [paginator]="true" 
-      [rows]="10" 
-      [first]="data.skip"
-      [totalRecords]="items?.total ?? 0"
-      [lazy]="true"
-      [loading]="isLoading"
-      (onPage)="pageChange($event)"
-      [rowsPerPageOptions]="[5, 10, 20]"
-      [showCurrentPageReport]="true"
-      (onFilter)="filter($event)"
+    <p-table #dt [value]="items?.data ?? []" [paginator]="true" [rows]="10" [first]="data.skip"
+      [totalRecords]="items?.total ?? 0" [lazy]="true" [loading]="isLoading" (onPage)="pageChange($event)"
+      [rowsPerPageOptions]="[5, 10, 20]" [showCurrentPageReport]="true" (onFilter)="filter($event)"
       currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries">
       <ng-template pTemplate="header">
         <tr>
@@ -71,8 +59,10 @@
           <td>{{product.createdAt | date:'mediumDate'}}</td>
           <td>
             <div class="flex gap-1">
-              <p-button icon="pi pi-pencil" styleClass="p-button-rounded p-button-text" pTooltip="Edit" tooltipPosition="top"></p-button>
-              <p-button icon="pi pi-trash" styleClass="p-button-rounded p-button-text p-button-danger" pTooltip="Delete" tooltipPosition="top"></p-button>
+              <p-button icon="pi pi-pencil" styleClass="p-button-rounded p-button-text" pTooltip="Edit"
+                tooltipPosition="top"></p-button>
+              <p-button icon="pi pi-trash" styleClass="p-button-rounded p-button-text p-button-danger" pTooltip="Delete"
+                tooltipPosition="top"></p-button>
             </div>
           </td>
         </tr>
