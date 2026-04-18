@@ -39,7 +39,7 @@ export class FilterStore {
 
   loadFilters(configFilters: MCFilter[]) {
     if (!this.isBrowser || !this.storageKey()) {
-      return;
+      return [];
     }
 
     try {
@@ -51,6 +51,7 @@ export class FilterStore {
           ...state,
           filters: reconstructedFilters
         }));
+        return reconstructedFilters;
       } else {
         this.state.update(state => ({
           ...state,
@@ -60,6 +61,8 @@ export class FilterStore {
     } catch (error) {
       console.error('Error loading filters from localStorage:', error);
     }
+
+    return [];
   }
 
   saveFilters(newFilters: MCResultFilter[]) {

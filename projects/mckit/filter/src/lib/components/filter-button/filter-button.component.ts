@@ -29,7 +29,8 @@ export class MCFilterButton implements OnInit {
     // If storageKey is provided, set the storageKey in the FilterStore
     if (this.storageKey()) {
       this.filterStore.setStorageKey(this.storageKey()!);
-      this.filterStore.loadFilters(this.config().filters);
+      const result = this.filterStore.loadFilters(this.config().filters);
+      this.onChange(result);
     } else {
       this.onChange([]);
     }
