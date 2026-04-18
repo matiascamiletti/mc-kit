@@ -1,4 +1,4 @@
-import { Component, input, output } from '@angular/core';
+import { Component, inject, input, output } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { ScrollerModule } from 'primeng/scroller';
@@ -7,6 +7,7 @@ import { DividerModule } from 'primeng/divider';
 import { MCItemFilter } from '../../entities/item-filter';
 import { MCFilter, MCTypeFilter } from '../../entities/filter';
 import { MCResultFilter } from '../../entities/result';
+import { MCFilterNavigationService } from '../../services/filter-navigation.service';
 
 @Component({
   selector: 'mc-quick-filter-panel',
@@ -15,13 +16,15 @@ import { MCResultFilter } from '../../entities/result';
   styleUrl: './quick-filter-panel.component.css'
 })
 export class QuickFilterPanelComponent {
+
+  filterNavigationService = inject(MCFilterNavigationService);
+
   quickFilters = input<Array<MCFilter>>();
   results = input.required<Array<MCResultFilter>>();
 
   addNewFilter = output<MCResultFilter>();
   removeFilter = output<MCFilter>();
   removeFilterAndItem = output<{ filter: MCFilter, item: MCItemFilter }>();
-  switchToAdvanced = output<void>();
   clearAll = output<void>();
 
   isItemSelected(quickFilter: MCFilter, item: MCItemFilter): boolean {
@@ -51,7 +54,7 @@ export class QuickFilterPanelComponent {
   }
 
   clickSwitchToAdvanced() {
-    this.switchToAdvanced.emit();
+    this.filterNavigationService.setAdvancedPanel();
   }
 
   clickClearAll() {

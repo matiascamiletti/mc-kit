@@ -14,6 +14,7 @@ import {
   HostListener,
   PLATFORM_ID,
   Inject,
+  DestroyRef,
 } from '@angular/core';
 import { AdvancedFiltersPanelComponent } from '../advanced-filters-panel/advanced-filters-panel.component';
 import { QuickFilterPanelComponent } from '../quick-filter-panel/quick-filter-panel.component';
@@ -24,11 +25,11 @@ import { MCItemFilter } from '../../entities/item-filter';
 import { Popover, PopoverModule } from 'primeng/popover';
 import { Dialog, DialogModule } from 'primeng/dialog';
 import { FilterStore } from '../../stores/filter.store';
+import { MCFilterTypePanel } from '../../entities/type-panel';
+import { MCFilterNavigationService } from '../../services/filter-navigation.service';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { tap } from 'rxjs';
 
-export enum MCShowPanel {
-  BASIC,
-  ADVANCED,
-}
 
 @Component({
   selector: 'mc-filter-panel',
@@ -43,6 +44,27 @@ export enum MCShowPanel {
   styleUrl: './filter-panel.component.css',
 })
 export class MCFilterPanelComponent implements OnInit {
+
+  filterNavigationService = inject(MCFilterNavigationService);
+
+  eTypePanel = MCFilterTypePanel;
+  typePanel = signal<MCFilterTypePanel>(MCFilterTypePanel.BASIC);
+
+  destroyRef = inject(DestroyRef);
+
+  loadNavigation() {
+    this.filterNavigationService.getTypePanelObs()
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        tap((typePanel) => {
+          this.typePanel.set(typePanel);
+        })
+      )
+      .subscribe();
+  }
+
+
+
   overlayPanel: Signal<Popover> = viewChild.required('overlayPanel');
   dialog: Signal<Dialog> = viewChild.required('dialog');
 
@@ -56,10 +78,6 @@ export class MCFilterPanelComponent implements OnInit {
     this.config().filters.filter((f) => f.isQuickFilter)
   );
 
-  showPanel = signal<MCShowPanel>(MCShowPanel.BASIC);
-  showPanelBasic = MCShowPanel.BASIC;
-  showPanelAdvanced = MCShowPanel.ADVANCED;
-
   results = signal<Array<MCResultFilter>>([]);
 
   change = output<Array<MCResultFilter>>();
@@ -68,6 +86,8 @@ export class MCFilterPanelComponent implements OnInit {
 
   private filterStore = inject(FilterStore, { optional: true });
   private platformId = inject(PLATFORM_ID);
+
+
 
   @HostListener('window:resize', ['$event'])
   onResize(event: any) {
@@ -82,9 +102,9 @@ export class MCFilterPanelComponent implements OnInit {
     }
     effect(() => {
       if (this.quickFilters().length > 0) {
-        this.showPanel.set(MCShowPanel.BASIC);
+        this.typePanel.set(MCFilterTypePanel.BASIC);
       } else {
-        this.showPanel.set(MCShowPanel.ADVANCED);
+        this.typePanel.set(MCFilterTypePanel.ADVANCED);
       }
     });
   }
@@ -96,6 +116,7 @@ export class MCFilterPanelComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadNavigation();
     // First try to load filters from the FilterStore if there is a configured storage key
     if (this.filterStore && this.filterStore.storageKey()) {
       this.filterStore.loadFilters(this.config().filters);
@@ -184,14 +205,6 @@ export class MCFilterPanelComponent implements OnInit {
     } else {
       this.overlayPanel().toggle($event);
     }
-  }
-
-  clickShowAdvancedPanel(): void {
-    this.showPanel.set(MCShowPanel.ADVANCED);
-  }
-
-  clickShowBasicPanel(): void {
-    this.showPanel.set(MCShowPanel.BASIC);
   }
 
   clickClearAll(): void {
