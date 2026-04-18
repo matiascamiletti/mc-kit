@@ -9,10 +9,10 @@ import { MCFilter, MCTypeFilter } from '../../entities/filter';
 import { MCResultFilter } from '../../entities/result';
 
 @Component({
-    selector: 'mc-quick-filter-panel',
-    imports: [CommonModule, ButtonModule, ScrollerModule, ItemQuickFilterComponent, DividerModule],
-    templateUrl: './quick-filter-panel.component.html',
-    styleUrl: './quick-filter-panel.component.css'
+  selector: 'mc-quick-filter-panel',
+  imports: [CommonModule, ButtonModule, ScrollerModule, ItemQuickFilterComponent, DividerModule],
+  templateUrl: './quick-filter-panel.component.html',
+  styleUrl: './quick-filter-panel.component.css'
 })
 export class QuickFilterPanelComponent {
   quickFilters = input<Array<MCFilter>>();
@@ -25,8 +25,8 @@ export class QuickFilterPanelComponent {
   clearAll = output<void>();
 
   isItemSelected(quickFilter: MCFilter, item: MCItemFilter): boolean {
-    let result = this.results().find(r => r.filter === quickFilter);
-    if(result){
+    let result = this.results().find(r => r.filter == quickFilter || r.filter?.key === quickFilter.key);
+    if (result) {
       return result.value == item.value;
     }
 
@@ -39,7 +39,7 @@ export class QuickFilterPanelComponent {
 
     this.removeFilter.emit(quickFilter);
 
-    if(isActive){
+    if (isActive) {
       return;
     }
 
