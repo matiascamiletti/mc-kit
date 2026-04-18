@@ -1,2 +1,4 @@
-<p-button label="Filters" [outlined]="true" icon="pi pi-filter" iconPos="left" [severity]="severity()" (onClick)="panel.toggle($event)" [badge]="total()" />
-<mc-filter-panel #panel [config]="config()" (updateTotal)="updateTotal($event)" (change)="onChange($event)" />
+<p-button label="Filters" [outlined]="true" icon="pi pi-filter" iconPos="left" [severity]="severity()"
+    (onClick)="panel.toggle($event)" [badge]="total()" />
+<mc-filter-panel #panel [config]="config()" [storageKey]="storageKey()" (onUpdateActive)="updateTotal($event)"
+    (onChange)="onChange($event)" />

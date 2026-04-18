@@ -24,11 +24,12 @@ import { MCConfigFilter } from '../../entities/config';
 import { MCItemFilter } from '../../entities/item-filter';
 import { Popover, PopoverModule } from 'primeng/popover';
 import { Dialog, DialogModule } from 'primeng/dialog';
-import { FilterStore } from '../../stores/filter.store';
+import { FilterStore, MCFilterStore } from '../../stores/filter.store';
 import { MCFilterTypePanel } from '../../entities/type-panel';
 import { MCFilterNavigationService } from '../../services/filter-navigation.service';
 import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
-import { tap } from 'rxjs';
+import { takeWhile, tap } from 'rxjs';
+import { StorageMap } from '@ngx-pwa/local-storage';
 
 
 @Component({
@@ -45,12 +46,83 @@ import { tap } from 'rxjs';
 })
 export class MCFilterPanelComponent implements OnInit {
 
+  overlayPanel: Signal<Popover> = viewChild.required('overlayPanel');
+  dialog: Signal<Dialog> = viewChild.required('dialog');
+
   filterNavigationService = inject(MCFilterNavigationService);
+  storageService = inject(StorageMap);
 
   eTypePanel = MCFilterTypePanel;
   typePanel = signal<MCFilterTypePanel>(MCFilterTypePanel.BASIC);
 
   destroyRef = inject(DestroyRef);
+
+  config = input.required<MCConfigFilter>();
+  storageKey = input<string | undefined>(undefined);
+
+  filterStorage = signal<MCFilterStore | undefined>(undefined);
+
+  platformId = inject(PLATFORM_ID);
+
+  onUpdateActive = output<number>();
+
+  isMobile = signal<boolean>(false);
+  dialogVisible = signal<boolean>(false);
+
+  onChange = output<Array<MCResultFilter>>();
+
+  ngOnInit() {
+    this.checkScreenSize();
+    this.loadNavigation();
+    this.initStorage();
+  }
+
+  emitChanges() {
+    this.onChange.emit(this.filterStorage()?.getResults() ?? []);
+
+    if (this.isMobile()) {
+      this.dialogVisible.set(false);
+    } else {
+      this.overlayPanel().hide();
+    }
+  }
+
+  updateActives(total: number) {
+    this.onUpdateActive.emit(total);
+  }
+
+  initStorage() {
+    const storage = new MCFilterStore(this.storageKey(), this.storageService, this.config().filters);
+
+    this.filterStorage.set(storage);
+    if (this.filterStorage()?.hasQuickFilters()) {
+      this.typePanel.set(MCFilterTypePanel.BASIC);
+    } else {
+      this.typePanel.set(MCFilterTypePanel.ADVANCED);
+    }
+
+    storage.getOnInit()
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        tap((init) => {
+          if (init) {
+            this.updateActives(this.filterStorage()?.getResults().length ?? 0);
+            this.emitChanges();
+          }
+        })
+      )
+      .subscribe();
+
+    storage.getOnApply()
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        tap((results) => {
+          this.updateActives(results.length);
+          this.emitChanges();
+        })
+      )
+      .subscribe();
+  }
 
   loadNavigation() {
     this.filterNavigationService.getTypePanelObs()
@@ -63,140 +135,15 @@ export class MCFilterPanelComponent implements OnInit {
       .subscribe();
   }
 
-
-
-  overlayPanel: Signal<Popover> = viewChild.required('overlayPanel');
-  dialog: Signal<Dialog> = viewChild.required('dialog');
-
-  config = input.required<MCConfigFilter>();
-  updateTotal = output<number>();
-
-  isMobile = signal<boolean>(false);
-  dialogVisible = signal<boolean>(false);
-
-  quickFilters = computed(() =>
-    this.config().filters.filter((f) => f.isQuickFilter)
-  );
-
-  results = signal<Array<MCResultFilter>>([]);
-
-  change = output<Array<MCResultFilter>>();
-
-  resultsBeforeLenght = 0;
-
-  private filterStore = inject(FilterStore, { optional: true });
-  private platformId = inject(PLATFORM_ID);
-
-
-
-  @HostListener('window:resize', ['$event'])
-  onResize(event: any) {
-    if (isPlatformBrowser(this.platformId)) {
-      this.checkScreenSize();
-    }
-  }
-
-  constructor() {
-    if (isPlatformBrowser(this.platformId)) {
-      this.checkScreenSize();
-    }
-    effect(() => {
-      if (this.quickFilters().length > 0) {
-        this.typePanel.set(MCFilterTypePanel.BASIC);
-      } else {
-        this.typePanel.set(MCFilterTypePanel.ADVANCED);
-      }
-    });
-  }
-
-  private checkScreenSize() {
+  checkScreenSize() {
     if (isPlatformBrowser(this.platformId)) {
       this.isMobile.set(window.innerWidth < 768);
     }
   }
 
-  ngOnInit() {
-    this.loadNavigation();
-    // First try to load filters from the FilterStore if there is a configured storage key
-    if (this.filterStore && this.filterStore.storageKey()) {
-      this.filterStore.loadFilters(this.config().filters);
-      if (this.filterStore.hasFilters()) {
-        this.results.set([...this.filterStore.filters()]);
-        this.update();
-        this.emit();
-        return;
-      }
-    }
-
-    // If there are no filters in the FilterStore, use the initial filters from the configuration
-    const currentConfig = this.config();
-    const initialFilters = currentConfig?.initialFilters;
-    if (
-      initialFilters &&
-      Array.isArray(initialFilters) &&
-      initialFilters.length > 0
-    ) {
-      this.results.set([...initialFilters]);
-      this.update();
-      this.emit();
-    }
-  }
-
-  addResult(result: MCResultFilter): void {
-    this.results.set([...this.results(), result]);
-    this.update();
-  }
-
-  addResultQuick(result: MCResultFilter): void {
-    this.results.set([...this.results(), result]);
-    this.update();
-    this.emit();
-  }
-
-  removeResultByIndex(index: number): void {
-    this.results.set(this.results().filter((_, i) => i !== index));
-    this.update();
-  }
-
-  removeResultByFilter(filter: MCFilter): void {
-    this.results.set(this.results().filter((r) => r.filter !== filter));
-    this.update();
-  }
-
-  removeResultByFilterAndItem(data: {
-    filter: MCFilter;
-    item: MCItemFilter;
-  }): void {
-    this.results.set(
-      this.results().filter((r) => {
-        if (r.filter !== data.filter) {
-          return true;
-        }
-
-        return r.value !== data.item.value;
-      })
-    );
-    this.update();
-  }
-
-  update() {
-    this.updateTotal.emit(this.results().length);
-  }
-
-  emit() {
-    let validFilters = this.results().filter((r) => MCResultFilter.isValid(r));
-    if (this.resultsBeforeLenght == 0 && validFilters.length == 0) {
-      return;
-    }
-
-    this.resultsBeforeLenght = validFilters.length;
-    this.change.emit(validFilters);
-
-    if (this.isMobile()) {
-      this.dialogVisible.set(false);
-    } else {
-      this.overlayPanel().hide();
-    }
+  @HostListener('window:resize', ['$event'])
+  onResize(event: any) {
+    this.checkScreenSize();
   }
 
   toggle($event: any): void {
@@ -207,9 +154,4 @@ export class MCFilterPanelComponent implements OnInit {
     }
   }
 
-  clickClearAll(): void {
-    this.results.set([]);
-    this.update();
-    this.emit();
-  }
 }

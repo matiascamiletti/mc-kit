@@ -8,15 +8,13 @@
 </p-dialog>
 
 <ng-template #filterContent>
+  @if (filterStorage() != undefined) {
+
   @if (typePanel() === eTypePanel.ADVANCED) {
-  <mc-advanced-filters-panel [hasQuickFilters]="quickFilters().length > 0" [filters]="config().filters"
-    [results]="results()" (addNewFilter)="addResult($event)" (removeFilterByIndex)="removeResultByIndex($event)"
-    (clearAll)="clickClearAll()" (refresh)="emit()">
-  </mc-advanced-filters-panel>
+  <mc-advanced-filters-panel [filterStorage]="filterStorage()!" />
   } @else {
-  <mc-quick-filter-panel [quickFilters]="quickFilters()" [results]="results()" (addNewFilter)="addResultQuick($event)"
-    (removeFilterAndItem)="removeResultByFilterAndItem($event)" (removeFilter)="removeResultByFilter($event)"
-    (clearAll)="clickClearAll()">
-  </mc-quick-filter-panel>
+  <mc-quick-filter-panel [filterStorage]="filterStorage()!" />
+  }
+
   }
 </ng-template>

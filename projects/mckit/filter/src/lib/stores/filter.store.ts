@@ -1,101 +1,255 @@
-import { computed, Injectable, PLATFORM_ID, Inject, Signal, signal } from '@angular/core';
-import { isPlatformBrowser } from '@angular/common';
+import { Injectable } from '@angular/core';
 import { MCResultFilter, MCConditionResult } from '../entities/result';
 import { MCFilter, MCTypeFilter } from '../entities/filter';
 import { MCItemFilter } from '../entities/item-filter';
+import { StorageMap } from '@ngx-pwa/local-storage';
+import { BehaviorSubject, Observable, Subject, take, takeWhile, tap } from 'rxjs';
 
-export interface FilterState {
-  filters: MCResultFilter[];
-  storageKey?: string;
+export class MCFilterStore {
+
+  protected storageKey: string | undefined;
+  protected storageMap: StorageMap;
+
+  protected filters: Array<MCFilter> = [];
+  protected results: Array<MCResultFilter> = [];
+
+  protected onUpdate = new BehaviorSubject<Array<MCResultFilter>>([]);
+  protected onApply = new Subject<Array<MCResultFilter>>();
+  protected onInit = new BehaviorSubject<boolean>(false);
+
+  constructor(
+    storageKey: string | undefined,
+    storageMap: StorageMap,
+    filters: Array<MCFilter>
+  ) {
+    this.setStorageKey(storageKey);
+    this.storageMap = storageMap;
+    this.filters = filters;
+    this.initSaveds();
+  }
+
+  removeResultByFilterAndValue(filter: MCFilter, value: any, emit?: boolean) {
+    let results = this.results.filter(r => r.filter == filter || r.filter?.key === filter.key);
+    results.forEach((result, index) => {
+      if (result.value == value) {
+        this.removeResult(this.results, result);
+      }
+    });
+
+    this.onUpdate.next(this.results);
+
+    if (emit) {
+      this.emitApply();
+    }
+  }
+
+  removeResultByIndex(index: number, emit?: boolean) {
+    this.results.splice(index, 1);
+    this.onUpdate.next(this.results);
+
+    if (emit) {
+      this.emitApply();
+    }
+  }
+
+  addResultByFilter(filter: MCFilter, value: any, emit?: boolean) {
+    let result = new MCResultFilter();
+    result.filter = filter;
+    result.value = value;
+    this.addResult(result, emit);
+  }
+
+  addResult(result: MCResultFilter, emit?: boolean) {
+    this.results.push(result);
+    this.onUpdate.next(this.results);
+
+    if (emit) {
+      this.emitApply();
+    }
+  }
+
+  getResultByFilter(filter: MCFilter): MCResultFilter | undefined {
+    return this.results.find(r => r.filter == filter || r.filter?.key === filter.key);
+  }
+
+  getResultsByFilter(filter: MCFilter): Array<MCResultFilter> {
+    return this.results.filter(r => r.filter == filter || r.filter?.key === filter.key);
+  }
+
+  getOnUpdate(): Observable<Array<MCResultFilter>> {
+    return this.onUpdate.asObservable();
+  }
+
+  getOnApply(): Observable<Array<MCResultFilter>> {
+    return this.onApply.asObservable();
+  }
+
+  emitUpdate() {
+    this.onUpdate.next(this.results);
+  }
+
+  emitApply() {
+    this.onApply.next(this.results);
+    this.saveResults();
+  }
+
+  emitInit() {
+    this.onInit.next(true);
+  }
+
+  getOnInit(): Observable<boolean> {
+    return this.onInit.asObservable();
+  }
+
+  getFilters(): Array<MCFilter> {
+    return this.filters;
+  }
+
+  getQuickFilters(): Array<MCFilter> {
+    return this.filters.filter(f => f.isQuickFilter);
+  }
+
+  hasQuickFilters(): boolean {
+    return this.getQuickFilters().length > 0;
+  }
+
+  removeResultMain(result: MCResultFilter) {
+    this.removeResult(this.results, result);
+  }
+
+  removeResult(results: Array<MCResultFilter>, result: MCResultFilter) {
+    const index = results.indexOf(result);
+    if (index > -1) {
+      results.splice(index, 1);
+    }
+  }
+
+  removeResultInChildrenMain(result: MCResultFilter) {
+    this.removeResultInChildren(this.results, result);
+  }
+
+  removeResultInChildren(results: Array<MCResultFilter>, result: MCResultFilter) {
+    results.forEach(r => {
+      if (r.childrens && r.childrens.length > 0) {
+        this.removeResultInChildren(r.childrens, result);
+      } else {
+        this.removeResult(results, result);
+      }
+    });
+  }
+
+  processResult(results: Array<MCResultFilter>, result: MCResultFilter) {
+    if (result.filter == undefined || result.filter.key == undefined || result.filter?.key == '') {
+      this.removeResult(results, result);
+      return;
+    }
+
+    const filter = this.filters.find(f => (f.key == result.filter?.key && f.type == result.filter?.type));
+    if (filter == undefined) {
+      this.removeResult(results, result);
+      return;
+    }
+
+    result.filter = filter;
+
+    if (result.childrens && result.childrens.length > 0) {
+      this.processResults(result.childrens);
+    }
+  }
+
+  processResults(results: Array<MCResultFilter>) {
+    if (results.length == 0 || this.filters.length == 0) {
+      return;
+    }
+
+    results.forEach(result => this.processResult(results, result));
+  }
+
+  loadSaveds(dataSaved: string) {
+    if (dataSaved == '') {
+      return;
+    }
+
+    try {
+      this.results = JSON.parse(dataSaved) as Array<MCResultFilter>;
+    } catch (error) {
+      console.error('Error loading filters from localStorage:', error);
+      this.results = [];
+    }
+
+    this.processResults(this.results);
+  }
+
+  initSaveds() {
+    if (this.storageKey == undefined) {
+      return;
+    }
+
+    this.storageMap.get<string | undefined>(this.getStorageKey()!, { type: 'string' })
+      .pipe(
+        take(1),
+        takeWhile((dataSaved) => {
+
+          if (dataSaved == undefined) {
+            this.emitInit();
+          }
+
+          return dataSaved != undefined;
+        }),
+        tap(dataSaved => this.loadSaveds(dataSaved)),
+        tap(() => this.emitUpdate()),
+        tap(() => this.emitInit()),
+      )
+      .subscribe();
+  }
+
+  saveResults() {
+    if (this.storageKey == undefined) {
+      return;
+    }
+
+    this.storageMap.set(this.getStorageKey()!, JSON.stringify(this.results)).pipe(take(1)).subscribe();
+  }
+
+  setStorageKey(key: string | undefined) {
+    this.storageKey = key;
+    if (key == '') {
+      this.storageKey = undefined;
+    }
+  }
+
+  getStorageKey(): string | undefined {
+    return this.storageKey != undefined ? 'mc_filter_' + this.storageKey : undefined;
+  }
+
+  getResults(): Array<MCResultFilter> {
+    return this.results;
+  }
+
+  cleanResults() {
+    this.results = [];
+    this.onUpdate.next(this.results);
+    this.emitApply();
+    this.saveResults();
+  }
 }
 
-const initialState: FilterState = {
-  filters: [],
-  storageKey: undefined
-};
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 @Injectable()
 export class FilterStore {
-  private isBrowser: boolean;
-
-  // State signals
-  private state = signal<FilterState>(initialState);
-
-  // Computed signals
-  readonly filters = computed(() => this.state().filters);
-  readonly storageKey = computed(() => this.state().storageKey);
-  readonly hasFilters = computed(() => this.state().filters.length > 0);
-
-  constructor(@Inject(PLATFORM_ID) platformId: Object) {
-    this.isBrowser = isPlatformBrowser(platformId);
-  }
-
-  setStorageKey(key: string) {
-    this.state.update(state => ({
-      ...state,
-      storageKey: key
-    }));
-  }
-
-  loadFilters(configFilters: MCFilter[]) {
-    if (!this.isBrowser || !this.storageKey()) {
-      return [];
-    }
-
-    try {
-      const savedFilters = localStorage.getItem(this.storageKey()!);
-      if (savedFilters) {
-        const parsedFilters = JSON.parse(savedFilters) as Array<MCResultFilter>;
-        const reconstructedFilters = this.reconstructFilters(parsedFilters, configFilters);
-        this.state.update(state => ({
-          ...state,
-          filters: reconstructedFilters
-        }));
-        return reconstructedFilters;
-      } else {
-        this.state.update(state => ({
-          ...state,
-          filters: []
-        }));
-      }
-    } catch (error) {
-      console.error('Error loading filters from localStorage:', error);
-    }
-
-    return [];
-  }
-
-  saveFilters(newFilters: MCResultFilter[]) {
-    if (!this.isBrowser || !this.storageKey()) {
-      return;
-    }
-
-    try {
-      localStorage.setItem(this.storageKey()!, JSON.stringify(newFilters));
-      this.state.update(state => ({
-        ...state,
-        filters: newFilters
-      }));
-    } catch (error) {
-      console.error('Error saving filters to localStorage:', error);
-    }
-  }
-
-  clearFilters() {
-    if (!this.isBrowser || !this.storageKey()) {
-      return;
-    }
-
-    try {
-      localStorage.removeItem(this.storageKey()!);
-      this.state.update(state => ({
-        ...state,
-        filters: []
-      }));
-    } catch (error) {
-      console.error('Error clearing filters from localStorage:', error);
-    }
-  }
 
   private reconstructFilters(
     savedFilters: MCResultFilter[],

@@ -1,4 +1,4 @@
-import { Component, inject, input, output } from '@angular/core';
+import { Component, DestroyRef, inject, input, OnInit, output, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { ScrollerModule } from 'primeng/scroller';
@@ -8,6 +8,9 @@ import { MCItemFilter } from '../../entities/item-filter';
 import { MCFilter, MCTypeFilter } from '../../entities/filter';
 import { MCResultFilter } from '../../entities/result';
 import { MCFilterNavigationService } from '../../services/filter-navigation.service';
+import { MCFilterStore } from '../../stores/filter.store';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { tap } from 'rxjs';
 
 @Component({
   selector: 'mc-quick-filter-panel',
@@ -15,49 +18,69 @@ import { MCFilterNavigationService } from '../../services/filter-navigation.serv
   templateUrl: './quick-filter-panel.component.html',
   styleUrl: './quick-filter-panel.component.css'
 })
-export class QuickFilterPanelComponent {
+export class QuickFilterPanelComponent implements OnInit {
+
+  filterStorage = input.required<MCFilterStore>();
 
   filterNavigationService = inject(MCFilterNavigationService);
 
-  quickFilters = input<Array<MCFilter>>();
-  results = input.required<Array<MCResultFilter>>();
+  destroyRef = inject(DestroyRef);
 
-  addNewFilter = output<MCResultFilter>();
-  removeFilter = output<MCFilter>();
-  removeFilterAndItem = output<{ filter: MCFilter, item: MCItemFilter }>();
-  clearAll = output<void>();
+  quickFilters = signal<Array<MCFilter>>([]);
+  results = signal<Array<MCResultFilter>>([]);
 
-  isItemSelected(quickFilter: MCFilter, item: MCItemFilter): boolean {
-    let result = this.results().find(r => r.filter == quickFilter || r.filter?.key === quickFilter.key);
-    if (result) {
-      return result.value == item.value;
-    }
-
-    return false;
+  ngOnInit() {
+    this.loadStorage();
   }
 
-  clickQuickFilterItem(quickFilter: MCFilter, item: MCItemFilter): void {
-
-    let isActive = this.isItemSelected(quickFilter, item);
-
-    this.removeFilter.emit(quickFilter);
-
-    if (isActive) {
-      return;
+  isItemSelected(filter: MCFilter, item: MCItemFilter): boolean {
+    let results = this.filterStorage()?.getResultsByFilter(filter);
+    if (results.length == 0) {
+      return false;
     }
 
-    let result = new MCResultFilter();
-    result.filter = quickFilter;
-    result.value = item.value;
+    let isExist = false;
+    for (let i = 0; i < results.length; i++) {
+      const element = results[i];
+      if (element.value == item.value) {
+        isExist = true;
+        break;
+      }
+    }
 
-    this.addNewFilter.emit(result);
+    return isExist;
+  }
+
+  clickItem(filter: MCFilter, item: MCItemFilter) {
+    let result = this.filterStorage()?.getResultByFilter(filter);
+    if (result != undefined) {
+      console.log('remove');
+      console.log(result);
+      this.filterStorage()?.removeResultMain(result);
+    }
+
+    this.filterStorage()?.addResultByFilter(filter, item.value, true);
+  }
+
+  loadStorage() {
+    this.quickFilters.set(this.filterStorage()?.getQuickFilters() || []);
+
+    this.filterStorage()?.getOnUpdate()
+      .pipe(
+        takeUntilDestroyed(this.destroyRef),
+        tap((results) => {
+          this.results.set(results);
+        })
+      )
+      .subscribe();
+  }
+
+  clickClearAll() {
+    this.filterStorage()?.cleanResults();
   }
 
   clickSwitchToAdvanced() {
     this.filterNavigationService.setAdvancedPanel();
   }
 
-  clickClearAll() {
-    this.clearAll.emit();
-  }
 }

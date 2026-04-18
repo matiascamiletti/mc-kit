@@ -2,25 +2,24 @@
   <div class="flex justify-between items-center">
     <h4 class="font-bold">Quick Filters</h4>
     @if(results().length > 0) {
-      <div><p-button label="Clear all" [text]="true" severity="secondary" iconPos="right" (onClick)="clickClearAll()" /></div>
+    <div><p-button label="Clear all" [text]="true" severity="secondary" iconPos="right" (onClick)="clickClearAll()" />
+    </div>
     }
   </div>
   <div class="flex w-auto overflow-x-auto">
 
-   @for (item of quickFilters(); track $index) {
+    @for (item of quickFilters(); track $index) {
     <div class="quick-filter">
       <h5>{{item.title}}</h5>
-      <p-scroller
-        [items]="item.options"
-        [itemSize]="item.options.length"
-        scrollHeight="180px"
+      <p-scroller [items]="item.options" [itemSize]="item.options.length" scrollHeight="180px"
         [style]="{'width': '160px'}">
-            <ng-template pTemplate="item" let-subitem let-options="options">
-                <mc-item-quick-filter [item]="subitem" [isActive]="isItemSelected(item, subitem)" (click)="clickQuickFilterItem(item, subitem)"></mc-item-quick-filter>
-            </ng-template>
+        <ng-template pTemplate="item" let-subitem let-options="options">
+          <mc-item-quick-filter [item]="subitem" [isActive]="isItemSelected(item, subitem)"
+            (click)="clickItem(item, subitem)"></mc-item-quick-filter>
+        </ng-template>
       </p-scroller>
     </div>
-   }
+    }
 
   </div>
 

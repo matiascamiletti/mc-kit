@@ -1,20 +1,17 @@
-import { Component, computed, input, output, signal, OnInit, inject, ViewChild } from '@angular/core';
+import { Component, computed, input, output, signal } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { MCFilterPanelComponent } from '../filter-panel/filter-panel.component';
 import { BadgeModule } from 'primeng/badge';
 import { MCConfigFilter } from '../../entities/config';
 import { MCResultFilter } from '../../entities/result';
-import { FilterStore } from '../../stores/filter.store';
 
 @Component({
   selector: 'mc-filter-button',
   imports: [ButtonModule, MCFilterPanelComponent, BadgeModule],
   templateUrl: './filter-button.component.html',
   styleUrl: './filter-button.component.css',
-  providers: [FilterStore]
 })
-export class MCFilterButton implements OnInit {
-  @ViewChild('panel') panel?: MCFilterPanelComponent;
+export class MCFilterButton {
   config = input.required<MCConfigFilter>();
   storageKey = input<string | undefined>(undefined);
 
@@ -22,19 +19,6 @@ export class MCFilterButton implements OnInit {
 
   total = signal<string>('');
   severity = computed(() => this.total() == '' ? 'secondary' : 'primary');
-
-  private filterStore = inject(FilterStore);
-
-  ngOnInit() {
-    // If storageKey is provided, set the storageKey in the FilterStore
-    if (this.storageKey()) {
-      this.filterStore.setStorageKey(this.storageKey()!);
-      const result = this.filterStore.loadFilters(this.config().filters);
-      this.onChange(result);
-    } else {
-      this.onChange([]);
-    }
-  }
 
   updateTotal(total: number) {
     if (total == 0) {
@@ -46,23 +30,6 @@ export class MCFilterButton implements OnInit {
   }
 
   onChange(data: Array<MCResultFilter>) {
-    // If there is a storage key, save the filters
-    if (this.storageKey()) {
-      this.filterStore.saveFilters(data);
-    }
-
     this.change.emit(data);
-  }
-
-  /**
-   * Clears the filters from storage and resets the component state
-   */
-  clearFilters(): void {
-    if (this.storageKey()) {
-      this.filterStore.clearFilters();
-      this.total.set('');
-      this.change.emit([]);
-      this.panel?.clickClearAll();
-    }
   }
 }

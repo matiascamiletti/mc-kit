@@ -1,4 +1,4 @@
-import { Component, computed, input, output, OnInit } from '@angular/core';
+import { Component, computed, input, output, OnInit, signal, inject, DestroyRef } from '@angular/core';
 import { MCFilter, MCTypeFilter } from '../../entities/filter';
 import { MCConditionResult, MCResultFilter } from '../../entities/result';
 import { CommonModule } from '@angular/common';
@@ -13,8 +13,11 @@ import {
 import { MCItemFilter } from '../../entities/item-filter';
 import { MultiSelectModule, MultiSelectFilterEvent } from 'primeng/multiselect';
 import { Subscription } from 'rxjs';
-import { switchMap, catchError } from 'rxjs/operators';
+import { switchMap, catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
+import { MCFilterStore } from '../../stores/filter.store';
+import { takeUntilDestroyed } from '@angular/core/rxjs-interop';
+import { TypeFilterTextComponent } from '../../types/type-filter-text/type-filter-text.component';
 
 // Define interface for grouped options
 interface OptionGroup {
@@ -28,6 +31,8 @@ interface OptionGroup {
   imports: [
     CommonModule,
     FormsModule,
+    TypeFilterTextComponent,
+
     InputTextModule,
     ButtonModule,
     AutoCompleteModule,
@@ -38,27 +43,63 @@ interface OptionGroup {
   styleUrl: './item-advanced-filter.component.scss',
 })
 export class ItemAdvancedFilterComponent implements OnInit {
-  filters = input.required<Array<MCFilter>>();
-  result = input.required<MCResultFilter>();
-  isFirst = input.required<boolean>();
 
-  clickRemove = output();
-  filtersChanged = output<MCResultFilter[]>();
+  filterStorage = input.required<MCFilterStore>();
+
+  result = input.required<MCResultFilter>();
+
+  isFirst = input.required<boolean>();
+  isChildren = input.required<boolean>();
 
   operators = MCResultFilter.getOperators();
   conditions = MCResultFilter.getConditions();
   operatorWhere = [{ label: 'Where', value: 'where' }];
 
-  typeText = MCTypeFilter.TEXT;
-  typeSelect = MCTypeFilter.SELECT;
-  typeAutocomplete = MCTypeFilter.AUTOCOMPLETE;
-  typeMultiselect = MCTypeFilter.MULTISELECT;
-  typeMultiselectAutocomplete = MCTypeFilter.MULTISELECT_AUTOCOMPLETE;
+  eTypeFilter = MCTypeFilter;
+  eConditionResult = MCConditionResult;
+
+  filters = signal<MCFilter[]>([])
+
+  onChangeFilter() {
+    this.result().value = undefined;
+  }
+
+  clickAddFilter(): void {
+    let childrens = this.result().childrens ?? [];
+    childrens.push(new MCResultFilter());
+
+    this.result().childrens = childrens;
+    this.filterStorage().emitUpdate();
+  }
+
+  clickRemoveFilter(): void {
+    if (this.isChildren()) {
+      this.filterStorage()?.removeResultInChildrenMain(this.result());
+    } else {
+      this.filterStorage()?.removeResultMain(this.result());
+    }
+
+    this.filterStorage()?.emitUpdate();
+  }
+
+  loadFilters() {
+    this.filters.set(this.filterStorage().getFilters());
+  }
+
+
+
+
+
+
+
+
+
+
 
   filteredOptions: MCItemFilter[] = [];
   // Store all available options for filtering locally
   availableOptions: MCItemFilter[] = [];
-  MCConditionResult = MCConditionResult;
+
 
   // Loading state
   isLoading = false;
@@ -67,6 +108,10 @@ export class ItemAdvancedFilterComponent implements OnInit {
   private currentSubscription: Subscription | null = null;
 
   ngOnInit() {
+    this.loadFilters();
+
+
+
     // Load initial values for multiselect autocomplete if they exist
     const currentResult = this.result();
     if (currentResult?.filter?.type === MCTypeFilter.MULTISELECT_AUTOCOMPLETE) {
@@ -105,21 +150,9 @@ export class ItemAdvancedFilterComponent implements OnInit {
     }
   }
 
-  clickAddFilter(): void {
-    const currentResult = this.result();
-    if (currentResult) {
-      if (!currentResult.childrens) {
-        currentResult.childrens = [];
-      }
-      currentResult.childrens.push(new MCResultFilter());
-      this.emitFiltersChanged();
-    }
-  }
 
-  clickRemoveFilter(): void {
-    this.clickRemove.emit();
-    this.emitFiltersChanged();
-  }
+
+
 
   onRefreshColumn() {
     const currentResult = this.result();
@@ -142,12 +175,12 @@ export class ItemAdvancedFilterComponent implements OnInit {
       }
 
       if (
-        currentResult.filter?.type == this.typeMultiselect ||
-        currentResult.filter?.type == this.typeMultiselectAutocomplete
+        currentResult.filter?.type == MCTypeFilter.MULTISELECT ||
+        currentResult.filter?.type == MCTypeFilter.MULTISELECT_AUTOCOMPLETE
       ) {
         currentResult.condition = MCConditionResult.IN;
         currentResult.value = [];
-        if (currentResult.filter?.type == this.typeMultiselectAutocomplete) {
+        if (currentResult.filter?.type == MCTypeFilter.MULTISELECT_AUTOCOMPLETE) {
           currentResult.selectedOptions = [];
         }
       }
@@ -373,7 +406,7 @@ export class ItemAdvancedFilterComponent implements OnInit {
   private emitFiltersChanged() {
     const currentResult = this.result();
     if (currentResult?.childrens && currentResult.childrens.length > 0) {
-      this.filtersChanged.emit(currentResult.childrens);
+      //this.filtersChanged.emit(currentResult.childrens);
     }
   }
 
