@@ -1,7 +1,8 @@
 <div class="mc-column-form">
     @for (field of field().config.fields; track $index) {
-        <div class="{{(field.config.containerFieldClass || 'mb-3 w-full')}}">
-            <mc-print-field [field]="field" [control]="group()!.get(field.key ?? '')" [group]="group()!" [eventObs]="eventObs()" />
-        </div>
+    <div class="{{(field.config.containerFieldClass)}}">
+        <mc-print-field [field]="field" [control]="group()!.get(field.key ?? '')" [group]="group()!"
+            [eventObs]="eventObs()" />
+    </div>
     }
 </div>
