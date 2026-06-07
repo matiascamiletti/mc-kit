@@ -89,6 +89,7 @@ jobs:
     needs: filter
     runs-on: ubuntu-latest
     strategy:
+      max-parallel: 1
       matrix:
         project: [core, auth, cron, filter, layout, layout-core, layout-sakai, layout-fuse, loader, table, odata, form, tenant, chat, socket, monaco-field]
     steps:
