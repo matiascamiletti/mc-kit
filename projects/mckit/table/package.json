@@ -1,11 +1,11 @@
 {
   "name": "@mckit/table",
-  "version": "20.0.3",
+  "version": "20.0.4",
   "peerDependencies": {
     "@angular/common": "^20.0.0",
     "@angular/core": "^20.0.0",
     "@primeuix/themes": "^2.0.3",
-    "@mckit/core": "^20.0.1",
+    "@mckit/core": "^20.0.4",
     "@ngx-pwa/local-storage": "^20.0.0"
   },
   "dependencies": {

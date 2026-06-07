@@ -1,10 +1,10 @@
 {
   "name": "@mckit/layout-core",
-  "version": "20.0.2",
+  "version": "20.0.3",
   "peerDependencies": {
     "@angular/common": "^20.0.0",
     "@angular/core": "^20.0.0",
-    "@mckit/core": "^20.0.1",
+    "@mckit/core": "^20.0.4",
     "primeng": "^20.0.0",
     "@primeuix/themes": "^2.0.3",
     "@ngx-pwa/local-storage": "^20.0.0"
