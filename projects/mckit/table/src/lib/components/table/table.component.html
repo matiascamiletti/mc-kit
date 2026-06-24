@@ -11,12 +11,14 @@
           [ngTemplateOutlet]="getThTemplate(column.field)"></ng-container></th>
       } @else {
       <th [pSortableColumn]="column.isSortable ? column.field : undefined">
-        {{column.title}}
-
-        @if (column.isSortable) {
-        <p-sortIcon [field]="column.field" />
-        }
-
+        <div class="flex justify-between">
+          <span>{{column.title}}</span>
+          @if (column.isSortable) {
+          <div>
+            <p-sortIcon [field]="column.field" />
+          </div>
+          }
+        </div>
       </th>
       }
       }

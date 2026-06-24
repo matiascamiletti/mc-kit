@@ -28,7 +28,16 @@
         <tr>
           <th pSortableColumn="id">ID <p-sortIcon field="id" /></th>
           <th pSortableColumn="name">Name <p-sortIcon field="name" /></th>
-          <th pSortableColumn="price">Price <p-sortIcon field="price" /></th>
+          <th pSortableColumn="price">
+            <div class="flex justify-between">
+          <span>Price</span>
+          <div>
+            <p-sortIcon field="price" />
+          </div>
+        </div>
+        
+
+          </th>
           <th pSortableColumn="category">Category <p-sortIcon field="category" /></th>
           <th pSortableColumn="stock">Stock <p-sortIcon field="stock" /></th>
           <th pSortableColumn="rating">Rating <p-sortIcon field="rating" /></th>

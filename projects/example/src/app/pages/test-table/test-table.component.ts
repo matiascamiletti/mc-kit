@@ -9,7 +9,6 @@ import { inject } from '@angular/core';
 
 import { ToastModule } from 'primeng/toast';
 import { MessageService } from 'primeng/api';
-import { MCOdataTableComponent } from '@mckit/odata';
 import { TagModule } from 'primeng/tag';
 import { TooltipModule } from 'primeng/tooltip';
 import { InputIconModule } from 'primeng/inputicon';
@@ -17,6 +16,7 @@ import { ConfirmDialogModule } from 'primeng/confirmdialog';
 import { ConfirmationService } from 'primeng/api';
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 import { MCConfigFilter, MCFilter, MCFilterButton, MCFilterOdataConverterService, MCResultFilter } from '../../../../../mckit/filter/src/public-api';
+import { MCOdataTableComponent } from '../../../../../mckit/odata/src/public-api';
 
 @Component({
   selector: 'app-test-table',
