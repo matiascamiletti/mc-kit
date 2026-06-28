@@ -52,6 +52,9 @@ export * from './lib/fields/ifta-date-field/ifta-date-field.component';
 export * from './lib/fields/color-field/color-field.component';
 export * from './lib/fields/checkbox-field/checkbox-field.component';
 export * from './lib/fields/conditional-func-field/conditional-func-field.component';
+export * from './lib/fields/ifta-multi-select-field/ifta-multi-select-field.component';
+export * from './lib/fields/ifta-multi-select-obs-field/ifta-multi-select-obs-field.component';
+export * from './lib/fields/html-field/html-field.component';
 
 /**
  * Components

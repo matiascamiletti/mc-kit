@@ -11,7 +11,8 @@ export class MCIftaField {
       default_value?: any,
       disabled?: boolean,
       no_control?: boolean,
-      extra?: any
+      extra?: any,
+      classes?: string
     }): MCField {
       let field = new MCField();
       field.key = data.key;
@@ -22,7 +23,8 @@ export class MCIftaField {
         validators: data.validators,
         default_value: data.default_value,
         disabled: data.disabled,
-        no_control: data.no_control
+        no_control: data.no_control,
+        classes: data.classes
       };
       return field;
     }

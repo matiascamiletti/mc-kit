@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { Component, OnInit, signal, viewChild } from '@angular/core';
-import { ArrayField, ArrayIftaTextField, ConditionalField, DividerField, IftaDateField, IftaSelectField, IftaSelectObsField, MCConfigForm, MCEventForm, MCField, MCForm, RowField, IftaPasswordField, ColorField, CheckboxField, ConditionalFuncField } from '../../../../../mckit/form/src/public-api';
+import { ArrayField, ArrayIftaTextField, ConditionalField, DividerField, IftaDateField, IftaSelectField, IftaSelectObsField, MCConfigForm, MCEventForm, MCField, MCForm, RowField, IftaPasswordField, ColorField, CheckboxField, ConditionalFuncField, HtmlField } from '../../../../../mckit/form/src/public-api';
 import { IftaTextField } from '../../../../../mckit/form/src/lib/fields/ifta-text-field/ifta-text-field.component';
 import { SubmitButtonField } from '../../../../../mckit/form/src/lib/fields/submit-button-field/submit-button-field.component';
 import { Validators } from '@angular/forms';
@@ -8,6 +8,8 @@ import { OpenModalFieldComponent } from '../../fields/open-modal-field/open-moda
 import { IftaTextConditionalField } from '../../../../../mckit/form/src/lib/fields/ifta-text-conditional-field/ifta-text-conditional-field.component';
 import { of } from 'rxjs';
 import { MonacoField } from '../../../../../mckit/monaco-field/src/public-api';
+import { IftaMultiSelectField } from '../../../../../mckit/form/src/lib/fields/ifta-multi-select-field/ifta-multi-select-field.component';
+import { IftaMultiSelectObsField } from '../../../../../mckit/form/src/lib/fields/ifta-multi-select-obs-field/ifta-multi-select-obs-field.component';
 
 @Component({
   selector: 'app-form-page',
@@ -116,6 +118,20 @@ export class FormPageComponent implements OnInit {
       }, [
         IftaTextField.init('conditional_field', 'Conditional Field')
       ]),
+      DividerField.init('Multi Select'),
+      IftaMultiSelectField.init('multi_select', 'Multi Select', [
+        { label: 'Option 1', value: 'option-1' },
+        { label: 'Option 2', value: 'option-2' },
+        { label: 'Option 3', value: 'option-3' },
+      ], 'label', 'value', { classes: 'mb-3' }),
+      IftaMultiSelectObsField.init('client_obs', 'Client', () => of([
+        { id: 'client-1', title: 'Client 1' },
+        { id: 'client-2', title: 'Client 2' },
+        { id: 'client-3', title: 'Client 3' },
+        { id: 'client-4', title: 'Client 4' },
+        { id: 'client-5', title: 'Client 5' }
+      ]), 'title', 'id'),
+      HtmlField.init('Esto es un campo de <strong>HTML directo</strong>'),
       SubmitButtonField.init('submit', 'Submit', { icon: 'pi pi-check' })
     ];
 

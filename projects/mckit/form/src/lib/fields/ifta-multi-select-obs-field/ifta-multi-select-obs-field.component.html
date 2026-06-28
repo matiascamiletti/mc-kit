@@ -1,0 +1,5 @@
+<p-iftalabel class="{{field().config.classes}}">
+    <p-multiselect [formControl]="control()!" inputId="{{field().key}}" [options]="options()" [optionLabel]="field().config.optionLabel" [optionValue]="field().config.optionValue" [filter]="true" [maxSelectedLabels]="3" [appendTo]="'body'" class="w-full" styleClass="w-full" [loading]="isLoading()" />
+    <label for="{{field().key}}">{{field().config.label}}</label>
+</p-iftalabel>
+  
