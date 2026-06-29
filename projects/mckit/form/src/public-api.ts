@@ -55,6 +55,7 @@ export * from './lib/fields/conditional-func-field/conditional-func-field.compon
 export * from './lib/fields/ifta-multi-select-field/ifta-multi-select-field.component';
 export * from './lib/fields/ifta-multi-select-obs-field/ifta-multi-select-obs-field.component';
 export * from './lib/fields/html-field/html-field.component';
+export * from './lib/fields/ifta-sub-select-field/ifta-sub-select-field.component';
 
 /**
  * Components
