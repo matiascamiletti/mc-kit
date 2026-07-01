@@ -56,6 +56,7 @@ export * from './lib/fields/ifta-multi-select-field/ifta-multi-select-field.comp
 export * from './lib/fields/ifta-multi-select-obs-field/ifta-multi-select-obs-field.component';
 export * from './lib/fields/html-field/html-field.component';
 export * from './lib/fields/ifta-sub-select-field/ifta-sub-select-field.component';
+export * from './lib/fields/gallery-field/gallery-field.component';
 
 /**
  * Components

@@ -1,0 +1,46 @@
+<div class="mc-gallery-field {{field().config.classes}}">
+    <div>
+    </div>
+    <div class="flex items-center justify-between">
+        <h3 class="text-sm font-semibold text-surface-700 dark:text-surface-200">
+            {{ field().config.labelTitlePanel }}
+            <span class="ml-1 text-xs font-normal text-surface-400">({{ formArray().controls.length }})</span>
+        </h3>
+        @if (field().config.allow_add) {
+            @if(isSending()){
+                <span class="text-sm text-surface-400">Uploading...</span>
+            }
+            <p-fileupload #fu mode="basic" chooseLabel="{{ field().config.labelAddButton }}" [auto]="true" [customUpload]="true" name="{{field().key}}_gallery_images[]" accept="image/*" [multiple]="true" (onSelect)="onUpload($event)" [chooseButtonProps]="{text: true, size: 'small'}" />
+        }
+    </div>
+
+    @if (formArray().controls.length === 0) {
+        <div class="flex flex-col items-center justify-center gap-2 rounded-lg border border-dashed border-surface-300 dark:border-surface-700 py-8 text-surface-400">
+            <i class="pi pi-images text-2xl"></i>
+            <span class="text-sm">No images yet.</span>
+        </div>
+    }
+    
+    <div class="flex flex-col gap-3">
+        @for (row of formArray().controls; track row) {
+            <div [formGroup]="row" class="flex flex-col gap-3 rounded-lg border border-surface-200 dark:border-surface-700 p-3 sm:flex-row sm:items-start">
+                <div class="flex h-20 w-20 shrink-0 items-center justify-center overflow-hidden rounded-md bg-surface-100 dark:bg-surface-800">
+                @if (row.get('url')?.value) {
+                    <img [src]="row.get('url')?.value" alt="preview" class="h-full w-full object-contain" />
+                } @else {
+                    <i class="pi pi-image text-xl text-surface-400"></i>
+                }
+                </div>
+
+                <div class="flex flex-1 flex-col gap-2">
+                    <textarea pTextarea id="{{field().key}}_alt_text_{{$index}}" rows="2" cols="30" style="resize: none" class="w-full" formControlName="alt_text" placeholder="Alt text"></textarea>
+                </div>
+
+                <div class="flex shrink-0 flex-row gap-1 sm:flex-col">
+                    <p-button [icon]="isPrimary(row) ? 'pi pi-star-fill' : 'pi pi-star'" [severity]="isPrimary(row) ? 'warn' : 'secondary'" [text]="true" size="small" [ariaLabel]="isPrimary(row) ? 'Primary image' : 'Set as primary image'" (onClick)="setPrimary($index)" />
+                    <p-button icon="pi pi-trash" severity="danger" [text]="true" size="small" ariaLabel="Remove image" (onClick)="onClickRemove($index)" />
+                </div>
+            </div>
+        }
+    </div>
+</div>
