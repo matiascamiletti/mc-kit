@@ -13,6 +13,7 @@ import { FormPageComponent } from './pages/form-page/form-page.component';
 import { PostEditPage } from './pages/post-edit-page/post-edit-page.component';
 import { ConversationPage } from './pages/conversation-page/conversation-page.component';
 import { MCLayoutAI } from '../../../mckit/layout-ai/src/public-api';
+import { ProductEditPageComponent } from './pages/product-edit-page/product-edit-page.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'basic', pathMatch: 'full' },
@@ -86,6 +87,11 @@ export const routes: Routes = [
         path: 'conversation',
         component: ConversationPage,
         title: 'Conversation',
+      },
+      {
+        path: 'product',
+        component: ProductEditPageComponent,
+        title: 'Product Edit',
       },
     ],
   },

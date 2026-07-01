@@ -8,6 +8,8 @@
 @source "../../mckit/auth/src/lib";
 @source "../../node_modules/@mckit/tenant";
 @source "../../mckit/tenant/src/lib";
+@source "../../mckit/form/src/lib";
+@source "../../node_modules/@mckit/form";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
@@ -73,3 +75,7 @@ p-table {
 .p-paginator {
   border-width: 0;
 }
+
+mc-array-group-form,mc-row-form, mc-ifta-sub-select-field, .p-iftalabel, .p-select {
+        width: 100%;
+    }
