@@ -9,6 +9,7 @@ export * from './lib/entities/mc-component';
 export * from './lib/entities/mc-list-response';
 export * from './lib/entities/mc-column';
 export * from './lib/entities/mc-message';
+export * from './lib/entities/mc-file';
 
 /**
  * Services
