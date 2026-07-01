@@ -1,5 +1,5 @@
 @if(newGroup()) {
-<div [formGroup]="newGroup()!" class="mc-group-form">
+<div [formGroup]="newGroup()!" class="mc-group-form {{field().config.classes}}">
   @for (field of field().config.fields; track $index) {
   <div class="{{(field.config.containerFieldClass)}}">
     <mc-print-field [field]="field" [control]="newGroup()!.get(field.key ?? '')" [group]="newGroup()!"

@@ -53,7 +53,8 @@ export class IftaSubSelectObsField {
     config?: {
       validators?: ValidatorFn[],
       default_value?: any,
-      disabled?: boolean
+      disabled?: boolean,
+      classes?: string
   }): MCField {
     let configObj = MCIftaField.init({
       key: key,

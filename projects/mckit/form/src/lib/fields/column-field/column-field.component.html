@@ -1,4 +1,4 @@
-<div class="mc-column-form">
+<div class="mc-column-form {{field().config.classes}}">
     @for (field of field().config.fields; track $index) {
     <div class="{{(field.config.containerFieldClass)}}">
         <mc-print-field [field]="field" [control]="group()!.get(field.key ?? '')" [group]="group()!"

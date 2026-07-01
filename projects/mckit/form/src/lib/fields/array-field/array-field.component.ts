@@ -63,6 +63,7 @@ export class ArrayField {
     labelTitlePanel?: string,
     allow_order?: boolean,
     allow_add?: boolean,
+    classes?: string
   }): MCField {
     let field = MCField.init({
       key: key,
@@ -75,6 +76,7 @@ export class ArrayField {
       labelTitlePanel: data?.labelTitlePanel,
       allow_order: data?.allow_order,
       allow_add: data?.allow_add ?? true,
+      classes: data?.classes,
     }
 
     return field;
