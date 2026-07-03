@@ -1,17 +1,17 @@
 @if(newGroup()) {
-<div [formGroup]="newGroup()!" class="mc-row-form flex flex-row gap-3 {{field().config.classes}}">
-  @for (field of field().config.fields; track $index) {
-  <div class="{{(field.config.containerFieldClass)}}">
-    <mc-print-field [field]="field" [control]="newGroup()!.get(field.key ?? '')" [group]="newGroup()!"
+<div [formGroup]="newGroup()!" class="mc-row-form flex flex-row gap-3 w-full {{ field().config.classes }}">
+  @for (subfield of field().config.fields; track $index) {
+  <div class="{{ field().config?.containerFieldClass }} {{ getItemClasses($index) }}">
+    <mc-print-field [field]="subfield" [control]="newGroup()!.get(subfield.key ?? '')" [group]="newGroup()!"
       [eventObs]="eventObs()" />
   </div>
   }
 </div>
 } @else {
-<div class="mc-row-form flex flex-row gap-3 {{field().config.classes}}">
-  @for (field of field().config.fields; track $index) {
-  <div class="{{(field.config.containerFieldClass)}}">
-    <mc-print-field [field]="field" [control]="group()!.get(field.key ?? '')" [group]="group()!"
+<div class="mc-row-form flex flex-row gap-3 w-full {{ field().config.classes }}">
+  @for (subfield of field().config.fields; track $index) {
+  <div class="{{ field().config?.containerFieldClass }} {{ getItemClasses($index) }}">
+    <mc-print-field [field]="subfield" [control]="group()!.get(subfield.key ?? '')" [group]="group()!"
       [eventObs]="eventObs()" />
   </div>
   }

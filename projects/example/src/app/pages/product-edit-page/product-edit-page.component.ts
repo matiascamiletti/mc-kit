@@ -83,8 +83,8 @@ export class ProductEditPageComponent {
                           IftaSubSelectObsField.init('value_id', 'Values', 'type_id', (type: string) => of(
                                   type == 'talle' ? [{ id: 'talle-1', title: 'Talle 1' }] : [{ id: 'color-1', title: 'Color 1' }]
                                 ), 'title', 'id', { classes: 'w-100' }),
-                        ], { classes: 'w-full flex flex-row' })
-                      ], { labelAddButton: 'Add Type', labelTitlePanel: 'Type', allow_order: false, classes: 'w-full flex flex-col gap-2'}),
+                        ], { classes: 'w-full flex flex-row', containerFieldClass: 'w-full' })
+                      ], { labelAddButton: 'Add Type', labelTitlePanel: 'Type', allow_order: false, classes: 'w-full flex flex-col gap-2' }),
 
                       RowField.init([
                         ConditionalFuncField.init((values: any) => {
@@ -98,13 +98,13 @@ export class ProductEditPageComponent {
                         IftaTextField.init('sku', 'SKU'),
                         IftaCurrencyField.init('price', 'Price'),
                         IftaTextField.init('stock', 'Stock'),
-                      ]),
+                      ], { containerFieldClass: 'w-full' }),
                     ],
                     { labelAddButton: 'Add Variant', labelTitlePanel: 'Variant', allow_order: true }
                   ),
           ]),
 
-        ], { containerFieldClass: 'w-2/3' }),
+        ]),
 
         ColumnField.init([
 
@@ -134,9 +134,9 @@ export class ProductEditPageComponent {
 
           ]),
 
-        ], { containerFieldClass: 'w-1/3' }),
+        ]),
 
-      ]),
+      ], { itemClasses: ['w-2/3', 'w-1/3'] }),
       SubmitButtonField.init('submit', 'Submit', { icon: 'pi pi-check' })
     ];
 

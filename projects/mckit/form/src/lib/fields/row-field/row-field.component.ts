@@ -13,6 +13,17 @@ import { GroupFieldComponent } from '../group-field/group-field.component';
 })
 export class RowFieldComponent extends GroupFieldComponent {
 
+  getItemClasses(index: number): string {
+    if(!this.field().config.itemClasses){
+      return '';
+    }
+
+    if(this.field().config.itemClasses.length < index){
+      return '';
+    }
+
+    return this.field().config.itemClasses[index];
+  }
 }
 
 export class RowField {

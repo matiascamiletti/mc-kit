@@ -1,4 +1,4 @@
-<div class="mc-array-form w-full {{field().config.classes}}">
+<div class="mc-array-form w-full {{field().config.classes}} flex flex-col gap-2">
   <div *ngFor="let row of formArray().controls; let i = index">
 
     <p-panel [header]="field().config?.labelTitlePanel">
@@ -14,7 +14,7 @@
         </div>
       </ng-template>
 
-      <div [formGroup]="row" class="mc-array-group-form w-full">
+      <div [formGroup]="row" class="mc-array-group-form flex flex-col gap-2 w-full">
         @for (field of field().config.fields; track $index) {
         <div class="{{(field.config.containerFieldClass)}}">
           <mc-print-field [field]="field" [control]="row.get(field.key ?? '')" [group]="row" [eventObs]="eventObs()" />
