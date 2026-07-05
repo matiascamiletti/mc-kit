@@ -5,22 +5,23 @@ on:
     branches:
       - main
     paths:
-      - 'projects/mckit/core/package.json'
-      - 'projects/mckit/auth/package.json'
-      - 'projects/mckit/cron/package.json'
-      - 'projects/mckit/filter/package.json'
-      - 'projects/mckit/layout/package.json'
-      - 'projects/mckit/layout-core/package.json'
-      - 'projects/mckit/layout-sakai/package.json'
-      - 'projects/mckit/layout-fuse/package.json'
-      - 'projects/mckit/loader/package.json'
-      - 'projects/mckit/table/package.json'
-      - 'projects/mckit/odata/package.json'
-      - 'projects/mckit/form/package.json'
-      - 'projects/mckit/tenant/package.json'
-      - 'projects/mckit/chat/package.json'
-      - 'projects/mckit/socket/package.json'
-      - 'projects/mckit/monaco-field/package.json'
+      - "projects/mckit/core/package.json"
+      - "projects/mckit/auth/package.json"
+      - "projects/mckit/cron/package.json"
+      - "projects/mckit/filter/package.json"
+      - "projects/mckit/layout/package.json"
+      - "projects/mckit/layout-core/package.json"
+      - "projects/mckit/layout-sakai/package.json"
+      - "projects/mckit/layout-fuse/package.json"
+      - "projects/mckit/loader/package.json"
+      - "projects/mckit/table/package.json"
+      - "projects/mckit/odata/package.json"
+      - "projects/mckit/form/package.json"
+      - "projects/mckit/tenant/package.json"
+      - "projects/mckit/chat/package.json"
+      - "projects/mckit/socket/package.json"
+      - "projects/mckit/monaco-field/package.json"
+      - "projects/mckit/file/package.json"
 
 jobs:
   filter:
@@ -42,6 +43,7 @@ jobs:
       chat: ${{ steps.filter.outputs.chat }}
       socket: ${{ steps.filter.outputs.socket }}
       monaco-field: ${{ steps.filter.outputs['monaco-field'] }}
+      file: ${{ steps.filter.outputs['file'] }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -50,7 +52,7 @@ jobs:
         id: filter
         uses: dorny/paths-filter@v2
         with:
-          base: 'main'
+          base: "main"
           filters: |
             core:
               - 'projects/mckit/core/package.json'
@@ -84,6 +86,8 @@ jobs:
               - 'projects/mckit/socket/package.json'
             monaco-field:
               - 'projects/mckit/monaco-field/package.json'
+            file:
+              - 'projects/mckit/file/package.json'
 
   build-and-publish:
     needs: filter
@@ -91,7 +95,26 @@ jobs:
     strategy:
       max-parallel: 1
       matrix:
-        project: [core, auth, cron, filter, layout, layout-core, layout-sakai, layout-fuse, loader, table, odata, form, tenant, chat, socket, monaco-field]
+        project:
+          [
+            core,
+            auth,
+            cron,
+            filter,
+            layout,
+            layout-core,
+            layout-sakai,
+            layout-fuse,
+            loader,
+            table,
+            odata,
+            form,
+            tenant,
+            chat,
+            socket,
+            monaco-field,
+            file,
+          ]
     steps:
       - name: Checkout repository
         if: ${{ needs.filter.outputs[matrix.project] == 'true' }}
@@ -101,7 +124,7 @@ jobs:
         if: ${{ needs.filter.outputs[matrix.project] == 'true' }}
         uses: actions/setup-node@v3
         with:
-          node-version: '22'
+          node-version: "22"
 
       - name: Install dependencies
         if: ${{ needs.filter.outputs[matrix.project] == 'true' }}
