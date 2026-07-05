@@ -16,6 +16,9 @@
       "@mckit/cron": [
         "./dist/mckit/cron"
       ],
+      "@mckit/file": [
+        "./dist/mckit/file"
+      ],
       "@mckit/filter": [
         "./dist/mckit/filter"
       ],
@@ -103,6 +106,12 @@
     },
     {
       "path": "./projects/mckit/layout-ai/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/mckit/file/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/mckit/file/tsconfig.spec.json"
     }
   ]
 }
