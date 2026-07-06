@@ -20,7 +20,6 @@ export class GalleryFieldComponent extends ArrayFieldComponent {
   isSending = signal<boolean>(false);
 
   onUpload(event: FileSelectEvent) {
-    console.log('onUpload file');
     this.isSending.set(true);
 
     // Verify if the element is FormArray
@@ -46,12 +45,14 @@ export class GalleryFieldComponent extends ArrayFieldComponent {
   }
 
   onAddFile(file: MCFile) {
-    console.log('llego aqui');
     let formArray: FormArray<UntypedFormGroup> = (this.group().get(this.field().key!)) as FormArray<UntypedFormGroup>;
 
     let newGroup = new UntypedFormGroup({
-      id: new FormControl<string>(''),
-      url: new FormControl<string|null>(file.url ?? null),
+      id: new FormControl<number|string|undefined>(file.id),
+      name: new FormControl<string|undefined>(file.name),
+      url: new FormControl<string|undefined>(file.url),
+      size: new FormControl<number|undefined>(file.size),
+      mime_type: new FormControl<string|undefined>(file.mime_type),
       alt_text: new FormControl<string>(''),
       is_primary: new FormControl<boolean>(false),
     });

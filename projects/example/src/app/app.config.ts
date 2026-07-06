@@ -17,6 +17,7 @@ import { authInterceptor, MC_AUTH_CONFIG } from '@mckit/auth';
 import { provideMonacoEditor } from 'ngx-monaco-editor-v2';
 
 import { provideSocketIo, SocketIoConfig } from 'ngx-socket-io';
+import { provideGcloudStorage } from '../../../mckit/file/src/public-api';
 
 //const socketConfig: SocketIoConfig = { url: 'http://localhost:3002', options: { autoConnect: false } };
 const socketConfig: SocketIoConfig = { url: 'https://myback-sockets-556847136769.us-central1.run.app', options: { autoConnect: false } };
@@ -46,6 +47,8 @@ export const appConfig: ApplicationConfig = {
     }),
 
     provideMonacoEditor(),
-    provideSocketIo(socketConfig)
+    provideSocketIo(socketConfig),
+
+    provideGcloudStorage({ bucket: 'faciletti-storage-public' })
   ],
 };

@@ -12,6 +12,7 @@ export class MCGCloudStorageService extends MCUploadFileService {
     private http = inject(HttpClient);
 
     upload(file: File): Observable<MCFile> {
+        const nameOriginal = file.name;
         const filename = this.filename(file);
         const mimeType = file.type;
 
@@ -23,7 +24,7 @@ export class MCGCloudStorageService extends MCUploadFileService {
                 switchMap((signedUrl: { url?: string, filename?: string }) => this.http.put<any>(signedUrl.url!, file, { headers })),
                 map(resp => { 
                     return {
-                        name: filename,
+                        name: nameOriginal,
                         url: `https://storage.googleapis.com/${this.config.bucket}/${resp.name}`,
                         size: resp.size,
                         type: MCFileType.File,
@@ -35,7 +36,7 @@ export class MCGCloudStorageService extends MCUploadFileService {
         
         return this.http.post<any>(`https://storage.googleapis.com/upload/storage/v1/b/${this.config.bucket}/o?uploadType=media&name=${filename}`, file)
         .pipe(map(resp => { return {
-            name: filename,
+            name: nameOriginal,
             url: `https://storage.googleapis.com/${this.config.bucket}/${filename}`,
             size: resp.size,
             type: MCFileType.File,
@@ -48,5 +49,13 @@ export class MCGCloudStorageService extends MCUploadFileService {
             filename,
             mime_type: mimeType
         });
+    }
+
+    override filename(file: File): string {
+        const nameOriginal = file.name;
+        const parts = nameOriginal.split('.');
+        const name = parts.slice(0, -1).join('.');
+        const extension = parts[parts.length - 1];
+        return `${encodeURIComponent(name)}_${Date.now()}.${extension}`;
     }
 }

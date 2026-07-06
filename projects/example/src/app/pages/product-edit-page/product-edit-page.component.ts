@@ -1,14 +1,16 @@
 import { CommonModule } from '@angular/common';
-import { Component, signal, viewChild } from '@angular/core';
+import { Component, inject, signal, viewChild } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { QuillField } from '@mckit/quill-field';
 import { ArrayField, IftaMultiSelectObsField, IftaSelectField, IftaSelectObsField, IftaSubSelectObsField, ColumnField, DividerField, FieldsetField, HiddenField, IftaTextareaField, IftaTextField, MCConfigForm, MCEventForm, MCForm, RowField, SubmitButtonField, TagsField, ConditionalFuncField, IftaCurrencyField, GalleryField } from '../../../../../mckit/form/src/public-api';
 import { delay, of } from 'rxjs';
 import { MCFile } from '@mckit/core';
+import { MCGCloudStorageService } from '../../../../../mckit/file/src/public-api';
 
 @Component({
   selector: 'app-product-edit-page',
   imports: [CommonModule, MCForm],
+  providers: [MCGCloudStorageService],
   templateUrl: './product-edit-page.component.html',
   styleUrl: './product-edit-page.component.scss'
 })
@@ -16,6 +18,8 @@ export class ProductEditPageComponent {
   formComponent = viewChild(MCForm);
 
   formConfig = signal<MCConfigForm>(new MCConfigForm());
+
+  uploadService = inject(MCGCloudStorageService);
 
   ngOnInit(): void {
     this.loadForm();
@@ -120,17 +124,7 @@ export class ProductEditPageComponent {
 
           FieldsetField.init('Media', [
 
-            GalleryField.init('images', {
-              upload(file: File) {
-                return of({
-                  url: 'https://primefaces.org/cdn/primeng/images/galleria/galleria10.jpg',
-                } as MCFile).pipe(delay(3000));
-              },
-
-              filename(file: File) {
-                return 'image.png';
-              },
-            }, { labelAddButton: 'Add Image', labelTitlePanel: 'Product Images' }),
+            GalleryField.init('images', this.uploadService, { labelAddButton: 'Add Image', labelTitlePanel: 'Product Images' }),
 
           ]),
 
