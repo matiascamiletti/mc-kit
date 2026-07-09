@@ -14,6 +14,7 @@ import { PostEditPage } from './pages/post-edit-page/post-edit-page.component';
 import { ConversationPage } from './pages/conversation-page/conversation-page.component';
 import { MCLayoutAI } from '../../../mckit/layout-ai/src/public-api';
 import { ProductEditPageComponent } from './pages/product-edit-page/product-edit-page.component';
+import { FormWizardPageComponent } from './pages/form-wizard-page/form-wizard-page.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'basic', pathMatch: 'full' },
@@ -92,6 +93,11 @@ export const routes: Routes = [
         path: 'product',
         component: ProductEditPageComponent,
         title: 'Product Edit',
+      },
+      {
+        path: 'wizard',
+        component: FormWizardPageComponent,
+        title: 'Form Wizard',
       },
     ],
   },

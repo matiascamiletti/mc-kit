@@ -53,7 +53,19 @@ export class MCForm implements OnInit {
     this.formGroup.set(group);
   }
 
+  patchValues(item: any) {
+    this.formGroup()?.patchValue(item);
+  }
+
   getEventObs(): Subject<MCEventForm> {
     return this.eventObs;
+  }
+
+  getFormGroup(): UntypedFormGroup {
+    return this.formGroup()!;
+  }
+
+  getValues(): any {
+    return this.formGroup()?.value;
   }
 }
