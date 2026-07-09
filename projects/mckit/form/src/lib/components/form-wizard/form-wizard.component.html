@@ -12,22 +12,7 @@
                 <ng-template #content let-activateCallback="activateCallback">
                     <div class="w-full mc-form-wizard-step-content">
                         @if(steps() != undefined && steps().length >= $index){
-                            <mc-form #mcForm [config]="steps()[$index]" />
-                        }
-                    </div>
-
-                    <div class="flex pt-6 justify-between">
-                        @if($index > 0){
-                            <p-button label="Back" severity="secondary" icon="pi pi-arrow-left" (onClick)="onClickBack($index)" />
-                        }@else {
-                            <span></span>
-                        }
-                        
-                        @if ($index < config().steps.length - 1) {
-                            <p-button label="Next" icon="pi pi-arrow-right" iconPos="right" (onClick)="onClickNext($index)" />
-                        }
-                        @else {
-                            <p-button label="Confirm" icon="pi pi-check" iconPos="right" />
+                            <mc-form #mcForm [config]="steps()[$index]" (onEvent)="onEventForm($event)" />
                         }
                     </div>
                 </ng-template>

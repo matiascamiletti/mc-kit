@@ -1,0 +1,13 @@
+<div class="flex pt-6 justify-between">
+    @if(field().config.index > 0){
+        <p-button label="Back" severity="secondary" icon="pi pi-arrow-left" (onClick)="onClickBack()" [loading]="isLoading()" />
+    } @else {
+        <span></span>
+    }
+    
+    @if (field().config.index < field().config.steps - 1) {
+        <p-button label="Next" icon="pi pi-arrow-right" iconPos="right" (onClick)="onClickNext()" [loading]="isLoading()" [disabled]="!group().valid || group().disabled"  />
+    } @else {
+        <p-button label="Confirm" icon="pi pi-check" iconPos="right" [disabled]="!group().valid || group().disabled" (onClick)="onClickFinal()" [loading]="isLoading()"/>
+    }
+</div>

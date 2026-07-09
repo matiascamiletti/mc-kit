@@ -4,6 +4,7 @@ import { MCFormWizard } from '../../../../../mckit/form/src/lib/components/form-
 import { MCConfigFormWizard } from '../../../../../mckit/form/src/lib/entities/mc-config-form-wizard';
 import { MCEventForm } from '../../../../../mckit/form/src/public-api';
 import { IftaTextField } from '@mckit/form';
+import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form-wizard-page',
@@ -47,7 +48,7 @@ export class FormWizardPageComponent implements OnInit {
       {
         title: 'Advanced',
         fields: [
-          IftaTextField.init('lastname', 'Lastname'),
+          IftaTextField.init('lastname', 'Lastname', { validators: [Validators.required] }),
         ],
       },
       {

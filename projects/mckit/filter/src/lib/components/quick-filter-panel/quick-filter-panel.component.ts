@@ -54,8 +54,6 @@ export class QuickFilterPanelComponent implements OnInit {
   clickItem(filter: MCFilter, item: MCItemFilter) {
     let result = this.filterStorage()?.getResultByFilter(filter);
     if (result != undefined) {
-      console.log('remove');
-      console.log(result);
       this.filterStorage()?.removeResultMain(result);
     }
 
