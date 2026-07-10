@@ -12,6 +12,7 @@ export * from './lib/entities/mc-event-form';
 export * from './lib/entities/mc-config-modal-form';
 export * from './lib/entities/mc-config-http-modal-form';
 export * from './lib/entities/mc-event-modal-form';
+export * from './lib/entities/mc-config-form-wizard';
 
 /**
  * RxJS
@@ -65,3 +66,4 @@ export * from './lib/components/print-field/print-field.component';
 export * from './lib/components/form/form.component';
 export * from './lib/components/form-modal/form-modal.component';
 export * from './lib/components/http-form-modal/http-form-modal.component';
+export * from './lib/components/form-wizard/form-wizard.component';
