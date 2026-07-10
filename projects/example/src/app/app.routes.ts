@@ -125,6 +125,11 @@ export const routes: Routes = [
         component: ConversationPage,
         title: 'Conversation',
       },
+      {
+        path: 'wizard',
+        component: FormWizardPageComponent,
+        title: 'Form Wizard',
+      },
     ],
   },
   { path: 'login', component: AuthBasicComponent },

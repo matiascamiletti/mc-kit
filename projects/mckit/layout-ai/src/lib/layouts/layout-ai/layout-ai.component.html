@@ -42,6 +42,7 @@
     </main>
 
     <!-- Chat Panel -->
+    @if(isChatOpen()){
     <aside class="mc-ai-chat flex flex-col flex-shrink-0 overflow-hidden" [class.minimized]="isChatMinimized()">
       <!-- Chat Header -->
       <div class="mc-ai-chat-header flex items-center justify-between px-4 py-3 cursor-pointer select-none flex-shrink-0" (click)="toggleChat()">
@@ -95,5 +96,6 @@
         </div>
       }
     </aside>
+    }
   </div>
 </div>
