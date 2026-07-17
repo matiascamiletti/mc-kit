@@ -5,7 +5,7 @@ import { ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 import { IftaLabelModule } from 'primeng/iftalabel';
 import { MCField } from '../../entities/mc-field';
 import { MCIftaField } from '../../entities/mc-ifta-field';
-import { SelectModule } from 'primeng/select';
+import { SelectChangeEvent, SelectModule } from 'primeng/select';
 import { Observable, Subscription } from 'rxjs';
 
 @Component({
@@ -39,6 +39,20 @@ export class IftaSelectObsFieldComponent extends MCFieldComponent implements OnI
       this.options.set(value);
       this.isLoading.set(false);
     });
+
+    if(this.field().config.on_change == undefined){
+      return;
+    }
+
+    this.control()?.valueChanges.subscribe((value: any) => {
+
+      const newValues = this.field().config.on_change(this.options().find(x => x[this.field().config.optionValue] == value));
+      if(newValues == undefined){
+        return;
+      }
+
+      this.group().patchValue(newValues);
+    });
   }
 }
 
@@ -54,7 +68,8 @@ export class IftaSelectObsField {
       validators?: ValidatorFn[],
       default_value?: any,
       disabled?: boolean,
-      classes?: string
+      classes?: string,
+      on_change?: (selectedItem: any) => any
   }): MCField {
     let configObj = MCIftaField.init({
       key: key,
@@ -67,6 +82,7 @@ export class IftaSelectObsField {
     configObj.config.optionObs = optionObs;
     configObj.config.optionLabel = optionLabel;
     configObj.config.optionValue = optionValue;
+    configObj.config.on_change = config?.on_change;
 
     return configObj;
   }

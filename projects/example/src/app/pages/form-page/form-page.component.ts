@@ -81,6 +81,18 @@ export class FormPageComponent implements OnInit {
         { id: 'client-4', title: 'Client 4' },
         { id: 'client-5', title: 'Client 5' }
       ]), 'title', 'id'),
+       IftaSelectObsField.init('client_two', 'Client With OnChange', () => of([
+        { id: 'client-1', title: 'Client 1' },
+        { id: 'client-2', title: 'Client 2' },
+        { id: 'client-3', title: 'Client 3' },
+        { id: 'client-4', title: 'Client 4' },
+        { id: 'client-5', title: 'Client 5' }
+      ]), 'title', 'id', { on_change: (selectedItem) => {
+          return {
+            firstname: selectedItem.title
+          }
+        }
+      }),
       DividerField.init('Products'),
       ArrayField.init(
         'items',
