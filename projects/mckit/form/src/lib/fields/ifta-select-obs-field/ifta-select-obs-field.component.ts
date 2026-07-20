@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { MCFieldComponent } from '../mc-field.component';
 import { CommonModule } from '@angular/common';
-import { ReactiveFormsModule, ValidatorFn } from '@angular/forms';
+import { FormControl, FormGroup, ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 import { IftaLabelModule } from 'primeng/iftalabel';
 import { MCField } from '../../entities/mc-field';
 import { MCIftaField } from '../../entities/mc-ifta-field';
@@ -24,6 +24,7 @@ export class IftaSelectObsFieldComponent extends MCFieldComponent implements OnI
 
   ngOnInit(): void {
     this.loadObs();
+    this.loadExtraParams();
   }
 
   ngOnDestroy(): void {
@@ -54,6 +55,27 @@ export class IftaSelectObsFieldComponent extends MCFieldComponent implements OnI
       this.group().patchValue(newValues);
     });
   }
+
+  onChange(event: SelectChangeEvent) {
+    if(this.field().config.extra_params == undefined){
+      return;
+    }
+
+    let dataSelected = this.options().find(x => x[this.field().config.optionValue] == event.value);
+    for(let key in this.field().config.extra_params){
+      this.group().get(key)?.setValue(dataSelected[this.field().config.extra_params[key]]);
+    }
+  }
+
+  loadExtraParams() {
+    if(this.field().config.extra_params == undefined){
+      return;
+    }
+
+    for(let key in this.field().config.extra_params){
+      this.group().addControl(key, new FormControl());
+    }
+  }
 }
 
 export class IftaSelectObsField {
@@ -69,7 +91,8 @@ export class IftaSelectObsField {
       default_value?: any,
       disabled?: boolean,
       classes?: string,
-      on_change?: (selectedItem: any) => any
+      on_change?: (selectedItem: any) => any,
+      extra_params?: { [key: string]: string }
   }): MCField {
     let configObj = MCIftaField.init({
       key: key,
@@ -83,6 +106,7 @@ export class IftaSelectObsField {
     configObj.config.optionLabel = optionLabel;
     configObj.config.optionValue = optionValue;
     configObj.config.on_change = config?.on_change;
+    configObj.config.extra_params = config?.extra_params;
 
     return configObj;
   }

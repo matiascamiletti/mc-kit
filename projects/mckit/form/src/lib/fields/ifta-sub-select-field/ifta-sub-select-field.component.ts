@@ -54,7 +54,8 @@ export class IftaSubSelectObsField {
       validators?: ValidatorFn[],
       default_value?: any,
       disabled?: boolean,
-      classes?: string
+      classes?: string,
+      extra_params?: { [key: string]: string }
   }): MCField {
     let configObj = MCIftaField.init({
       key: key,
@@ -68,6 +69,7 @@ export class IftaSubSelectObsField {
     configObj.config.optionObs = optionObs;
     configObj.config.optionLabel = optionLabel;
     configObj.config.optionValue = optionValue;
+    configObj.config.extra_params = config?.extra_params;
 
     return configObj;
   }

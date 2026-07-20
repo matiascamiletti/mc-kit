@@ -80,7 +80,7 @@ export class FormPageComponent implements OnInit {
         { id: 'client-3', title: 'Client 3' },
         { id: 'client-4', title: 'Client 4' },
         { id: 'client-5', title: 'Client 5' }
-      ]), 'title', 'id'),
+      ]), 'title', 'id', { extra_params: { 'client_title': 'title' }}),
        IftaSelectObsField.init('client_two', 'Client With OnChange', () => of([
         { id: 'client-1', title: 'Client 1' },
         { id: 'client-2', title: 'Client 2' },

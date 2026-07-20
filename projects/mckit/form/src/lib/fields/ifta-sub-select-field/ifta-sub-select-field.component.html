@@ -1,5 +1,5 @@
 <p-iftalabel class="{{field().config.classes}}">
-    <p-select [formControl]="control()!" inputId="{{field().key}}" [options]="options()" [optionLabel]="field().config.optionLabel" [optionValue]="field().config.optionValue" styleClass="w-full" class="w-full" [appendTo]="'body'" [loading]="isLoading()" />
+    <p-select [formControl]="control()!" inputId="{{field().key}}" [options]="options()" [optionLabel]="field().config.optionLabel" [optionValue]="field().config.optionValue" styleClass="w-full" class="w-full" [appendTo]="'body'" [loading]="isLoading()"  (onChange)="onChange($event)" />
     <label for="{{field().key}}">{{field().config.label}}</label>
 </p-iftalabel>
   
