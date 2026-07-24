@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, inject, OnInit, viewChild } from '@angular/core';
 import { MCRightHeaderTemplateDirective, MCOdataPage } from '../../../../../mckit/odata/src/public-api';
 import { MenuItem } from 'primeng/api';
@@ -11,7 +11,7 @@ import { CheckboxModule } from 'primeng/checkbox';
 
 @Component({
   selector: 'app-odata-page',
-  imports: [CommonModule, MCOdataPage, ButtonModule, MCThTemplateDirective, MCTdTemplateDirective, MCActionsColumn, MCRightHeaderTemplateDirective, CheckboxModule],
+  imports: [MCOdataPage, ButtonModule, MCThTemplateDirective, MCTdTemplateDirective, MCActionsColumn, MCRightHeaderTemplateDirective, CheckboxModule],
   templateUrl: './odata-page.component.html',
   styleUrl: './odata-page.component.scss'
 })

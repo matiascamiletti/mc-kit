@@ -1,11 +1,11 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, computed, input } from '@angular/core';
 import { MenuItem } from 'primeng/api';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 
 @Component({
   selector: 'mc-page-heading',
-  imports: [CommonModule, BreadcrumbModule],
+  imports: [BreadcrumbModule],
   templateUrl: './page-heading.component.html',
   styleUrl: './page-heading.component.scss'
 })

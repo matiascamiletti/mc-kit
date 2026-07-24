@@ -1,5 +1,5 @@
 import { Component, DestroyRef, inject, input, OnInit, output, signal } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { ButtonModule } from 'primeng/button';
 import { ScrollerModule } from 'primeng/scroller';
 import { ItemQuickFilterComponent } from '../item-quick-filter/item-quick-filter.component';
@@ -14,7 +14,7 @@ import { tap } from 'rxjs';
 
 @Component({
   selector: 'mc-quick-filter-panel',
-  imports: [CommonModule, ButtonModule, ScrollerModule, ItemQuickFilterComponent, DividerModule],
+  imports: [ButtonModule, ScrollerModule, ItemQuickFilterComponent, DividerModule],
   templateUrl: './quick-filter-panel.component.html',
   styleUrl: './quick-filter-panel.component.css'
 })

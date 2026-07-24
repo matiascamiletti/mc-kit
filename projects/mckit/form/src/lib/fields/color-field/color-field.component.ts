@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 import { ColorPickerModule } from 'primeng/colorpicker';
@@ -8,7 +8,7 @@ import { MCIftaField } from '../../entities/mc-ifta-field';
 
 @Component({
   selector: 'mc-color-field',
-  imports: [CommonModule, ReactiveFormsModule, ColorPickerModule],
+  imports: [ReactiveFormsModule, ColorPickerModule],
   templateUrl: './color-field.component.html',
   styleUrl: './color-field.component.css'
 })

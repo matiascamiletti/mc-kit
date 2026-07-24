@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { MCFieldComponent } from '../mc-field.component';
-import { CommonModule } from '@angular/common';
+
 import { FormControl, FormGroup, ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 import { IftaLabelModule } from 'primeng/iftalabel';
 import { MCField } from '../../entities/mc-field';
@@ -10,7 +10,7 @@ import { Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'mc-ifta-select-obs-field',
-  imports: [CommonModule, ReactiveFormsModule, IftaLabelModule, SelectModule],
+  imports: [ReactiveFormsModule, IftaLabelModule, SelectModule],
   templateUrl: './ifta-select-obs-field.component.html',
   styleUrl: './ifta-select-obs-field.component.css'
 })

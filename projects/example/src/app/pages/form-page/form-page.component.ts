@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, OnInit, signal, viewChild } from '@angular/core';
 import { ArrayField, ArrayIftaTextField, ConditionalField, DividerField, IftaDateField, IftaSelectField, IftaSelectObsField, MCConfigForm, MCEventForm, MCField, MCForm, RowField, IftaPasswordField, ColorField, CheckboxField, ConditionalFuncField, HtmlField } from '../../../../../mckit/form/src/public-api';
 import { IftaTextField } from '../../../../../mckit/form/src/lib/fields/ifta-text-field/ifta-text-field.component';
@@ -13,7 +13,7 @@ import { IftaMultiSelectObsField } from '../../../../../mckit/form/src/lib/field
 
 @Component({
   selector: 'app-form-page',
-  imports: [CommonModule, MCForm],
+  imports: [MCForm],
   templateUrl: './form-page.component.html',
   styleUrl: './form-page.component.scss'
 })

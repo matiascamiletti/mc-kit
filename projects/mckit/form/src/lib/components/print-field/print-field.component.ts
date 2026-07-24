@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, inject, input, OnInit, ViewContainerRef } from '@angular/core';
 import { MCField } from '../../entities/mc-field';
 import { AbstractControl, ReactiveFormsModule, UntypedFormControl, UntypedFormGroup } from '@angular/forms';
@@ -7,7 +7,7 @@ import { MCEventForm } from '../../entities/mc-event-form';
 
 @Component({
   selector: 'mc-print-field',
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [ReactiveFormsModule],
   template: '',
   styleUrl: './print-field.component.css'
 })

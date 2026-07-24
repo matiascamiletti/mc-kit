@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, OnInit, signal } from '@angular/core';
 import { MCFormWizard } from '../../../../../mckit/form/src/lib/components/form-wizard/form-wizard.component';
 import { MCConfigFormWizard } from '../../../../../mckit/form/src/lib/entities/mc-config-form-wizard';
@@ -8,7 +8,7 @@ import { Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-form-wizard-page',
-  imports: [CommonModule, MCFormWizard],
+  imports: [MCFormWizard],
   templateUrl: './form-wizard-page.component.html',
   styleUrl: './form-wizard-page.component.scss'
 })

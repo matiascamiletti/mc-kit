@@ -3,11 +3,11 @@ import { MCChatService, MCConversation, MCConversationComponent, MCHistoryConver
 import { MCEventChat, MCEventChatType } from '../../../../../mckit/chat/src/lib/entities/event';
 import { Socket, SocketIoModule } from 'ngx-socket-io';
 import { map } from 'rxjs';
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-conversation-page',
-  imports: [CommonModule, MCConversationComponent, MCHistoryConversationComponent],
+  imports: [MCConversationComponent, MCHistoryConversationComponent],
   templateUrl: './conversation-page.component.html',
   styleUrl: './conversation-page.component.scss'
 })

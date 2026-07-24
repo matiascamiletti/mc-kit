@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { IftaSelectObsFieldComponent } from '../ifta-select-obs-field/ifta-select-obs-field.component';
-import { CommonModule } from '@angular/common';
+
 import { ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 import { IftaLabelModule } from 'primeng/iftalabel';
 import { SelectModule } from 'primeng/select';
@@ -10,7 +10,7 @@ import { MCIftaField } from '../../entities/mc-ifta-field';
 
 @Component({
   selector: 'mc-ifta-sub-select-field',
-  imports: [CommonModule, ReactiveFormsModule, IftaLabelModule, SelectModule],
+  imports: [ReactiveFormsModule, IftaLabelModule, SelectModule],
   templateUrl: './ifta-sub-select-field.component.html',
   styleUrl: './ifta-sub-select-field.component.css'
 })

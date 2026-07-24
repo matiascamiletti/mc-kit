@@ -1,10 +1,10 @@
-import { CommonModule } from '@angular/common';
+
 import { Component } from '@angular/core';
 import { MCBaseMessageComponent } from '../base-message.component';
 
 @Component({
   selector: 'mc-chat-empty',
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './empty.component.html',
   styleUrl: './empty.component.css'
 })

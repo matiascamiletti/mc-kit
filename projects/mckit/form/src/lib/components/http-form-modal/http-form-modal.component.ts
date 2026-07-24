@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { AfterViewInit, Component, inject, OnDestroy, OnInit, signal } from '@angular/core';
 import { MCForm } from '../form/form.component';
 import { MCFormModal } from '../form-modal/form-modal.component';
@@ -9,7 +9,7 @@ import { MessageService } from 'primeng/api';
 
 @Component({
   selector: 'mc-http-form-modal',
-  imports: [CommonModule, MCForm, ToastModule],
+  imports: [MCForm, ToastModule],
   providers: [MessageService],
   templateUrl: './http-form-modal.component.html',
   styleUrl: './http-form-modal.component.css'

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, inject } from '@angular/core';
 import { FormControl, FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
@@ -8,7 +8,7 @@ import { MCEventChatType } from '../../entities/event';
 
 @Component({
   selector: 'mc-writing-conversation',
-  imports: [CommonModule, FormsModule, ReactiveFormsModule, ButtonModule, InputTextModule],
+  imports: [FormsModule, ReactiveFormsModule, ButtonModule, InputTextModule],
   templateUrl: './writing.component.html',
   styleUrl: './writing.component.css'
 })

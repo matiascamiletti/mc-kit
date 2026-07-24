@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, signal, viewChild } from '@angular/core';
 import { GroupField, IftaTextField, MCConfigForm, MCEventForm, MCForm, RowField, SubmitButtonField, ColumnField, FieldsetField, IftaTextareaField, TagsField } from '../../../../../mckit/form/src/public-api';
 import { Validators } from '@angular/forms';
@@ -6,7 +6,7 @@ import { QuillField } from '../../../../../mckit/quill-field/src/public-api';
 
 @Component({
   selector: 'app-post-edit-page',
-  imports: [CommonModule, MCForm],
+  imports: [MCForm],
   templateUrl: './post-edit-page.component.html',
   styleUrl: './post-edit-page.component.scss'
 })

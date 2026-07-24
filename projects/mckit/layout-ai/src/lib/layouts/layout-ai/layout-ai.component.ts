@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import {
   afterNextRender,
   Component,
@@ -41,7 +41,6 @@ export interface MCLayoutAIMessage {
 @Component({
   selector: 'mc-layout-ai',
   imports: [
-    CommonModule,
     RouterModule,
     PrintServiceComponent,
     ButtonModule,
@@ -49,8 +48,8 @@ export interface MCLayoutAIMessage {
     AvatarModule,
     BadgeModule,
     TooltipModule,
-    FormsModule,
-  ],
+    FormsModule
+],
   templateUrl: './layout-ai.component.html',
   styleUrl: './layout-ai.component.scss',
 })

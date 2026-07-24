@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, inject, signal, viewChild } from '@angular/core';
 import { Validators } from '@angular/forms';
 import { QuillField } from '@mckit/quill-field';
@@ -9,7 +9,7 @@ import { MCGCloudStorageService } from '../../../../../mckit/file/src/public-api
 
 @Component({
   selector: 'app-product-edit-page',
-  imports: [CommonModule, MCForm],
+  imports: [MCForm],
   providers: [MCGCloudStorageService],
   templateUrl: './product-edit-page.component.html',
   styleUrl: './product-edit-page.component.scss'

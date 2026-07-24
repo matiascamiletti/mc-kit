@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, computed } from '@angular/core';
 import { FormArray, FormControl, ReactiveFormsModule } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
@@ -10,7 +10,7 @@ import { InputTextModule } from 'primeng/inputtext';
 
 @Component({
   selector: 'mc-array-ifta-text-field',
-  imports: [CommonModule, ReactiveFormsModule, PanelModule, ButtonModule, IftaLabelModule, InputTextModule],
+  imports: [ReactiveFormsModule, PanelModule, ButtonModule, IftaLabelModule, InputTextModule],
   templateUrl: './array-ifta-text-field.component.html',
   styleUrl: './array-ifta-text-field.component.css'
 })

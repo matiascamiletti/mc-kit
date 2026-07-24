@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 import { IftaLabelModule } from 'primeng/iftalabel';
@@ -9,7 +9,7 @@ import { MCField } from '../../entities/mc-field';
 
 @Component({
   selector: 'mc-ifta-multi-select-field',
-  imports: [CommonModule, ReactiveFormsModule, IftaLabelModule, MultiSelectModule],
+  imports: [ReactiveFormsModule, IftaLabelModule, MultiSelectModule],
   templateUrl: './ifta-multi-select-field.component.html',
   styleUrl: './ifta-multi-select-field.component.css'
 })

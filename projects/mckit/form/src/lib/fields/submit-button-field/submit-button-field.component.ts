@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { MCFieldComponent } from '../mc-field.component';
-import { CommonModule } from '@angular/common';
+
 import { ButtonModule } from 'primeng/button';
 import { MCField } from '../../entities/mc-field';
 import { MCIftaField } from '../../entities/mc-ifta-field';
@@ -9,7 +9,7 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'mc-submit-button-field',
-  imports: [CommonModule, ButtonModule],
+  imports: [ButtonModule],
   templateUrl: './submit-button-field.component.html',
   styleUrl: './submit-button-field.component.css'
 })

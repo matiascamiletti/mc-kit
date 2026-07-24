@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, inject, OnDestroy, signal } from '@angular/core';
 import { MCComponent, MCCoreComponent } from '@mckit/core';
 import { MenuItem } from 'primeng/api';
@@ -12,7 +12,7 @@ import { Subscription, tap } from 'rxjs';
 
 @Component({
   selector: 'mc-tenant-menu',
-  imports: [CommonModule, MenuModule, ButtonModule, ImageModule, SplitButtonModule],
+  imports: [MenuModule, ButtonModule, ImageModule, SplitButtonModule],
   templateUrl: './tenant-menu.component.html',
   styleUrl: './tenant-menu.component.scss'
 })

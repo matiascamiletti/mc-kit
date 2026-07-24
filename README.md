@@ -1,6 +1,6 @@
 # 🛠️ MC Kit
 
-> A modern, modular library suite designed to build premium, responsive, and feature-rich applications in **Angular 20** using **PrimeNG 20** and **Tailwind CSS v4**.
+> A modern, modular library suite designed to build premium, responsive, and feature-rich applications in **Angular 21** using **PrimeNG 21** and **Tailwind CSS v4**.
 
 MC Kit provides pre-configured layout wrappers, advanced form fields, OData bindings, authentication systems, chat components, multi-tenant helpers, and much more. It's structured as a monorepo containing individual libraries scoped under `@mckit/*`.
 
@@ -92,7 +92,7 @@ The `example` application (`projects/example`) showcases real-life implementatio
 
 ## 📦 Tailwind CSS & Styling Integration
 
-MC Kit is styled using **Tailwind CSS v4** and **PrimeNG 20** with the **Aura** theme.
+MC Kit is styled using **Tailwind CSS v4** and **PrimeNG 21** with the **Aura** theme.
 Tailwind v4 is configured in `projects/example/src/styles.scss` using the modern `@use` and `@plugin` directives:
 
 ```scss
@@ -135,7 +135,7 @@ npm run test
 ---
 
 ## 🔗 Reference Links & Resources
-* [Angular 20 Documentation](https://angular.dev)
+* [Angular 21 Documentation](https://angular.dev)
 * [PrimeNG Components](https://primeng.org)
 * [PrimeNG Checkbox](https://primeng.org/checkbox)
 * [Apollo PrimeNG Template](https://apollo.primeng.org/)

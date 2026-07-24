@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component } from '@angular/core';
 import { DividerModule } from 'primeng/divider';
 import { MCField } from '../../entities/mc-field';
@@ -6,7 +6,7 @@ import { MCFieldComponent } from '../mc-field.component';
 
 @Component({
   selector: 'mc-divider-field',
-  imports: [CommonModule, DividerModule],
+  imports: [DividerModule],
   templateUrl: './divider-field.component.html',
   styleUrl: './divider-field.component.css'
 })

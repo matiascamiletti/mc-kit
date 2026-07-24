@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, inject, input, OnInit, output, signal } from '@angular/core';
 import { MCConfigForm } from '../../entities/mc-config-form';
 import { PrintFieldComponent } from '../print-field/print-field.component';
@@ -9,7 +9,7 @@ import { Subject, Subscription } from 'rxjs';
 
 @Component({
   selector: 'mc-form',
-  imports: [CommonModule, ReactiveFormsModule, PrintFieldComponent],
+  imports: [ReactiveFormsModule, PrintFieldComponent],
   templateUrl: './form.component.html',
   styleUrl: './form.component.scss'
 })

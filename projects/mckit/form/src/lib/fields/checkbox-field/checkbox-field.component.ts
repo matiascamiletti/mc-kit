@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 import { CheckboxModule } from 'primeng/checkbox';
@@ -8,7 +8,7 @@ import { MCFieldComponent } from '../mc-field.component';
 
 @Component({
   selector: 'lib-checkbox-field',
-  imports: [CommonModule, ReactiveFormsModule, CheckboxModule],
+  imports: [ReactiveFormsModule, CheckboxModule],
   templateUrl: './checkbox-field.component.html',
   styleUrl: './checkbox-field.component.css'
 })

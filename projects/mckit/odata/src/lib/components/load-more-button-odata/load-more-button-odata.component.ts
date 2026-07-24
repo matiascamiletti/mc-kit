@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, input, OnInit, output, signal } from '@angular/core';
 import { MCListResponse } from '@mckit/core';
 import { ButtonModule } from 'primeng/button';
@@ -11,7 +11,7 @@ export interface MCLoadMoreClick {
 
 @Component({
   selector: 'mc-load-more-button-odata',
-  imports: [CommonModule, ButtonModule],
+  imports: [ButtonModule],
   templateUrl: './load-more-button-odata.component.html',
   styleUrl: './load-more-button-odata.component.css'
 })

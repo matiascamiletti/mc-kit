@@ -2,12 +2,12 @@ import { Component, Input } from '@angular/core';
 import { CardModule } from 'primeng/card';
 import { BreadcrumbModule } from 'primeng/breadcrumb';
 import { MenuItem } from 'primeng/api';
-import { CommonModule } from '@angular/common';
+
 
 
 @Component({
     selector: 'mc-simple-page',
-    imports: [CommonModule, CardModule, BreadcrumbModule],
+    imports: [CardModule, BreadcrumbModule],
     templateUrl: './simple-page.component.html',
     styleUrl: './simple-page.component.css'
 })

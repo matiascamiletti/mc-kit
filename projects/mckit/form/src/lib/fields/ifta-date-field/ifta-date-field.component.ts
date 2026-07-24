@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 import { IftaLabelModule } from 'primeng/iftalabel';
@@ -10,7 +10,7 @@ import { DatePickerModule } from 'primeng/datepicker';
 
 @Component({
   selector: 'mc-ifta-date-field',
-  imports: [CommonModule, ReactiveFormsModule, IftaLabelModule, InputTextModule, DatePickerModule],
+  imports: [ReactiveFormsModule, IftaLabelModule, InputTextModule, DatePickerModule],
   templateUrl: './ifta-date-field.component.html',
   styleUrl: './ifta-date-field.component.css'
 })

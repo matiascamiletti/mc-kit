@@ -1,4 +1,4 @@
-import { CommonModule, isPlatformBrowser } from '@angular/common';
+import { isPlatformBrowser } from '@angular/common';
 import { Component, computed, inject, PLATFORM_ID } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { MCField, MCFieldComponent } from '@mckit/form';
@@ -11,7 +11,7 @@ declare const window: any;
 
 @Component({
   selector: 'mc-monaco-field',
-  imports: [CommonModule, ReactiveFormsModule, MonacoEditorModule],
+  imports: [ReactiveFormsModule, MonacoEditorModule],
   templateUrl: './monaco-field.component.html',
   styleUrl: './monaco-field.component.scss'
 })

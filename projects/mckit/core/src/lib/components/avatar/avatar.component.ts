@@ -3,11 +3,11 @@ import { AvatarModule } from 'primeng/avatar';
 import { AvatarGroupModule } from 'primeng/avatargroup';
 import { MCCoreComponent } from '../mc-core-component';
 import { MCComponent } from '../../entities/mc-component';
-import { CommonModule } from '@angular/common';
+
 
 @Component({
     selector: 'mc-avatar',
-    imports: [CommonModule, AvatarModule, AvatarGroupModule],
+    imports: [AvatarModule, AvatarGroupModule],
     templateUrl: './avatar.component.html',
     styleUrl: './avatar.component.css'
 })

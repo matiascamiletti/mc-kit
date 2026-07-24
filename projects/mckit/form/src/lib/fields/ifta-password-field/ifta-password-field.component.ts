@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component } from '@angular/core';
 import { IftaLabelModule } from 'primeng/iftalabel';
 import { PasswordModule } from 'primeng/password';
@@ -10,7 +10,7 @@ import { ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 
 @Component({
     selector: 'mc-ifta-password-field',
-    imports: [CommonModule, ReactiveFormsModule, IftaLabelModule, PasswordModule, ButtonModule],
+    imports: [ReactiveFormsModule, IftaLabelModule, PasswordModule, ButtonModule],
     templateUrl: './ifta-password-field.component.html',
     styleUrl: './ifta-password-field.component.css'
 })

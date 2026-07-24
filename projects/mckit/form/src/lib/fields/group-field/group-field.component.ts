@@ -2,12 +2,12 @@ import { Component, computed } from '@angular/core';
 import { MCFieldComponent } from '../mc-field.component';
 import { MCField } from '../../entities/mc-field';
 import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
-import { CommonModule } from '@angular/common';
+
 import { PrintFieldComponent } from '../../components/print-field/print-field.component';
 
 @Component({
   selector: 'mc-group-field',
-  imports: [CommonModule, ReactiveFormsModule, PrintFieldComponent],
+  imports: [ReactiveFormsModule, PrintFieldComponent],
   templateUrl: './group-field.component.html',
   styleUrl: './group-field.component.css'
 })

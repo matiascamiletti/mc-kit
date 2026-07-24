@@ -1,6 +1,6 @@
 import { Component, inject, OnDestroy } from '@angular/core';
 import { IftaTextField, MCFieldComponent, MCFormModalService, MCHttpFormModalService } from '../../../../../mckit/form/src/public-api';
-import { CommonModule } from '@angular/common';
+
 import { ButtonModule } from 'primeng/button';
 import { Validators } from '@angular/forms';
 import { DialogService, DynamicDialogModule } from 'primeng/dynamicdialog';
@@ -8,7 +8,7 @@ import { delay, map, of, Subscription, switchMap } from 'rxjs';
 
 @Component({
   selector: 'app-open-modal-field',
-  imports: [CommonModule, ButtonModule, DynamicDialogModule],
+  imports: [ButtonModule, DynamicDialogModule],
   providers: [DialogService, MCHttpFormModalService],
   templateUrl: './open-modal-field.component.html',
   styleUrl: './open-modal-field.component.scss'

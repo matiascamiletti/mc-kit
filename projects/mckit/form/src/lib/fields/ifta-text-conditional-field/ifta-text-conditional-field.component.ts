@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { MCFieldComponent } from '../mc-field.component';
-import { CommonModule } from '@angular/common';
+
 import { ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 import { IftaLabelModule } from 'primeng/iftalabel';
 import { InputTextModule } from 'primeng/inputtext';
@@ -10,7 +10,7 @@ import { MCField } from '../../entities/mc-field';
 
 @Component({
   selector: 'mc-ifta-text-conditional-field',
-  imports: [CommonModule, ReactiveFormsModule, IftaLabelModule, InputTextModule],
+  imports: [ReactiveFormsModule, IftaLabelModule, InputTextModule],
   templateUrl: './ifta-text-conditional-field.component.html',
   styleUrl: './ifta-text-conditional-field.component.css'
 })

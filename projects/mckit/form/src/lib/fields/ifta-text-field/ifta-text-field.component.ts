@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component } from '@angular/core';
 import { IftaLabelModule } from 'primeng/iftalabel';
 import { InputTextModule } from 'primeng/inputtext';
@@ -9,7 +9,7 @@ import { ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 
 @Component({
   selector: 'mc-ifta-text-field',
-  imports: [CommonModule, ReactiveFormsModule, IftaLabelModule, InputTextModule],
+  imports: [ReactiveFormsModule, IftaLabelModule, InputTextModule],
   templateUrl: './ifta-text-field.component.html',
   styleUrl: './ifta-text-field.component.css'
 })
