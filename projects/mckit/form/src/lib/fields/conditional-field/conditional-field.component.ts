@@ -1,6 +1,6 @@
 import { Component, OnDestroy, OnInit, signal } from '@angular/core';
 import { MCFieldComponent } from '../mc-field.component';
-import { CommonModule } from '@angular/common';
+
 import { ReactiveFormsModule } from '@angular/forms';
 import { PrintFieldComponent } from '../../components/print-field/print-field.component';
 import { MCField } from '../../entities/mc-field';
@@ -8,7 +8,7 @@ import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'mc-conditional-field',
-  imports: [CommonModule, ReactiveFormsModule, PrintFieldComponent],
+  imports: [ReactiveFormsModule, PrintFieldComponent],
   templateUrl: './conditional-field.component.html',
   styleUrl: './conditional-field.component.css'
 })

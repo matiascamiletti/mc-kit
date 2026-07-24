@@ -1,9 +1,9 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, input, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'mc-split-page',
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './split-page.component.html',
   styleUrl: './split-page.component.css',
   encapsulation: ViewEncapsulation.None,

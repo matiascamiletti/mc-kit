@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component } from '@angular/core';
 import { IftaLabelModule } from 'primeng/iftalabel';
 import { TextareaModule } from 'primeng/textarea';
@@ -9,7 +9,7 @@ import { ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 
 @Component({
   selector: 'mc-ifta-textarea-field',
-  imports: [CommonModule, ReactiveFormsModule, IftaLabelModule, TextareaModule],
+  imports: [ReactiveFormsModule, IftaLabelModule, TextareaModule],
   templateUrl: './ifta-textarea-field.component.html',
   styleUrl: './ifta-textarea-field.component.css'
 })

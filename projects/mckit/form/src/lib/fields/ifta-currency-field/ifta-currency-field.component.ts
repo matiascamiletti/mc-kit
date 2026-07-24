@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component } from '@angular/core';
 import { ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 import { IftaLabelModule } from 'primeng/iftalabel';
@@ -12,7 +12,7 @@ import { MCIftaField } from '../../entities/mc-ifta-field';
 
 @Component({
   selector: 'mc-ifta-currency-field',
-  imports: [CommonModule, ReactiveFormsModule, IftaLabelModule, InputTextModule, InputNumberModule, InputGroupModule, InputGroupAddonModule],
+  imports: [ReactiveFormsModule, IftaLabelModule, InputTextModule, InputNumberModule, InputGroupModule, InputGroupAddonModule],
   templateUrl: './ifta-currency-field.component.html',
   styleUrl: './ifta-currency-field.component.css'
 })

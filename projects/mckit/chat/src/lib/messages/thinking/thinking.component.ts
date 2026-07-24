@@ -1,10 +1,10 @@
-import { CommonModule } from '@angular/common';
+
 import { Component } from '@angular/core';
 import { MCBaseMessageComponent } from '../base-message.component';
 
 @Component({
   selector: 'mc-chat-thinking',
-  imports: [CommonModule],
+  imports: [],
   templateUrl: './thinking.component.html',
   styleUrl: './thinking.component.css'
 })

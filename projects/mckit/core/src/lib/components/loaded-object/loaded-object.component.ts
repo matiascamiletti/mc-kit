@@ -2,12 +2,12 @@ import { Component, inject, input, OnDestroy, OnInit, output, signal } from '@an
 import { MCApiRestHttpService } from '../../services/api-rest-http.service';
 import { ActivatedRoute } from '@angular/router';
 import { map, Subscription, switchMap, take, takeWhile, tap } from 'rxjs';
-import { CommonModule } from '@angular/common';
+
 import { ProgressSpinnerModule } from 'primeng/progressspinner';
 
 @Component({
   selector: 'mc-loaded-object',
-  imports: [CommonModule, ProgressSpinnerModule],
+  imports: [ProgressSpinnerModule],
   templateUrl: './loaded-object.component.html',
   styleUrl: './loaded-object.component.css'
 })

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, DestroyRef, inject, input, OnInit, output, signal } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { ScrollerModule } from 'primeng/scroller';
@@ -13,7 +13,7 @@ import { tap } from 'rxjs';
 
 @Component({
   selector: 'mc-advanced-filters-panel',
-  imports: [CommonModule, ButtonModule, ScrollerModule, DividerModule, ItemAdvancedFilterComponent],
+  imports: [ButtonModule, ScrollerModule, DividerModule, ItemAdvancedFilterComponent],
   templateUrl: './advanced-filters-panel.component.html',
   styleUrl: './advanced-filters-panel.component.css'
 })

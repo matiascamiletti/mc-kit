@@ -1,7 +1,7 @@
 import { Component, computed, input, output, OnInit, signal, inject, DestroyRef } from '@angular/core';
 import { MCFilter, MCTypeFilter } from '../../entities/filter';
 import { MCConditionResult, MCResultFilter } from '../../entities/result';
-import { CommonModule } from '@angular/common';
+
 import { SelectModule } from 'primeng/select';
 import { FormsModule } from '@angular/forms';
 import { InputTextModule } from 'primeng/inputtext';
@@ -29,16 +29,14 @@ interface OptionGroup {
   selector: 'mc-item-advanced-filter',
   standalone: true,
   imports: [
-    CommonModule,
     FormsModule,
     TypeFilterTextComponent,
-
     InputTextModule,
     ButtonModule,
     AutoCompleteModule,
     MultiSelectModule,
-    SelectModule,
-  ],
+    SelectModule
+],
   templateUrl: './item-advanced-filter.component.html',
   styleUrl: './item-advanced-filter.component.scss',
 })

@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, inject, input, OnInit, output } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { MCColumn } from '@mckit/core';
@@ -7,7 +7,7 @@ import { MultiSelectChangeEvent, MultiSelectModule } from 'primeng/multiselect';
 
 @Component({
   selector: 'mc-show-columns-button',
-  imports: [CommonModule, FormsModule, MultiSelectModule],
+  imports: [FormsModule, MultiSelectModule],
   templateUrl: './show-columns-button.component.html',
   styleUrl: './show-columns-button.component.css'
 })

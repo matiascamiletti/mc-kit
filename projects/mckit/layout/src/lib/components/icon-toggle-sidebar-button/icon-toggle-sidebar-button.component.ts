@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, inject } from '@angular/core';
 import { MCComponent, MCCoreComponent } from '@mckit/core';
 import { MCSidebarService, MCNavigationService } from '@mckit/layout-core';
@@ -7,7 +7,7 @@ import { ButtonModule } from 'primeng/button';
 
 @Component({
     selector: 'mc-icon-toggle-sidebar-button',
-    imports: [CommonModule, ButtonModule],
+    imports: [ButtonModule],
     templateUrl: './icon-toggle-sidebar-button.component.html',
     styleUrl: './icon-toggle-sidebar-button.component.css'
 })

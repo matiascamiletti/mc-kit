@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, computed, effect, input, OnInit, output, viewChild } from '@angular/core';
 import { ButtonModule } from 'primeng/button';
 import { Stepper, StepperModule } from 'primeng/stepper';
@@ -10,7 +10,7 @@ import { StepButtonsField } from '../../fields/step-buttons-field/step-buttons-f
 
 @Component({
   selector: 'mc-form-wizard',
-  imports: [CommonModule, StepperModule, ButtonModule, MCForm],
+  imports: [StepperModule, ButtonModule, MCForm],
   templateUrl: './form-wizard.component.html',
   styleUrl: './form-wizard.component.css'
 })

@@ -1,7 +1,7 @@
 import { Component, inject, OnDestroy, OnInit, signal, WritableSignal } from '@angular/core';
-import { DialogService, DynamicDialogComponent, DynamicDialogRef } from 'primeng/dynamicdialog';
+import { DialogService, DynamicDialog, DynamicDialogRef } from 'primeng/dynamicdialog';
 import { MCFormModal } from '../form-modal/form-modal.component';
-import { CommonModule } from '@angular/common';
+
 import { ButtonModule } from 'primeng/button';
 import { UntypedFormGroup } from '@angular/forms';
 import { Subject, Subscription, take } from 'rxjs';
@@ -9,7 +9,7 @@ import { MCEventModalForm } from '../../entities/mc-event-modal-form';
 
 @Component({
   selector: 'mc-footer-modal-form',
-  imports: [CommonModule, ButtonModule],
+  imports: [ButtonModule],
   templateUrl: './footer-modal-form.component.html',
   styleUrl: './footer-modal-form.component.css'
 })
@@ -53,7 +53,7 @@ export class MCFooterModalForm implements OnInit, OnDestroy {
   }
 
   initConfig() {
-    let instance: DynamicDialogComponent|undefined = this.dialogService.getInstance(this.dialogRef);
+    let instance: DynamicDialog|undefined = this.dialogService.getInstance(this.dialogRef);
     if(instance?.data == undefined){
       this.dialogRef.close();
       return;

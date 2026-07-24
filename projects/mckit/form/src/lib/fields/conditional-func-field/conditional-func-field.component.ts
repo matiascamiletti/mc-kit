@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { ReactiveFormsModule } from '@angular/forms';
 import { MCField } from '../../entities/mc-field';
 import { PrintFieldComponent } from '../../components/print-field/print-field.component';
@@ -7,7 +7,7 @@ import { ConditionalFieldComponent } from '../conditional-field/conditional-fiel
 
 @Component({
   selector: 'mc-conditional-func-field',
-  imports: [CommonModule, ReactiveFormsModule, PrintFieldComponent],
+  imports: [ReactiveFormsModule, PrintFieldComponent],
   templateUrl: './conditional-func-field.component.html',
   styleUrl: './conditional-func-field.component.css'
 })

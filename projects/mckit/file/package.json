@@ -1,10 +1,10 @@
 {
   "name": "@mckit/file",
-  "version": "20.0.2",
+  "version": "21.0.0",
   "peerDependencies": {
-    "@angular/common": "^20.3.0",
-    "@angular/core": "^20.3.0",
-    "@mckit/core": "^20.0.0"
+    "@angular/common": "^21.0.0",
+    "@angular/core": "^21.0.0",
+    "@mckit/core": "^21.0.0"
   },
   "dependencies": {
     "tslib": "^2.3.0"

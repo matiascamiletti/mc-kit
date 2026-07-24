@@ -1,7 +1,7 @@
 import { Component, computed, inject } from '@angular/core';
 import { MCFieldComponent } from '../mc-field.component';
 import { MCField } from '../../entities/mc-field';
-import { CommonModule } from '@angular/common';
+
 import { FormArray, ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 import { MCFormService } from '../../services/mc-form.service';
 import { PrintFieldComponent } from '../../components/print-field/print-field.component';
@@ -10,7 +10,7 @@ import { PanelModule } from 'primeng/panel';
 
 @Component({
   selector: 'mc-array-field',
-  imports: [CommonModule, ReactiveFormsModule, PrintFieldComponent, PanelModule, ButtonModule],
+  imports: [ReactiveFormsModule, PrintFieldComponent, PanelModule, ButtonModule],
   templateUrl: './array-field.component.html',
   styleUrl: './array-field.component.css'
 })

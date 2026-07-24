@@ -1,11 +1,11 @@
-import { CommonModule } from '@angular/common';
+
 import { Component, input } from '@angular/core';
 import { AvatarModule } from 'primeng/avatar';
 import { MCUserChat } from '../../entities/user';
 
 @Component({
   selector: 'mc-user-header-chat',
-  imports: [CommonModule, AvatarModule],
+  imports: [AvatarModule],
   templateUrl: './user-header.component.html',
   styleUrl: './user-header.component.css'
 })

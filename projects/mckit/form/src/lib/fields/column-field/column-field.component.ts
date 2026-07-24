@@ -1,13 +1,13 @@
 import { Component } from '@angular/core';
 import { MCFieldComponent } from '../mc-field.component';
-import { CommonModule } from '@angular/common';
+
 import { MCField } from '../../entities/mc-field';
 import { ReactiveFormsModule } from '@angular/forms';
 import { PrintFieldComponent } from '../../components/print-field/print-field.component';
 
 @Component({
   selector: 'mc-column-field',
-  imports: [CommonModule, ReactiveFormsModule, PrintFieldComponent],
+  imports: [ReactiveFormsModule, PrintFieldComponent],
   templateUrl: './column-field.component.html',
   styleUrl: './column-field.component.css'
 })

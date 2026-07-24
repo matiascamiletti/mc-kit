@@ -2,7 +2,7 @@ import { Component, signal } from '@angular/core';
 import { MCFile, MCUploadFileService } from '@mckit/core';
 import { MCField } from '../../entities/mc-field';
 import { ArrayFieldComponent } from '../array-field/array-field.component';
-import { CommonModule } from '@angular/common';
+
 import { FormArray, FormControl, ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 import { ButtonModule } from 'primeng/button';
 import { TextareaModule } from 'primeng/textarea';
@@ -11,7 +11,7 @@ import { concatMap, from, tap } from 'rxjs';
 
 @Component({
   selector: 'mc-gallery-field',
-  imports: [CommonModule, ReactiveFormsModule, ButtonModule, TextareaModule, FileUploadModule],
+  imports: [ReactiveFormsModule, ButtonModule, TextareaModule, FileUploadModule],
   templateUrl: './gallery-field.component.html',
   styleUrl: './gallery-field.component.css'
 })

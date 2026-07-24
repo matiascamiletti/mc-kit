@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { CommonModule } from '@angular/common';
+
 import { MCField } from '../../entities/mc-field';
 import { ReactiveFormsModule, UntypedFormGroup } from '@angular/forms';
 import { PrintFieldComponent } from '../../components/print-field/print-field.component';
@@ -7,7 +7,7 @@ import { GroupFieldComponent } from '../group-field/group-field.component';
 
 @Component({
   selector: 'mc-row-field',
-  imports: [CommonModule, ReactiveFormsModule, PrintFieldComponent],
+  imports: [ReactiveFormsModule, PrintFieldComponent],
   templateUrl: './row-field.component.html',
   styleUrl: './row-field.component.css'
 })
