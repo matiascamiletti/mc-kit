@@ -22,6 +22,7 @@ on:
       - "projects/mckit/socket/package.json"
       - "projects/mckit/monaco-field/package.json"
       - "projects/mckit/file/package.json"
+      - "projects/mckit/quill-field/package.json"
 
 jobs:
   filter:
@@ -44,6 +45,7 @@ jobs:
       socket: ${{ steps.filter.outputs.socket }}
       monaco-field: ${{ steps.filter.outputs['monaco-field'] }}
       file: ${{ steps.filter.outputs['file'] }}
+      quill-field: ${{ steps.filter.outputs['quill-field'] }}
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -88,6 +90,8 @@ jobs:
               - 'projects/mckit/monaco-field/package.json'
             file:
               - 'projects/mckit/file/package.json'
+            quill-field:
+              - 'projects/mckit/quill-field/package.json'
 
   build-and-publish:
     needs: filter
@@ -114,6 +118,7 @@ jobs:
             socket,
             monaco-field,
             file,
+            quill-field,
           ]
     steps:
       - name: Checkout repository
