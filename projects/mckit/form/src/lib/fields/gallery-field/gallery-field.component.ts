@@ -8,6 +8,7 @@ import { ButtonModule } from 'primeng/button';
 import { TextareaModule } from 'primeng/textarea';
 import { FileSelectEvent, FileUploadModule } from 'primeng/fileupload';
 import { concatMap, from, tap } from 'rxjs';
+import { HiddenField } from '../hidden-field/hidden-field.component';
 
 @Component({
   selector: 'mc-gallery-field',
@@ -92,6 +93,15 @@ export class GalleryField {
       allow_order: data?.allow_order,
       allow_add: data?.allow_add ?? true,
       classes: data?.classes,
+      fields: [
+        HiddenField.init('id'),
+        HiddenField.init('name'),
+        HiddenField.init('url'),
+        HiddenField.init('size'),
+        HiddenField.init('mime_type'),
+        HiddenField.init('alt_text'),
+        HiddenField.init('is_primary'),
+      ]
     }
 
     return field;
