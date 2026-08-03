@@ -24,6 +24,11 @@ export class IftaSubSelectFieldComponent extends IftaSelectObsFieldComponent imp
   }
 
   override loadObs() {
+    // Verify if parent key has initial value, if so, call searchOptions
+    if (this.group().get(this.field().config.parentKey)?.value) {
+      this.searchOptions(this.group().get(this.field().config.parentKey)?.value);
+    }
+
     this.valueSubscription = this.group().get(this.field().config.parentKey)?.valueChanges.subscribe((value: any) => {
       this.searchOptions(value);
     });
