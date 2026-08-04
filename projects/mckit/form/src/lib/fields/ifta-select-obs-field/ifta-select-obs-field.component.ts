@@ -5,7 +5,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, ValidatorFn } from '@angul
 import { IftaLabelModule } from 'primeng/iftalabel';
 import { MCField } from '../../entities/mc-field';
 import { MCIftaField } from '../../entities/mc-ifta-field';
-import { SelectChangeEvent, SelectModule } from 'primeng/select';
+import { SelectChangeEvent, SelectFilterEvent, SelectModule } from 'primeng/select';
 import { Observable, Subscription } from 'rxjs';
 
 @Component({
@@ -31,7 +31,7 @@ export class IftaSelectObsFieldComponent extends MCFieldComponent implements OnI
     this.optionsSubscription?.unsubscribe();
   }
 
-  loadObs() {
+  loadOptions() {
     this.isLoading.set(true);
     this.optionsSubscription?.unsubscribe();
 
@@ -40,6 +40,10 @@ export class IftaSelectObsFieldComponent extends MCFieldComponent implements OnI
       this.options.set(value);
       this.isLoading.set(false);
     });
+  }
+
+  loadObs() {
+    this.loadOptions();
 
     if(this.field().config.on_change == undefined){
       return;
@@ -76,6 +80,26 @@ export class IftaSelectObsFieldComponent extends MCFieldComponent implements OnI
       this.group().addControl(key, new FormControl());
     }
   }
+
+  onFilter(event: SelectFilterEvent) {
+    if(this.field().config?.on_filter == undefined){
+      return;
+    }
+
+    if(event.filter == '' || event.filter == undefined){
+      this.loadOptions();
+      return;
+    }
+
+    this.isLoading.set(true);
+    this.optionsSubscription?.unsubscribe();
+
+    this.optionsSubscription = this.field().config.on_filter(event.filter)
+    .subscribe((value: Array<any>) => {
+      this.options.set(value);
+      this.isLoading.set(false);
+    });
+  }
 }
 
 export class IftaSelectObsField {
@@ -93,6 +117,8 @@ export class IftaSelectObsField {
       classes?: string,
       on_change?: (selectedItem: any) => any,
       extra_params?: { [key: string]: string }
+      with_filter?: boolean,
+      on_filter?: (query: string) => Observable<Array<any>>,
   }): MCField {
     let configObj = MCIftaField.init({
       key: key,
@@ -107,6 +133,8 @@ export class IftaSelectObsField {
     configObj.config.optionValue = optionValue;
     configObj.config.on_change = config?.on_change;
     configObj.config.extra_params = config?.extra_params;
+    configObj.config.with_filter = config?.with_filter ?? false;
+    configObj.config.on_filter = config?.on_filter;
 
     return configObj;
   }

@@ -144,6 +144,24 @@ export class FormPageComponent implements OnInit {
         { id: 'client-5', title: 'Client 5' }
       ]), 'title', 'id'),
       HtmlField.init('Esto es un campo de <strong>HTML directo</strong>'),
+      IftaSelectObsField.init('client_three_with_filter', 'Client', () => of([
+        { id: 'client-1', title: 'Client 1' },
+        { id: 'client-2', title: 'Client 2' },
+        { id: 'client-3', title: 'Client 3' },
+        { id: 'client-4', title: 'Client 4' },
+        { id: 'client-5', title: 'Client 5' }
+      ]), 'title', 'id', { 
+        with_filter: true,
+        on_filter: (query: string) => {
+          if(query == 'matias') {
+            return of([
+              { id: 'client-matias', title: 'Client Matias' }
+            ]);
+          }
+
+          return of([]);
+        }
+       }),
       SubmitButtonField.init('submit', 'Submit', { icon: 'pi pi-check' })
     ];
 
