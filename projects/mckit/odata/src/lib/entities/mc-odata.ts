@@ -25,6 +25,10 @@ export class MCOdata {
    * Expand the items by the specified field.
    */
   expands?: string;
+  /**
+   * Extra parameters to be added to the OData query.
+   */
+  extraParams?: string;
 
   setPage(page: number, pageSize: number): void {
     this.top = pageSize;
@@ -55,6 +59,9 @@ export class MCOdata {
       odata += `${odata ? '&' : ''}$expand=${this.expands}`;
     }
     odata += `${odata ? '&' : ''}$filter=${this.filters.toString()}`;
+    if (this.extraParams) {
+      odata += `${odata ? '&' : ''}${this.extraParams}`;
+    }
 
     return odata;
   }
