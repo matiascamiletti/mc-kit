@@ -15,7 +15,7 @@
         </ng-template>
         <div [formGroup]="row" class="mc-array-group-form flex flex-col gap-2 w-full">
           @for (field of field().config.fields; track $index) {
-            <div class="{{(field.config.containerFieldClass)}}">
+            <div class="{{ field().config?.containerFieldClass }} {{ field.config?.parentContainerClass }}">
               <mc-print-field [field]="field" [control]="row.get(field.key ?? '')" [group]="row" [eventObs]="eventObs()" />
             </div>
           }

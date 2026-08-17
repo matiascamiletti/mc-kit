@@ -1,6 +1,6 @@
 <div class="mc-column-form {{field().config.classes}}">
     @for (field of field().config.fields; track $index) {
-    <div class="{{(field.config.containerFieldClass)}}">
+    <div class="{{ field().config?.containerFieldClass }} {{ field.config?.parentContainerClass }}">
         <mc-print-field [field]="field" [control]="group()!.get(field.key ?? '')" [group]="group()!"
             [eventObs]="eventObs()" />
     </div>
