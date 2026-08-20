@@ -18,6 +18,8 @@ export * from './lib/services/mc-component.service';
 export * from './lib/services/api-rest-http.service';
 export * from './lib/services/api-rest-parent-http.service';
 export * from './lib/services/mc-upload-file.service';
+export * from './lib/services/api-rest-dto-http.service';
+export * from './lib/services/api-rest-dto-parent-http.service';
 
 /** Components */
 export * from './lib/components/mc-core-component';
