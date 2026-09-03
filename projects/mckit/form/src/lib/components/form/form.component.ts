@@ -16,7 +16,7 @@ import { Subject, Subscription } from 'rxjs';
 export class MCForm implements OnInit {
   config = input.required<MCConfigForm>();
 
-  formGroup = signal<UntypedFormGroup|undefined>(undefined);
+  formGroup = signal<UntypedFormGroup | undefined>(undefined);
 
   formService = inject(MCFormService);
 
@@ -54,7 +54,10 @@ export class MCForm implements OnInit {
   }
 
   patchValues(item: any) {
-    this.formGroup()?.patchValue(item);
+    if (this.formGroup() == undefined) {
+      return;
+    }
+    this.formService.patchValue(this.formGroup()!, this.config().fields ?? [], item);
   }
 
   getEventObs(): Subject<MCEventForm> {
