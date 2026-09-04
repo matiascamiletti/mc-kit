@@ -23,7 +23,7 @@ export class MCFilterOdataConverterService {
   filterToOdata(filter: MCResultFilter, isFirst: boolean): string {
 
     let result = '';
-    if(filter.childrens != undefined){
+    if (filter.childrens != undefined) {
       result += !isFirst ? ' ' + filter.operator + ' (' : '(';
       result += this.filtersToOdata(filter.childrens);
       result += ')';
@@ -35,15 +35,15 @@ export class MCFilterOdataConverterService {
   }
 
   mapFilterToOData(filter: MCResultFilter): string {
-    if(filter.condition == undefined){
+    if (filter.condition == undefined) {
       return '';
     }
 
-    switch(filter.condition){
+    switch (filter.condition) {
       case MCConditionResult.EQUALS:
         return `${filter.filter!.key} eq '${filter.value}'`;
       case MCConditionResult.CONTAINS:
-        return `substringof(${filter.filter!.key}, '${filter.value}')`;
+        return `contains(${filter.filter!.key}, '${filter.value}')`;
       case MCConditionResult.IN:
         const values = Array.isArray(filter.value)
           ? filter.value.map(v => this.isNumeric(v) ? v : `'${v}'`).join(',')

@@ -55,7 +55,7 @@ export abstract class MCOdataSignalTableComponent<T extends { id?: any }> implem
   }
 
   sort(event: SortMeta) {
-    if(event.order == -1){
+    if (event.order == -1) {
       this.data.orderBy = event.field + ' desc';
     } else {
       this.data.orderBy = event.field + ' asc';
@@ -74,7 +74,7 @@ export abstract class MCOdataSignalTableComponent<T extends { id?: any }> implem
 
     this.data.filters.cleanPostpend();
 
-    if(query == '' || this.searchFieldsKey.length == 0){
+    if (query == '' || this.searchFieldsKey.length == 0) {
       this.loadItems();
       return;
     }
@@ -83,7 +83,7 @@ export abstract class MCOdataSignalTableComponent<T extends { id?: any }> implem
 
     let filters: Array<string> = [];
     this.searchFieldsKey.forEach(key => {
-      filters.push(`substringof(${key}, '${query}')`);
+      filters.push(`contains(${key}, '${query}')`);
     });
 
     this.data.filters.setPostpend(filters.join(' or '));
@@ -102,15 +102,15 @@ export abstract class MCOdataSignalTableComponent<T extends { id?: any }> implem
     }
 
     this.subscriptionList = this.requestList()
-    .pipe(
-      catchError((data) => {
-        this.messageService.add({ severity: 'error', detail: data.error?.message?.message || data.error.message || data.message || 'Unknown error' });
-        this.isLoading = false;
-        throw data;
-      }),
-      tap(response => this.items.set(response)),
-    )
-    .subscribe(() => this.isLoading = false);
+      .pipe(
+        catchError((data) => {
+          this.messageService.add({ severity: 'error', detail: data.error?.message?.message || data.error.message || data.message || 'Unknown error' });
+          this.isLoading = false;
+          throw data;
+        }),
+        tap(response => this.items.set(response)),
+      )
+      .subscribe(() => this.isLoading = false);
   }
 
   onDelete(id: any) {
@@ -124,11 +124,11 @@ export abstract class MCOdataSignalTableComponent<T extends { id?: any }> implem
       message: 'Are you sure that you want to proceed?',
       header: 'Delete Confirmation',
       icon: 'pi pi-exclamation-triangle',
-      acceptIcon:"none",
-      rejectIcon:"none",
-      rejectButtonStyleClass:"p-button-text",
+      acceptIcon: "none",
+      rejectIcon: "none",
+      rejectButtonStyleClass: "p-button-text",
       accept: () => {
-          this.onDelete(id);
+        this.onDelete(id);
       },
     });
   }

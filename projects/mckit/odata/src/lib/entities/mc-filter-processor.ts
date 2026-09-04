@@ -149,7 +149,7 @@ export class MCFilterProcessor {
         break;
       case 'contains':
       case 'substringof':
-        odataOperator = `substringof`;
+        odataOperator = `contains`;
         odataFunction = true;
         break;
       case 'endsWith':
@@ -215,7 +215,7 @@ export class MCFilterProcessor {
   }
 
   addContainsFilter(key: string, value: string): void {
-    this.addODataFilter(`substringof(${key}, '${value}')`);
+    this.addODataFilter(`contains(${key}, '${value}')`);
   }
 
   addEndsWithFilter(key: string, value: string): void {
@@ -603,7 +603,7 @@ export class MCFilterProcessor {
   }
 
   setPrependContains(key: string, value: any) {
-    this.prepend = `substringof(${key}, '${value}')`;
+    this.prepend = `contains(${key}, '${value}')`;
   }
 
   cleanPrepend(): void {
@@ -651,7 +651,7 @@ export class MCFilterProcessor {
   }
 
   setPostpendContains(key: string, value: any) {
-    this.postpend = `substringof(${key}, '${value}')`;
+    this.postpend = `contains(${key}, '${value}')`;
   }
 
   cleanPostpend(): void {
