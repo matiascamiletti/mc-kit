@@ -10,26 +10,27 @@ MC Kit provides pre-configured layout wrappers, advanced form fields, OData bind
 
 The workspace is structured around a core library and multiple feature/utility sub-libraries located in `projects/mckit/`:
 
-| Package | Description | Key Dependencies & Peer Dependencies |
-| :--- | :--- | :--- |
-| **`@mckit/core`** | Core foundations of MC Kit | Base services, utilities, styling hooks, and PrimeUX themes preset helper. |
-| **`@mckit/loader`** | Global and local loading indicators | Smooth loaders, spinners, interceptors, and loading overlay components. |
-| **`@mckit/auth`** | Full authentication client scaffolding | Login/register layouts (split, Sakai, half-screen), JWT interceptor, route guards, and state services. |
-| **`@mckit/filter`** | Query and filter configuration engine | Dynamic builders for filtering tables and API requests. |
-| **`@mckit/layout-core`** | Base templates and structural parts | Component contracts, heading components, and layout structures. |
-| **`@mckit/layout`** | Basic application layout shells | Sidebars, toggle buttons, customizable topbars, and responsiveness. |
-| **`@mckit/layout-sakai`** | Sakai theme structure wrapper | Integrates the Sakai theme as an MC Layout. |
-| **`@mckit/layout-fuse`** | Fuse theme structure wrapper | Integrates clean Fuse-style structural shell for layout control. |
-| **`@mckit/layout-ai`** | AI/Chat-focused page layout shell | Side-panels, focus structures, and widgets for AI agent workflows. |
-| **`@mckit/table`** | Advanced data table with state | Columns toggler, default actions, state persistence, pagination styling. |
-| **`@mckit/odata`** | Seamless OData API binding | OData table binding, server-side pagination/filtering/sorting, and multi-select OData helpers. |
-| **`@mckit/form`** | Dynamic and reactive form components | Base inputs, validations, helper modules, and custom forms. |
-| **`@mckit/monaco-field`** | Monaco Code Editor input control | Embedded Monaco editor with Angular Forms integration. |
-| **`@mckit/quill-field`** | Quill Rich-Text Editor input control | Pre-configured WYSIWYG editor for standard HTML text formats. |
-| **`@mckit/tenant`** | Multi-tenant context and layout helpers | Switchers, interceptors, and hooks for SaaS environments. |
-| **`@mckit/chat`** | Real-time chat elements | Bubbles, list of conversations, input bars, and message templates. |
-| **`@mckit/socket`** | Socket.io integration layer | Pre-configured providers, services, and RxJS-friendly socket events. |
-| **`@mckit/cron`** | Cron expression builder component | Friendly UI to generate standard crontab configurations. |
+| Package                   | Description                             | Key Dependencies & Peer Dependencies                                                                   |
+| :------------------------ | :-------------------------------------- | :----------------------------------------------------------------------------------------------------- |
+| **`@mckit/core`**         | Core foundations of MC Kit              | Base services, utilities, styling hooks, and PrimeUX themes preset helper.                             |
+| **`@mckit/loader`**       | Global and local loading indicators     | Smooth loaders, spinners, interceptors, and loading overlay components.                                |
+| **`@mckit/auth`**         | Full authentication client scaffolding  | Login/register layouts (split, Sakai, half-screen), JWT interceptor, route guards, and state services. |
+| **`@mckit/filter`**       | Query and filter configuration engine   | Dynamic builders for filtering tables and API requests.                                                |
+| **`@mckit/layout-core`**  | Base templates and structural parts     | Component contracts, heading components, and layout structures.                                        |
+| **`@mckit/layout`**       | Basic application layout shells         | Sidebars, toggle buttons, customizable topbars, and responsiveness.                                    |
+| **`@mckit/layout-sakai`** | Sakai theme structure wrapper           | Integrates the Sakai theme as an MC Layout.                                                            |
+| **`@mckit/layout-fuse`**  | Fuse theme structure wrapper            | Integrates clean Fuse-style structural shell for layout control.                                       |
+| **`@mckit/layout-ai`**    | AI/Chat-focused page layout shell       | Side-panels, focus structures, and widgets for AI agent workflows.                                     |
+| **`@mckit/table`**        | Advanced data table with state          | Columns toggler, default actions, state persistence, pagination styling.                               |
+| **`@mckit/odata`**        | Seamless OData API binding              | OData table binding, server-side pagination/filtering/sorting, and multi-select OData helpers.         |
+| **`@mckit/form`**         | Dynamic and reactive form components    | Base inputs, validations, helper modules, and custom forms.                                            |
+| **`@mckit/monaco-field`** | Monaco Code Editor input control        | Embedded Monaco editor with Angular Forms integration.                                                 |
+| **`@mckit/quill-field`**  | Quill Rich-Text Editor input control    | Pre-configured WYSIWYG editor for standard HTML text formats.                                          |
+| **`@mckit/tenant`**       | Multi-tenant context and layout helpers | Switchers, interceptors, and hooks for SaaS environments.                                              |
+| **`@mckit/chat`**         | Real-time chat elements                 | Bubbles, list of conversations, input bars, and message templates.                                     |
+| **`@mckit/socket`**       | Socket.io integration layer             | Pre-configured providers, services, and RxJS-friendly socket events.                                   |
+| **`@mckit/cron`**         | Cron expression builder component       | Friendly UI to generate standard crontab configurations.                                               |
+| **`@mckit/layout-axis`**  | Axis theme structure wrapper            | Integrates clean Axis-style structural shell for layout control.                                       |
 
 ---
 
@@ -38,6 +39,7 @@ The workspace is structured around a core library and multiple feature/utility s
 ### Prerequisites
 
 To use or develop in this project, you need:
+
 - **Node.js** 22+
 - **Angular CLI** 20+
 - **PrimeNG** 20+
@@ -62,31 +64,35 @@ To use or develop in this project, you need:
 Useful workspace commands defined in `package.json`:
 
 ### Running & Building
-* **Start Playground**: `npm start` (Runs the `example` application).
-* **Build a single library**: `ng build @mckit/<project-name>` (e.g. `ng build @mckit/core`).
-* **Build all libraries**:
+
+- **Start Playground**: `npm start` (Runs the `example` application).
+- **Build a single library**: `ng build @mckit/<project-name>` (e.g. `ng build @mckit/core`).
+- **Build all libraries**:
   ```bash
   npm run build-all
   ```
-  *(Builds all packages sequentially matching their internal dependencies).*
+  _(Builds all packages sequentially matching their internal dependencies)._
 
 ### Publishing to NPM
+
 The project publishes packages to NPM. Use the following commands (or let CI handle it on merge):
-* **Publish core modules package**: `npm run publish-core`
-* **Publish layout package**: `npm run publish-layout`
-* **Publish OData package**: `npm run publish-odata`
-* *(Individual `publish-<package>` scripts are available for all 16+ libraries).*
-* **Publish all main packages**: `npm run upload-npm`
+
+- **Publish core modules package**: `npm run publish-core`
+- **Publish layout package**: `npm run publish-layout`
+- **Publish OData package**: `npm run publish-odata`
+- _(Individual `publish-<package>` scripts are available for all 16+ libraries)._
+- **Publish all main packages**: `npm run upload-npm`
 
 ---
 
 ## 🖥️ Playground / Example Application
 
 The `example` application (`projects/example`) showcases real-life implementations of the modules. You can explore the following layouts and features:
-* 🗂️ **Layouts**: Basic (`/basic`), Sakai (`/sakai`), Fuse (`/fuse`), and AI (`/ai`).
-* 🔑 **Authentication Screens**: Standard basic (`/login`), screen-split half (`/login-half`), Sakai-styled (`/login-sakai`), and split registration (`/register-split`).
-* 📋 **Components & Forms**: Monaco / Quill field integrations, Cron builders, and OData table integration (`/fuse/odata` and `/fuse/table`).
-* 💬 **Chat & Socket**: Real-time conversation layouts (`/fuse/conversation`).
+
+- 🗂️ **Layouts**: Basic (`/basic`), Sakai (`/sakai`), Fuse (`/fuse`), and AI (`/ai`).
+- 🔑 **Authentication Screens**: Standard basic (`/login`), screen-split half (`/login-half`), Sakai-styled (`/login-sakai`), and split registration (`/register-split`).
+- 📋 **Components & Forms**: Monaco / Quill field integrations, Cron builders, and OData table integration (`/fuse/odata` and `/fuse/table`).
+- 💬 **Chat & Socket**: Real-time conversation layouts (`/fuse/conversation`).
 
 ---
 
@@ -98,7 +104,7 @@ Tailwind v4 is configured in `projects/example/src/styles.scss` using the modern
 ```scss
 @use "tailwindcss";
 @use "primeicons/primeicons.css";
-@use 'quill/dist/quill.snow.css';
+@use "quill/dist/quill.snow.css";
 
 @plugin "tailwindcss-primeui";
 
@@ -112,15 +118,16 @@ Tailwind v4 is configured in `projects/example/src/styles.scss` using the modern
 ```
 
 The PrimeNG configuration is bootstrapped inside `projects/example/src/app/app.config.ts`:
+
 ```typescript
 providePrimeNG({
   theme: {
     preset: Aura,
     options: {
-      darkModeSelector: '.dark',
+      darkModeSelector: ".dark",
     },
   },
-})
+});
 ```
 
 ---
@@ -128,6 +135,7 @@ providePrimeNG({
 ## 🧪 Testing
 
 To run unit tests via Karma:
+
 ```bash
 npm run test
 ```
@@ -135,8 +143,9 @@ npm run test
 ---
 
 ## 🔗 Reference Links & Resources
-* [Angular 21 Documentation](https://angular.dev)
-* [PrimeNG Components](https://primeng.org)
-* [PrimeNG Checkbox](https://primeng.org/checkbox)
-* [Apollo PrimeNG Template](https://apollo.primeng.org/)
-* [Angular Tutorial: First App](https://v17.angular.io/tutorial/first-app/first-app-lesson-10)
+
+- [Angular 21 Documentation](https://angular.dev)
+- [PrimeNG Components](https://primeng.org)
+- [PrimeNG Checkbox](https://primeng.org/checkbox)
+- [Apollo PrimeNG Template](https://apollo.primeng.org/)
+- [Angular Tutorial: First App](https://v17.angular.io/tutorial/first-app/first-app-lesson-10)

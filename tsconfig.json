@@ -31,6 +31,9 @@
       "@mckit/layout-ai": [
         "./dist/mckit/layout-ai"
       ],
+      "@mckit/layout-axis": [
+        "./dist/mckit/layout-axis"
+      ],
       "@mckit/layout-core": [
         "./dist/mckit/layout-core"
       ],
@@ -108,6 +111,12 @@
     },
     {
       "path": "./projects/mckit/file/tsconfig.spec.json"
+    },
+    {
+      "path": "./projects/mckit/layout-axis/tsconfig.lib.json"
+    },
+    {
+      "path": "./projects/mckit/layout-axis/tsconfig.spec.json"
     }
   ]
 }

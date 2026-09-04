@@ -1,0 +1,15 @@
+{
+  "name": "@mckit/layout-axis",
+  "version": "21.0.0",
+  "peerDependencies": {
+    "@angular/common": "^21.2.0",
+    "@angular/core": "^21.2.0",
+    "@mckit/core": "^21.0.0",
+    "@mckit/layout-core": "^21.0.0",
+    "primeng": "^21.0.0"
+  },
+  "dependencies": {
+    "tslib": "^2.3.0"
+  },
+  "sideEffects": false
+}
