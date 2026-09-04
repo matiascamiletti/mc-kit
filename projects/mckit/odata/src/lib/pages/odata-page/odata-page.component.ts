@@ -125,7 +125,7 @@ export class MCOdataPage implements OnInit, OnDestroy {
 
     let filters: Array<string> = [];
     this.searchFieldsKey()?.forEach(key => {
-      filters.push(`substringof(${key}, '${query}')`);
+      filters.push(`contains(${key}, '${query}')`);
     });
 
     if (filters.length == 0) {
