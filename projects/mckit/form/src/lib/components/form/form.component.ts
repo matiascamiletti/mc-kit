@@ -71,4 +71,12 @@ export class MCForm implements OnInit {
   getValues(): any {
     return this.formGroup()?.value;
   }
+
+  submit(): void {
+    if (this.formGroup() == undefined) {
+      return;
+    }
+
+    this.emitEvent(MCEventForm.init('submit', this.formGroup()!.value));
+  }
 }
