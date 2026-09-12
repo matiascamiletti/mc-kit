@@ -1,35 +1,213 @@
 # Auth - MC Kit
 
-Core para integrar facilmente Auth en tu plataforma. Incluye paginas de login ya maquetadas.
+Core para integrar fácilmente autenticación, autorización basada en roles (RBAC) y permisos (PBAC) en tu plataforma Angular. Incluye servicios reactivos con Signals, guards funcionales, directivas estructurales, pipes y páginas de login maquetadas.
 
 ## Table of Contents
 
 - [Installation](#installation)
-  - [1. Install MIA Core](#1-install-mia-core)
-  - [1. Install libraries](#1-install-libraries)
-  - [2. Add Styles](#2-add-styles)
+- [Roles & Permissions](#roles--permissions)
+  - [1. Providers Setup](#1-providers-setup)
+  - [2. Route Guards](#2-route-guards)
+  - [3. Permission Service (Signals & Observables)](#3-permission-service-signals--observables)
+  - [4. Structural Directives](#4-structural-directives)
+  - [5. Pipes](#5-pipes)
 - [Use Login Page Layout](#use-login-page-layout)
-  - [1. Create component](#1-create-component)
-  - [1. Install libraries](#1-install-libraries)
-  - [2. Add Styles](#2-add-styles)
+
+---
 
 ## Installation
 
-### Use Schematics
+### 1. Install libraries
 
 ```bash
-ng g @mckit/schematics:add-login-page
+npm install --save @ngx-pwa/local-storage @mckit/auth
 ```
 
-### 1. Install MIA Core
+---
 
-[Instalar MIA Core](https://github.com/matiascamiletti/mc-kit/blob/main/projects/mckit/core/README.md#1-install-libraries)
+## Roles & Permissions
 
-### 2. Install libraries
+### 1. Providers Setup
 
-```bash
-npm install --save @ngx-pwa/local-storage@19 @mckit/auth
+En tu `app.config.ts`:
+
+```typescript
+import { ApplicationConfig } from '@angular/core';
+import { provideMCAuth, provideMCPermissions } from '@mckit/auth';
+
+export const appConfig: ApplicationConfig = {
+  providers: [
+    provideMCAuth({
+      baseUrl: 'https://api.example.com/',
+    }),
+    provideMCPermissions({
+      superAdminRole: 'superadmin', // Este rol tiene acceso total y bypass de permisos
+      wildcardEnabled: true,        // Habilita comodines como 'users:*' o '*' (default: true)
+      defaultRedirectUrl: '/forbidden',
+    }),
+  ],
+};
 ```
+
+### 2. Route Guards
+
+#### Uso con `route.data`
+
+```typescript
+import { Routes } from '@angular/router';
+import { mcAuthGuard, mcRoleGuard, mcPermissionGuard, mcAuthAccessGuard } from '@mckit/auth';
+
+export const routes: Routes = [
+  // Protección por Roles
+  {
+    path: 'admin',
+    component: AdminComponent,
+    canActivate: [mcAuthGuard, mcRoleGuard],
+    data: {
+      roles: ['admin', 'manager'],
+      roleMode: 'ANY', // 'ANY' (por defecto) o 'ALL'
+      redirectTo: '/forbidden',
+    },
+  },
+
+  // Protección por Permisos (soporta comodines como 'users:*')
+  {
+    path: 'users',
+    component: UsersComponent,
+    canActivate: [mcAuthGuard, mcPermissionGuard],
+    data: {
+      permissions: ['users:read', 'users:write'],
+      permissionMode: 'ALL',
+      redirectTo: '/forbidden',
+    },
+  },
+
+  // Guard todo en uno (Autenticación + Roles + Permisos)
+  {
+    path: 'billing',
+    component: BillingComponent,
+    canActivate: [mcAuthAccessGuard],
+    data: {
+      roles: ['admin'],
+      permissions: ['billing:*'],
+      redirectTo: '/forbidden',
+    },
+  },
+];
+```
+
+#### Uso con Factory Functions
+
+```typescript
+import { createRoleGuard, createPermissionGuard } from '@mckit/auth';
+
+export const routes: Routes = [
+  {
+    path: 'dashboard',
+    component: DashboardComponent,
+    canActivate: [createRoleGuard('admin', { redirectTo: '/forbidden' })],
+  },
+  {
+    path: 'articles/new',
+    component: ArticleCreateComponent,
+    canActivate: [createPermissionGuard('articles:create')],
+  },
+];
+```
+
+### 3. Permission Service (Signals & Observables)
+
+```typescript
+import { Component, inject } from '@angular/core';
+import { MCPermissionService } from '@mckit/auth';
+
+@Component({
+  standalone: true,
+  template: `
+    @if (permissionService.hasRole('admin')) {
+      <button (click)="deleteUser()">Eliminar Usuario</button>
+    }
+
+    @if (permissionService.can('export', 'reports')) {
+      <button (click)="exportReport()">Exportar</button>
+    }
+
+    <!-- Signals reactivos directos -->
+    <p>Roles: {{ permissionService.roles() | json }}</p>
+    <p>Permisos: {{ permissionService.permissionNames() | json }}</p>
+  `,
+})
+export class UserProfileComponent {
+  permissionService = inject(MCPermissionService);
+
+  checkAccess() {
+    // Roles
+    const isAdmin = this.permissionService.hasRole('admin');
+    const isManagerOrEditor = this.permissionService.hasRole(['manager', 'editor'], 'ANY');
+
+    // Permisos
+    const canEditUsers = this.permissionService.hasPermission('users:edit');
+    const canAll = this.permissionService.hasPermission(['users:create', 'users:delete'], 'ALL');
+
+    // Comprobación rápida subject:action
+    const canPublish = this.permissionService.can('publish', 'articles');
+
+    // Gestión dinámica en runtime
+    this.permissionService.addPermission('articles:featured');
+    this.permissionService.removePermission('articles:delete');
+  }
+}
+```
+
+### 4. Structural Directives
+
+Importa `MCHasRoleDirective` y `MCHasPermissionDirective` en tus componentes:
+
+```typescript
+import { Component } from '@angular/core';
+import { MCHasRoleDirective, MCHasPermissionDirective } from '@mckit/auth';
+
+@Component({
+  standalone: true,
+  imports: [MCHasRoleDirective, MCHasPermissionDirective],
+  template: `
+    <!-- Directiva por Roles -->
+    <button *mcHasRole="'admin'">Panel de Administración</button>
+
+    <div *mcHasRole="['admin', 'manager']; mode: 'ANY'; else noRoleTpl">
+      Contenido para Administradores o Managers
+    </div>
+    <ng-template #noRoleTpl>
+      <p>No tienes el rol requerido.</p>
+    </ng-template>
+
+    <!-- Directiva por Permisos -->
+    <button *mcHasPermission="'users:create'">Crear Usuario</button>
+
+    <div *mcHasPermission="['users:create', 'users:delete']; mode: 'ALL'; else noPermTpl">
+      Operaciones avanzadas
+    </div>
+    <ng-template #noPermTpl>
+      <p>Permisos insuficientes.</p>
+    </ng-template>
+
+    <!-- Por objeto de permiso -->
+    <button *mcHasPermission="{ subject: 'articles', action: 'publish' }">Publicar</button>
+  `,
+})
+export class ExampleComponent {}
+```
+
+### 5. Pipes
+
+Importa `MCHasRolePipe` y `MCHasPermissionPipe`:
+
+```html
+<button [disabled]="!('users:edit' | mcHasPermission)">Editar</button>
+<button [disabled]="!(['admin', 'superadmin'] | mcHasRole:'ANY')">Configurar</button>
+```
+
+---
 
 ## Use Login Page Layout
 
@@ -57,4 +235,3 @@ loadConfig() {
   this.config.registerLink = '/register';
 }
 ```
-
