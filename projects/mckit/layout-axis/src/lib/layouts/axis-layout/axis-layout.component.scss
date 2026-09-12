@@ -1,0 +1,154 @@
+/**
+ * Axis layout theme.
+ *
+ * Every color and dimension is exposed as a CSS custom property so a host app
+ * can re-skin the layout from a global stylesheet:
+ *
+ *   mc-axis-layout { --mc-axis-sidebar-bg: #111827; }
+ */
+:host {
+  // Dimensions
+  --mc-axis-sidebar-width: 17rem;
+  --mc-axis-topbar-height: 4rem;
+  --mc-axis-content-max-width: 96rem;
+  --mc-axis-transition: 0.3s ease;
+
+  // Surfaces (light / dark mode)
+  --mc-axis-layout-bg: #f5f6f8;
+  --mc-axis-layout-bg-dark: #0b1220;
+  --mc-axis-topbar-bg: #ffffff;
+  --mc-axis-topbar-bg-dark: #111a2b;
+  --mc-axis-border-color: #e6e8ee;
+  --mc-axis-border-color-dark: #1f2a3d;
+
+  // Sidebar (always dark, independent of the app color scheme)
+  --mc-axis-sidebar-bg: #0f1b2d;
+  --mc-axis-sidebar-text: #e8ecf4;
+  --mc-axis-sidebar-muted: #8a95aa;
+  --mc-axis-sidebar-border: rgba(255, 255, 255, 0.08);
+  --mc-axis-sidebar-hover-bg: rgba(255, 255, 255, 0.06);
+  --mc-axis-sidebar-active-bg: rgba(255, 255, 255, 0.12);
+  --mc-axis-sidebar-scrollbar: rgba(255, 255, 255, 0.15);
+
+  display: block;
+  height: 100%;
+}
+
+.mc-axis-layout {
+  background-color: var(--mc-axis-layout-bg);
+
+  :host-context(.dark) & {
+    background-color: var(--mc-axis-layout-bg-dark);
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Sidebar                                                                    */
+/* -------------------------------------------------------------------------- */
+
+.layout-sidebar {
+  background-color: var(--mc-axis-sidebar-bg);
+  color: var(--mc-axis-sidebar-text);
+  border-right: 1px solid var(--mc-axis-sidebar-border);
+  transform: translateX(-100%);
+  transition: transform var(--mc-axis-transition), margin-left var(--mc-axis-transition);
+  scrollbar-width: thin;
+  scrollbar-color: var(--mc-axis-sidebar-scrollbar) transparent;
+
+  &.open {
+    transform: translateX(0);
+  }
+}
+
+@media (min-width: 768px) {
+  .layout-sidebar {
+    transform: none; // Flex + negative margin take over on desktop
+    width: var(--mc-axis-sidebar-width);
+    margin-left: calc(var(--mc-axis-sidebar-width) * -1);
+
+    &.open {
+      margin-left: 0;
+    }
+  }
+}
+
+/**
+ * Skin the stock MCKit sidebar components (MCMenu, MCSubtitle, MCImage,
+ * MCTenantMenu...) for the dark surface. They are rendered by
+ * `mc-print-service`, outside this component's view, hence `::ng-deep`.
+ */
+.layout-sidebar ::ng-deep {
+  .mc-menu-container {
+    padding: 0 0.75rem;
+
+    a {
+      display: flex;
+      align-items: center;
+      margin: 0.125rem 0;
+      padding: 0.625rem 0.875rem;
+      border-radius: 0.75rem;
+      color: var(--mc-axis-sidebar-text);
+      font-weight: 500;
+      transition: background-color 0.15s ease, color 0.15s ease;
+
+      .layout-menuitem-icon {
+        color: var(--mc-axis-sidebar-muted);
+        transition: color 0.15s ease;
+      }
+
+      &:hover {
+        background-color: var(--mc-axis-sidebar-hover-bg);
+        color: var(--mc-axis-sidebar-text);
+      }
+
+      &.active-route {
+        background-color: var(--mc-axis-sidebar-active-bg);
+        font-weight: 600;
+      }
+
+      &:hover .layout-menuitem-icon,
+      &.active-route .layout-menuitem-icon {
+        color: var(--mc-axis-sidebar-text);
+      }
+    }
+  }
+
+  mc-subtitle h2 {
+    color: var(--mc-axis-sidebar-muted);
+    font-size: 0.6875rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    padding: 1.25rem 1.5rem 0.5rem;
+  }
+
+  .p-button.p-button-text {
+    color: var(--mc-axis-sidebar-text);
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Topbar                                                                     */
+/* -------------------------------------------------------------------------- */
+
+.layout-topbar {
+  height: var(--mc-axis-topbar-height);
+  background-color: var(--mc-axis-topbar-bg);
+  border-bottom: 1px solid var(--mc-axis-border-color);
+
+  :host-context(.dark) & {
+    background-color: var(--mc-axis-topbar-bg-dark);
+    border-color: var(--mc-axis-border-color-dark);
+  }
+
+  img {
+    max-height: calc(var(--mc-axis-topbar-height) - 1.5rem);
+  }
+}
+
+/* -------------------------------------------------------------------------- */
+/* Content                                                                    */
+/* -------------------------------------------------------------------------- */
+
+.mc-axis-content {
+  max-width: var(--mc-axis-content-max-width);
+}

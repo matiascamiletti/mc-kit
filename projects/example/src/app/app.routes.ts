@@ -13,6 +13,7 @@ import { FormPageComponent } from './pages/form-page/form-page.component';
 import { PostEditPage } from './pages/post-edit-page/post-edit-page.component';
 import { ConversationPage } from './pages/conversation-page/conversation-page.component';
 import { MCLayoutAI } from '../../../mckit/layout-ai/src/public-api';
+import { MCAxisLayoutComponent } from '../../../mckit/layout-axis/src/public-api';
 import { ProductEditPageComponent } from './pages/product-edit-page/product-edit-page.component';
 import { FormWizardPageComponent } from './pages/form-wizard-page/form-wizard-page.component';
 
@@ -119,6 +120,42 @@ export const routes: Routes = [
         path: 'form',
         component: FormPageComponent,
         title: 'Form',
+      },
+      {
+        path: 'conversation',
+        component: ConversationPage,
+        title: 'Conversation',
+      },
+      {
+        path: 'wizard',
+        component: FormWizardPageComponent,
+        title: 'Form Wizard',
+      },
+    ],
+  },
+  {
+    path: 'axis',
+    component: MCAxisLayoutComponent,
+    children: [
+      {
+        path: '',
+        component: TestPageComponent,
+        title: 'Test page',
+      },
+      {
+        path: 'table',
+        component: TestTableComponent,
+        title: 'Test Table',
+      },
+      {
+        path: 'odata',
+        component: OdataPageComponent,
+        title: 'Odata Table',
+      },
+      {
+        path: 'form',
+        component: FormPageComponent,
+        title: 'Form Table',
       },
       {
         path: 'conversation',

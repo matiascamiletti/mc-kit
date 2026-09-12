@@ -89,7 +89,7 @@ The project publishes packages to NPM. Use the following commands (or let CI han
 
 The `example` application (`projects/example`) showcases real-life implementations of the modules. You can explore the following layouts and features:
 
-- 🗂️ **Layouts**: Basic (`/basic`), Sakai (`/sakai`), Fuse (`/fuse`), and AI (`/ai`).
+- 🗂️ **Layouts**: Basic (`/basic`), Sakai (`/sakai`), Fuse (`/fuse`), AI (`/ai`), and Axis (`/axis`).
 - 🔑 **Authentication Screens**: Standard basic (`/login`), screen-split half (`/login-half`), Sakai-styled (`/login-sakai`), and split registration (`/register-split`).
 - 📋 **Components & Forms**: Monaco / Quill field integrations, Cron builders, and OData table integration (`/fuse/odata` and `/fuse/table`).
 - 💬 **Chat & Socket**: Real-time conversation layouts (`/fuse/conversation`).
