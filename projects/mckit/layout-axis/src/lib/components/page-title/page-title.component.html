@@ -1,0 +1,39 @@
+<div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 w-full" [class]="customClass()">
+  <!-- Main Title Column -->
+  <div class="flex flex-col gap-1.5 min-w-0 flex-1">
+    <!-- Pretitle / Overline -->
+    <ng-content select="[pretitle], [page-title-pretitle], [overline]">
+      @if (pretitle()) {
+        <span class="text-xs sm:text-sm font-bold tracking-wider text-[#4A72A4] dark:text-blue-400 uppercase select-none">
+          {{ pretitle() }}
+        </span>
+      }
+    </ng-content>
+
+    <!-- Title / Heading -->
+    <ng-content select="[title], [page-title-title], [heading]">
+      @if (title()) {
+        <h1 class="text-2xl sm:text-3xl md:text-4xl font-extrabold text-slate-900 dark:text-white tracking-tight leading-tight">
+          {{ title() }}
+        </h1>
+      }
+    </ng-content>
+
+    <!-- Subtitle / Description -->
+    <ng-content select="[subtitle], [page-title-subtitle], [description]">
+      @if (subtitle()) {
+        <p class="text-sm sm:text-base text-slate-600 dark:text-slate-400 font-normal leading-relaxed mt-0.5">
+          {{ subtitle() }}
+        </p>
+      }
+    </ng-content>
+
+    <!-- Additional Content -->
+    <ng-content></ng-content>
+  </div>
+
+  <!-- Actions slot (optional right side) -->
+  <div class="flex items-center gap-2 flex-shrink-0">
+    <ng-content select="[actions], [page-title-actions], [right]"></ng-content>
+  </div>
+</div>
