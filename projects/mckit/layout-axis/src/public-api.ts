@@ -6,3 +6,9 @@
  * Layouts
  */
 export * from "./lib/layouts/axis-layout/axis-layout.component";
+
+/**
+ * Components
+ */
+export * from "./lib/components/card-rounded/card-rounded.component";
+
