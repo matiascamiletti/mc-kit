@@ -13,7 +13,14 @@ import { MCEventChatType } from '../../entities/event';
   styleUrl: './history-conversation.component.css'
 })
 export class MCHistoryConversationComponent {
+
+  title = input<string>('Chats');
+
   conversations = input<MCConversation[]>([]);
+
+  disablePhoto = input<boolean>(false);
+  disableContent = input<boolean>(false);
+  disableNewButton = input<boolean>(false);
 
   chatService = inject(MCChatService);
 

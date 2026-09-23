@@ -169,7 +169,7 @@ export class ConversationPage implements OnInit {
         user: {
           id: '2',
           firstname: 'Jane',
-          lastname: 'Doe',
+          lastname: 'Goe',
           online: false,
         },
       },

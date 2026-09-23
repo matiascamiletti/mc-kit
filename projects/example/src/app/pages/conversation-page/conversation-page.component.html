@@ -1,4 +1,6 @@
-<!--<mc-history-conversation [conversations]="conversations()" />-->
+<mc-history-conversation [title]="'Last Conversations'" [conversations]="conversations()" [disablePhoto]="true"
+    [disableContent]="true" />
+<mc-history-conversation [conversations]="conversations()" />
 @if (conversation() != undefined) {
 <mc-conversation [conversation]="conversation()!" />
 }
