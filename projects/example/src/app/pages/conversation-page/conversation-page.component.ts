@@ -487,7 +487,7 @@ export class ConversationPage implements OnInit {
       },
       {
         id: '2',
-        title: 'Conversation 2',
+        title: 'Conversation 2 asdlkj aslkdja skldj asldjaklsdj alksjd aljkdf aslknjasld kjasdkl asndflkasdl askdasldkj asldkm asldkmas ldmasidlnale alsmd alksjd alsfja lsnd asda lsd asf alsfjalkda slkdm asdna sdla skdn asufn asklmd alsdn asf nalkdma slkdnasdln asdl asdl masasdfalsd asjldn ausd alksnd asudn asnfas',
         messages: [
           {
             id: '1',
@@ -591,7 +591,7 @@ export class ConversationPage implements OnInit {
       },
       {
         id: '2',
-        title: 'Conversation 2',
+        title: 'Conversation 2 asd alsdj alkjd askldj alksjd aslkjd asldjaslkdja sldkjasdklja sdlk jasdl jsadlkasjdlsak jdalsdkjasl dkjsadlkj asdl kasjdalskjdasl jdsaldkj asdlkj asdlk jasdlk ajsd lksajdl aksjd alkjd lakjdsl',
         messages: [
           {
             id: '1',
