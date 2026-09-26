@@ -1,6 +1,17 @@
 <mc-history-conversation [title]="'Last Conversations'" [conversations]="conversations()" [disablePhoto]="true"
     [disableContent]="true" />
-<mc-history-conversation [conversations]="conversations()" />
+<mc-history-conversation [conversations]="conversations()">
+
+    <div mcHistoryFooter>
+        <div class="p-3">Custom Footer</div>
+    </div>
+
+</mc-history-conversation>
+
+<ng-template #customFooter>
+
+</ng-template>
+
 @if (conversation() != undefined) {
 <mc-conversation [conversation]="conversation()!" />
 }

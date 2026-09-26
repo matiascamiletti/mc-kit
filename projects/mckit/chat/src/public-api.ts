@@ -31,6 +31,12 @@ export * from './lib/components/writing/writing.component';
 export * from './lib/components/history-conversation/history-conversation.component';
 
 /**
+ * Directives
+ */
+export * from './lib/directives/history-footer.directive';
+export * from './lib/directives/history-empty.directive';
+
+/**
  * Services
  */
 export * from './lib/services/chat.service';

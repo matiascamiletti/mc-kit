@@ -1,4 +1,4 @@
-<div class="flex flex-col h-full bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700">
+<div class="flex flex-col h-full min-h-0 bg-white dark:bg-gray-900 border-r border-gray-200 dark:border-gray-700">
     <div class="p-4 border-b border-gray-200 dark:border-gray-700 flex justify-between items-center">
         <h2 class="text-xl font-semibold text-gray-800 dark:text-white">{{title()}}</h2>
         @if(!disableNewButton()){
@@ -31,7 +31,7 @@
                     <h3 class="text-sm font-semibold text-gray-900 dark:text-white truncate">
                         {{ getTitle(conversation) }}
                     </h3>
-                    @if (conversation.messages.length > 0) {
+                    @if (conversation.messages && conversation.messages.length > 0) {
                     <span class="text-xs text-gray-500 dark:text-gray-400">
                         {{ conversation.messages[conversation.messages.length - 1].createdAt | date:'shortTime' }}
                     </span>
@@ -39,7 +39,7 @@
                 </div>
                 @if(!disableContent()){
                 <p class="text-sm text-gray-500 dark:text-gray-400 truncate">
-                    @if (conversation.messages.length > 0) {
+                    @if (conversation.messages && conversation.messages.length > 0) {
                     {{ conversation.messages[conversation.messages.length - 1].content }}
                     } @else {
                     <span class="italic">No messages yet</span>
@@ -48,6 +48,16 @@
                 }
             </div>
         </div>
+        } @empty {
+        <div class="p-8 text-center text-sm text-gray-400 dark:text-gray-500">
+            <i class="pi pi-comments text-3xl mb-2 block opacity-40"></i>
+            {{ emptyMessage() }}
+        </div>
         }
+    </div>
+
+    <!-- Custom Footer Area -->
+    <div class="mc-history-footer border-t border-gray-200 dark:border-gray-700" [class]="footerStyleClass()">
+        <ng-content select="[footer], [mcHistoryFooter], [mc-history-footer]"></ng-content>
     </div>
 </div>

@@ -1,5 +1,5 @@
 import { ApplicationRef, Component, inject, Injectable, OnInit, PLATFORM_ID, signal } from '@angular/core';
-import { MCChatService, MCConversation, MCConversationComponent, MCHistoryConversationComponent, MCMessageChatSide, MCMessageChatType } from '../../../../../mckit/chat/src/public-api';
+import { MCChatService, MCConversation, MCConversationComponent, MCHistoryConversationComponent, MCHistoryFooterDirective, MCMessageChatSide, MCMessageChatType } from '../../../../../mckit/chat/src/public-api';
 import { MCEventChat, MCEventChatType } from '../../../../../mckit/chat/src/lib/entities/event';
 import { Socket, SocketIoModule } from 'ngx-socket-io';
 import { map } from 'rxjs';
@@ -7,7 +7,7 @@ import { isPlatformBrowser } from '@angular/common';
 
 @Component({
   selector: 'app-conversation-page',
-  imports: [MCConversationComponent, MCHistoryConversationComponent],
+  imports: [MCConversationComponent, MCHistoryConversationComponent, MCHistoryFooterDirective],
   templateUrl: './conversation-page.component.html',
   styleUrl: './conversation-page.component.scss'
 })
@@ -145,6 +145,448 @@ export class ConversationPage implements OnInit {
           firstname: 'John',
           lastname: 'Doe',
           online: true,
+        },
+      },
+      {
+        id: '2',
+        title: 'Conversation 2',
+        messages: [
+          {
+            id: '1',
+            type: MCMessageChatType.TEXT,
+            content: 'Hello',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.LEFT,
+          },
+          {
+            id: '2',
+            type: MCMessageChatType.TEXT,
+            content: 'Hi',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.RIGHT,
+          },
+        ],
+        user: {
+          id: '2',
+          firstname: 'Jane',
+          lastname: 'Goe',
+          online: false,
+        },
+      },
+      {
+        id: '2',
+        title: 'Conversation 2',
+        messages: [
+          {
+            id: '1',
+            type: MCMessageChatType.TEXT,
+            content: 'Hello',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.LEFT,
+          },
+          {
+            id: '2',
+            type: MCMessageChatType.TEXT,
+            content: 'Hi',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.RIGHT,
+          },
+        ],
+        user: {
+          id: '2',
+          firstname: 'Jane',
+          lastname: 'Goe',
+          online: false,
+        },
+      },
+      {
+        id: '2',
+        title: 'Conversation 2',
+        messages: [
+          {
+            id: '1',
+            type: MCMessageChatType.TEXT,
+            content: 'Hello',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.LEFT,
+          },
+          {
+            id: '2',
+            type: MCMessageChatType.TEXT,
+            content: 'Hi',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.RIGHT,
+          },
+        ],
+        user: {
+          id: '2',
+          firstname: 'Jane',
+          lastname: 'Goe',
+          online: false,
+        },
+      },
+      {
+        id: '2',
+        title: 'Conversation 2',
+        messages: [
+          {
+            id: '1',
+            type: MCMessageChatType.TEXT,
+            content: 'Hello',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.LEFT,
+          },
+          {
+            id: '2',
+            type: MCMessageChatType.TEXT,
+            content: 'Hi',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.RIGHT,
+          },
+        ],
+        user: {
+          id: '2',
+          firstname: 'Jane',
+          lastname: 'Goe',
+          online: false,
+        },
+      },
+      {
+        id: '2',
+        title: 'Conversation 2',
+        messages: [
+          {
+            id: '1',
+            type: MCMessageChatType.TEXT,
+            content: 'Hello',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.LEFT,
+          },
+          {
+            id: '2',
+            type: MCMessageChatType.TEXT,
+            content: 'Hi',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.RIGHT,
+          },
+        ],
+        user: {
+          id: '2',
+          firstname: 'Jane',
+          lastname: 'Goe',
+          online: false,
+        },
+      },
+      {
+        id: '2',
+        title: 'Conversation 2',
+        messages: [
+          {
+            id: '1',
+            type: MCMessageChatType.TEXT,
+            content: 'Hello',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.LEFT,
+          },
+          {
+            id: '2',
+            type: MCMessageChatType.TEXT,
+            content: 'Hi',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.RIGHT,
+          },
+        ],
+        user: {
+          id: '2',
+          firstname: 'Jane',
+          lastname: 'Goe',
+          online: false,
+        },
+      },
+      {
+        id: '2',
+        title: 'Conversation 2',
+        messages: [
+          {
+            id: '1',
+            type: MCMessageChatType.TEXT,
+            content: 'Hello',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.LEFT,
+          },
+          {
+            id: '2',
+            type: MCMessageChatType.TEXT,
+            content: 'Hi',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.RIGHT,
+          },
+        ],
+        user: {
+          id: '2',
+          firstname: 'Jane',
+          lastname: 'Goe',
+          online: false,
+        },
+      },
+      {
+        id: '2',
+        title: 'Conversation 2',
+        messages: [
+          {
+            id: '1',
+            type: MCMessageChatType.TEXT,
+            content: 'Hello',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.LEFT,
+          },
+          {
+            id: '2',
+            type: MCMessageChatType.TEXT,
+            content: 'Hi',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.RIGHT,
+          },
+        ],
+        user: {
+          id: '2',
+          firstname: 'Jane',
+          lastname: 'Goe',
+          online: false,
+        },
+      },
+      {
+        id: '2',
+        title: 'Conversation 2',
+        messages: [
+          {
+            id: '1',
+            type: MCMessageChatType.TEXT,
+            content: 'Hello',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.LEFT,
+          },
+          {
+            id: '2',
+            type: MCMessageChatType.TEXT,
+            content: 'Hi',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.RIGHT,
+          },
+        ],
+        user: {
+          id: '2',
+          firstname: 'Jane',
+          lastname: 'Goe',
+          online: false,
+        },
+      },
+      {
+        id: '2',
+        title: 'Conversation 2',
+        messages: [
+          {
+            id: '1',
+            type: MCMessageChatType.TEXT,
+            content: 'Hello',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.LEFT,
+          },
+          {
+            id: '2',
+            type: MCMessageChatType.TEXT,
+            content: 'Hi',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.RIGHT,
+          },
+        ],
+        user: {
+          id: '2',
+          firstname: 'Jane',
+          lastname: 'Goe',
+          online: false,
+        },
+      },
+      {
+        id: '2',
+        title: 'Conversation 2',
+        messages: [
+          {
+            id: '1',
+            type: MCMessageChatType.TEXT,
+            content: 'Hello',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.LEFT,
+          },
+          {
+            id: '2',
+            type: MCMessageChatType.TEXT,
+            content: 'Hi',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.RIGHT,
+          },
+        ],
+        user: {
+          id: '2',
+          firstname: 'Jane',
+          lastname: 'Goe',
+          online: false,
+        },
+      },
+      {
+        id: '2',
+        title: 'Conversation 2',
+        messages: [
+          {
+            id: '1',
+            type: MCMessageChatType.TEXT,
+            content: 'Hello',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.LEFT,
+          },
+          {
+            id: '2',
+            type: MCMessageChatType.TEXT,
+            content: 'Hi',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.RIGHT,
+          },
+        ],
+        user: {
+          id: '2',
+          firstname: 'Jane',
+          lastname: 'Goe',
+          online: false,
+        },
+      },
+      {
+        id: '2',
+        title: 'Conversation 2',
+        messages: [
+          {
+            id: '1',
+            type: MCMessageChatType.TEXT,
+            content: 'Hello',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.LEFT,
+          },
+          {
+            id: '2',
+            type: MCMessageChatType.TEXT,
+            content: 'Hi',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.RIGHT,
+          },
+        ],
+        user: {
+          id: '2',
+          firstname: 'Jane',
+          lastname: 'Goe',
+          online: false,
+        },
+      },
+      {
+        id: '2',
+        title: 'Conversation 2',
+        messages: [
+          {
+            id: '1',
+            type: MCMessageChatType.TEXT,
+            content: 'Hello',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.LEFT,
+          },
+          {
+            id: '2',
+            type: MCMessageChatType.TEXT,
+            content: 'Hi',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.RIGHT,
+          },
+        ],
+        user: {
+          id: '2',
+          firstname: 'Jane',
+          lastname: 'Goe',
+          online: false,
+        },
+      },
+      {
+        id: '2',
+        title: 'Conversation 2',
+        messages: [
+          {
+            id: '1',
+            type: MCMessageChatType.TEXT,
+            content: 'Hello',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.LEFT,
+          },
+          {
+            id: '2',
+            type: MCMessageChatType.TEXT,
+            content: 'Hi',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.RIGHT,
+          },
+        ],
+        user: {
+          id: '2',
+          firstname: 'Jane',
+          lastname: 'Goe',
+          online: false,
+        },
+      },
+      {
+        id: '2',
+        title: 'Conversation 2',
+        messages: [
+          {
+            id: '1',
+            type: MCMessageChatType.TEXT,
+            content: 'Hello',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.LEFT,
+          },
+          {
+            id: '2',
+            type: MCMessageChatType.TEXT,
+            content: 'Hi',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.RIGHT,
+          },
+        ],
+        user: {
+          id: '2',
+          firstname: 'Jane',
+          lastname: 'Goe',
+          online: false,
+        },
+      },
+      {
+        id: '2',
+        title: 'Conversation 2',
+        messages: [
+          {
+            id: '1',
+            type: MCMessageChatType.TEXT,
+            content: 'Hello',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.LEFT,
+          },
+          {
+            id: '2',
+            type: MCMessageChatType.TEXT,
+            content: 'Hi',
+            createdAt: new Date().toISOString(),
+            side: MCMessageChatSide.RIGHT,
+          },
+        ],
+        user: {
+          id: '2',
+          firstname: 'Jane',
+          lastname: 'Goe',
+          online: false,
         },
       },
       {

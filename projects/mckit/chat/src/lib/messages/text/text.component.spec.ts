@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { TextComponent } from './text.component';
+import { MCMessageTextComponent } from './text.component';
 
-describe('TextComponent', () => {
-  let component: TextComponent;
-  let fixture: ComponentFixture<TextComponent>;
+describe('MCMessageTextComponent', () => {
+  let component: MCMessageTextComponent;
+  let fixture: ComponentFixture<MCMessageTextComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [TextComponent]
+      imports: [MCMessageTextComponent]
     })
     .compileComponents();
 
-    fixture = TestBed.createComponent(TextComponent);
+    fixture = TestBed.createComponent(MCMessageTextComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
