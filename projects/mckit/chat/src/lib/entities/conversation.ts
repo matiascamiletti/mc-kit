@@ -6,4 +6,5 @@ export class MCConversation {
     title?: string;
     messages: MCMessageChat[] = [];
     user?: MCUserChat;
+    extra?: any;
 }
