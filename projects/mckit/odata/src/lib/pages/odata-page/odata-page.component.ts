@@ -14,6 +14,7 @@ import { MCLeftHeaderTemplateDirective } from '../../directives/left-header-temp
 import { MCRightHeaderTemplateDirective } from '../../directives/right-header-template.directive';
 import { ButtonModule } from 'primeng/button';
 import { MCTopContentTemplateDirective } from '../../directives/top-content-template.directive';
+import { PaginatorState } from 'primeng/paginator';
 
 
 @Component({
@@ -84,6 +85,11 @@ export class MCOdataPage implements OnInit, OnDestroy {
   }
 
   onPage(event: TablePageEvent) {
+    this.data.setPageByPrimeNg(event);
+    this.loadItems();
+  }
+
+  onPageOnly(event: PaginatorState) {
     this.data.setPageByPrimeNg(event);
     this.loadItems();
   }

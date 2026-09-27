@@ -67,7 +67,7 @@
         </mc-table>
     </div>
     } @else if(layoutType() == eLayoutType.GRID) {
-    <div class="odata-grid-content mt-3 flex flex-wrap gap-4">
+    <div class="odata-grid-content mt-3 grid gap-4" [ngClass]="gridColsClass()">
 
         @for(item of items().data; track $index){
         <ng-container [ngTemplateOutlet]="itemGridTemplate()!.template"
@@ -77,8 +77,9 @@
     </div>
 
     @if (hasPagination()) {
-    <div class="odata-grid-paginator mt-3 flex justify-center">
-        <!--<p-paginator (onPageChange)="onPage($event)" [first]="first" [rows]="rows" [totalRecords]="120" [rowsPerPageOptions]="[10, 20, 30]" />-->
+    <div class="odata-grid-paginator mt-3 w-full flex justify-center">
+        <p-paginator (onPageChange)="onPageOnly($event)" [rows]="items().per_page ?? 50"
+            [totalRecords]="items().total ?? 0" [rowsPerPageOptions]="[5, 10, 20, 50]" />
     </div>
     }
 

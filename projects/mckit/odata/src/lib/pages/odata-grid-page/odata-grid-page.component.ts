@@ -33,6 +33,10 @@ export enum MCOdataGridLayoutType {
 })
 export class MCOdataGridPage extends MCOdataPage {
 
+  gridColsClass = input<string>('grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4');
+
+  itemGridTemplate = contentChild(MCItemGridTemplateDirective);
+
   layoutType = signal<MCOdataGridLayoutType>(MCOdataGridLayoutType.TABLE);
 
   eLayoutType = MCOdataGridLayoutType;
@@ -41,7 +45,6 @@ export class MCOdataGridPage extends MCOdataPage {
     this.layoutType.set(layout);
   }
 
-  itemGridTemplate = contentChild(MCItemGridTemplateDirective);
 
   // Borrar
   //breadcrumb = input<Array<MenuItem>>();

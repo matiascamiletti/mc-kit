@@ -1,5 +1,6 @@
 import { TablePageEvent } from "primeng/table";
 import { MCFilterProcessor } from "./mc-filter-processor";
+import { PaginatorState } from "primeng/paginator";
 
 /**
  * Represents the MCOdata class.
@@ -35,7 +36,7 @@ export class MCOdata {
     this.skip = (page - 1) * pageSize;
   }
 
-  setPageByPrimeNg(event: TablePageEvent): void {
+  setPageByPrimeNg(event: TablePageEvent | PaginatorState): void {
     this.top = event.rows;
     this.skip = event.first;
   }
