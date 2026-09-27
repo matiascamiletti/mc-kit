@@ -1,0 +1,93 @@
+<div class="odata-page">
+
+    <div class="md:visible w-full">
+
+        <div class="flex justify-between items-center gap-2">
+
+            <div class="w-full flex gap-2">
+                @if (hasSearch()) {
+                <div class="w-full">
+                    <mc-search-field #searchField [key]="key()" [placeholder]="'Search...'"
+                        (onSearch)="onSearch($event)" />
+                </div>
+                }
+
+                @if(filters()){
+                <mc-filter-button [config]="filters()!" (change)="onFilter($event)" class="md:auto" />
+                }
+                @if (hasEditColumns()) {
+                <mc-show-columns-button [initialColumns]="columns()" [key]="key()"
+                    (onSelected)="onChangeColumns($event)" class="md:auto" />
+                }
+            </div>
+
+            <div class="flex gap-2">
+                <p-button icon="pi pi-list" aria-label="Table"
+                    [severity]="layoutType() == eLayoutType.TABLE ? 'info' : 'secondary'"
+                    (onClick)="changeLayout(eLayoutType.TABLE)" />
+                <p-button icon="pi pi-table" aria-label="Grid"
+                    [severity]="layoutType() == eLayoutType.GRID ? 'info' : 'secondary'"
+                    (onClick)="changeLayout(eLayoutType.GRID)" />
+            </div>
+
+        </div>
+
+    </div>
+
+    @if (layoutType() == eLayoutType.TABLE) {
+    <div class="odata-content mt-3">
+
+        @if(topContentTemplate()){
+        <ng-container [ngTemplateOutlet]="topContentTemplate()!.template"></ng-container>
+        }
+
+        <mc-table [columns]="selectedColumns()" [response]="items()" [paginator]="hasPagination()"
+            (onPage)="onPage($event)" (onSort)="onSort($event)" [sortField]="sortField()" [sortOrder]="sortOrder()"
+            [selectionMode]="selectionMode()" (onRowSelect)="onRowSelectChange($event)"
+            (onRowUnselect)="onRowUnselectChange($event)">
+
+            @for (template of thTemplates(); track template) {
+            <ng-container>
+                <ng-template mcThTemplate="{{template.getFieldName()}}" let-row let-rowIndex>
+                    <ng-container [ngTemplateOutlet]="template.template"
+                        [ngTemplateOutletContext]="{ $implicit: row, row: row, rowIndex: rowIndex }"></ng-container>
+                </ng-template>
+            </ng-container>
+            }
+
+            @for (template of tdTemplates(); track template) {
+            <ng-container>
+                <ng-template mcTdTemplate="{{template.getFieldName()}}" let-row let-rowIndex>
+                    <ng-container [ngTemplateOutlet]="template.template"
+                        [ngTemplateOutletContext]="{ $implicit: row, row: row, rowIndex: rowIndex }"></ng-container>
+                </ng-template>
+            </ng-container>
+            }
+
+        </mc-table>
+    </div>
+    } @else if(layoutType() == eLayoutType.GRID) {
+    <div class="odata-grid-content mt-3 flex flex-wrap gap-4">
+
+        @for(item of items().data; track $index){
+        <ng-container [ngTemplateOutlet]="itemGridTemplate()!.template"
+            [ngTemplateOutletContext]="{ $implicit: item, row: item, rowIndex: $index }"></ng-container>
+        }
+
+    </div>
+
+    @if (hasPagination()) {
+    <div class="odata-grid-paginator mt-3 flex justify-center">
+        <!--<p-paginator (onPageChange)="onPage($event)" [first]="first" [rows]="rows" [totalRecords]="120" [rowsPerPageOptions]="[10, 20, 30]" />-->
+    </div>
+    }
+
+
+    }
+
+    <div class="odata-toast">
+        <p-toast />
+        <p-confirmdialog />
+    </div>
+
+</div>

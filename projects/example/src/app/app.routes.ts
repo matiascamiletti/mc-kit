@@ -17,6 +17,7 @@ import { MCAxisLayoutComponent } from '../../../mckit/layout-axis/src/public-api
 import { ProductEditPageComponent } from './pages/product-edit-page/product-edit-page.component';
 import { FormWizardPageComponent } from './pages/form-wizard-page/form-wizard-page.component';
 import { AxisPageComponent } from './pages/axis-page/axis-page.component';
+import { OdataGridPageComponent } from './pages/odata-grid-page/odata-grid-page.component';
 
 export const routes: Routes = [
   { path: '', redirectTo: 'basic', pathMatch: 'full' },
@@ -172,6 +173,11 @@ export const routes: Routes = [
         path: 'axis-page',
         component: AxisPageComponent,
         title: 'Axis Page',
+      },
+      {
+        path: 'odata-grid',
+        component: OdataGridPageComponent,
+        title: 'Odata Grid',
       },
     ],
   },

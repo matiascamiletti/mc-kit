@@ -14,6 +14,7 @@ export * from './lib/entities/mc-filter-processor';
 export * from './lib/directives/left-header-template.directive';
 export * from './lib/directives/right-header-template.directive';
 export * from './lib/directives/top-content-template.directive';
+export * from './lib/directives/item-grid-template.directive';
 
 /**
  * Components
@@ -27,3 +28,4 @@ export * from './lib/components/load-more-button-odata/load-more-button-odata.co
  * Pages
  */
 export * from './lib/pages/odata-page/odata-page.component';
+export * from './lib/pages/odata-grid-page/odata-grid-page.component'
