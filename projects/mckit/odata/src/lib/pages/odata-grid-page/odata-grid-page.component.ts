@@ -34,6 +34,7 @@ export enum MCOdataGridLayoutType {
 export class MCOdataGridPage extends MCOdataPage {
 
   gridColsClass = input<string>('grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4');
+  gridDisabled = input<boolean>(false);
 
   itemGridTemplate = contentChild(MCItemGridTemplateDirective);
 
