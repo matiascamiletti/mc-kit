@@ -1,0 +1,89 @@
+<p-iftalabel [class]="field().config.classes">
+    <p-multiselect 
+        [formControl]="control()!" 
+        [inputId]="field().key ?? ''" 
+        [options]="options()"
+        [optionLabel]="field().config.optionLabel" 
+        [optionValue]="field().config.optionValue" 
+        [filter]="field().config.filter ?? true"
+        [filterBy]="getFilterFields()"
+        [maxSelectedLabels]="field().config.maxSelectedAvatars ?? 5" 
+        [showClear]="field().config.showClear ?? false"
+        [placeholder]="field().config.placeholder ?? ''"
+        [appendTo]="'body'" 
+        [fluid]="true"
+        class="w-full mc-avatar-multiselect" 
+        styleClass="w-full" 
+        [loading]="isLoading()">
+
+        <!-- Selected Items: Overlapping circular avatar stack (+ remainder count badge) -->
+        <ng-template pTemplate="selectedItems" let-selected>
+            @if (selected && selected.length > 0) {
+                <div class="mc-avatar-stack">
+                    @for (user of getVisibleUsers(selected); track $index; let i = $index) {
+                        <div class="mc-avatar-item" 
+                             [style.zIndex]="i + 1"
+                             [pTooltip]="getUserLabel(user)" 
+                             tooltipPosition="top">
+                            @if (getUserImage(user); as imgUrl) {
+                                @if (!hasImgError(imgUrl)) {
+                                    <img [src]="imgUrl" 
+                                         [alt]="getUserLabel(user)" 
+                                         class="mc-avatar-img" 
+                                         (error)="onImgError(imgUrl)" />
+                                } @else {
+                                    <div class="mc-avatar-fallback">
+                                        {{ getUserInitials(user) }}
+                                    </div>
+                                }
+                            } @else {
+                                <div class="mc-avatar-fallback">
+                                    {{ getUserInitials(user) }}
+                                </div>
+                            }
+                        </div>
+                    }
+
+                    @if (getRemainingCount(selected) > 0) {
+                        <div class="mc-avatar-item mc-avatar-badge" 
+                             [style.zIndex]="getVisibleUsers(selected).length + 1"
+                             [pTooltip]="getRemainingUsersTooltip(selected)" 
+                             tooltipPosition="top">
+                            +{{ getRemainingCount(selected) }}
+                        </div>
+                    }
+                </div>
+            }
+        </ng-template>
+
+        <!-- Dropdown Option List Template -->
+        <ng-template pTemplate="item" let-option>
+            <div class="mc-option-item">
+                @if (getUserImage(option); as imgUrl) {
+                    @if (!hasImgError(imgUrl)) {
+                        <img [src]="imgUrl" 
+                             [alt]="getUserLabel(option)" 
+                             class="mc-option-avatar" 
+                             (error)="onImgError(imgUrl)" />
+                    } @else {
+                        <div class="mc-option-avatar mc-avatar-fallback">
+                            {{ getUserInitials(option) }}
+                        </div>
+                    }
+                } @else {
+                    <div class="mc-option-avatar mc-avatar-fallback">
+                        {{ getUserInitials(option) }}
+                    </div>
+                }
+                <div class="mc-option-info">
+                    <span class="mc-option-name">{{ getUserLabel(option) }}</span>
+                    @if (getUserSubLabel(option); as sub) {
+                        <span class="mc-option-sub">{{ sub }}</span>
+                    }
+                </div>
+            </div>
+        </ng-template>
+
+    </p-multiselect>
+    <label [for]="field().key">{{field().config.label}}</label>
+</p-iftalabel>

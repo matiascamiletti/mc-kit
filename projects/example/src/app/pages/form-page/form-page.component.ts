@@ -10,6 +10,7 @@ import { of } from 'rxjs';
 import { MonacoField } from '../../../../../mckit/monaco-field/src/public-api';
 import { IftaMultiSelectField } from '../../../../../mckit/form/src/lib/fields/ifta-multi-select-field/ifta-multi-select-field.component';
 import { IftaMultiSelectObsField } from '../../../../../mckit/form/src/lib/fields/ifta-multi-select-obs-field/ifta-multi-select-obs-field.component';
+import { IftaMultiSelectAvatarField } from '../../../../../mckit/form/src/lib/fields/ifta-multi-select-avatar-field/ifta-multi-select-avatar-field.component';
 
 @Component({
   selector: 'app-form-page',
@@ -49,7 +50,8 @@ export class FormPageComponent implements OnInit {
       lastname: 'Doe',
       address: {
         country: 'mexico'
-      }
+      },
+      team_members: ['u-1', 'u-2', 'u-5', 'u-6', 'u-7']
     };
     config.fields = [
       IftaTextField.init('firstname', 'Firstname', { validators: [Validators.required] }),
@@ -80,14 +82,15 @@ export class FormPageComponent implements OnInit {
         { id: 'client-3', title: 'Client 3' },
         { id: 'client-4', title: 'Client 4' },
         { id: 'client-5', title: 'Client 5' }
-      ]), 'title', 'id', { extra_params: { 'client_title': 'title' }}),
-       IftaSelectObsField.init('client_two', 'Client With OnChange', () => of([
+      ]), 'title', 'id', { extra_params: { 'client_title': 'title' } }),
+      IftaSelectObsField.init('client_two', 'Client With OnChange', () => of([
         { id: 'client-1', title: 'Client 1' },
         { id: 'client-2', title: 'Client 2' },
         { id: 'client-3', title: 'Client 3' },
         { id: 'client-4', title: 'Client 4' },
         { id: 'client-5', title: 'Client 5' }
-      ]), 'title', 'id', { on_change: (selectedItem) => {
+      ]), 'title', 'id', {
+        on_change: (selectedItem) => {
           return {
             firstname: selectedItem.title
           }
@@ -143,6 +146,16 @@ export class FormPageComponent implements OnInit {
         { id: 'client-4', title: 'Client 4' },
         { id: 'client-5', title: 'Client 5' }
       ]), 'title', 'id'),
+      DividerField.init('Avatar Multi Select (Users)'),
+      IftaMultiSelectAvatarField.init('team_members', 'Team Members', () => of([
+        { id: 'u-1', name: 'Amy Elsner', email: 'amy@company.com', photo: 'https://primefaces.org/cdn/primeng/images/demo/avatar/amyelsner.png' },
+        { id: 'u-2', name: 'Anna Fali', email: 'anna@company.com', photo: 'https://primefaces.org/cdn/primeng/images/demo/avatar/annafali.png' },
+        { id: 'u-3', name: 'Asiya Javayant', email: 'asiya@company.com', photo: 'https://primefaces.org/cdn/primeng/images/demo/avatar/asiyajavayant.png' },
+        { id: 'u-4', name: 'Bernardo Dominic', email: 'bernardo@company.com', photo: 'https://primefaces.org/cdn/primeng/images/demo/avatar/bernardodominic.png' },
+        { id: 'u-5', name: 'Elwin Sharvill', email: 'elwin@company.com', photo: 'https://primefaces.org/cdn/primeng/images/demo/avatar/elwinsharvill.png' },
+        { id: 'u-6', name: 'Ioni Bowcher', email: 'ioni@company.com', photo: 'https://primefaces.org/cdn/primeng/images/demo/avatar/ionibowcher.png' },
+        { id: 'u-7', name: 'Xuxue Feng', email: 'xuxue@company.com', photo: 'https://primefaces.org/cdn/primeng/images/demo/avatar/xuxuefeng.png' },
+      ]), 'name', 'id', 'photo', { maxSelectedAvatars: 5 }),
       HtmlField.init('Esto es un campo de <strong>HTML directo</strong>'),
       IftaSelectObsField.init('client_three_with_filter', 'Client', () => of([
         { id: 'client-1', title: 'Client 1' },
@@ -150,10 +163,10 @@ export class FormPageComponent implements OnInit {
         { id: 'client-3', title: 'Client 3' },
         { id: 'client-4', title: 'Client 4' },
         { id: 'client-5', title: 'Client 5' }
-      ]), 'title', 'id', { 
+      ]), 'title', 'id', {
         with_filter: true,
         on_filter: (query: string) => {
-          if(query == 'matias') {
+          if (query == 'matias') {
             return of([
               { id: 'client-matias', title: 'Client Matias' }
             ]);
@@ -161,7 +174,7 @@ export class FormPageComponent implements OnInit {
 
           return of([]);
         }
-       }),
+      }),
       SubmitButtonField.init('submit', 'Submit', { icon: 'pi pi-check' })
     ];
 
