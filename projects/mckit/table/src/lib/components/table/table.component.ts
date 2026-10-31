@@ -32,6 +32,7 @@ export class MCTable {
   selectionMode = input<'single' | 'multiple' | undefined | null>();
   onRowSelect = output<TableRowSelectEvent<any>>();
   onRowUnselect = output<TableRowUnSelectEvent<any>>();
+  onRowClick = output<any>();
 
   onSortChange(event: any) {
     this.onSort.emit(event);
@@ -65,5 +66,9 @@ export class MCTable {
 
   onRowUnselectChange(event: TableRowUnSelectEvent<any>) {
     this.onRowUnselect.emit(event);
+  }
+
+  onClickRow(row: any) {
+    this.onRowClick.emit(row);
   }
 }

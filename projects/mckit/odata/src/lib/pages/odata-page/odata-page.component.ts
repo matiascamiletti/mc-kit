@@ -75,6 +75,7 @@ export class MCOdataPage implements OnInit, OnDestroy {
   selectionMode = input<'single' | 'multiple' | undefined | null>();
   onRowSelect = output<TableRowSelectEvent<any>>();
   onRowUnselect = output<TableRowUnSelectEvent<any>>();
+  onRowClick = output<any>();
 
   ngOnInit(): void {
     this.initialSort();
@@ -207,5 +208,9 @@ export class MCOdataPage implements OnInit, OnDestroy {
 
   onRowUnselectChange(event: TableRowUnSelectEvent<any>) {
     this.onRowUnselect.emit(event);
+  }
+
+  onRowClickChange(row: any) {
+    this.onRowClick.emit(row);
   }
 }

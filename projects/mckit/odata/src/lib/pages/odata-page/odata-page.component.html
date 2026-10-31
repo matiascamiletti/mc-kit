@@ -42,7 +42,8 @@
 
     <mc-table [columns]="selectedColumns()" [response]="items()" [paginator]="hasPagination()" (onPage)="onPage($event)"
       (onSort)="onSort($event)" [sortField]="sortField()" [sortOrder]="sortOrder()" [selectionMode]="selectionMode()"
-      (onRowSelect)="onRowSelectChange($event)" (onRowUnselect)="onRowUnselectChange($event)">
+      (onRowSelect)="onRowSelectChange($event)" (onRowUnselect)="onRowUnselectChange($event)"
+      (onRowClick)="onRowClickChange($event)">
 
       @for (template of thTemplates(); track template) {
       <ng-container>
