@@ -1,5 +1,4 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { Socket } from './socket';
 
 describe('Socket', () => {
@@ -8,9 +7,8 @@ describe('Socket', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [Socket]
-    })
-    .compileComponents();
+      imports: [Socket],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(Socket);
     component = fixture.componentInstance;
@@ -19,5 +17,9 @@ describe('Socket', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render socket template', () => {
+    expect(fixture.nativeElement.textContent).toContain('socket works!');
   });
 });

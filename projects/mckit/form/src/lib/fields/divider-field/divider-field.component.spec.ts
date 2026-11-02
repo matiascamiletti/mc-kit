@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { DividerFieldComponent } from './divider-field.component';
+import { UntypedFormGroup } from '@angular/forms';
+import { DividerField, DividerFieldComponent } from './divider-field.component';
 
 describe('DividerFieldComponent', () => {
   let component: DividerFieldComponent;
@@ -14,10 +14,16 @@ describe('DividerFieldComponent', () => {
 
     fixture = TestBed.createComponent(DividerFieldComponent);
     component = fixture.componentInstance;
+
+    const field = DividerField.init('Section Header');
+    fixture.componentRef.setInput('field', field);
+    fixture.componentRef.setInput('group', new UntypedFormGroup({}));
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create and render divider label', () => {
     expect(component).toBeTruthy();
+    expect(component.field().config.no_control).toBeTrue();
+    expect(fixture.nativeElement.textContent).toContain('Section Header');
   });
 });

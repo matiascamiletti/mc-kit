@@ -9,8 +9,7 @@ describe('MCLoadMoreButtonOdata', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [MCLoadMoreButtonOdata]
-    })
-    .compileComponents();
+    }).compileComponents();
 
     fixture = TestBed.createComponent(MCLoadMoreButtonOdata);
     component = fixture.componentInstance;
@@ -19,7 +18,27 @@ describe('MCLoadMoreButtonOdata', () => {
     fixture.detectChanges();
   });
 
-  it('should create', () => {
+  it('should create and clone initialOdata', () => {
     expect(component).toBeTruthy();
+    expect(component.odata).toBeTruthy();
+    expect(component.isShow()).toBeTrue();
+  });
+
+  it('should emit clickMore on onClick and update skip and isShow via setResult', () => {
+    let emittedPayload: any;
+    component.clickMore.subscribe((payload) => (emittedPayload = payload));
+
+    component.onClick();
+    expect(component.isLoading()).toBeTrue();
+    expect(emittedPayload).toBeTruthy();
+
+    emittedPayload.setResult({ data: [{ id: 1 }, { id: 2 }], total: 3 });
+    expect(component.odata.skip).toBe(2);
+    expect(component.isShow()).toBeTrue();
+    expect(component.isLoading()).toBeFalse();
+
+    emittedPayload.setResult({ data: [{ id: 3 }], total: 3 });
+    expect(component.odata.skip).toBe(3);
+    expect(component.isShow()).toBeFalse();
   });
 });

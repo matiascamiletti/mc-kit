@@ -1,16 +1,28 @@
 import { TestBed } from '@angular/core/testing';
+import { MCLoaderService } from './loader.service';
 
-import { LoaderService } from './loader.service';
-
-describe('LoaderService', () => {
-  let service: LoaderService;
+describe('MCLoaderService', () => {
+  let service: MCLoaderService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({});
-    service = TestBed.inject(LoaderService);
+    service = TestBed.inject(MCLoaderService);
   });
 
-  it('should be created', () => {
+  it('should be created with isLoading initially true', () => {
     expect(service).toBeTruthy();
+    expect(service.isLoading()).toBeTrue();
+  });
+
+  it('should set isLoading to false when hide() is called', () => {
+    service.hide();
+    expect(service.isLoading()).toBeFalse();
+  });
+
+  it('should set isLoading to true when show() is called after hide()', () => {
+    service.hide();
+    expect(service.isLoading()).toBeFalse();
+    service.show();
+    expect(service.isLoading()).toBeTrue();
   });
 });

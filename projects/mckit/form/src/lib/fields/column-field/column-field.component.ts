@@ -15,9 +15,14 @@ export class ColumnFieldComponent extends MCFieldComponent {
 
 }
 
+export interface ColumnFieldConfig {
+  classes?: string;
+  containerFieldClass?: string;
+}
+
 export class ColumnField {
 
-  static init(fields: MCField[], extra?: any): MCField {
+  static init(fields: MCField[], extra?: ColumnFieldConfig): MCField {
     let field = MCField.init({
       component: ColumnFieldComponent,
     });
