@@ -12,6 +12,7 @@ export class MCBaseHttpFormModalConfig<T extends { id?: any }> {
     item?: T;
     httpService!: MCApiRestHttpService<T>;
     identifierField: string = 'id';
+    containerFieldClass?: string;
 
     constructor(title: string, httpService: MCApiRestHttpService<T>, item?: T) {
         this.title = title;
@@ -57,6 +58,7 @@ export abstract class MCBaseHttpFormModalService<T extends { id?: any }> {
                 }
                 return config.httpService.create(item);
             },
+            containerFieldClass: config.containerFieldClass
         };
     }
 }
