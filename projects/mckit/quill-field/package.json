@@ -1,11 +1,11 @@
 {
   "name": "@mckit/quill-field",
-  "version": "21.0.1",
+  "version": "21.0.2",
   "peerDependencies": {
     "@angular/common": "^21.0.0",
     "@angular/core": "^21.0.0",
     "@mckit/form": "^21.0.0",
-    "@primeuix/themes": "^2.0.3",
+    "@primeuix/themes": "^2.0.3 || ^3.1.1",
     "quill": "^2.0.3"
   },
   "dependencies": {

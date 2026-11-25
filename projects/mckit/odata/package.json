@@ -1,10 +1,10 @@
 {
   "name": "@mckit/odata",
-  "version": "21.0.7",
+  "version": "21.0.8",
   "peerDependencies": {
     "@angular/common": "^21.0.0",
     "@angular/core": "^21.0.0",
-    "@primeuix/themes": "^2.0.3",
+    "@primeuix/themes": "^2.0.3 || ^3.1.1",
     "@mckit/core": "^21.0.0",
     "@mckit/filter": "^21.0.0",
     "@mckit/layout-core": "^21.0.0",
